@@ -5,6 +5,8 @@ let db = require('./api/Config/database')
 const adminsRoutes = require('./api/Routes/admins.routes')
 const nguoidungsRoutes = require('./api/Routes/nguoidungs.routes')
 const nguoinuocngoaisRoutes = require('./api/Routes/nguoinuocngoais.routes')
+const luutrusRoutes = require('./api/Routes/luutrus.routes')
+const chitietluutrusRoutes = require('./api/Routes/chitietluutrus.routes')
 let app = express()
 app.use(cors())
 let port = 3000
@@ -20,6 +22,8 @@ app.use(bodyParser.urlencoded({
 adminsRoutes(app)
 nguoidungsRoutes(app)
 nguoinuocngoaisRoutes(app)
+luutrusRoutes(app)
+chitietluutrusRoutes(app)
 
 
 app.get('/', function (req, res) {
