@@ -4,6 +4,7 @@ let bodyParser = require('body-parser')
 let db = require('./api/Config/database')
 const adminsRoutes = require('./api/Routes/admins.routes')
 const nguoidungsRoutes = require('./api/Routes/nguoidungs.routes')
+const nguoinuocngoaisRoutes = require('./api/Routes/nguoinuocngoais.routes')
 let app = express()
 app.use(cors())
 let port = 3000
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({
 // routes
 adminsRoutes(app)
 nguoidungsRoutes(app)
+nguoinuocngoaisRoutes(app)
 
 
 app.get('/', function (req, res) {
