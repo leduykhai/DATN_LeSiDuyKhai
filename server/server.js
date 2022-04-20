@@ -2,7 +2,8 @@ let express = require('express')
 let cors = require('cors')
 let bodyParser = require('body-parser')
 let db = require('./api/Config/database')
-// let routes = require('./api/Routes/router')
+const adminsRoutes = require('./api/Routes/admins.routes')
+const nguoidungsRoutes = require('./api/Routes/nguoidungs.routes')
 let app = express()
 app.use(cors())
 let port = 3000
@@ -14,7 +15,10 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 
-// routes(app)
+// routes
+adminsRoutes(app)
+nguoidungsRoutes(app)
+
 
 app.get('/', function (req, res) {
     res.send('Hello World!')
