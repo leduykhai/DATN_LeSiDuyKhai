@@ -92,7 +92,7 @@ export default function Login() {
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
                             ex ratione. Aliquid!
                         </p>
-                        <button class="btn transparent" id="sign-up-btn" onClick={changeState}>
+                        <button class="btn transparent" id="sign-up-btn" onClick={changeState} >
                             Sign up
                         </button>
                     </div>
