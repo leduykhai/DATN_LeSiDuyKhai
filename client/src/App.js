@@ -7,13 +7,17 @@ import {
   // withRouter
 } from "react-router-dom";
 
+
+import Login from "./components/screens/Login/Login";
+
+
 function App() {
   return (
     <Router>
       <div>
-        <switch>
-
-        </switch>
+        <Switch>
+          <Route exact path="/" component={Login} />
+        </Switch>
       </div>
     </Router>
   );
