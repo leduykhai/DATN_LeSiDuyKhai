@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 
-import Login from "./components/screens/Login/Login";
+import loginAdmin from "./pages/admin/Login";
 
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route exact path="/" component={Login} />
+          <Route exact path="/" component={loginAdmin} />
         </Switch>
       </div>
     </Router>
