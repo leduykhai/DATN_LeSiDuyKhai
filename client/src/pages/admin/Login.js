@@ -99,17 +99,17 @@ function Login(props) {
                         <h2 class="title">Sign in</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" placeholder="Username" onChange={onChangeUsername} />
+                            <input type="text" name='username' id='username' autoComplete="username" placeholder="username" onChange={onChangeUsername} />
                         </div>
                         <p className="social-text">{validationMsg.username}</p>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Password" onChange={onChangePassword} />
+                            <input type="password" name="password" id='password' placeholder="Password" autoComplete="current-password" onChange={onChangePassword} />
                         </div>
                         <p className="social-text">{validationMsg.password}</p>
+                        <div className="text-center text-sm text-red-500 mt-2">{message}</div>
                         <input type="submit" value="Login" class="btn solid" onClick={onSubmitLogin} />
                         <p class="social-text">Or Sign in with social platforms</p>
-                        <div className="text-center text-sm text-red-500 mt-2">{message}</div>
                         <div class="social-media">
                             <a href="#" class="social-icon">
                                 <i class="fab fa-facebook-f"></i>
