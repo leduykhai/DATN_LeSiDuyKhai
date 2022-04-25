@@ -1,9 +1,81 @@
-import React from "react";
+import React, { useState, useEffect } from 'react'
 import "./Login.scss";
 import "https://kit.fontawesome.com/64d58efce2.js";
+// import LOGO from '../images/logo.svg'
+import isEmpty from "validator/lib/isEmpty"
+import { useHistory } from 'react-router-dom'
+import isEmail from "validator/lib/isEmail"
+import axios from '../../api/admin/axios'
+import ENDPOINT from '../../api/admin/endpoint'
+import APP_CONSTANTS from '../../constants/appConstants'
 
 
-export default function Login() {
+function Login(props) {
+
+    const history = useHistory()
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [validationMsg, setValidationMsg] = useState({})
+    const [message, setMessage] = useState("")
+
+    useEffect(() => {
+        const token = localStorage.getItem(APP_CONSTANTS.USER_TOKEN)
+        if (token) {
+            history.replace('./admin')
+        }
+    })
+
+    const onChangeUsername = (event) => {
+        const value = event.target.value
+        setUsername(value)
+    }
+
+    const onChangePassword = (event) => {
+        const value = event.target.value
+        setPassword(value)
+    }
+
+    const validateAll = () => {
+        const msg = {}
+        if (isEmpty(username)) {
+            msg.username = "Please input your Username"
+        }
+        // } else if (!isEmail(username)) {
+        //     msg.username = "Your username is incorrect"
+        // }
+
+        if (isEmpty(password)) {
+            msg.password = "Please input your Password"
+        }
+
+        setValidationMsg(msg)
+        if (Object.keys(msg).length > 0) return false
+        return true
+    }
+
+    const onSubmitLogin = async () => {
+        const isValid = validateAll()
+        if (!isValid) return
+
+        try {
+            const params = {
+                username: username,
+                password: password
+            }
+
+            const res = await axios.post(ENDPOINT.LOGIN, params)
+            if (res.data && res.data.messageCode === 1) {
+                localStorage.setItem(APP_CONSTANTS.USER_TOKEN, res.data.result.access_token)
+                setMessage("")
+                history.replace('/admin')
+            } else {
+                setMessage(res.data.message)
+            }
+
+        } catch (error) {
+            console.log("api login error: ", error)
+        }
+    }
 
     const changeState = () => {
         const sign_in_btn = document.querySelector("#sign-in-btn");
@@ -27,14 +99,17 @@ export default function Login() {
                         <h2 class="title">Sign in</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" placeholder="Username" />
+                            <input type="text" placeholder="Username" onChange={onChangeUsername} />
                         </div>
+                        <p className="social-text">{validationMsg.username}</p>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Password" />
+                            <input type="password" placeholder="Password" onChange={onChangePassword} />
                         </div>
-                        <input type="submit" value="Login" class="btn solid" />
+                        <p className="social-text">{validationMsg.password}</p>
+                        <input type="submit" value="Login" class="btn solid" onClick={onSubmitLogin} />
                         <p class="social-text">Or Sign in with social platforms</p>
+                        <div className="text-center text-sm text-red-500 mt-2">{message}</div>
                         <div class="social-media">
                             <a href="#" class="social-icon">
                                 <i class="fab fa-facebook-f"></i>
@@ -115,4 +190,5 @@ export default function Login() {
         </div>
     )
 }
+export default Login;
 

@@ -1,26 +1,61 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  // Link,
-  // withRouter
-} from "react-router-dom";
+import React, { Component } from 'react';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { authentication } from './pages/authentication'
 
-
-import loginAdmin from "./pages/admin/Login";
+import Login from './pages/admin/Login';
+import admin from './pages/admin/admin';
 
 
 function App() {
   return (
-    <Router>
-      <div>
-        <Switch>
-          <Route exact path="/" component={loginAdmin} />
-        </Switch>
-      </div>
-    </Router>
+    <BrowserRouter>
+      <Route path="/" component={Login} />
+      <Route path="/admin" component={admin} />
+    </BrowserRouter>
   );
+}
+
+function RouteWrapper({ component: Component, layout: Layout, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={(props) => (
+        <Layout {...props}>
+          <Component {...props} />
+        </Layout>
+      )}
+    />
+  )
+}
+
+function PrivateRoute({ component: Component, layout: Layout, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={props => (
+        authentication.isAuthentication() ?
+          (<Layout {...props}>
+            <Component {...props} />
+          </Layout>)
+          :
+          (<Redirect to="/login" />)
+      )}
+    />
+  )
+}
+
+function PrivateRoute2({ component: Component, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={props => (
+        authentication.isAuthentication() ?
+          (<Component {...props} />)
+          :
+          (<Redirect to="/login" />)
+      )}
+    />
+  )
 }
 
 export default App;
