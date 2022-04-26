@@ -16,21 +16,43 @@ const AddEdit = () => {
 
     const history = useHistory();
 
+    const { id } = useParams();
+
+    useEffect(() => {
+        axios
+            .get(`http://localhost:3000/admins/${id}`)
+            .then((resp) => setState({ ...resp.data[0] }));
+    }, [id]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!username || !password) {
             toast.error("please provide value into each input field");
         } else {
-            axios
-                .post("http://localhost:3000/admins", {
-                    username,
-                    password
-                })
-                .then(() => {
-                    setState({ username: "", password: "" });
-                })
-                .catch((err) => toast.error(err.response.data));
-            setTimeout(() => history.push("/admin"), 300);
+            if (!id) {
+                axios
+                    .post("http://localhost:3000/admins", {
+                        username,
+                        password
+                    })
+                    .then(() => {
+                        setState({ username: "", password: "" });
+                    })
+                    .catch((err) => toast.error(err.response.data));
+                toast.success("Contact Added Successfully")
+            } else {
+                axios
+                    .put(`http://localhost:3000/admins/${id}`, {
+                        username,
+                        password
+                    })
+                    .then(() => {
+                        setState({ username: "", password: "" });
+                    })
+                    .catch((err) => toast.error(err.response.data));
+                toast.success("Contact Update Successfully")
+            }
+            setTimeout(() => history.push("/admin"), 500);
         }
     };
 
@@ -55,7 +77,7 @@ const AddEdit = () => {
                     id='username'
                     name='username'
                     placeholder='username...'
-                    value={username}
+                    value={username || ""}
                     onChange={handleInputChange}
                 />
                 <label htmlFor='password'>Password</label>
@@ -64,10 +86,10 @@ const AddEdit = () => {
                     id='password'
                     name='password'
                     placeholder='password...'
-                    value={password}
+                    value={password || ""}
                     onChange={handleInputChange}
                 />
-                <input type="submit" value="Save" />
+                <input type="submit" value={id ? "Update" : "Save"} />
                 <Link to="/admin">
                     <input type="button" value="Go Back" />
                 </Link>

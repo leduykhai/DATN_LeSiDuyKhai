@@ -8,6 +8,7 @@ import "./App.css"
 import Login from './pages/admin/Login';
 import admin from './pages/admin/admin';
 import AddEdit from './pages/admin/AddEdit';
+import View from './pages/admin/View';
 
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
           <Route exact path="/" component={Login} />
           <Route exact path="/admin" component={admin} />
           <Route path="/addContact" component={AddEdit} />
+          <Route path="/update/:id" component={AddEdit} />
+          <Route path="/view/:id" component={View} />
         </Switch>
       </div>
     </BrowserRouter>
