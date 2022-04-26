@@ -8,7 +8,7 @@ const apiCallStack = []
 
 const axios = axiosInstance.create({
     baseURL: ENDPOINT.BASE_URL,
-    timeout: 3000
+    timeout: 30000
 })
 
 // Add a request interceptor

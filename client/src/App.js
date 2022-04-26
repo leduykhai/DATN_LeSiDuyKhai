@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
-import { authentication } from './pages/authentication'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { authentication } from './pages/authentication';
+import "./App.css"
 
 import Login from './pages/admin/Login';
 import admin from './pages/admin/admin';
+import AddEdit from './pages/admin/AddEdit';
 
 
 function App() {
   return (
     <BrowserRouter>
-      <Route path="/" component={Login} />
-      <Route path="/admin" component={admin} />
+      <div className='App'>
+        <ToastContainer position='top-center' />
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/admin" component={admin} />
+          <Route path="/addContact" component={AddEdit} />
+        </Switch>
+      </div>
     </BrowserRouter>
   );
 }

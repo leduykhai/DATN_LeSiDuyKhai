@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react'
 import "./Login.scss";
 import "https://kit.fontawesome.com/64d58efce2.js";
 // import LOGO from '../images/logo.svg'
-import isEmpty from "validator/lib/isEmpty"
-import { useHistory } from 'react-router-dom'
-import isEmail from "validator/lib/isEmail"
-import axios from '../../api/admin/axios'
-import ENDPOINT from '../../api/admin/endpoint'
-import APP_CONSTANTS from '../../constants/appConstants'
+import isEmpty from "validator/lib/isEmpty";
+import { useHistory } from "react-router-dom";
+import isEmail from "validator/lib/isEmail";
+import axios from "../../api/admin/axios";
+import ENDPOINT from "../../api/admin/endpoint";
+import APP_CONSTANTS from "../../constants/appConstants";
+
+import { login } from '../../api/admin/api';
+
 
 
 function Login(props) {
@@ -54,26 +57,44 @@ function Login(props) {
     }
 
     const onSubmitLogin = async () => {
-        const isValid = validateAll()
-        if (!isValid) return
+        // const isValid = validateAll()
+        // if (!isValid) return
+
+        // try {
+        //     const params = {
+        //         username: username,
+        //         password: password
+        //     }
+        //     console.log(params)
+        //     const res = await axios.post(ENDPOINT.LOGIN, params)
+        //     console.log(res)
+        //     if (res.data && res.data.messageCode === 1) {
+        //         localStorage.setItem(APP_CONSTANTS.USER_TOKEN, res.data.result.access_token)
+        //         setMessage("")
+        //         history.replace('/admin')
+        //     } else {
+        //         setMessage(res.data.message)
+        //     }
+
+        // } catch (error) {
+        //     console.log("api login error: ", error)
+        // }
 
         try {
-            const params = {
-                username: username,
-                password: password
-            }
-
-            const res = await axios.post(ENDPOINT.LOGIN, params)
-            if (res.data && res.data.messageCode === 1) {
-                localStorage.setItem(APP_CONSTANTS.USER_TOKEN, res.data.result.access_token)
-                setMessage("")
-                history.replace('/admin')
+            let { data } = await login(username, password);
+            console.log(data);
+            if (data.status !== 'SUCCESS') {
+                console.log(data.message);
             } else {
-                setMessage(res.data.message)
+                setMessage("");
+                history.push({
+                    pathname: '/admin',
+                    state: { admin: data }
+                });
+                console.log('Success!!!');
             }
-
-        } catch (error) {
-            console.log("api login error: ", error)
+        } catch (e) {
+            console.log('Error in signIn: ', e.response);
         }
     }
 
@@ -99,16 +120,36 @@ function Login(props) {
                         <h2 class="title">Sign in</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" name='username' id='username' autoComplete="username" placeholder="username" onChange={onChangeUsername} />
+                            <input
+                                type="username"
+                                name='username'
+                                id='username'
+                                placeholder="username"
+                                autoComplete="username"
+                                onChange={onChangeUsername}
+                            />
                         </div>
                         <p className="social-text">{validationMsg.username}</p>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input type="password" name="password" id='password' placeholder="Password" autoComplete="current-password" onChange={onChangePassword} />
+                            <input
+                                type="password"
+                                name="password"
+                                id='password'
+                                placeholder="password"
+                                autoComplete="password"
+                                onChange={onChangePassword}
+                            />
                         </div>
                         <p className="social-text">{validationMsg.password}</p>
                         <div className="text-center text-sm text-red-500 mt-2">{message}</div>
-                        <input type="submit" value="Login" class="btn solid" onClick={onSubmitLogin} />
+                        <button
+                            type="button"
+                            className="btn solid"
+                            onClick={onSubmitLogin}
+                        >
+                            LOGIN
+                        </button>
                         <p class="social-text">Or Sign in with social platforms</p>
                         <div class="social-media">
                             <a href="#" class="social-icon">
