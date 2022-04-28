@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import "./admin.scss";
+import "./Admins.scss";
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-const admin = () => {
+const Admins = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [data, setData] = useState([]);
 
@@ -30,7 +30,7 @@ const admin = () => {
 
     return (
         <div style={{ marginTop: "150px" }}>
-            <Link to={`/addContact`}>
+            <Link to={`/addAdmin`}>
                 <button className='btn btn-contact'>Add Contact</button>
             </Link>
             <table className='styled-table'>
@@ -52,11 +52,11 @@ const admin = () => {
                                 <td>{item.username}</td>
                                 <td>{item.password}</td>
                                 <td>
-                                    <Link to={`/update/${item.id}`}>
+                                    <Link to={`/updateAdmin/${item.id}`}>
                                         <button className='btn btn-edit'>Edit</button>
                                     </Link>
                                     <button className='btn btn-delete' onClick={() => { deleteContact(item.id) }}>Delete</button>
-                                    <Link to={`/view/${item.id}`}>
+                                    <Link to={`/viewAdmin/${item.id}`}>
                                         <button className='btn btn-view'>View</button>
                                     </Link>
                                 </td>
@@ -69,4 +69,4 @@ const admin = () => {
     );
 };
 
-export default admin;
+export default Admins;

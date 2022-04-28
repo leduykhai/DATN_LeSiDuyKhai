@@ -6,7 +6,7 @@ import { authentication } from './pages/authentication';
 import "./App.css"
 
 import Login from './pages/admin/Login';
-import admin from './pages/admin/admin';
+import Admins from './pages/admin/Admins';
 import AddEdit from './pages/admin/AddEdit';
 import View from './pages/admin/View';
 
@@ -18,10 +18,10 @@ function App() {
         <ToastContainer position='top-center' />
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/admin" component={admin} />
-          <Route path="/addContact" component={AddEdit} />
-          <Route path="/update/:id" component={AddEdit} />
-          <Route path="/view/:id" component={View} />
+          <Route exact path="/admins" component={Admins} />
+          <Route path="/addAdmin" component={AddEdit} />
+          <Route path="/updateAdmin/:id" component={AddEdit} />
+          <Route path="/viewAdmin/:id" component={View} />
         </Switch>
       </div>
     </BrowserRouter>

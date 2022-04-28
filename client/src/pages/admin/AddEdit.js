@@ -53,7 +53,7 @@ const AddEdit = () => {
                     .catch((err) => toast.error(err.response.data));
                 toast.success("Contact Update Successfully")
             }
-            setTimeout(() => history.push("/admin"), 500);
+            setTimeout(() => history.push("/admins"), 500);
         }
     };
 
@@ -91,7 +91,7 @@ const AddEdit = () => {
                     onChange={handleInputChange}
                 />
                 <input type="submit" value={id ? "Update" : "Save"} />
-                <Link to="/admin">
+                <Link to="/admins">
                     <input type="button" value="Go Back" />
                 </Link>
             </form>

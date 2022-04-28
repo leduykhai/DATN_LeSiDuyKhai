@@ -33,7 +33,7 @@ const View = () => {
                     <span>{user.password}</span>
                     <br />
                     <br />
-                    <Link to="/admin">
+                    <Link to="/admins">
                         <div className='btn btn-edit'>Go Back</div>
                     </Link>
                 </div>
