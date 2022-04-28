@@ -24,7 +24,7 @@ function Login(props) {
     useEffect(() => {
         const token = localStorage.getItem(APP_CONSTANTS.USER_TOKEN)
         if (token) {
-            history.replace('./admin')
+            history.replace('/admins') //./admins
         }
     })
 
@@ -71,7 +71,7 @@ function Login(props) {
         //     if (res.data && res.data.messageCode === 1) {
         //         localStorage.setItem(APP_CONSTANTS.USER_TOKEN, res.data.result.access_token)
         //         setMessage("")
-        //         history.replace('/admin')
+        //         history.replace('/admins')
         //     } else {
         //         setMessage(res.data.message)
         //     }
@@ -88,7 +88,7 @@ function Login(props) {
             } else {
                 setMessage("");
                 history.push({
-                    pathname: '/admin',
+                    pathname: '/admins',
                     state: { admin: data }
                 });
                 console.log('Success!!!');
