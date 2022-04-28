@@ -42,7 +42,8 @@ const AddEdit = () => {
                 toast.success("Contact Added Successfully")
             } else {
                 axios
-                    .put(`http://localhost:3000/admins/${id}`, {
+                    .put(`http://localhost:3000/admins`, {
+                        id,
                         username,
                         password
                     })
@@ -57,8 +58,8 @@ const AddEdit = () => {
     };
 
     const handleInputChange = (e) => {
-        const { username, value } = e.target;
-        setState({ ...state, [username]: value });
+        const { name, value } = e.target;
+        setState({ ...state, [name]: value });
     }
 
     return (
