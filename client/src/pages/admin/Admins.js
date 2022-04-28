@@ -20,18 +20,18 @@ const Admins = () => {
 
     const deleteContact = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that contact ?")
+            window.confirm("Are you sure that you wanted to delete that admin ?")
         ) {
             axios.delete(`http://localhost:3000/admins/${id}`);
-            toast.success("Contact Delete Successfully");
-            setTimeout(() => loadData(), 500);
+            toast.success("Admin Delete Successfully");
+            setTimeout(() => loadData(), 100);
         }
     };
 
     return (
         <div style={{ marginTop: "150px" }}>
             <Link to={`/addAdmin`}>
-                <button className='btn btn-contact'>Add Contact</button>
+                <button className='btn btn-add'>Add Admin</button>
             </Link>
             <table className='styled-table'>
                 <thead>

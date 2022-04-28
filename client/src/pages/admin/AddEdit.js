@@ -53,7 +53,7 @@ const AddEdit = () => {
                     .catch((err) => toast.error(err.response.data));
                 toast.success("Contact Update Successfully")
             }
-            setTimeout(() => history.push("/admins"), 500);
+            setTimeout(() => history.push("/admins"), 100);
         }
     };
 
