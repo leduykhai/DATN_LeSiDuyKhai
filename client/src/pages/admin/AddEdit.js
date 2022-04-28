@@ -39,7 +39,7 @@ const AddEdit = () => {
                         setState({ username: "", password: "" });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("Contact Added Successfully")
+                toast.success("Admin Added Successfully")
             } else {
                 axios
                     .put(`http://localhost:3000/admins`, {
@@ -51,7 +51,7 @@ const AddEdit = () => {
                         setState({ username: "", password: "" });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("Contact Update Successfully")
+                toast.success("Admin Update Successfully")
             }
             setTimeout(() => history.push("/admins"), 100);
         }
