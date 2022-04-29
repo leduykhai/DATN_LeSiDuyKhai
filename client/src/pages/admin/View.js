@@ -18,7 +18,7 @@ const View = () => {
         <div style={{ marginTop: "150px" }}>
             <div className='Card'>
                 <div className='Card-header'>
-                    <p>User Detail</p>
+                    <p>Admin Detail</p>
                 </div>
                 <div className='Container'>
                     <strong>ID: </strong>

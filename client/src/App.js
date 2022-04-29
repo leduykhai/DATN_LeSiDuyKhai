@@ -15,7 +15,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className='App'>
-        <ToastContainer position='top-center' />
+        <ToastContainer position='bottom-left' />
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/admins" component={Admins} />

@@ -17,6 +17,7 @@ module.exports = {
 
     getAdminById: (req, res) => {
         let admin_id = req.params.id;
+        console.log('ID: ', admin_id)
         let sql = 'SELECT * FROM admins where id = ?'
         db.query(sql, admin_id, (err, response) => {
             if (err) throw err
@@ -26,7 +27,7 @@ module.exports = {
 
     addNewAdmin: (req, res) => {
         let data = req.body;
-        console.log('addNewAdmin: ', req.body)
+        console.log('addNewAdmin: ', data)
         let sql = `INSERT INTO admins SET ?`
         db.query(sql, [data], (err, response) => {
             if (err) throw err
@@ -38,6 +39,7 @@ module.exports = {
 
     updateAdmin: (req, res) => {
         let data = req.body;
+        console.log('updateAdmin: ', data)
         if (!data.id) {
             return res.status(400).send({
                 error: true,
@@ -55,6 +57,7 @@ module.exports = {
 
     deleteAdminById: (req, res) => {
         let admin_id = req.params.id;
+        console.log('deleteAdmin ID: ', admin_id)
         let sql = 'DELETE FROM admins where id = ?'
         db.query(sql, admin_id, (err, response) => {
             if (err) throw err
