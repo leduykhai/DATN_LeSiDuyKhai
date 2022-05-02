@@ -10,6 +10,10 @@ import Admins from './pages/admin/Admins';
 import AddEdit from './pages/admin/AddEdit';
 import View from './pages/admin/View';
 
+import NguoiDungs from './pages/nguoidung/NguoiDungs';
+
+import NguoiNuocNgoais from './pages/nguoinuocngoai/NguoiNuocNgoais';
+
 
 function App() {
   return (
@@ -22,6 +26,10 @@ function App() {
           <Route path="/addAdmin" component={AddEdit} />
           <Route path="/updateAdmin/:id" component={AddEdit} />
           <Route path="/viewAdmin/:id" component={View} />
+
+          <Route path="/nguoidungs" component={NguoiDungs} />
+
+          <Route path="/nguoinuocngoais" component={NguoiNuocNgoais} />
         </Switch>
       </div>
     </BrowserRouter>
