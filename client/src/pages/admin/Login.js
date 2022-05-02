@@ -80,11 +80,15 @@ function Login(props) {
         //     console.log("api login error: ", error)
         // }
 
+
+        const isValid = validateAll()
+        if (!isValid) return
         try {
             let { data } = await login(username, password);
             console.log(data);
             if (data.status !== 'SUCCESS') {
                 console.log(data.message);
+                setMessage(data.message)
             } else {
                 setMessage("");
                 history.push({
