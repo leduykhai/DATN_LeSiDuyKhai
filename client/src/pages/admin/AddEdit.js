@@ -75,6 +75,7 @@ const AddEdit = () => {
                 <label htmlFor='username'>UserName</label>
                 <input
                     type="text"
+                    className='text'
                     id='username'
                     name='username'
                     placeholder='username...'
@@ -84,15 +85,16 @@ const AddEdit = () => {
                 <label htmlFor='password'>Password</label>
                 <input
                     type="text"
+                    className='text'
                     id='password'
                     name='password'
                     placeholder='password...'
                     value={password || ""}
                     onChange={handleInputChange}
                 />
-                <input type="submit" value={id ? "Update" : "Save"} />
+                <input type="submit" className='submit' value={id ? "Update" : "Save"} />
                 <Link to="/admins">
-                    <input type="button" value="Go Back" />
+                    <input type="button" className='button' value="Go Back" />
                 </Link>
             </form>
         </div>
