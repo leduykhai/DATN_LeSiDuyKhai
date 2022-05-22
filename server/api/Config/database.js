@@ -6,7 +6,7 @@ let db = mysql.createConnection({
     user: 'root',
     // password: 'supersecret',
     password: '123456',
-    database: 'quanlyluutru'
+    database: 'quanlyluutrus'
 });
 
 module.exports = db;

@@ -2,7 +2,7 @@ let express = require('express');
 let cors = require('cors');
 let bodyParser = require('body-parser');
 let db = require('./api/Config/database');
-const adminsRoutes = require('./api/Routes/admins.routes');
+const usersRoutes = require('./api/Routes/users.routes');
 const nguoidungsRoutes = require('./api/Routes/nguoidungs.routes');
 const nguoinuocngoaisRoutes = require('./api/Routes/nguoinuocngoais.routes');
 const luutrusRoutes = require('./api/Routes/luutrus.routes');
@@ -18,7 +18,7 @@ let port = 3000
 
 
 // routes
-adminsRoutes(app)
+usersRoutes(app)
 nguoidungsRoutes(app)
 nguoinuocngoaisRoutes(app)
 luutrusRoutes(app)
