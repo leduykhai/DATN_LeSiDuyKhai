@@ -5,10 +5,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { authentication } from './pages/authentication';
 import "./App.css"
 
-import Login from './pages/admin/Login';
-import Admins from './pages/admin/Admins';
-import AddEdit from './pages/admin/AddEdit';
-import View from './pages/admin/View';
+import Login from './pages/Login/Login';
+
+import Tabbar from './components/Sidenav/Tabbar';
+
+import Users from './pages/User/Users';
+import AddEdit from './pages/User/AddEdit';
+import View from './pages/User/View';
 
 import NguoiDungs from './pages/nguoidung/NguoiDungs';
 
@@ -22,14 +25,14 @@ function App() {
         <ToastContainer position='bottom-left' />
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/admins" component={Admins} />
-          <Route path="/addAdmin" component={AddEdit} />
-          <Route path="/updateAdmin/:id" component={AddEdit} />
-          <Route path="/viewAdmin/:id" component={View} />
+          <RouteWrapper exact path="/users" component={Users} layout={Tabbar} />
+          <RouteWrapper path="/addUser" component={AddEdit} layout={Tabbar} />
+          <RouteWrapper path="/updateUser/:id" component={AddEdit} layout={Tabbar} />
+          <RouteWrapper path="/viewUser/:id" component={View} layout={Tabbar} />
 
-          <Route path="/nguoidungs" component={NguoiDungs} />
+          <RouteWrapper path="/nguoidungs" component={NguoiDungs} layout={Tabbar} />
 
-          <Route path="/nguoinuocngoais" component={NguoiNuocNgoais} />
+          <RouteWrapper path="/nguoinuocngoais" component={NguoiNuocNgoais} layout={Tabbar} />
         </Switch>
       </div>
     </BrowserRouter>

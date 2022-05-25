@@ -8,26 +8,26 @@ const {
 
 module.exports = {
     get: (req, res) => {
-        let sql = 'SELECT * FROM nguoinuocngoais'
+        let sql = 'SELECT * FROM nhanviens'
         db.query(sql, (err, response) => {
             if (err) throw err
             res.json(response);
         })
     },
 
-    getNguoiNuocNgoaiById: (req, res) => {
-        let nnn_id = req.params.id;
-        let sql = 'SELECT * FROM nguoinuocngoais where id = ?'
-        db.query(sql, nnn_id, (err, response) => {
+    getNhanVienById: (req, res) => {
+        let nv_id = req.params.id;
+        let sql = 'SELECT * FROM nhanviens where id = ?'
+        db.query(sql, nv_id, (err, response) => {
             if (err) throw err
             res.json(response);
         })
     },
 
-    addNewNguoiNuocNgoai: (req, res) => {
+    addNewNhanVien: (req, res) => {
         let data = req.body;
-        console.log('addNewNguoiNuocNgoai: ', req.body)
-        let sql = `INSERT INTO nguoinuocngoais SET ?`
+        console.log('addNewNhanVien: ', req.body)
+        let sql = `INSERT INTO nhanviens SET ?`
         db.query(sql, [data], (err, response) => {
             if (err) throw err
             res.json({
@@ -36,15 +36,15 @@ module.exports = {
         })
     },
 
-    updateNguoiNuocNgoai: (req, res) => {
+    updateNhanVien: (req, res) => {
         let data = req.body;
         if (!data.id) {
             return res.status(400).send({
                 error: true,
-                message: 'Please provide id'
+                message: 'Please provide ma_NV'
             });
         }
-        let sql = `UPDATE nguoinuocngoais SET ? WHERE id = ?`
+        let sql = `UPDATE nhanviens SET ? WHERE id = ?`
         db.query(sql, [data, data.id], (err, response) => {
             if (err) throw err
             res.json({
@@ -53,18 +53,18 @@ module.exports = {
         })
     },
 
-    deleteNguoiNuocNgoaiById: (req, res) => {
-        let nnn_id = req.params.id;
-        let sql = 'DELETE FROM nguoinuocngoais where id = ?'
-        db.query(sql, nnn_id, (err, response) => {
+    deleteNhanVienById: (req, res) => {
+        let nv_id = req.params.id;
+        let sql = 'DELETE FROM nhanviens where id = ?'
+        db.query(sql, nv_id, (err, response) => {
             if (err) throw err
             res.json(response);
         })
     },
-    deleteNguoiNuocNgoaiByAll: (req, res) => {
-        let nguoinuocngoai_all = req.params.id;
-        let sql = 'DELETE FROM nguoinuocngoais'
-        db.query(sql, nguoinuocngoai_all, (err, response) => {
+    deleteNhanVienByAll: (req, res) => {
+        let nv_all = req.params.id;
+        let sql = 'DELETE FROM nhanviens'
+        db.query(sql, nv_all, (err, response) => {
             if (err) throw err
             res.json(response);
         })

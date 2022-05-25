@@ -16,7 +16,7 @@ import { login } from '../../api/admin/api';
 function Login(props) {
 
     const history = useHistory()
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [validationMsg, setValidationMsg] = useState({})
     const [message, setMessage] = useState("")
@@ -24,13 +24,13 @@ function Login(props) {
     useEffect(() => {
         const token = localStorage.getItem(APP_CONSTANTS.USER_TOKEN)
         if (token) {
-            history.replace('/admins') //./admins
+            history.replace('/users') //./admins
         }
     })
 
     const onChangeUsername = (event) => {
         const value = event.target.value
-        setUsername(value)
+        setEmail(value)
     }
 
     const onChangePassword = (event) => {
@@ -40,12 +40,11 @@ function Login(props) {
 
     const validateAll = () => {
         const msg = {}
-        if (isEmpty(username)) {
-            msg.username = "Please input your Username"
+        if (isEmpty(email)) {
+            msg.email = "Please input your Email"
+        } else if (!isEmail(email)) {
+            msg.email = "Your email is incorrect"
         }
-        // } else if (!isEmail(username)) {
-        //     msg.username = "Your username is incorrect"
-        // }
 
         if (isEmpty(password)) {
             msg.password = "Please input your Password"
@@ -62,7 +61,7 @@ function Login(props) {
 
         // try {
         //     const params = {
-        //         username: username,
+        //         email: email,
         //         password: password
         //     }
         //     console.log(params)
@@ -84,7 +83,7 @@ function Login(props) {
         const isValid = validateAll()
         if (!isValid) return
         try {
-            let { data } = await login(username, password);
+            let { data } = await login(email, password);
             console.log(data);
             if (data.status !== 'SUCCESS') {
                 console.log(data.message);
@@ -125,15 +124,15 @@ function Login(props) {
                         <div class="input-field">
                             <i class="fas fa-user"></i>
                             <input
-                                type="username"
-                                name='username'
-                                id='username'
-                                placeholder="username"
-                                autoComplete="username"
+                                type="email"
+                                name='email'
+                                id='email'
+                                placeholder="email"
+                                autoComplete="email"
                                 onChange={onChangeUsername}
                             />
                         </div>
-                        <p className="social-text">{validationMsg.username}</p>
+                        <p className="social-text">{validationMsg.email}</p>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
                             <input

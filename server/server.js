@@ -3,10 +3,11 @@ let cors = require('cors');
 let bodyParser = require('body-parser');
 let db = require('./api/Config/database');
 const usersRoutes = require('./api/Routes/users.routes');
-const nguoidungsRoutes = require('./api/Routes/nguoidungs.routes');
+const nhanviensRoutes = require('./api/Routes/nhanviens.routes');
+const chucosoluutrusRoutes = require('./api/Routes/chucosoluutrus.routes');
 const nguoinuocngoaisRoutes = require('./api/Routes/nguoinuocngoais.routes');
 const luutrusRoutes = require('./api/Routes/luutrus.routes');
-const chitietluutrusRoutes = require('./api/Routes/chitietluutrus.routes');
+const nhatkyluutrusRoutes = require('./api/Routes/nhatkyluutrus.routes');
 let app = express();
 app.use(cors());
 app.use(express.json());
@@ -19,10 +20,11 @@ let port = 3000
 
 // routes
 usersRoutes(app)
-nguoidungsRoutes(app)
+nhanviensRoutes(app)
+chucosoluutrusRoutes(app)
 nguoinuocngoaisRoutes(app)
 luutrusRoutes(app)
-chitietluutrusRoutes(app)
+nhatkyluutrusRoutes(app)
 
 
 app.get('/', function (req, res) {

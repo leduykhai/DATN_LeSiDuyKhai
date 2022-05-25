@@ -10,7 +10,7 @@ const View = () => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:3000/admins/${id}`)
+            .get(`http://localhost:3000/users/${id}`)
             .then((resp) => setUser({ ...resp.data[0] }));
     }, [id]);
 
@@ -18,22 +18,42 @@ const View = () => {
         <div style={{ marginTop: "150px" }}>
             <div className='Card'>
                 <div className='Card-header'>
-                    <p>Admin Detail</p>
+                    <p>User Detail</p>
                 </div>
                 <div className='Container'>
                     <strong>ID: </strong>
                     <span>{id}</span>
                     <br />
                     <br />
-                    <strong>UserName: </strong>
-                    <span>{user.username}</span>
+                    <strong>Email: </strong>
+                    <span>{user.email}</span>
                     <br />
                     <br />
                     <strong>PassWord: </strong>
                     <span>{user.password}</span>
                     <br />
                     <br />
-                    <Link to="/admins">
+                    <strong>Name: </strong>
+                    <span>{user.ho_ten}</span>
+                    <br />
+                    <br />
+                    <strong>Phone: </strong>
+                    <span>{user.sdt}</span>
+                    <br />
+                    <br />
+                    <strong>Phone: </strong>
+                    <span>{user.sdt}</span>
+                    <br />
+                    <br />
+                    <strong>Role: </strong>
+                    <span>{user.role_id}</span>
+                    <br />
+                    <br />
+                    <strong>Status: </strong>
+                    <span>{user.user_status_id}</span>
+                    <br />
+                    <br />
+                    <Link to="/users">
                         <div className='btn btn-edit'>Go Back</div>
                     </Link>
                 </div>

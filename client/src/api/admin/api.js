@@ -15,12 +15,12 @@ var axiosConfig = {
     }
 };
 
-export const login = async (username, password) => {
+export const login = async (email, password) => {
     let param = {
-        "username": username,
+        "email": email,
         "password": password
     }
-    let rs = await axiosInstance.post("http://localhost:3000/api/admins/login", param, axiosConfig)
+    let rs = await axiosInstance.post("http://localhost:3000/api/users/login", param, axiosConfig)
     return rs;
 }
 
