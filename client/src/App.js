@@ -9,11 +9,14 @@ import Login from './pages/Login/Login';
 
 import Tabbar from './components/Sidenav/Tabbar';
 
-import Users from './pages/User/Users';
-import AddEdit from './pages/User/AddEdit';
-import View from './pages/User/View';
+import ListUsers from './pages/User/ListUsers';
+import AddUser from './pages/User/AddUser';
+import EditUser from './pages/User/EditUser';
+import ViewUser from './pages/User/ViewUser';
 
-import Chu_CSLT from './pages/Chu_CSLT/Chu_CSLT'
+import Chu_CSLT from './pages/Chu_CSLT/Chu_CSLT';
+import AddEditChu_CSLT from './pages/Chu_CSLT/AddEdit';
+import viewChu_CSLT from './pages/Chu_CSLT/View';
 
 import NguoiNuocNgoais from './pages/nguoinuocngoai/NguoiNuocNgoais';
 
@@ -22,15 +25,18 @@ function App() {
   return (
     <BrowserRouter>
       <div className='App'>
-        <ToastContainer position='bottom-left' />s
+        <ToastContainer position='bottom-left' />
         <Switch>
           <Route exact path="/" component={Login} />
-          <RouteWrapper exact path="/users" component={Users} layout={Tabbar} />
-          <RouteWrapper path="/addUser" component={AddEdit} layout={Tabbar} />
-          <RouteWrapper path="/updateUser/:id" component={AddEdit} layout={Tabbar} />
-          <RouteWrapper path="/viewUser/:id" component={View} layout={Tabbar} />
+          <RouteWrapper exact path="/users" component={ListUsers} layout={Tabbar} />
+          <RouteWrapper path="/addUser" component={AddUser} layout={Tabbar} />
+          <RouteWrapper path="/updateUser/:id" component={EditUser} layout={Tabbar} />
+          <RouteWrapper path="/viewUser/:id" component={ViewUser} layout={Tabbar} />
 
-          <RouteWrapper path="/chucslt" component={Chu_CSLT} layout={Tabbar} />
+          <RouteWrapper exact path="/Chu_CSLT" component={Chu_CSLT} layout={Tabbar} />
+          <RouteWrapper path="/addChu_CSLT" component={AddEditChu_CSLT} layout={Tabbar} />
+          <RouteWrapper path="/updateChu_CSLT/:id" component={AddEditChu_CSLT} layout={Tabbar} />
+          <RouteWrapper path="/viewChu_CSLT/:id" component={viewChu_CSLT} layout={Tabbar} />
 
           <RouteWrapper path="/nguoinuocngoais" component={NguoiNuocNgoais} layout={Tabbar} />
         </Switch>

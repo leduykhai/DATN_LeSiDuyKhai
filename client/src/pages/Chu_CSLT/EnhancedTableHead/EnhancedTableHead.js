@@ -38,7 +38,7 @@ const headCells = [
         id: 'sdt',
         numeric: false,
         disablePadding: false,
-        label: 'Phone',
+        label: 'Phone number',
     },
     {
         id: 'action',

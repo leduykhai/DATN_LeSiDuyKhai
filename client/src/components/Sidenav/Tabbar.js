@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Topbar from '../Topbar/Topbar'
 
 import './Tabbar.scss'
 
@@ -26,11 +27,12 @@ const Tabbar = (props) => {
             <div className="sidebar">
                 <Link className="active" exact to="/dashboard">Dashboard</Link>
                 <Link className='item' exact to="/users">Account User</Link>
-                <Link className='item' exact to="/chucslt">Owner of accommodation</Link>
+                <Link className='item' exact to="/Chu_CSLT">Owner of accommodation</Link>
                 <Link className='item' exact to="/nguoinuocngoais">Foreigner</Link>
             </div>
-
+            <Topbar />
             <div className="content">
+
                 {props.children}
             </div>
         </div>

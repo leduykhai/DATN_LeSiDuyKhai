@@ -258,7 +258,7 @@ export default function Chu_CSLT() {
         if (
             window.confirm("Are you sure that you wanted to delete that user ?")
         ) {
-            axios.delete(`http://localhost:3000/users/${id}`);
+            axios.delete(`http://localhost:3000/chucosoluutrus/${id}`);
             toast.success("User Delete Successfully");
             setTimeout(() => loadData(), 100);
         }
@@ -323,7 +323,7 @@ export default function Chu_CSLT() {
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
-                <Link to={`/addUser`}>
+                <Link to={`/addChu_CSLT`}>
                     <PersonAddAltIcon className='add-icon' sx={{ fontSize: 40 }} />
                 </Link>
                 <TableContainer>

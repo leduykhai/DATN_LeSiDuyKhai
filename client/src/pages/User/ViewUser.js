@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import "./View.scss"
+import "./ViewUser.scss"
 
 const View = () => {
     const [user, setUser] = useState({});
