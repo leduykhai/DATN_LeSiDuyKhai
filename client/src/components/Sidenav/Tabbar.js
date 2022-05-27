@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import './Tabbar.scss'
 
@@ -26,8 +26,8 @@ const Tabbar = (props) => {
             <div className="sidebar">
                 <Link className="active" exact to="/dashboard">Dashboard</Link>
                 <Link className='item' exact to="/users">Account User</Link>
-                <Link className='item' exact to="/nguoidungs">Contact</Link>
-                <Link className='item' exact to="/nguoinuocngoais">About</Link>
+                <Link className='item' exact to="/chucslt">Owner of accommodation</Link>
+                <Link className='item' exact to="/nguoinuocngoais">Foreigner</Link>
             </div>
 
             <div className="content">

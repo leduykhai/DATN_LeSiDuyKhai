@@ -1,84 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
-// import "./Users.scss";
-// import { toast } from 'react-toastify';
-// import axios from 'axios';
-
-// import Table from "@mui/material/Table";
-// import TableBody from "@mui/material/TableBody";
-// import TableCell from "@mui/material/TableCell";
-// import TableContainer from "@mui/material/TableContainer";
-// import TableHead from "@mui/material/TableHead";
-// import TableRow from "@mui/material/TableRow";
-// import Paper from "@mui/material/Paper";
-
-// const Users = () => {
-//     // eslint-disable-next-line react-hooks/rules-of-hooks
-//     const [data, setData] = useState([]);
-
-//     const loadData = async () => {
-//         const response = await axios.get("http://localhost:3000/users");
-//         setData(response.data);
-//     };
-
-//     // eslint-disable-next-line react-hooks/rules-of-hooks
-//     useEffect(() => {
-//         loadData();
-//     }, []);
-
-//     const deleteContact = (id) => {
-//         if (
-//             window.confirm("Are you sure that you wanted to delete that user ?")
-//         ) {
-//             axios.delete(`http://localhost:3000/users/${id}`);
-//             toast.success("User Delete Successfully");
-//             setTimeout(() => loadData(), 100);
-//         }
-//     };
-
-//     return (
-//         <TableContainer component={Paper} className="table">
-//             <Link to={`/addUser`}>
-//                 <button className='btn btn-add'>Add User</button>
-//             </Link>
-//             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-//                 <TableHead>
-//                     <TableRow>
-//                         <TableCell className="tableCell">No.</TableCell>
-//                         <TableCell className="tableCell">ID</TableCell>
-//                         <TableCell className="tableCell">Email</TableCell>
-//                         <TableCell className="tableCell">Password</TableCell>
-//                         <TableCell className="tableCell">Action</TableCell>
-//                     </TableRow>
-//                 </TableHead>
-//                 <TableBody>
-//                     {data.map((item, index) => {
-//                         return (
-//                             <TableRow key={item.id}>
-//                                 <TableCell scope='row'>{index + 1}</TableCell>
-//                                 <TableCell className="tableCell">{item.id}</TableCell>
-//                                 <TableCell className="tableCell">{item.email}</TableCell>
-//                                 <TableCell className="tableCell">{item.password}</TableCell>
-//                                 <TableCell>
-//                                     <Link to={`/updateUser/${item.id}`}>
-//                                         <button className='btn btn-edit'>Edit</button>
-//                                     </Link>
-//                                     <button className='btn btn-delete' onClick={() => { deleteContact(item.id) }}>Delete</button>
-//                                     <Link to={`/viewUser/${item.id}`}>
-//                                         <button className='btn btn-view'>View</button>
-//                                     </Link>
-//                                 </TableCell>
-//                             </TableRow>
-//                         );
-//                     })}
-//                 </TableBody>
-//             </Table>
-//         </TableContainer>
-//     );
-// };
-
-// export default Users;
-
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -92,21 +11,21 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
-import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import GridViewIcon from '@mui/icons-material/GridView';
-
 import stableSort from '../../components/Table/stableSort';
 import getComparator from '../../components/Table/getComparator';
 import EnhancedTableToolbar from '../../components/Table/EnhancedTableToolbar';
 import EnhancedTableHead from './EnhancedTableHead/EnhancedTableHead';
 
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import GridViewIcon from '@mui/icons-material/GridView';
+
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import './Users.scss'
+import './Chu_CSLT.scss'
 
 
 // function createData(name, calories, fat, carbs, protein) {
@@ -316,7 +235,7 @@ import './Users.scss'
 // };
 
 // export default function EnhancedTable() {
-export default function Users() {
+export default function Chu_CSLT() {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
     const [selected, setSelected] = React.useState([]);
@@ -327,7 +246,7 @@ export default function Users() {
     const [data, setData] = React.useState([]);
 
     const loadData = async () => {
-        const response = await axios.get("http://localhost:3000/users");
+        const response = await axios.get("http://localhost:3000/chucosoluutrus");
         setData(response.data);
     };
 
@@ -459,15 +378,15 @@ export default function Users() {
                                                 {index + 1}
                                             </TableCell>
                                             <TableCell align="left">{row.id}</TableCell>
-                                            <TableCell align="left">{row.email}</TableCell>
-                                            <TableCell align="left">{row.password}</TableCell>
-                                            <TableCell align="left">{row.user_status_id}</TableCell>
+                                            <TableCell align="left">{row.ho_ten}</TableCell>
+                                            <TableCell align="left">{row.gioi_tinh}</TableCell>
+                                            <TableCell align="left">{row.sdt}</TableCell>
                                             <TableCell align="left">
-                                                <Link to={`/updateUser/${row.id}`}>
+                                                <Link to={`/updateChu_CSLT/${row.id}`}>
                                                     <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                                 <DeleteIcon className='delete-icon' sx={{ fontSize: 30 }} onClick={() => { deleteContact(row.id) }} />
-                                                <Link to={`/viewUser/${row.id}`}>
+                                                <Link to={`/viewChu_CSLT/${row.id}`}>
                                                     <GridViewIcon className='view-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                             </TableCell>
@@ -503,4 +422,3 @@ export default function Users() {
         </Box>
     );
 }
-

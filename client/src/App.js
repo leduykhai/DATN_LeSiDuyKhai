@@ -13,7 +13,7 @@ import Users from './pages/User/Users';
 import AddEdit from './pages/User/AddEdit';
 import View from './pages/User/View';
 
-import NguoiDungs from './pages/nguoidung/NguoiDungs';
+import Chu_CSLT from './pages/Chu_CSLT/Chu_CSLT'
 
 import NguoiNuocNgoais from './pages/nguoinuocngoai/NguoiNuocNgoais';
 
@@ -22,7 +22,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className='App'>
-        <ToastContainer position='bottom-left' />
+        <ToastContainer position='bottom-left' />s
         <Switch>
           <Route exact path="/" component={Login} />
           <RouteWrapper exact path="/users" component={Users} layout={Tabbar} />
@@ -30,7 +30,7 @@ function App() {
           <RouteWrapper path="/updateUser/:id" component={AddEdit} layout={Tabbar} />
           <RouteWrapper path="/viewUser/:id" component={View} layout={Tabbar} />
 
-          <RouteWrapper path="/nguoidungs" component={NguoiDungs} layout={Tabbar} />
+          <RouteWrapper path="/chucslt" component={Chu_CSLT} layout={Tabbar} />
 
           <RouteWrapper path="/nguoinuocngoais" component={NguoiNuocNgoais} layout={Tabbar} />
         </Switch>
