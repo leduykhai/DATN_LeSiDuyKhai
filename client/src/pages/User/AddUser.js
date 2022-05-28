@@ -11,7 +11,7 @@ const initialState = {
     password: ""
 }
 
-const AddEdit = () => {
+const AddUser = () => {
     const [state, setState] = useState(initialState);
 
     const { email, password } = state;
@@ -129,4 +129,4 @@ const AddEdit = () => {
     )
 }
 
-export default AddEdit
+export default AddUser

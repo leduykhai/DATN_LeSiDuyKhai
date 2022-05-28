@@ -7,7 +7,8 @@ import "./App.css"
 
 import Login from './pages/Login/Login';
 
-import Tabbar from './components/Sidenav/Tabbar';
+import Sidebar from './components/Sidebar/Sidebar';
+import Navbar from './components/Navbar/Navbar';
 
 import ListUsers from './pages/User/ListUsers';
 import AddUser from './pages/User/AddUser';
@@ -28,17 +29,17 @@ function App() {
         <ToastContainer position='bottom-left' />
         <Switch>
           <Route exact path="/" component={Login} />
-          <RouteWrapper exact path="/users" component={ListUsers} layout={Tabbar} />
-          <RouteWrapper path="/addUser" component={AddUser} layout={Tabbar} />
-          <RouteWrapper path="/updateUser/:id" component={EditUser} layout={Tabbar} />
-          <RouteWrapper path="/viewUser/:id" component={ViewUser} layout={Tabbar} />
+          <RouteWrapper exact path="/users" component={ListUsers} layout={Sidebar} />
+          <RouteWrapper path="/addUser" component={AddUser} layout={Sidebar} />
+          <RouteWrapper path="/updateUser/:id" component={EditUser} layout={Sidebar} />
+          <RouteWrapper path="/viewUser/:id" component={ViewUser} layout={Sidebar} />
 
-          <RouteWrapper exact path="/Chu_CSLT" component={Chu_CSLT} layout={Tabbar} />
-          <RouteWrapper path="/addChu_CSLT" component={AddEditChu_CSLT} layout={Tabbar} />
-          <RouteWrapper path="/updateChu_CSLT/:id" component={AddEditChu_CSLT} layout={Tabbar} />
-          <RouteWrapper path="/viewChu_CSLT/:id" component={viewChu_CSLT} layout={Tabbar} />
+          <RouteWrapper exact path="/Chu_CSLT" component={Chu_CSLT} layout={Sidebar} />
+          <RouteWrapper path="/addChu_CSLT" component={AddEditChu_CSLT} layout={Sidebar} />
+          <RouteWrapper path="/updateChu_CSLT/:id" component={AddEditChu_CSLT} layout={Sidebar} />
+          <RouteWrapper path="/viewChu_CSLT/:id" component={viewChu_CSLT} layout={Sidebar} />
 
-          <RouteWrapper path="/nguoinuocngoais" component={NguoiNuocNgoais} layout={Tabbar} />
+          <RouteWrapper path="/nguoinuocngoais" component={NguoiNuocNgoais} layout={Navbar} />
         </Switch>
       </div>
     </BrowserRouter>
