@@ -108,7 +108,6 @@ import axios from 'axios';
 
 import './ListUsers.scss'
 
-
 // function createData(name, calories, fat, carbs, protein) {
 //     return {
 //         name,

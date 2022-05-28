@@ -24,7 +24,7 @@ function Login(props) {
     useEffect(() => {
         const token = localStorage.getItem(APP_CONSTANTS.USER_TOKEN)
         if (token) {
-            history.replace('/users') //./admins
+            history.replace('/dashboard') //./admins
         }
     })
 
@@ -91,8 +91,8 @@ function Login(props) {
             } else {
                 setMessage("");
                 history.push({
-                    pathname: '/users',
-                    state: { users: data }
+                    pathname: '/dashboard',
+                    state: { dashboard: data }
                 });
                 console.log('Success!!!');
             }

@@ -1,8 +1,9 @@
 import React from 'react'
 
-const NguoiNuocNgoais = (props) => {
+const NguoiNuocNgoais = () => {
     return (
-        <div>NguoiNuocNgoais</div>
+        <div>NguoiNuocNgoais
+        </div>
     )
 }
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import isEmail from "validator/lib/isEmail";
 import isEmpty from "validator/lib/isEmpty";
-import "./AddEdit.scss";
+import "./EditChu_CSLT.scss";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -54,18 +54,7 @@ const AddEdit = () => {
         const isValid = validateAll()
         if (!isValid) return
         else {
-            if (!id) {
-                axios
-                    .post("http://localhost:3000/chucosoluutrus", {
-                        email,
-                        sdt
-                    })
-                    .then(() => {
-                        setState({ email: "", sdt: "" });
-                    })
-                    .catch((err) => toast.error(err.response.data));
-                toast.success("Users Added Successfully")
-            } else {
+            if (id) {
                 axios
                     .put(`http://localhost:3000/chucosoluutrus`, {
                         id,

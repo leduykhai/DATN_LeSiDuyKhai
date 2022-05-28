@@ -25,7 +25,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import './Chu_CSLT.scss'
+import './ListChu_CSLT.scss'
 
 
 // function createData(name, calories, fat, carbs, protein) {
@@ -256,7 +256,7 @@ export default function Chu_CSLT() {
 
     const deleteContact = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that user ?")
+            window.confirm("Are you sure that you wanted to delete that Chu_CSLT ?")
         ) {
             axios.delete(`http://localhost:3000/chucosoluutrus/${id}`);
             toast.success("User Delete Successfully");
