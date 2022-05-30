@@ -22,7 +22,7 @@ import AddChu_CSLT from './pages/Chu_CSLT/AddChu_CSLT';
 import EditChu_CSLT from './pages/Chu_CSLT/EditChu_CSLT';
 import viewChu_CSLT from './pages/Chu_CSLT/ViewChu_CSLT';
 
-import NguoiNuocNgoais from './pages/nguoinuocngoai/NguoiNuocNgoais';
+import NguoiNuocNgoais from './pages/Nguoinuocngoai/NguoiNuocNgoais';
 
 
 function App() {

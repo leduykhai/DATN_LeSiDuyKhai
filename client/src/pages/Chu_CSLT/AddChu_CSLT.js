@@ -6,6 +6,8 @@ import "./AddChu_CSLT.scss";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+import DropFileInput from '../../components/drop-file-input/DropFileInput';
+
 const initialState = {
     ho_ten: "",
     ngay_sinh: "",
@@ -124,6 +126,10 @@ const AddChu_CSLT = () => {
         setState({ ...state, [name]: value });
     }
 
+    const onFileChange = (files) => {
+        console.log(files);
+    }
+
     return (
         <body className='body'>
             <div className="container-add">
@@ -166,6 +172,7 @@ const AddChu_CSLT = () => {
                                 <div className="input-field-add">
                                     <label className='label'>Gender</label>
                                     <select
+                                        type="text"
                                         required
                                         value={gioi_tinh || ""}
                                         onChange={handleInputChange}
@@ -234,7 +241,7 @@ const AddChu_CSLT = () => {
                                 </div>
                                 <div className="input-field-add">
                                     <label className='label'>Image</label>
-                                    <input
+                                    {/* <input
                                         type="file"
                                         id='hinh'
                                         name='hinh'
@@ -242,6 +249,15 @@ const AddChu_CSLT = () => {
                                         placeholder="Enter your Image"
                                         required
                                         onChange={handleInputChange}
+                                    /> */}
+                                    <DropFileInput
+                                        type="file"
+                                        id='hinh'
+                                        name='hinh'
+                                        value={hinh || ""}
+                                        placeholder="Enter your Image"
+                                        required
+                                        onFileChange={(files) => onFileChange(files)}
                                     />
                                     <p className="error-text">{validationMsg.dia_chi}</p>
                                 </div>
