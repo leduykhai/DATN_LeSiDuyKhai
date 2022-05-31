@@ -1,6 +1,6 @@
 const util = require('util')
 const mysql = require('mysql2')
-const db = require('../Config/database')
+const db = require('../../Config/database')
 const {
     response
 } = require('express')

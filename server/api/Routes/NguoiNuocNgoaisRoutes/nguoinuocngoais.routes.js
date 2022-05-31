@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    let nguoinuocngoaisCtrl = require('../Controllers/nguoinuocngoaisControllers')
+    let nguoinuocngoaisCtrl = require('../../Controllers/NguoiNuocNgoaisControllers/nguoinuocngoaisControllers')
 
     //NguoiNuocNgoai
     app.route('/nguoinuocngoais')

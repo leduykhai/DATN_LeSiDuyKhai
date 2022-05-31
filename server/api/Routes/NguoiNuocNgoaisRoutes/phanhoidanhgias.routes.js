@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    let phanhoi_dgsCtrl = require('../Controllers/phanhoidanhgiasControllers')
+    let phanhoi_dgsCtrl = require('../../Controllers/NguoiNuocNgoaisControllers/phanhoidanhgiasControllers')
 
     //PhanHoiDG
     app.route('/phanhoi_dgs')

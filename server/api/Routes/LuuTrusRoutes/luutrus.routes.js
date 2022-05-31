@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    let luutrusCtrl = require('../Controllers/luutrusControllers')
+    let luutrusCtrl = require('../../Controllers/LuutrusControllers/luutrusControllers')
 
     //LuuTru
     app.route('/luutrus')
@@ -8,7 +8,7 @@ module.exports = function (app) {
         .put(luutrusCtrl.updateLuuTru)
         .delete(luutrusCtrl.deleteLuuTruByAll);
 
-    app.route('/luutrus/:ma_lt')
+    app.route('/luutrus/:id')
         .get(luutrusCtrl.getLuuTruById)
         .delete(luutrusCtrl.deleteLuuTruById);
 

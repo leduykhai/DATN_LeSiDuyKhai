@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    let khaibaotruocsCtrl = require('../Controllers/khaibaotruocsControllers')
+    let khaibaotruocsCtrl = require('../../Controllers/KhaiBaoTruocsControllers/khaibaotruocsControllers')
 
     //KhaiBaoTruoc
     app.route('/khaibaotruocs')

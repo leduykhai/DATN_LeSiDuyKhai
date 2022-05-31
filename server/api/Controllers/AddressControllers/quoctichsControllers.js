@@ -1,6 +1,7 @@
 const util = require('util')
 const mysql = require('mysql2')
 const db = require('../../Config/database')
+
 const {
     response
 } = require('express')
@@ -8,26 +9,26 @@ const {
 
 module.exports = {
     get: (req, res) => {
-        let sql = 'SELECT * FROM khuvucs'
+        let sql = 'SELECT * FROM quoctichs'
         db.query(sql, (err, response) => {
             if (err) throw err
             res.json(response);
         })
     },
 
-    getKhuVucById: (req, res) => {
-        let khu_vuc_id = req.params.id;
-        let sql = 'SELECT * FROM khuvucs where id = ?'
-        db.query(sql, khu_vuc_id, (err, response) => {
+    getQuocTichById: (req, res) => {
+        let qt_id = req.params.id;
+        let sql = 'SELECT * FROM quoctichs where id = ?'
+        db.query(sql, qt_id, (err, response) => {
             if (err) throw err
             res.json(response);
         })
     },
 
-    addNewKhuVuc: (req, res) => {
+    addNewQuocTich: (req, res) => {
         let data = req.body;
-        console.log('addNewKhuVuc: ', req.body)
-        let sql = `INSERT INTO khuvucs SET ?`
+        console.log('addNewQuocTich: ', req.body)
+        let sql = `INSERT INTO quoctichs SET ?`
         db.query(sql, [data], (err, response) => {
             if (err) throw err
             res.json({
@@ -36,7 +37,7 @@ module.exports = {
         })
     },
 
-    updateKhuVuc: (req, res) => {
+    updateQuocTich: (req, res) => {
         let data = req.body;
         if (!data.id) {
             return res.status(400).send({
@@ -44,7 +45,7 @@ module.exports = {
                 message: 'Please provide id'
             });
         }
-        let sql = `UPDATE khuvucs SET ? WHERE id = ?`
+        let sql = `UPDATE quoctichs SET ? WHERE id = ?`
         db.query(sql, [data, data.id], (err, response) => {
             if (err) throw err
             res.json({
@@ -53,18 +54,18 @@ module.exports = {
         })
     },
 
-    deleteKhuVucById: (req, res) => {
-        let khu_vuc_id = req.params.id;
-        let sql = 'DELETE FROM khuvucs where id = ?'
-        db.query(sql, khu_vuc_id, (err, response) => {
+    deleteQuocTichById: (req, res) => {
+        let qt_id = req.params.id;
+        let sql = 'DELETE FROM quoctichs where id = ?'
+        db.query(sql, qt_id, (err, response) => {
             if (err) throw err
             res.json(response);
         })
     },
-    deleteKhuVucByAll: (req, res) => {
-        let khuvuc_all = req.params.id;
-        let sql = 'DELETE FROM khuvucs'
-        db.query(sql, khuvuc_all, (err, response) => {
+    deleteQuocTichByAll: (req, res) => {
+        let qt_all = req.params.id;
+        let sql = 'DELETE FROM quoctichs'
+        db.query(sql, qt_all, (err, response) => {
             if (err) throw err
             res.json(response);
         })

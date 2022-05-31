@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    let chucosoluutrusCtrl = require('../Controllers/CoSoLuuTrusControllers/chucosoluutrusControllers')
+    let chucosoluutrusCtrl = require('../../Controllers/CoSoLuuTrusControllers/chucosoluutrusControllers')
 
     //Chu Co So Luu Tru
     app.route('/chucosoluutrus')

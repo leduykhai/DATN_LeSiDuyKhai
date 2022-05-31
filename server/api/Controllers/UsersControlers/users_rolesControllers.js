@@ -8,26 +8,26 @@ const {
 
 module.exports = {
     get: (req, res) => {
-        let sql = 'SELECT * FROM khuvucs'
+        let sql = 'SELECT * FROM users_roles'
         db.query(sql, (err, response) => {
             if (err) throw err
             res.json(response);
         })
     },
 
-    getKhuVucById: (req, res) => {
-        let khu_vuc_id = req.params.id;
-        let sql = 'SELECT * FROM khuvucs where id = ?'
-        db.query(sql, khu_vuc_id, (err, response) => {
+    getUsersRoleById: (req, res) => {
+        let ur_id = req.params.id;
+        let sql = 'SELECT * FROM users_roles where id = ?'
+        db.query(sql, ur_id, (err, response) => {
             if (err) throw err
             res.json(response);
         })
     },
 
-    addNewKhuVuc: (req, res) => {
+    addNewUsersRole: (req, res) => {
         let data = req.body;
-        console.log('addNewKhuVuc: ', req.body)
-        let sql = `INSERT INTO khuvucs SET ?`
+        console.log('addNewUsersRole: ', req.body)
+        let sql = `INSERT INTO users_roles SET ?`
         db.query(sql, [data], (err, response) => {
             if (err) throw err
             res.json({
@@ -36,7 +36,7 @@ module.exports = {
         })
     },
 
-    updateKhuVuc: (req, res) => {
+    updateUsersRole: (req, res) => {
         let data = req.body;
         if (!data.id) {
             return res.status(400).send({
@@ -44,7 +44,7 @@ module.exports = {
                 message: 'Please provide id'
             });
         }
-        let sql = `UPDATE khuvucs SET ? WHERE id = ?`
+        let sql = `UPDATE users_roles SET ? WHERE id = ?`
         db.query(sql, [data, data.id], (err, response) => {
             if (err) throw err
             res.json({
@@ -53,18 +53,18 @@ module.exports = {
         })
     },
 
-    deleteKhuVucById: (req, res) => {
-        let khu_vuc_id = req.params.id;
-        let sql = 'DELETE FROM khuvucs where id = ?'
-        db.query(sql, khu_vuc_id, (err, response) => {
+    deleteUsersRoleById: (req, res) => {
+        let ur_id = req.params.id;
+        let sql = 'DELETE FROM users_roles where id = ?'
+        db.query(sql, ur_id, (err, response) => {
             if (err) throw err
             res.json(response);
         })
     },
-    deleteKhuVucByAll: (req, res) => {
-        let khuvuc_all = req.params.id;
-        let sql = 'DELETE FROM khuvucs'
-        db.query(sql, khuvuc_all, (err, response) => {
+    deleteUsersRoleByAll: (req, res) => {
+        let ur_all = req.params.id;
+        let sql = 'DELETE FROM users_roles'
+        db.query(sql, ur_all, (err, response) => {
             if (err) throw err
             res.json(response);
         })

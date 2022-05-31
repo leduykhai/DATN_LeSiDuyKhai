@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    let nhanviensCtrl = require('../Controllers/nhanviensControllers')
+    let nhanviensCtrl = require('../../Controllers/NhanViensControllers/nhanviensControllers')
 
     //NhanViens
     app.route('/nhanviens')

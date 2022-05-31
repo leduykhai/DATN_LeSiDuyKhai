@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    let ct_csltsCtrl = require('../Controllers/chitietcsltControllers')
+    let ct_csltsCtrl = require('../../Controllers/CoSoLuuTrusControllers/chitietcsltControllers')
 
     //CHITIETCSLT
     app.route('/ct_cslts')

@@ -2,19 +2,36 @@ let express = require('express');
 let cors = require('cors');
 let bodyParser = require('body-parser');
 let db = require('./api/Config/database');
-const usersRoutes = require('./api/Routes/users.routes');
-const nhanviensRoutes = require('./api/Routes/nhanviens.routes');
-const chucosoluutrusRoutes = require('./api/Routes/chucosoluutrus.routes');
-const nguoinuocngoaisRoutes = require('./api/Routes/nguoinuocngoais.routes');
-const luutrusRoutes = require('./api/Routes/luutrus.routes');
-const nhatkyluutrusRoutes = require('./api/Routes/nhatkyluutrus.routes');
-const khuvucsRoutes = require('./api/Routes/khuvucs.routes');
-const tintucsRoutes = require('./api/Routes/tintucs.routes');
-const csltsRoutes = require('./api/Routes/cosoluutrus.routes');
-const ct_csltsRoutes = require('./api/Routes/chitietcosoluutrus.routes');
-const danhgiasRoutes = require('./api/Routes/danhgias.routes');
-const phanhoi_dgsRoutes = require('./api/Routes/phanhoidanhgias.routes');
-const khaibaotruocsRoutes = require('./api/Routes/khaibaotruocs.routes');
+
+const usersRoutes = require('./api/Routes/UsersRoutes/users.routes');
+const usersStatusRoutes = require('./api/Routes/UsersRoutes/users_status.routes');
+const usersRoleRoutes = require('./api/Routes/UsersRoutes/users_roles.routes');
+
+const nhanviensRoutes = require('./api/Routes/NhanViensRoutes/nhanviens.routes');
+const khuvucsRoutes = require('./api/Routes/NhanViensRoutes/khuvucs.routes');
+const tintucsRoutes = require('./api/Routes/NhanViensRoutes/tintucs.routes');
+
+const chu_csltsRoutes = require('./api/Routes/CoSoluuTrusRoutes/chucosoluutrus.routes');
+const csltsRoutes = require('./api/Routes/CoSoluuTrusRoutes/cosoluutrus.routes');
+const ct_csltsRoutes = require('./api/Routes/CoSoluuTrusRoutes/chitietcosoluutrus.routes');
+
+const nguoinuocngoaisRoutes = require('./api/Routes/NguoiNuocNgoaisRoutes/nguoinuocngoais.routes');
+const nhatkyluutrusRoutes = require('./api/Routes/NguoiNuocNgoaisRoutes/nhatkyluutrus.routes');
+const danhgiasRoutes = require('./api/Routes/NguoiNuocNgoaisRoutes/danhgias.routes');
+const phanhoidgsRoutes = require('./api/Routes/NguoiNuocNgoaisRoutes/phanhoidanhgias.routes');
+
+const luutrustatusRoutes = require('./api/Routes/LuuTrusRoutes/luutru_status.routes');
+const luutrusRoutes = require('./api/Routes/LuuTrusRoutes/luutrus.routes');
+
+const khaibaotruocsRoutes = require('./api/Routes/KhaiBaoTruocsRoutes/khaibaotruocs.routes');
+const khaibaotruocstatusRoutes = require('./api/Routes/KhaiBaoTruocsRoutes/khaibaotruoc_status.routes');
+
+const phuongsRoutes = require('./api/Routes/AddressRoutes/phuongs.routes');
+const quansRoutes = require('./api/Routes/AddressRoutes/quans.routes');
+const thanhphosRoutes = require('./api/Routes/AddressRoutes/thanhphos.routes');
+const quoctichsRoutes = require('./api/Routes/AddressRoutes/quoctichs.routes');
+
+
 let app = express();
 app.use(cors());
 app.use(express.json());
@@ -27,18 +44,32 @@ let port = 3000
 
 // routes
 usersRoutes(app)
+usersStatusRoutes(app)
+usersRoleRoutes(app)
+
 nhanviensRoutes(app)
-chucosoluutrusRoutes(app)
-nguoinuocngoaisRoutes(app)
-luutrusRoutes(app)
-nhatkyluutrusRoutes(app)
 khuvucsRoutes(app)
 tintucsRoutes(app)
+
+chu_csltsRoutes(app)
 csltsRoutes(app)
 ct_csltsRoutes(app)
+
+nguoinuocngoaisRoutes(app)
+nhatkyluutrusRoutes(app)
 danhgiasRoutes(app)
-phanhoi_dgsRoutes(app)
+phanhoidgsRoutes(app)
+
+luutrustatusRoutes(app)
+luutrusRoutes(app)
+
 khaibaotruocsRoutes(app)
+khaibaotruocstatusRoutes(app)
+
+phuongsRoutes(app)
+quansRoutes(app)
+thanhphosRoutes(app)
+quoctichsRoutes(app)
 
 
 app.get('/', function (req, res) {

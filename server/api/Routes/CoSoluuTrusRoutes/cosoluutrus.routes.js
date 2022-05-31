@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    let csltsCtrl = require('../Controllers/cosoluutrusControllers')
+    let csltsCtrl = require('../../Controllers/CoSoLuuTrusControllers/cosoluutrusControllers')
 
     //CSLT
     app.route('/cslts')

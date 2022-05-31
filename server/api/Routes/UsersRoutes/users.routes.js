@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    let usersCtrl = require('../Controllers/usersControllers')
+    let usersCtrl = require('../../Controllers/UsersControlers/usersControllers')
 
     //Users
     app.route('/users')
