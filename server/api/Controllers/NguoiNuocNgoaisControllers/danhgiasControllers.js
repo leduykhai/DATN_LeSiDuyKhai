@@ -1,6 +1,6 @@
 const util = require('util')
 const mysql = require('mysql2')
-const db = require('../Config/database')
+const db = require('../../Config/database')
 const {
     response
 } = require('express')
@@ -8,26 +8,26 @@ const {
 
 module.exports = {
     get: (req, res) => {
-        let sql = 'SELECT * FROM nhatkyluutrus'
+        let sql = 'SELECT * FROM danhgias'
         db.query(sql, (err, response) => {
             if (err) throw err
             res.json(response);
         })
     },
 
-    getNhatKyLuuTruById: (req, res) => {
-        let nklt_id = req.params.id;
-        let sql = 'SELECT * FROM nhatkyluutrus where id = ?'
-        db.query(sql, nklt_id, (err, response) => {
+    getDanhGiaById: (req, res) => {
+        let danhgia_id = req.params.id;
+        let sql = 'SELECT * FROM danhgias where id = ?'
+        db.query(sql, danhgia_id, (err, response) => {
             if (err) throw err
             res.json(response);
         })
     },
 
-    addNewNhatKyLuuTru: (req, res) => {
+    addNewDanhGia: (req, res) => {
         let data = req.body;
-        console.log('addNewNhatKyLuuTru: ', req.body)
-        let sql = `INSERT INTO nhatkyluutrus SET ?`
+        console.log('addNewDanhGia: ', req.body)
+        let sql = `INSERT INTO danhgias SET ?`
         db.query(sql, [data], (err, response) => {
             if (err) throw err
             res.json({
@@ -36,7 +36,7 @@ module.exports = {
         })
     },
 
-    updateNhatKyLuuTru: (req, res) => {
+    updateDanhGia: (req, res) => {
         let data = req.body;
         if (!data.id) {
             return res.status(400).send({
@@ -44,7 +44,7 @@ module.exports = {
                 message: 'Please provide id'
             });
         }
-        let sql = `UPDATE nhatkyluutrus SET ? WHERE id = ?`
+        let sql = `UPDATE danhgias SET ? WHERE id = ?`
         db.query(sql, [data, data.id], (err, response) => {
             if (err) throw err
             res.json({
@@ -53,18 +53,18 @@ module.exports = {
         })
     },
 
-    deleteNhatKyLuuTruById: (req, res) => {
-        let nklt_id = req.params.id;
-        let sql = 'DELETE FROM nhatkyluutrus where id = ?'
-        db.query(sql, nklt_id, (err, response) => {
+    deleteDanhGiaById: (req, res) => {
+        let danhgia_id = req.params.id;
+        let sql = 'DELETE FROM danhgias where id = ?'
+        db.query(sql, danhgia_id, (err, response) => {
             if (err) throw err
             res.json(response);
         })
     },
-    deleteNhatKyLuuTruByAll: (req, res) => {
-        let nklt_all = req.params.id;
-        let sql = 'DELETE FROM nhatkyluutrus'
-        db.query(sql, nklt_all, (err, response) => {
+    deleteDanhGiaByAll: (req, res) => {
+        let danhgia_all = req.params.id;
+        let sql = 'DELETE FROM danhgias'
+        db.query(sql, danhgia_all, (err, response) => {
             if (err) throw err
             res.json(response);
         })

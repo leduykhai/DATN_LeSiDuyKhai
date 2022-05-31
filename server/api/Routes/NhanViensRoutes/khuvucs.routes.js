@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    let khuvucsCtrl = require('../Controllers/khuvucsControllers')
+    let khuvucsCtrl = require('../../Controllers/NhanViensControllers/khuvucsControllers')
 
     //KhuVuc
     app.route('/khuvucs')

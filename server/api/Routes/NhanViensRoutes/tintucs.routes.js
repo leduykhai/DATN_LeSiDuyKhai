@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    let tintucsCtrl = require('../Controllers/tintucsControllers')
+    let tintucsCtrl = require('../../Controllers/NhanViensControllers/tintucsControllers')
 
     //TinTuc
     app.route('/tintucs')

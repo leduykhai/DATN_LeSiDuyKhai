@@ -1,6 +1,6 @@
 const util = require('util')
 const mysql = require('mysql2')
-const db = require('../Config/database')
+const db = require('../../Config/database')
 const {
     response
 } = require('express')
@@ -8,26 +8,26 @@ const {
 
 module.exports = {
     get: (req, res) => {
-        let sql = 'SELECT * FROM tintucs'
+        let sql = 'SELECT * FROM nhatkyluutrus'
         db.query(sql, (err, response) => {
             if (err) throw err
             res.json(response);
         })
     },
 
-    getTinTucById: (req, res) => {
-        let tin_tuc_id = req.params.id;
-        let sql = 'SELECT * FROM tintucs where id = ?'
-        db.query(sql, tin_tuc_id, (err, response) => {
+    getNhatKyLuuTruById: (req, res) => {
+        let nklt_id = req.params.id;
+        let sql = 'SELECT * FROM nhatkyluutrus where id = ?'
+        db.query(sql, nklt_id, (err, response) => {
             if (err) throw err
             res.json(response);
         })
     },
 
-    addNewTinTuc: (req, res) => {
+    addNewNhatKyLuuTru: (req, res) => {
         let data = req.body;
-        console.log('addNewTinTuc: ', req.body)
-        let sql = `INSERT INTO tintucs SET ?`
+        console.log('addNewNhatKyLuuTru: ', req.body)
+        let sql = `INSERT INTO nhatkyluutrus SET ?`
         db.query(sql, [data], (err, response) => {
             if (err) throw err
             res.json({
@@ -36,7 +36,7 @@ module.exports = {
         })
     },
 
-    updateTinTuc: (req, res) => {
+    updateNhatKyLuuTru: (req, res) => {
         let data = req.body;
         if (!data.id) {
             return res.status(400).send({
@@ -44,7 +44,7 @@ module.exports = {
                 message: 'Please provide id'
             });
         }
-        let sql = `UPDATE tintucs SET ? WHERE id = ?`
+        let sql = `UPDATE nhatkyluutrus SET ? WHERE id = ?`
         db.query(sql, [data, data.id], (err, response) => {
             if (err) throw err
             res.json({
@@ -53,18 +53,18 @@ module.exports = {
         })
     },
 
-    deleteTinTucById: (req, res) => {
-        let tin_tuc_id = req.params.id;
-        let sql = 'DELETE FROM tintucs where id = ?'
-        db.query(sql, tin_tuc_id, (err, response) => {
+    deleteNhatKyLuuTruById: (req, res) => {
+        let nklt_id = req.params.id;
+        let sql = 'DELETE FROM nhatkyluutrus where id = ?'
+        db.query(sql, nklt_id, (err, response) => {
             if (err) throw err
             res.json(response);
         })
     },
-    deleteTinTucByAll: (req, res) => {
-        let tintuc_all = req.params.id;
-        let sql = 'DELETE FROM tintucs'
-        db.query(sql, tintuc_all, (err, response) => {
+    deleteNhatKyLuuTruByAll: (req, res) => {
+        let nklt_all = req.params.id;
+        let sql = 'DELETE FROM nhatkyluutrus'
+        db.query(sql, nklt_all, (err, response) => {
             if (err) throw err
             res.json(response);
         })

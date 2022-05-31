@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    let danhgiasCtrl = require('../Controllers/danhgiasControllers')
+    let danhgiasCtrl = require('../Controllers/DanhGiasControllers/danhgiasControllers')
 
     //DanhGia
     app.route('/danhgias')
