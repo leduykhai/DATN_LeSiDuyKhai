@@ -6,7 +6,7 @@ import "./AddChu_CSLT.scss";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-import DropFileInput from '../../components/drop-file-input/DropFileInput';
+import Moment from 'moment';
 
 const initialState = {
     ho_ten: "",
@@ -16,7 +16,7 @@ const initialState = {
     cccd: "",
     dia_chi: "",
     sdt: "",
-    hinh: "",
+    // hinh: "",
     user_id: "",
     phuong_id: "",
     nhanvien_id: ""
@@ -25,7 +25,7 @@ const initialState = {
 const AddChu_CSLT = () => {
     const [state, setState] = useState(initialState);
 
-    const { ho_ten, ngay_sinh, gioi_tinh, email, cccd, dia_chi, sdt, hinh, user_id, phuong_id, nhanvien_id } = state;
+    const { ho_ten, ngay_sinh, gioi_tinh, email, cccd, dia_chi, sdt, user_id, phuong_id, nhanvien_id } = state;
 
     const [validationMsg, setValidationMsg] = useState({})
 
@@ -49,9 +49,9 @@ const AddChu_CSLT = () => {
         if (isEmpty(ngay_sinh)) {
             msg.ngay_sinh = "Please input your Date of birth"
         }
-        if (isEmpty(gioi_tinh)) {
-            msg.gioi_tinh = "Please input your Gender"
-        }
+        // if (isEmpty(gioi_tinh)) {
+        //     msg.gioi_tinh = "Please input your Gender"
+        // }
         if (isEmpty(email)) {
             msg.email = "Please input your Email"
         } else if (!isEmail(email)) {
@@ -66,9 +66,9 @@ const AddChu_CSLT = () => {
         if (isEmpty(sdt)) {
             msg.sdt = "Please input your Phone Number"
         }
-        if (isEmpty(hinh)) {
-            msg.hinh = "Please input your Images"
-        }
+        // if (isEmpty(hinh)) {
+        //     msg.hinh = "Please input your Images"
+        // }
 
         setValidationMsg(msg)
         if (Object.keys(msg).length > 0) return false
@@ -77,7 +77,7 @@ const AddChu_CSLT = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!ho_ten || !ngay_sinh || !gioi_tinh || !email || !cccd || !dia_chi || !sdt || !hinh) {
+        if (!ho_ten || !ngay_sinh || !gioi_tinh || !email || !cccd || !dia_chi || !sdt) {
             toast.error("please provide value into each input field");
         }
         const isValid = validateAll()
@@ -93,7 +93,7 @@ const AddChu_CSLT = () => {
                         cccd,
                         dia_chi,
                         sdt,
-                        hinh,
+                        // hinh,
                         user_id,
                         phuong_id,
                         nhanvien_id,
@@ -107,7 +107,7 @@ const AddChu_CSLT = () => {
                             cccd: "",
                             dia_chi: "",
                             sdt: "",
-                            hinh: "",
+                            // hinh: "",
                             ngay_sinh: "",
                             user_id: "",
                             phuong_id: "",
@@ -124,10 +124,6 @@ const AddChu_CSLT = () => {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setState({ ...state, [name]: value });
-    }
-
-    const onFileChange = (files) => {
-        console.log(files);
     }
 
     return (
@@ -161,7 +157,7 @@ const AddChu_CSLT = () => {
                                         type="date"
                                         id='ngay_sinh'
                                         name='ngay_sinh'
-                                        value={ngay_sinh || ""}
+                                        value={Moment(ngay_sinh).format("YYYY-MM-DD") || ""}
                                         placeholder="Enter birth date"
                                         required
                                         onChange={handleInputChange}
@@ -172,9 +168,11 @@ const AddChu_CSLT = () => {
                                 <div className="input-field-add">
                                     <label className='label'>Gender</label>
                                     <select
-                                        type="text"
-                                        required
+                                        type="select"
+                                        id='gioi_tinh'
+                                        name='gioi_tinh'
                                         value={gioi_tinh || ""}
+                                        required
                                         onChange={handleInputChange}
                                     >
                                         <option disabled selected>Select gender</option>
@@ -239,9 +237,9 @@ const AddChu_CSLT = () => {
                                     />
                                     <p className="error-text">{validationMsg.sdt}</p>
                                 </div>
-                                <div className="input-field-add">
+                                {/* <div className="input-field-add">
                                     <label className='label'>Image</label>
-                                    {/* <input
+                                    <input
                                         type="file"
                                         id='hinh'
                                         name='hinh'
@@ -249,18 +247,9 @@ const AddChu_CSLT = () => {
                                         placeholder="Enter your Image"
                                         required
                                         onChange={handleInputChange}
-                                    /> */}
-                                    <DropFileInput
-                                        type="file"
-                                        id='hinh'
-                                        name='hinh'
-                                        value={hinh || ""}
-                                        placeholder="Enter your Image"
-                                        required
-                                        onFileChange={(files) => onFileChange(files)}
                                     />
                                     <p className="error-text">{validationMsg.dia_chi}</p>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
 

@@ -8,6 +8,8 @@ const chucosoluutrusRoutes = require('./api/Routes/chucosoluutrus.routes');
 const nguoinuocngoaisRoutes = require('./api/Routes/nguoinuocngoais.routes');
 const luutrusRoutes = require('./api/Routes/luutrus.routes');
 const nhatkyluutrusRoutes = require('./api/Routes/nhatkyluutrus.routes');
+const khuvucsRoutes = require('./api/Routes/khuvucs.routes');
+const tintucsRoutes = require('./api/Routes/tintucs.routes');
 let app = express();
 app.use(cors());
 app.use(express.json());
@@ -25,6 +27,8 @@ chucosoluutrusRoutes(app)
 nguoinuocngoaisRoutes(app)
 luutrusRoutes(app)
 nhatkyluutrusRoutes(app)
+khuvucsRoutes(app)
+tintucsRoutes(app)
 
 
 app.get('/', function (req, res) {
