@@ -10,6 +10,11 @@ const luutrusRoutes = require('./api/Routes/luutrus.routes');
 const nhatkyluutrusRoutes = require('./api/Routes/nhatkyluutrus.routes');
 const khuvucsRoutes = require('./api/Routes/khuvucs.routes');
 const tintucsRoutes = require('./api/Routes/tintucs.routes');
+const csltsRoutes = require('./api/Routes/cosoluutrus.routes');
+const ct_csltsRoutes = require('./api/Routes/chitietcosoluutrus.routes');
+const danhgiasRoutes = require('./api/Routes/danhgias.routes');
+const phanhoi_dgsRoutes = require('./api/Routes/phanhoidanhgias.routes');
+const khaibaotruocsRoutes = require('./api/Routes/khaibaotruocs.routes');
 let app = express();
 app.use(cors());
 app.use(express.json());
@@ -29,6 +34,11 @@ luutrusRoutes(app)
 nhatkyluutrusRoutes(app)
 khuvucsRoutes(app)
 tintucsRoutes(app)
+csltsRoutes(app)
+ct_csltsRoutes(app)
+danhgiasRoutes(app)
+phanhoi_dgsRoutes(app)
+khaibaotruocsRoutes(app)
 
 
 app.get('/', function (req, res) {
