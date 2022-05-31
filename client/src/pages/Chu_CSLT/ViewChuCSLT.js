@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import "./ViewChu_CSLT.scss"
+import "./ViewChuCSLT.scss"
+import moment from 'moment';
 
 const View = () => {
-    const [Chu_CSLT, setChu_CSLT] = useState({});
+    const [ChuCSLT, setChuCSLT] = useState({});
 
     const { id } = useParams();
 
     useEffect(() => {
         axios
             .get(`http://localhost:3000/chucosoluutrus/${id}`)
-            .then((resp) => setChu_CSLT({ ...resp.data[0] }));
+            .then((resp) => setChuCSLT({ ...resp.data[0] }));
     }, [id]);
 
     return (
         <div style={{ marginTop: "150px" }}>
             <div className='Card'>
                 <div className='Card-header'>
-                    <p>Chu_CSLT Detail</p>
+                    <p>ChuCSLT Detail</p>
                 </div>
                 <div className='Container'>
                     <strong>ID: </strong>
@@ -26,34 +27,34 @@ const View = () => {
                     <br />
                     <br />
                     <strong>FullName: </strong>
-                    <span>{Chu_CSLT.ho_ten}</span>
+                    <span>{ChuCSLT.ho_ten}</span>
                     <br />
                     <br />
                     <strong>Date of birth: </strong>
-                    <span>{Chu_CSLT.ngay_sinh}</span>
+                    <span>{moment(ChuCSLT.ngay_sinh).format('DD/MM/YYYY')}</span>
                     <br />
                     <br />
                     <strong>Gender: </strong>
-                    <span>{Chu_CSLT.gioi_tinh}</span>
+                    <span>{ChuCSLT.gioi_tinh}</span>
                     <br />
                     <br />
                     <strong>Email: </strong>
-                    <span>{Chu_CSLT.email}</span>
+                    <span>{ChuCSLT.email}</span>
                     <br />
                     <br />
                     <strong>Phone Number: </strong>
-                    <span>{Chu_CSLT.sdt}</span>
+                    <span>{ChuCSLT.sdt}</span>
                     <br />
                     <br />
                     <strong>Citizen ID: </strong>
-                    <span>{Chu_CSLT.cccd}</span>
+                    <span>{ChuCSLT.cccd}</span>
                     <br />
                     <br />
                     <strong>Address: </strong>
-                    <span>{Chu_CSLT.dia_chi}</span>
+                    <span>{ChuCSLT.dia_chi}</span>
                     <br />
                     <br />
-                    <Link to="/Chu_CSLT">
+                    <Link to="/ChuCSLT">
                         <div className='btn'>Go Back</div>
                     </Link>
                 </div>

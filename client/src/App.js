@@ -12,17 +12,25 @@ import Navbar from './components/Navbar/Navbar';
 
 import Dashboard from './pages/Dashboard/Dashboard';
 
-import ListUsers from './pages/User/ListUsers';
+import ListUser from './pages/User/ListUser';
 import AddUser from './pages/User/AddUser';
 import EditUser from './pages/User/EditUser';
 import ViewUser from './pages/User/ViewUser';
 
-import Chu_CSLT from './pages/Chu_CSLT/ListChu_CSLT';
-import AddChu_CSLT from './pages/Chu_CSLT/AddChu_CSLT';
-import EditChu_CSLT from './pages/Chu_CSLT/EditChu_CSLT';
-import viewChu_CSLT from './pages/Chu_CSLT/ViewChu_CSLT';
+import ListNV from './pages/NhanVien/ListNV';
+import AddNV from './pages/NhanVien/AddNV';
+import EditNV from './pages/NhanVien/EditNV';
+import ViewNV from './pages/NhanVien/ViewNV';
 
-import NguoiNuocNgoais from './pages/Nguoinuocngoai/NguoiNuocNgoais';
+import ChuCSLT from './pages/Chu_CSLT/ListChuCSLT';
+import AddChuCSLT from './pages/Chu_CSLT/AddChuCSLT';
+import EditChuCSLT from './pages/Chu_CSLT/EditChuCSLT';
+import viewChuCSLT from './pages/Chu_CSLT/ViewChuCSLT';
+
+import ListNNN from './pages/NguoiNuocNgoai/ListNNN';
+import AddNNN from './pages/NguoiNuocNgoai/AddNNN';
+import EditNNN from './pages/NguoiNuocNgoai/EditNNN';
+import ViewNNN from './pages/NguoiNuocNgoai/ViewNNN';
 
 
 function App() {
@@ -32,18 +40,29 @@ function App() {
         <ToastContainer position='bottom-right' />
         <Switch>
           <Route exact path="/" component={Login} />
+          <Route exact path="/login" component={Login} />
+
           <RouteWrapper exact path="/dashboard" component={Dashboard} layout={Sidebar} />
-          <RouteWrapper exact path="/users" component={ListUsers} layout={Sidebar} />
+
+          <RouteWrapper exact path="/users" component={ListUser} layout={Sidebar} />
           <RouteWrapper path="/addUser" component={AddUser} layout={Sidebar} />
           <RouteWrapper path="/updateUser/:id" component={EditUser} layout={Sidebar} />
           <RouteWrapper path="/viewUser/:id" component={ViewUser} layout={Sidebar} />
 
-          <RouteWrapper exact path="/Chu_CSLT" component={Chu_CSLT} layout={Sidebar} />
-          <RouteWrapper path="/addChu_CSLT" component={AddChu_CSLT} layout={Sidebar} />
-          <RouteWrapper path="/updateChu_CSLT/:id" component={EditChu_CSLT} layout={Sidebar} />
-          <RouteWrapper path="/viewChu_CSLT/:id" component={viewChu_CSLT} layout={Sidebar} />
+          <RouteWrapper exact path="/nhanvien" component={ListNV} layout={Sidebar} />
+          <RouteWrapper path="/addNhanVien" component={AddNV} layout={Sidebar} />
+          <RouteWrapper path="/EditNhanVien/:id" component={EditNV} layout={Sidebar} />
+          <RouteWrapper path="/ViewNhanVien/:id" component={ViewNV} layout={Sidebar} />
 
-          <RouteWrapper path="/nguoinuocngoais" component={NguoiNuocNgoais} layout={Sidebar} />
+          <RouteWrapper exact path="/chucslt" component={ChuCSLT} layout={Sidebar} />
+          <RouteWrapper path="/addchucslt" component={AddChuCSLT} layout={Sidebar} />
+          <RouteWrapper path="/updatechucslt/:id" component={EditChuCSLT} layout={Sidebar} />
+          <RouteWrapper path="/viewchucslt/:id" component={viewChuCSLT} layout={Sidebar} />
+
+          <RouteWrapper path="/nnn" component={ListNNN} layout={Sidebar} />
+          <RouteWrapper path="/addnnn" component={ListNNN} layout={Sidebar} />
+          <RouteWrapper path="/editnnn" component={ListNNN} layout={Sidebar} />
+          <RouteWrapper path="/viewnnn" component={ListNNN} layout={Sidebar} />
         </Switch>
       </div>
     </BrowserRouter>

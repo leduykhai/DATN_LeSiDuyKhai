@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../Navbar/Navbar'
-import Topbar from '../Navbar/Navbar'
 
 import './Sidebar.scss'
 
@@ -22,20 +21,26 @@ const Sidebar = (props) => {
                     </li>
                     <li>
                         <Link exact to="/users">
-                            <i class="bx bx-box"></i>
+                            <i class="bx bx-user"></i>
                             <span class="links_name">Account User</span>
                         </Link>
                     </li>
                     <li>
-                        <Link exact to="/Chu_CSLT">
-                            <i class="bx bx-list-ul"></i>
+                        <Link exact to="/nhanvien">
+                            <i class="bx bx-user"></i>
+                            <span class="links_name">Employee</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link exact to="/ChuCSLT">
+                            <i class="bx bx-buildings"></i>
                             <span class="links_name">Owner of <br /> accommodation</span>
                         </Link>
                     </li>
                     <li>
-                        <Link exact to="/nguoinuocngoais">
-                            <i class="bx bx-pie-chart-alt-2"></i>
-                            <span class="links_name">Analytics</span>
+                        <Link exact to="/nnn">
+                            <i class="bx bx-list-ul"></i>
+                            <span class="links_name">Foreigner</span>
                         </Link>
                     </li>
                     <li>

@@ -106,7 +106,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import './ListUsers.scss'
+import './ListUser.scss'
 
 // function createData(name, calories, fat, carbs, protein) {
 //     return {

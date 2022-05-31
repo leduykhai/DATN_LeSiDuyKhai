@@ -25,7 +25,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import './ListChu_CSLT.scss'
+import './ListChuCSLT.scss'
 
 
 // function createData(name, calories, fat, carbs, protein) {
@@ -235,7 +235,7 @@ import './ListChu_CSLT.scss'
 // };
 
 // export default function EnhancedTable() {
-export default function Chu_CSLT() {
+export default function ChuCSLT() {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
     const [selected, setSelected] = React.useState([]);
@@ -256,7 +256,7 @@ export default function Chu_CSLT() {
 
     const deleteContact = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that Chu_CSLT ?")
+            window.confirm("Are you sure that you wanted to delete that ChuCSLT ?")
         ) {
             axios.delete(`http://localhost:3000/chucosoluutrus/${id}`);
             toast.success("User Delete Successfully");
@@ -323,7 +323,7 @@ export default function Chu_CSLT() {
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
-                <Link to={`/addChu_CSLT`}>
+                <Link to={`/addChuCSLT`}>
                     <PersonAddAltIcon className='add-icon' sx={{ fontSize: 40 }} />
                 </Link>
                 <TableContainer>
@@ -382,11 +382,11 @@ export default function Chu_CSLT() {
                                             <TableCell align="left">{row.gioi_tinh}</TableCell>
                                             <TableCell align="left">{row.sdt}</TableCell>
                                             <TableCell align="left">
-                                                <Link to={`/updateChu_CSLT/${row.id}`}>
+                                                <Link to={`/updateChuCSLT/${row.id}`}>
                                                     <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                                 <DeleteIcon className='delete-icon' sx={{ fontSize: 30 }} onClick={() => { deleteContact(row.id) }} />
-                                                <Link to={`/viewChu_CSLT/${row.id}`}>
+                                                <Link to={`/viewChuCSLT/${row.id}`}>
                                                     <GridViewIcon className='view-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                             </TableCell>

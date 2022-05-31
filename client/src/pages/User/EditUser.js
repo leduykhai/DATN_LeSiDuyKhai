@@ -2,19 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import isEmail from "validator/lib/isEmail";
 import isEmpty from "validator/lib/isEmpty";
+import { isDate } from 'moment';
 import "./EditUser.scss";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const initialState = {
     email: "",
-    password: ""
+    password: "",
+    ho_ten: "",
+    sdt: "",
+    user_status_id: "",
+    role_id: ""
 }
 
 const EditUser = () => {
     const [state, setState] = useState(initialState);
 
-    const { email, password } = state;
+    const { email, password, ho_ten, sdt, user_status_id, role_id } = state;
 
     const [validationMsg, setValidationMsg] = useState({})
 

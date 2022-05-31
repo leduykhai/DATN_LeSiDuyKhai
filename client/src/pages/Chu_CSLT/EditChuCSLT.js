@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import isEmail from "validator/lib/isEmail";
 import isEmpty from "validator/lib/isEmpty";
-import "./AddChu_CSLT.scss";
+import "./EditChuCSLT.scss";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-import Moment from 'moment';
+import Moment from 'react-moment';
+// import 'moment-timezone';
+import moment from 'moment';
 
 const initialState = {
     ho_ten: "",
@@ -22,12 +24,15 @@ const initialState = {
     nhanvien_id: ""
 }
 
-const AddChu_CSLT = () => {
+const EditChuCSLT = () => {
     const [state, setState] = useState(initialState);
 
     const { ho_ten, ngay_sinh, gioi_tinh, email, cccd, dia_chi, sdt, user_id, phuong_id, nhanvien_id } = state;
 
-    const [validationMsg, setValidationMsg] = useState({})
+    const [validationMsg, setValidationMsg] = useState({});
+
+    const [image, setImage] = useState();
+
 
     const history = useHistory();
 
@@ -39,7 +44,6 @@ const AddChu_CSLT = () => {
             .then((resp) => setState({ ...resp.data[0] }));
     }, [id]);
 
-
     const validateAll = () => {
         const msg = {}
 
@@ -49,9 +53,9 @@ const AddChu_CSLT = () => {
         if (isEmpty(ngay_sinh)) {
             msg.ngay_sinh = "Please input your Date of birth"
         }
-        // if (isEmpty(gioi_tinh)) {
-        //     msg.gioi_tinh = "Please input your Gender"
-        // }
+        if (isEmpty(gioi_tinh)) {
+            msg.gioi_tinh = "Please input your Gender"
+        }
         if (isEmpty(email)) {
             msg.email = "Please input your Email"
         } else if (!isEmail(email)) {
@@ -83,9 +87,10 @@ const AddChu_CSLT = () => {
         const isValid = validateAll()
         if (!isValid) return
         else {
-            if (!id) {
+            if (id) {
                 axios
-                    .post("http://localhost:3000/chucosoluutrus", {
+                    .put("http://localhost:3000/chucosoluutrus", {
+                        id,
                         ho_ten,
                         ngay_sinh,
                         gioi_tinh,
@@ -117,7 +122,7 @@ const AddChu_CSLT = () => {
                     .catch((err) => toast.error(err.response.data));
                 toast.success("Users Added Successfully")
             }
-            setTimeout(() => history.push("/Chu_CSLT"), 100);
+            setTimeout(() => history.push("/ChuCSLT"), 100);
         }
     };
 
@@ -144,7 +149,7 @@ const AddChu_CSLT = () => {
                                         id='ho_ten'
                                         name='ho_ten'
                                         value={ho_ten || ""}
-                                        placeholder="Enter your name"
+                                        placeholder="Enter your Name"
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -157,12 +162,13 @@ const AddChu_CSLT = () => {
                                         type="date"
                                         id='ngay_sinh'
                                         name='ngay_sinh'
-                                        value={Moment(ngay_sinh).format("YYYY-MM-DD") || ""}
+                                        value={moment(ngay_sinh.toString()).format('YYYY-MM-DD') || ""}
                                         placeholder="Enter birth date"
                                         required
                                         onChange={handleInputChange}
                                     />
                                     <p className="error-text">{validationMsg.ngay_sinh}</p>
+
                                 </div>
 
                                 <div className="input-field-add">
@@ -223,7 +229,6 @@ const AddChu_CSLT = () => {
                                     />
                                     <p className="error-text">{validationMsg.dia_chi}</p>
                                 </div>
-
                                 <div className="input-field-add">
                                     <label className='label'>Number Phone</label>
                                     <input
@@ -248,7 +253,7 @@ const AddChu_CSLT = () => {
                                         required
                                         onChange={handleInputChange}
                                     />
-                                    <p className="error-text">{validationMsg.dia_chi}</p>
+                                    <p className="error-text">{validationMsg.hinh}</p>
                                 </div> */}
                             </div>
                         </div>
@@ -297,7 +302,7 @@ const AddChu_CSLT = () => {
                                 </div>
                             </div>
                             <div className="buttons">
-                                <Link to="/Chu_CSLT" className="backBtn">
+                                <Link to="/ChuCSLT" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
                                         <span className="btnText">Back</span>
@@ -415,4 +420,4 @@ const AddChu_CSLT = () => {
     )
 }
 
-export default AddChu_CSLT
+export default EditChuCSLT
