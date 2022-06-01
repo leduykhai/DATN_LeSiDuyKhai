@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    let usersCtrl = require('../../Controllers/UsersControlers/usersControllers')
+    let usersCtrl = require('../../Controllers/UsersControllers/usersControllers')
 
     //Users
     app.route('/users')
@@ -14,5 +14,4 @@ module.exports = function (app) {
 
     app.route('/api/users/login')
         .post(usersCtrl.login)
-
 }

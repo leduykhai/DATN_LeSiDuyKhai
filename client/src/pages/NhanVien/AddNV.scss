@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 @import url('https://unicons.iconscout.com/release/v4.0.0/css/line.css');
 
-  //Form adduser
+  //Form add
   
   .body {
     min-height: 80vh;
@@ -20,7 +20,7 @@
     text-align: left;
 }
 
-.container-adduser {
+.container-add {
     position: relative;
     max-width: 1000px;
     width: 100%;
@@ -31,14 +31,14 @@
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.container-adduser header {
+.container-add header {
     position: relative;
     font-size: 20px;
     font-weight: 600;
     color: #333;
 }
 
-.container-adduser header::before {
+.container-add header::before {
     content: "";
     position: absolute;
     left: 0;
@@ -49,39 +49,39 @@
     background-color: #4070f4;
 }
 
-.container-adduser .form-all {
+.container-add .form-all {
     position: relative;
     margin-top: 16px;
-    min-height: 300px;
+    min-height: 700px;
     background-color: #fff;
     overflow: hidden;
 }
 
-.container-adduser .form-all .form-adduser {
+.container-add .form-all .form-add {
     position: absolute;
     background-color: #fff;
     transition: 0.3s ease;
 }
 
-.container-adduser .form-all .form-adduser.second-adduser {
+.container-add .form-all .form-add.second-add {
     opacity: 0;
     pointer-events: none;
     transform: translateX(100%);
 }
 
-.form-all.secActive .form-adduser.second-adduser {
+.form-all.secActive .form-add.second-add {
     opacity: 1;
     pointer-events: auto;
     transform: translateX(0);
 }
 
-.form-all.secActive .form-adduser.first-adduser {
+.form-all.secActive .form-add.first-add {
     opacity: 0;
     pointer-events: none;
     transform: translateX(-100%);
 }
 
-.container-adduser .form-all .title-adduser {
+.container-add .form-all .title-add {
     display: block;
     margin-bottom: 8px;
     font-size: 16px;
@@ -91,27 +91,27 @@
     text-align: left;
 }
 
-.container-adduser .form-all .fields-adduser {
+.container-add .form-all .fields-add {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.form-all .fields-adduser .input-field-adduser {
+.form-all .fields-add .input-field-add {
     display: flex;
     width: calc(100% / 3 - 15px);
     flex-direction: column;
     margin: 4px 0;
 }
 
-.input-field-adduser label {
+.input-field-add label {
     font-size: 12px;
     font-weight: 500;
     color: #2e2e2e;
 }
 
-.input-field-adduser input,
+.input-field-add input,
 select {
     outline: none;
     font-size: 14px;
@@ -124,21 +124,21 @@ select {
     margin: 8px 0;
 }
 
-.input-field-adduser input :focus,
-.input-field-adduser select:focus {
+.input-field-add input :focus,
+.input-field-add select:focus {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
 }
 
-.input-field-adduser select,
-.input-field-adduser input[type="date"] {
+.input-field-add select,
+.input-field-add input[type="date"] {
     color: #707070;
 }
 
-.input-field-adduser input[type="date"]:valid {
+.input-field-add input[type="date"]:valid {
     color: #333;
 }
 
-.container-adduser .form-all button,
+.container-add .form-all button,
 .backBtn {
     display: flex;
     align-items: center;
@@ -161,7 +161,7 @@ select {
     text-decoration-line: none;
 }
 
-.container-adduser .form-all .btnText {
+.container-add .form-all .btnText {
     font-size: 14px;
     font-weight: 400;
 }
@@ -191,21 +191,21 @@ select {
 }
 
 @media (max-width: 750px) {
-    .container-adduser .form-all {
+    .container-add .form-all {
         overflow-y: scroll;
     }
 
-    .container-adduser .form-all::-webkit-scrollbar {
+    .container-add .form-all::-webkit-scrollbar {
         display: none;
     }
 
-    .form-all .fields-adduser .input-field-adduser {
+    .form-all .fields-add .input-field-add {
         width: calc(100% / 2 - 15px);
     }
 }
 
 @media (max-width: 550px) {
-    .form-all .fields-adduser .input-field-adduser {
+    .form-all .fields-add .input-field-add {
         width: 100%;
     }
 }

@@ -25,8 +25,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import './ListNNN.scss'
-import Moment from 'react-moment';
+import './ListCSLT.scss'
 
 
 // function createData(name, calories, fat, carbs, protein) {
@@ -236,7 +235,7 @@ import Moment from 'react-moment';
 // };
 
 // export default function EnhancedTable() {
-export default function ListNNN() {
+export default function ListCSLT() {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
     const [selected, setSelected] = React.useState([]);
@@ -247,7 +246,7 @@ export default function ListNNN() {
     const [data, setData] = React.useState([]);
 
     const loadData = async () => {
-        const response = await axios.get("http://localhost:3000/nguoinuocngoais");
+        const response = await axios.get("http://localhost:3000/cslts");
         setData(response.data);
     };
 
@@ -257,10 +256,10 @@ export default function ListNNN() {
 
     const deleteContact = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that foreigner ?")
+            window.confirm("Are you sure that you wanted to delete that CSLT ?")
         ) {
-            axios.delete(`http://localhost:3000/nguoinuocngoais/${id}`);
-            toast.success("Foreigner Delete Successfully");
+            axios.delete(`http://localhost:3000/cslts/${id}`);
+            toast.success("User Delete Successfully");
             setTimeout(() => loadData(), 100);
         }
     };
@@ -324,7 +323,7 @@ export default function ListNNN() {
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
-                <Link to={`/addnnn`}>
+                <Link to={`/addcslt`}>
                     <PersonAddAltIcon className='add-icon' sx={{ fontSize: 40 }} />
                 </Link>
                 <TableContainer>
@@ -378,22 +377,17 @@ export default function ListNNN() {
                                                 {/* {row.name} */}
                                                 {index + 1}
                                             </TableCell>
-                                            <TableCell align="left">NNN{row.id}</TableCell>
-                                            <TableCell align="left">{row.ho_ten}</TableCell>
-                                            <TableCell align="left">{row.email}</TableCell>
-                                            <TableCell align="left">{row.so_ho_chieu}</TableCell>
-                                            <TableCell align="left">{row.dia_chi}</TableCell>
+                                            <TableCell align="left">CSLT{row.id}</TableCell>
+                                            <TableCell align="left">{row.chu_cslt_id}</TableCell>
+                                            <TableCell align="left">{row.ten_cslt}</TableCell>
+                                            <TableCell align="left">{row.loai_cslt}</TableCell>
+                                            <TableCell align="left">{row.nguoi_dai_dien}</TableCell>
                                             <TableCell align="left">
-                                                <Moment>
-                                                    {row.ngay_dang_ky}
-                                                </Moment>
-                                            </TableCell>
-                                            <TableCell align="left">
-                                                <Link to={`/updatennn/${row.id}`}>
+                                                <Link to={`/updatecslt/${row.id}`}>
                                                     <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                                 <DeleteIcon className='delete-icon' sx={{ fontSize: 30 }} onClick={() => { deleteContact(row.id) }} />
-                                                <Link to={`/viewnnn/${row.id}`}>
+                                                <Link to={`/viewcslt/${row.id}`}>
                                                     <GridViewIcon className='view-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                             </TableCell>
@@ -429,113 +423,3 @@ export default function ListNNN() {
         </Box>
     );
 }
-
-
-
-// import React, { useState, useEffect } from "react";
-// import { Container } from "react-bootstrap";
-
-// function Countrystatecity() {
-//     const [thanh_pho, setThanh_pho] = useState([]);
-//     const [thanh_pho_id, setThanh_pho_id] = useState('');
-//     const [quan, setQuan] = useState([]);
-//     const [quan_id, setQuan_id] = useState('');
-//     const [phuong, setPhuong] = useState([]);
-
-//     useEffect(() => {
-//         const getthanh_pho = async () => {
-//             const resthanh_pho = await fetch("http://localhost:3000/thanhphos");
-//             const restp = await resthanh_pho.json();
-//             setThanh_pho(await restp);
-//         }
-//         getthanh_pho();
-//     }, []);
-
-//     const handlethanh_pho = (event) => {
-//         const getThanh_pho_id = event.target.value;
-//         setThanh_pho_id(getThanh_pho_id);
-//     }
-
-//     useEffect(() => {
-//         const getquan = async () => {
-//             const resquan = await fetch(`http://localhost:3000/quans/${thanh_pho_id}`);
-//             const resq = await resquan.json();
-//             setQuan(await resq);
-//         }
-//         getquan();
-//     }, [thanh_pho_id]);
-
-//     const handlequan = (event) => {
-//         const getquan_id = event.target.value;
-//         setQuan_id(getquan_id);
-//     }
-
-//     useEffect(() => {
-//         const getphuong = async () => {
-//             const resphuong = await fetch(`http://localhost:3000/phuongs/${quan_id}`);
-//             const rp = await resphuong.json();
-//             setPhuong(await rp);
-//         }
-//         getphuong();
-//     }, [quan_id]);
-
-//     return (
-//         <React.Fragment>
-//             <div className="content">
-//                 <div className="row">
-//                     <div className="col-sm-12">
-//                         <h2 className="mt-4 mb-4 fw-bold">
-//                             Select City, District and Ward ReactJs{" "}
-//                         </h2>
-
-//                         <form className="row g-3">
-
-//                             <div className="col-md-3">
-//                                 <label className="form-label">City </label>
-//                                 <select name="thanh_pho" className="form-control p-2" onChange={(e) => handlethanh_pho(e)} >
-//                                     <option value="">--Select City--</option>
-//                                     {
-//                                         thanh_pho.map((getcon, index) => (
-//                                             <option key={index} value={getcon.id}>{getcon.ten_thanh_pho} </option>
-//                                         ))
-//                                     }
-//                                 </select>
-//                             </div>
-
-//                             <div className="col-md-3">
-//                                 <label className="form-label">District</label>
-//                                 <select className="form-select" name="state" onChange={(e) => handlequan(e)}>
-//                                     <option value="">--Select District--</option>
-//                                     {
-//                                         quan.map((getst, index) => (
-//                                             <option key={index} value={getst.id}>{getst.ten_quan} </option>
-//                                         ))
-//                                     }
-//                                 </select>
-//                             </div>
-
-//                             <div className="col-md-3">
-//                                 <label className="form-label">Ward</label>
-//                                 <select className="form-select" name="phuong">
-//                                     <option value="">--Select Ward--</option>
-//                                     {
-//                                         phuong.map((gcity, index) => (
-//                                             <option key={index} value={gcity.id}> {gcity.ten_phuong} </option>
-//                                         ))
-//                                     }
-//                                 </select>
-//                             </div>
-
-//                             <div className="col-md-3">
-//                                 <button type="button" className="btn btn-primary mt-4">Submit</button>
-//                             </div>
-
-//                         </form>
-//                     </div>
-//                 </div>
-//             </div>
-//         </React.Fragment>
-//     );
-// }
-
-// export default Countrystatecity;

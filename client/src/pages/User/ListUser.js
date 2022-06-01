@@ -457,10 +457,10 @@ export default function ListUsers() {
                                                 {/* {row.name} */}
                                                 {index + 1}
                                             </TableCell>
-                                            <TableCell align="left">{row.id}</TableCell>
+                                            <TableCell align="left">US{row.id}</TableCell>
                                             <TableCell align="left">{row.email}</TableCell>
                                             <TableCell align="left">{row.password}</TableCell>
-                                            <TableCell align="left">{row.user_status_id}</TableCell>
+                                            {/* <TableCell align="left">{row.user_status_id}</TableCell> */}
                                             <TableCell align="left">
                                                 <Link to={`/updateUser/${row.id}`}>
                                                     <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />

@@ -24,6 +24,15 @@ module.exports = {
         })
     },
 
+    getPhuongById: (req, res) => {
+        let p_id = req.params.id;
+        let sql = 'SELECT * FROM phuongs where quan_id = ?'
+        db.query(sql, p_id, (err, response) => {
+            if (err) throw err
+            res.json(response);
+        })
+    },
+
     addNewPhuong: (req, res) => {
         let data = req.body;
         console.log('addNewPhuong: ', req.body)

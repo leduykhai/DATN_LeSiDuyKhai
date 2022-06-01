@@ -38,6 +38,90 @@ const EditChuCSLT = () => {
 
     const { id } = useParams();
 
+
+    const [thanh_pho, setThanh_pho] = useState([]);
+    const [thanh_pho_id, setThanh_pho_id] = useState('');
+    const [quan, setQuan] = useState([]);
+    const [quan_id, setQuan_id] = useState('');
+    const [phuong, setPhuong] = useState([]);
+
+    const [khu_vuc, setKhu_vuc] = useState([]);
+    const [khu_vuc_id, setKhu_vuc_id] = useState('');
+
+    const [user, setUser] = useState([]);
+
+    const [nhanvien, setNhanvien] = useState([]);
+
+    useEffect(() => {
+        const getthanh_pho = async () => {
+            const resthanh_pho = await fetch("http://localhost:3000/thanhphos");
+            const restp = await resthanh_pho.json();
+            setThanh_pho(await restp);
+        }
+        getthanh_pho();
+    }, []);
+
+    const handlethanh_pho = (event) => {
+        const getThanh_pho_id = event.target.value;
+        setThanh_pho_id(getThanh_pho_id);
+    }
+
+    useEffect(() => {
+        const getquan = async () => {
+            const resquan = await fetch(`http://localhost:3000/quans/${thanh_pho_id}`);
+            const resq = await resquan.json();
+            setQuan(await resq);
+        }
+        getquan();
+    }, [thanh_pho_id]);
+
+    const handlequan = (event) => {
+        const getquan_id = event.target.value;
+        setQuan_id(getquan_id);
+    }
+
+    useEffect(() => {
+        const getphuong = async () => {
+            const resphuong = await fetch(`http://localhost:3000/phuongs/${quan_id}`);
+            const rp = await resphuong.json();
+            setPhuong(await rp);
+        }
+        getphuong();
+    }, [quan_id]);
+
+    useEffect(() => {
+        const getkhu_vuc = async () => {
+            const reskhu_vuc = await fetch("http://localhost:3000/khuvucs");
+            const reskv = await reskhu_vuc.json();
+            setKhu_vuc(await reskv);
+        }
+        getkhu_vuc();
+    }, []);
+
+    const handlekhu_vuc = (event) => {
+        const getkhu_vuc_id = event.target.value;
+        setKhu_vuc_id(getkhu_vuc_id);
+    }
+
+    useEffect(() => {
+        const getUser = async () => {
+            const resuser = await fetch("http://localhost:3000/users");
+            const resu = await resuser.json();
+            setUser(await resu);
+        }
+        getUser();
+    }, []);
+
+    useEffect(() => {
+        const getNV = async () => {
+            const resnhanvien = await fetch("http://localhost:3000/nhanviens");
+            const resnv = await resnhanvien.json();
+            setNhanvien(await resnv);
+        }
+        getNV();
+    }, []);
+
+
     useEffect(() => {
         axios
             .get(`http://localhost:3000/chucosoluutrus/${id}`)
@@ -81,13 +165,14 @@ const EditChuCSLT = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!ho_ten || !ngay_sinh || !gioi_tinh || !email || !cccd || !dia_chi || !sdt) {
+        if (!ho_ten || !gioi_tinh || !email || !cccd || !dia_chi || !sdt) {
             toast.error("please provide value into each input field");
         }
         const isValid = validateAll()
         if (!isValid) return
         else {
             if (id) {
+                var ngay_sinh = moment(ngay_sinh).format('YYYY-MM-DD');
                 axios
                     .put("http://localhost:3000/chucosoluutrus", {
                         id,
@@ -122,7 +207,7 @@ const EditChuCSLT = () => {
                     .catch((err) => toast.error(err.response.data));
                 toast.success("Users Added Successfully")
             }
-            setTimeout(() => history.push("/ChuCSLT"), 100);
+            setTimeout(() => history.push("/chucslt"), 100);
         }
     };
 
@@ -229,6 +314,64 @@ const EditChuCSLT = () => {
                                     />
                                     <p className="error-text">{validationMsg.dia_chi}</p>
                                 </div>
+
+                                <div className="input-field-add">
+                                    <label className='label'>City</label>
+                                    <select
+                                        className="form-control p-2"
+                                        name="thanh_pho"
+                                        id='thanh_pho'
+                                        // required
+                                        onChange={(e) => handlethanh_pho(e)}
+                                    >
+                                        <option disabled selected value="">--Select City--</option>
+                                        {
+                                            thanh_pho.map((getcity, index) => (
+                                                <option key={index} value={getcity.id} >{getcity.ten_thanh_pho} </option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
+
+                                <div className="input-field-add">
+                                    <label className='label'>District</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="district"
+                                        id='district'
+                                        // required
+                                        onChange={(e) => handlequan(e)}
+                                    >
+                                        <option disabled selected value="">--Select District--</option>
+                                        {
+                                            quan.map((getdistrict, index) => (
+                                                <option key={index} value={getdistrict.id}>{getdistrict.ten_quan} </option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
+
+                                <div className="input-field-add">
+                                    <label className='label'>Ward</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="phuong_id"
+                                        id='phuong_id'
+                                        value={phuong_id || ""}
+                                        required
+                                        onChange={handleInputChange}
+                                    >
+                                        <option disabled selected value="">--Select Ward--</option>
+                                        {
+                                            phuong.map((getward, index) => (
+                                                <option key={index} value={getward.id}> {getward.ten_phuong} </option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
+
                                 <div className="input-field-add">
                                     <label className='label'>Number Phone</label>
                                     <input
@@ -269,13 +412,14 @@ const EditChuCSLT = () => {
                                         id='user_id'
                                         name='user_id'
                                         value={user_id || ""}
+                                        disabled
                                         placeholder="Enter ID User"
                                         required
                                         onChange={handleInputChange}
                                     />
                                 </div>
 
-                                <div className="input-field-add">
+                                {/* <div className="input-field-add">
                                     <label className='label'>ID Ward</label>
                                     <input
                                         type="number"
@@ -286,7 +430,7 @@ const EditChuCSLT = () => {
                                         required
                                         onChange={handleInputChange}
                                     />
-                                </div>
+                                </div> */}
 
                                 <div className="input-field-add">
                                     <label className='label'>ID Staff</label>
@@ -295,14 +439,19 @@ const EditChuCSLT = () => {
                                         id='nhanvien_id'
                                         name='nhanvien_id'
                                         value={nhanvien_id || ""}
+                                        disabled
                                         placeholder="Enter Staff"
                                         required
                                         onChange={handleInputChange}
                                     />
                                 </div>
+
+                                <div className="input-field-add">
+
+                                </div>
                             </div>
                             <div className="buttons">
-                                <Link to="/ChuCSLT" className="backBtn">
+                                <Link to="/chucslt" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
                                         <span className="btnText">Back</span>

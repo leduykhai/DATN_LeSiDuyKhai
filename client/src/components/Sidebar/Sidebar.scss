@@ -14,6 +14,7 @@
   width: 240px;
   background: #1b3595;
   transition: all 0.5s ease;
+  overflow:auto;
 }
 .sidebar.active{
   width: 60px;

@@ -1,60 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import "./ViewChuCSLT.scss"
+import "./ViewCSLT.scss"
 import moment from 'moment';
 
-const ViewChuCSLT = () => {
-    const [ChuCSLT, setChuCSLT] = useState({});
+const ViewCSLT = () => {
+    const [CSLT, setCSLT] = useState({});
 
     const { id } = useParams();
 
     useEffect(() => {
         axios
-            .get(`http://localhost:3000/chucosoluutrus/${id}`)
-            .then((resp) => setChuCSLT({ ...resp.data[0] }));
+            .get(`http://localhost:3000/cslts/${id}`)
+            .then((resp) => setCSLT({ ...resp.data[0] }));
     }, [id]);
 
     return (
         <div style={{ marginTop: "150px" }}>
             <div className='Card'>
                 <div className='Card-header'>
-                    <p>ChuCSLT Detail</p>
+                    <p>CSLT Detail</p>
                 </div>
                 <div className='Container'>
                     <strong>ID: </strong>
-                    <span>{id}</span>
+                    <span>CSLT{id}</span>
                     <br />
                     <br />
                     <strong>FullName: </strong>
-                    <span>{ChuCSLT.ho_ten}</span>
+                    <span>{CSLT.ten_cslt}</span>
                     <br />
                     <br />
-                    <strong>Date of birth: </strong>
-                    <span>{moment(ChuCSLT.ngay_sinh).format('DD/MM/YYYY')}</span>
+                    <strong>Type: </strong>
+                    <span>{CSLT.loai_cslt}</span>
                     <br />
                     <br />
-                    <strong>Gender: </strong>
-                    <span>{ChuCSLT.gioi_tinh}</span>
+                    <strong>Surrogate: </strong>
+                    <span>{CSLT.nguoi_dai_dien}</span>
                     <br />
                     <br />
                     <strong>Email: </strong>
-                    <span>{ChuCSLT.email}</span>
+                    <span>{CSLT.email}</span>
                     <br />
                     <br />
                     <strong>Phone Number: </strong>
-                    <span>{ChuCSLT.sdt}</span>
-                    <br />
-                    <br />
-                    <strong>Citizen ID: </strong>
-                    <span>{ChuCSLT.cccd}</span>
+                    <span>{CSLT.sdt}</span>
                     <br />
                     <br />
                     <strong>Address: </strong>
-                    <span>{ChuCSLT.dia_chi}</span>
+                    <span>{CSLT.dia_chi}</span>
                     <br />
                     <br />
-                    <Link to="/chucslt">
+                    <Link to="/cslt">
                         <div className='btn'>Go Back</div>
                     </Link>
                 </div>
@@ -63,4 +59,4 @@ const ViewChuCSLT = () => {
     )
 }
 
-export default ViewChuCSLT
+export default ViewCSLT

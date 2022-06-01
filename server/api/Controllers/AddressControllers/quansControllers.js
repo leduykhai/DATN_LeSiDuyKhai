@@ -25,6 +25,15 @@ module.exports = {
         })
     },
 
+    getQuanById: (req, res) => {
+        let q_id = req.params.id;
+        let sql = 'SELECT * FROM quans where thanh_pho_id = ?'
+        db.query(sql, q_id, (err, response) => {
+            if (err) throw err
+            res.json(response);
+        })
+    },
+
     addNewQuan: (req, res) => {
         let data = req.body;
         console.log('addNewQuan: ', req.body)

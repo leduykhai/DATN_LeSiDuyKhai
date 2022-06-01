@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import "./ViewUser.scss"
 
-const View = () => {
+const ViewUser = () => {
     const [user, setUser] = useState({});
 
     const { id } = useParams();
@@ -25,20 +25,16 @@ const View = () => {
                     <span>{id}</span>
                     <br />
                     <br />
+                    <strong>Name: </strong>
+                    <span>{user.ho_ten}</span>
+                    <br />
+                    <br />
                     <strong>Email: </strong>
                     <span>{user.email}</span>
                     <br />
                     <br />
                     <strong>PassWord: </strong>
                     <span>{user.password}</span>
-                    <br />
-                    <br />
-                    <strong>Name: </strong>
-                    <span>{user.ho_ten}</span>
-                    <br />
-                    <br />
-                    <strong>Phone: </strong>
-                    <span>{user.sdt}</span>
                     <br />
                     <br />
                     <strong>Phone: </strong>
@@ -62,4 +58,4 @@ const View = () => {
     )
 }
 
-export default View
+export default ViewUser

@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    let userroleCtrl = require('../../Controllers/UsersControlers/users_rolesControllers')
+    let userroleCtrl = require('../../Controllers/UsersControllers/users_rolesControllers')
 
     //UsersRole
     app.route('/userrole')

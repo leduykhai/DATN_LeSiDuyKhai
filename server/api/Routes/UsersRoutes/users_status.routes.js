@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    let userstatusCtrl = require('../../Controllers/UsersControlers/users_statusControllers')
+    let userstatusCtrl = require('../../Controllers/UsersControllers/users_statusControllers')
 
     //UserStatus
     app.route('/userstatus')

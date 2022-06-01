@@ -23,23 +23,23 @@ const headCells = [
         label: 'ID',
     },
     {
+        id: 'ho_ten',
+        numeric: false,
+        disablePadding: false,
+        label: 'Name',
+    },
+    {
+        id: 'gioi_tinh',
+        numeric: false,
+        disablePadding: false,
+        label: 'Gender',
+    },
+    {
         id: 'email',
         numeric: false,
         disablePadding: false,
         label: 'Email',
     },
-    {
-        id: 'password',
-        numeric: false,
-        disablePadding: false,
-        label: 'Password',
-    },
-    // {
-    //     id: 'status',
-    //     numeric: false,
-    //     disablePadding: false,
-    //     label: 'Status',
-    // },
     {
         id: 'action',
         numeric: false,

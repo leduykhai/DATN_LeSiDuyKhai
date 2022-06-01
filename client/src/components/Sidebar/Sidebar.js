@@ -27,56 +27,59 @@ const Sidebar = (props) => {
                     </li>
                     <li>
                         <Link exact to="/nhanvien">
-                            <i class="bx bx-user"></i>
-                            <span class="links_name">Employee</span>
+                            <i class=" bx bx-user-circle"></i>
+                            <span class="links_name">Nhân Viên</span>
                         </Link>
                     </li>
                     <li>
-                        <Link exact to="/ChuCSLT">
+                        <Link exact to="/chucslt">
                             <i class="bx bx-buildings"></i>
-                            <span class="links_name">Owner of <br /> accommodation</span>
+                            <span class="links_name">Chủ Cơ Sở Lưu Trú</span>
                         </Link>
                     </li>
                     <li>
-                        <Link exact to="/nnn">
-                            <i class="bx bx-list-ul"></i>
-                            <span class="links_name">Foreigner</span>
+                        <Link exact to="/cslt">
+                            <i class=" bx bx-home-circle"></i>
+                            <span class="links_name">Cơ Sở Lưu Trú</span>
                         </Link>
                     </li>
-                    <li>
-                        <Link exact to="/dashboard">
-                            <i class="bx bx-coin-stack"></i>
-                            <span class="links_name">Stock</span>
-                        </Link>
-                    </li>
+
                     <li>
                         <Link exact to="/dashboard">
                             <i class="bx bx-book-alt"></i>
-                            <span class="links_name">Total order</span>
+                            <span class="links_name">Khai Báo Trước</span>
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link exact to="/nnn">
+                            <i class="bx bx-group"></i>
+                            <span class="links_name">Người Nước Ngoài</span>
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link exact to="/dashboard">
+                            <i class=" bx bx-home-alt"></i>
+                            <span class="links_name">Lưu Trú</span>
                         </Link>
                     </li>
                     <li>
                         <Link exact to="/dashboard">
-                            <i class="bx bx-user"></i>
-                            <span class="links_name">Team</span>
+                            <i class=" bx bx-book-content"></i>
+                            <span class="links_name">Nhật Ký Lưu Trú</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link exact to="/dashboard">
+                            <i class="bx bx-news"></i>
+                            <span class="links_name">Tin Tức</span>
                         </Link>
                     </li>
                     <li>
                         <Link exact to="/dashboard">
                             <i class="bx bx-message"></i>
-                            <span class="links_name">Messages</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link exact to="/dashboard">
-                            <i class="bx bx-heart"></i>
-                            <span class="links_name">Favrorites</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link exact to="/dashboard">
-                            <i class="bx bx-cog"></i>
-                            <span class="links_name">Setting</span>
+                            <span class="links_name">Đánh Giá</span>
                         </Link>
                     </li>
                     <li class="log_out">
