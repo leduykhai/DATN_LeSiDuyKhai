@@ -1,52 +1,8 @@
-// .text{
-//     width: 100%;
-//     padding: 12px 20px;
-//     margin: 8px 0;
-//     display: inline-block;
-//     border: 1px solid #ccc;
-//     border-radius: 4px;
-//     box-sizing: border-box;
-// }
-
-// .submit{
-//     width: 100%;
-//     background-color: #4caf50;
-//     color: white;
-//     padding: 14px 20px;
-//     margin: 8px 0;
-//     border: none;
-//     border-radius: 4px;
-//     cursor: pointer;
-// }
-
-// .button{
-//     width: 100%;
-//     background-color: #40453e;
-//     color: white;
-//     padding: 14px 20px;
-//     margin: 8px 0;
-//     border: none;
-//     border-radius: 4px;
-//     cursor: pointer;
-// }
-
-// .submit:hover {
-//     background-color: #45a049;
-// }
-
-// .error-text {
-//     padding: 0 0 .5rem 0;
-//     font-size: .9rem;
-//     font-style: italic;
-//     color: red;
-//   }
-
 /* ===== Google Font Import - Poppins ===== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 @import url('https://unicons.iconscout.com/release/v4.0.0/css/line.css');
 
-  //Form add
-  
+  //Form addccslt
   .body {
     min-height: 80vh;
     display: flex;
@@ -63,7 +19,7 @@
     text-align: left;
 }
 
-.container-add {
+.container-addccslt {
     position: relative;
     max-width: 1000px;
     width: 100%;
@@ -74,14 +30,14 @@
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.container-add header {
+.container-addccslt header {
     position: relative;
     font-size: 20px;
     font-weight: 600;
     color: #333;
 }
 
-.container-add header::before {
+.container-addccslt header::before {
     content: "";
     position: absolute;
     left: 0;
@@ -92,7 +48,7 @@
     background-color: #4070f4;
 }
 
-.container-add .form-all {
+.container-addccslt .form-all {
     position: relative;
     margin-top: 16px;
     min-height: 700px;
@@ -100,31 +56,31 @@
     overflow: hidden;
 }
 
-.container-add .form-all .form-add {
+.container-addccslt .form-all .form-addccslt {
     position: absolute;
     background-color: #fff;
     transition: 0.3s ease;
 }
 
-.container-add .form-all .form-add.second-add {
+.container-addccslt .form-all .form-addccslt.second-addccslt {
     opacity: 0;
     pointer-events: none;
     transform: translateX(100%);
 }
 
-.form-all.secActive .form-add.second-add {
+.form-all.secActive .form-addccslt.second-addccslt {
     opacity: 1;
     pointer-events: auto;
     transform: translateX(0);
 }
 
-.form-all.secActive .form-add.first-add {
+.form-all.secActive .form-addccslt.first-addccslt {
     opacity: 0;
     pointer-events: none;
     transform: translateX(-100%);
 }
 
-.container-add .form-all .title-add {
+.container-addccslt .form-all .title-addccslt {
     display: block;
     margin-bottom: 8px;
     font-size: 16px;
@@ -134,27 +90,27 @@
     text-align: left;
 }
 
-.container-add .form-all .fields-add {
+.container-addccslt .form-all .fields-addccslt {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.form-all .fields-add .input-field-add {
+.form-all .fields-addccslt .input-field-addccslt {
     display: flex;
     width: calc(100% / 3 - 15px);
     flex-direction: column;
     margin: 4px 0;
 }
 
-.input-field-add label {
+.input-field-addccslt label {
     font-size: 12px;
     font-weight: 500;
     color: #2e2e2e;
 }
 
-.input-field-add input,
+.input-field-addccslt input,
 select {
     outline: none;
     font-size: 14px;
@@ -167,21 +123,21 @@ select {
     margin: 8px 0;
 }
 
-.input-field-add input :focus,
-.input-field-add select:focus {
+.input-field-addccslt input :focus,
+.input-field-addccslt select:focus {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
 }
 
-.input-field-add select,
-.input-field-add input[type="date"] {
+.input-field-addccslt select,
+.input-field-addccslt input[type="date"] {
     color: #707070;
 }
 
-.input-field-add input[type="date"]:valid {
+.input-field-addccslt input[type="date"]:valid {
     color: #333;
 }
 
-.container-add .form-all button,
+.container-addccslt .form-all button,
 .backBtn {
     display: flex;
     align-items: center;
@@ -204,7 +160,7 @@ select {
     text-decoration-line: none;
 }
 
-.container-add .form-all .btnText {
+.container-addccslt .form-all .btnText {
     font-size: 14px;
     font-weight: 400;
 }
@@ -234,21 +190,21 @@ select {
 }
 
 @media (max-width: 750px) {
-    .container-add .form-all {
+    .container-addccslt .form-all {
         overflow-y: scroll;
     }
 
-    .container-add .form-all::-webkit-scrollbar {
+    .container-addccslt .form-all::-webkit-scrollbar {
         display: none;
     }
 
-    .form-all .fields-add .input-field-add {
+    .form-all .fields-addccslt .input-field-addccslt {
         width: calc(100% / 2 - 15px);
     }
 }
 
 @media (max-width: 550px) {
-    .form-all .fields-add .input-field-add {
+    .form-all .fields-addccslt .input-field-addccslt {
         width: 100%;
     }
 }

@@ -29,16 +29,16 @@ const headCells = [
         label: 'Name',
     },
     {
+        id: 'email',
+        numeric: false,
+        disablePadding: false,
+        label: 'Email',
+    },
+    {
         id: 'so_ho_chieu',
         numeric: false,
         disablePadding: false,
         label: 'Passport',
-    },
-    {
-        id: 'ngay_dang_ky',
-        numeric: false,
-        disablePadding: false,
-        label: 'Date Created',
     },
     {
         id: 'action',

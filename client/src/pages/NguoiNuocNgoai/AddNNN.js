@@ -5,8 +5,10 @@ import isEmpty from "validator/lib/isEmpty";
 import "./AddNNN.scss";
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import moment from 'moment';
 
+// import Moment from 'react-moment';
+// import 'moment-timezone';
+// import moment from 'moment';
 
 const initialState = {
     ho_ten: "",
@@ -20,7 +22,7 @@ const initialState = {
     // hinh: "",
     user_id: "",
     cslt_id: "",
-    quoc_tich_id: ""
+    quoc_tich_id: "",
 }
 
 const AddNNN = () => {
@@ -28,80 +30,19 @@ const AddNNN = () => {
 
     const { ho_ten, ngay_sinh, gioi_tinh, email, so_ho_chieu, dia_chi, sdt, ngay_dang_ky, user_id, cslt_id, quoc_tich_id } = state;
 
-    const [validationMsg, setValidationMsg] = useState({})
+    const [validationMsg, setValidationMsg] = useState({});
 
     const history = useHistory();
 
     const { id } = useParams();
 
-    const [thanh_pho, setThanh_pho] = useState([]);
-    const [thanh_pho_id, setThanh_pho_id] = useState('');
-    const [quan, setQuan] = useState([]);
-    const [quan_id, setQuan_id] = useState('');
-    const [phuong, setPhuong] = useState([]);
-
-    const [khu_vuc, setKhu_vuc] = useState([]);
-    const [khu_vuc_id, setKhu_vuc_id] = useState('');
-
     const [user, setUser] = useState([]);
-
-    const [nhanvien, setNhanvien] = useState([]);
-
-    const [quoctich, setQuoc_tich] = useState([]);
 
     const [cslt, setCslt] = useState([]);
 
-    useEffect(() => {
-        const getthanh_pho = async () => {
-            const resthanh_pho = await fetch("http://localhost:3000/thanhphos");
-            const restp = await resthanh_pho.json();
-            setThanh_pho(await restp);
-        }
-        getthanh_pho();
-    }, []);
+    const [quoctich, setQuoc_tich] = useState([]);
 
-    const handlethanh_pho = (event) => {
-        const getThanh_pho_id = event.target.value;
-        setThanh_pho_id(getThanh_pho_id);
-    }
-
-    useEffect(() => {
-        const getquan = async () => {
-            const resquan = await fetch(`http://localhost:3000/quans/${thanh_pho_id}`);
-            const resq = await resquan.json();
-            setQuan(await resq);
-        }
-        getquan();
-    }, [thanh_pho_id]);
-
-    const handlequan = (event) => {
-        const getquan_id = event.target.value;
-        setQuan_id(getquan_id);
-    }
-
-    useEffect(() => {
-        const getphuong = async () => {
-            const resphuong = await fetch(`http://localhost:3000/phuongs/${quan_id}`);
-            const rp = await resphuong.json();
-            setPhuong(await rp);
-        }
-        getphuong();
-    }, [quan_id]);
-
-    useEffect(() => {
-        const getkhu_vuc = async () => {
-            const reskhu_vuc = await fetch("http://localhost:3000/khuvucs");
-            const reskv = await reskhu_vuc.json();
-            setKhu_vuc(await reskv);
-        }
-        getkhu_vuc();
-    }, []);
-
-    const handlekhu_vuc = (event) => {
-        const getkhu_vuc_id = event.target.value;
-        setKhu_vuc_id(getkhu_vuc_id);
-    }
-
+    //User
     useEffect(() => {
         const getUser = async () => {
             const resuser = await fetch("http://localhost:3000/users");
@@ -111,40 +52,32 @@ const AddNNN = () => {
         getUser();
     }, []);
 
+    //CSLT
     useEffect(() => {
-        const getNV = async () => {
-            const resnhanvien = await fetch("http://localhost:3000/nhanviens");
-            const resnv = await resnhanvien.json();
-            setNhanvien(await resnv);
-        }
-        getNV();
-    }, []);
-
-    useEffect(() => {
-        const getQT = async () => {
-            const resquoctich = await fetch("http://localhost:3000/quoctichs");
-            const resqt = await resquoctich.json();
-            setQuoc_tich(await resqt);
-        }
-        getQT();
-    }, []);
-
-
-    useEffect(() => {
-        const getcslt = async () => {
+        const getCslt = async () => {
             const rescslt = await fetch("http://localhost:3000/cslts");
             const resc = await rescslt.json();
             setCslt(await resc);
         }
-        getcslt();
+        getCslt();
     }, []);
 
+    //Quoc_Tich
+    useEffect(() => {
+        const getquoc_tich = async () => {
+            const resquoctich = await fetch("http://localhost:3000/quoctichs");
+            const resqt = await resquoctich.json();
+            setQuoc_tich(await resqt);
+        }
+        getquoc_tich();
+    }, []);
+
+    //Nguoi_nuoc_ngoai
     useEffect(() => {
         axios
             .get(`http://localhost:3000/nguoinuocngoais/${id}`)
             .then((resp) => setState({ ...resp.data[0] }));
     }, [id]);
-
 
     const validateAll = () => {
         const msg = {}
@@ -164,13 +97,16 @@ const AddNNN = () => {
             msg.email = "Your email is incorrect"
         }
         if (isEmpty(so_ho_chieu)) {
-            msg.so_ho_chieu = "Please input your Citizen ID"
+            msg.so_ho_chieu = "Please input your Passport ID"
         }
         if (isEmpty(dia_chi)) {
             msg.dia_chi = "Please input your Address"
         }
         if (isEmpty(sdt)) {
             msg.sdt = "Please input your Phone Number"
+        }
+        if (isEmpty(ngay_dang_ky)) {
+            msg.ngay_dang_ky = "Please input your Date created"
         }
         // if (isEmpty(hinh)) {
         //     msg.hinh = "Please input your Images"
@@ -183,7 +119,7 @@ const AddNNN = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!ho_ten || !ngay_sinh || !gioi_tinh || !email || !so_ho_chieu || !dia_chi || !sdt) {
+        if (!ho_ten || !ngay_sinh || !gioi_tinh || !email || !so_ho_chieu || !dia_chi || !sdt || !ngay_dang_ky) {
             toast.error("please provide value into each input field");
         }
         const isValid = validateAll()
@@ -203,7 +139,7 @@ const AddNNN = () => {
                         // hinh,
                         user_id,
                         cslt_id,
-                        quoc_tich_id,
+                        quoc_tich_id
                     })
                     .then(() => {
                         setState({
@@ -222,7 +158,7 @@ const AddNNN = () => {
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("Users Added Successfully")
+                toast.success("Foreigner Added Successfully")
             }
             setTimeout(() => history.push("/nnn"), 100);
         }
@@ -235,44 +171,45 @@ const AddNNN = () => {
 
     return (
         <body className='body'>
-            <div className="container-add">
+            <div className="container-addnnn">
                 <header className='header'>Registration</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
-                    <div className="form-add first-add">
+                    <div className="form-addnnn first-addnnn">
                         <div className="details personal">
-                            <span className="title-add">Personal Details</span>
+                            <span className="title-addnnn">Personal Details</span>
 
-                            <div className="fields-add">
-                                <div className="input-field-add">
+                            <div className="fields-addnnn">
+                                <div className="input-field-addnnn">
                                     <label className='label'>Full Name</label>
                                     <input
                                         type="text"
                                         id='ho_ten'
                                         name='ho_ten'
                                         value={ho_ten || ""}
-                                        placeholder="Enter your name"
+                                        placeholder="Enter your Name"
                                         required
                                         onChange={handleInputChange}
                                     />
                                     <p className="error-text">{validationMsg.ho_ten}</p>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addnnn">
                                     <label className='label'>Date of Birth</label>
                                     <input
                                         type="date"
                                         id='ngay_sinh'
                                         name='ngay_sinh'
-                                        // value={moment(ngay_sinh).format("YYYY-MM-DD") || ""}
+                                        value={ngay_sinh || ""}
                                         placeholder="Enter birth date"
                                         required
                                         onChange={handleInputChange}
                                     />
                                     <p className="error-text">{validationMsg.ngay_sinh}</p>
+
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addnnn">
                                     <label className='label'>Gender</label>
                                     <select
                                         type="select"
@@ -282,15 +219,14 @@ const AddNNN = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value={""}>--Select gender--</option>
-                                        {/* <option>--Select gender--</option> */}
+                                        <option disabled selected value={""} > --Select gender--</option>
                                         <option>Male</option>
                                         <option>Female</option>
                                         <option>Others</option>
                                     </select>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addnnn">
                                     <label className='label'>Email</label>
                                     <input
                                         type="email"
@@ -304,21 +240,21 @@ const AddNNN = () => {
                                     <p className="error-text">{validationMsg.email}</p>
                                 </div>
 
-                                <div className="input-field-add">
-                                    <label className='label'>Citizen ID</label>
+                                <div className="input-field-addnnn">
+                                    <label className='label'>Passport ID</label>
                                     <input
                                         type="text"
                                         id='so_ho_chieu'
                                         name='so_ho_chieu'
                                         value={so_ho_chieu || ""}
-                                        placeholder="Enter Citizen ID"
+                                        placeholder="Enter Passport ID"
                                         required
                                         onChange={handleInputChange}
                                     />
                                     <p className="error-text">{validationMsg.so_ho_chieu}</p>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addnnn">
                                     <label className='label'>Address</label>
                                     <input
                                         type="text"
@@ -332,7 +268,7 @@ const AddNNN = () => {
                                     <p className="error-text">{validationMsg.dia_chi}</p>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addnnn">
                                     <label className='label'>Nationality</label>
                                     <select
                                         className="form-select"
@@ -352,7 +288,7 @@ const AddNNN = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addnnn">
                                     <label className='label'>Number Phone</label>
                                     <input
                                         type="number"
@@ -366,46 +302,51 @@ const AddNNN = () => {
                                     <p className="error-text">{validationMsg.sdt}</p>
                                 </div>
 
-                                <div className="input-field-add">
-                                    <label className='label'>Date</label>
+                                <div className="input-field-addnnn">
+                                    <label className='label'>Date Created</label>
                                     <input
                                         type="date"
                                         id='ngay_dang_ky'
                                         name='ngay_dang_ky'
-                                        // value={moment(ngay_sinh).format("YYYY-MM-DD") || ""}
+                                        value={ngay_dang_ky || ""}
                                         placeholder="Enter birth date"
                                         required
                                         onChange={handleInputChange}
                                     />
                                     <p className="error-text">{validationMsg.ngay_dang_ky}</p>
+
                                 </div>
 
-                                {/* <div className="input-field-add">
-                                    <label className='label'>Image</label>
-                                    <input
-                                        type="file"
-                                        id='hinh'
-                                        name='hinh'
-                                        value={hinh || ""}
-                                        placeholder="Enter your Image"
+                                <div className="input-field-addnnn">
+                                    <label className='label'>CSLT</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="cslt_id"
+                                        id='cslt_id'
+                                        value={cslt_id || ""}
                                         required
                                         onChange={handleInputChange}
-                                    />
-                                    <p className="error-text">{validationMsg.dia_chi}</p>
-                                </div> */}
+                                    >
+                                        <option disabled selected value="">--Select CSLT--</option>
+                                        {
+                                            cslt.map((getcslt, index) => (
+                                                <option key={index} value={getcslt.id}>{getcslt.ten_cslt} </option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
                         <div className="details ID">
-                            <span className="title-add">Identity Details</span>
+                            <span className="title-addnnn">Identity Details</span>
 
-                            <div className="fields-add">
-                                <div className="input-field-add">
+                            <div className="fields-addnnn">
+
+                                <div className="input-field-addnnn">
                                     <label className='label'>User ID</label>
                                     <select
-                                        // name="khu_vuc"
-                                        // className="form-control p-2"
-                                        // onChange={(e) => handlekhu_vuc(e)}
                                         className="form-select"
                                         type="select"
                                         name="user_id"
@@ -421,30 +362,6 @@ const AddNNN = () => {
                                             ))
                                         }
                                     </select>
-                                </div>
-
-                                <div className="input-field-add">
-                                    <label className='label'>CSLT ID</label>
-                                    <select
-                                        className="form-select"
-                                        type="select"
-                                        name="cslt_id"
-                                        id='cslt_id'
-                                        value={cslt_id || ""}
-                                        required
-                                        onChange={handleInputChange}
-                                    >
-                                        <option disabled selected value="">--Select CSLT ID--</option>
-                                        {
-                                            cslt.map((getc, index) => (
-                                                <option key={index} value={getc.id}>{getc.ten_cslt} </option>
-                                            ))
-                                        }
-                                    </select>
-                                </div>
-
-                                <div className="input-field-add">
-
                                 </div>
                             </div>
                             <div className="buttons">

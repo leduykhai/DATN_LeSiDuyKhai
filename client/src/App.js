@@ -17,15 +17,15 @@ import AddUser from './pages/User/AddUser';
 import EditUser from './pages/User/EditUser';
 import ViewUser from './pages/User/ViewUser';
 
-// import ListNV from './pages/NhanVien/ListNV';
-// import AddNV from './pages/NhanVien/AddNV';
-// import EditNV from './pages/NhanVien/EditNV';
-// import ViewNV from './pages/NhanVien/ViewNV';
+import ListNV from './pages/NhanVien/ListNV';
+import AddNV from './pages/NhanVien/AddNV';
+import EditNV from './pages/NhanVien/EditNV';
+import ViewNV from './pages/NhanVien/ViewNV';
 
-import ListNV from './pages/NhanVien copy/ListNNN';
-import AddNV from './pages/NhanVien copy/AddNNN';
-import EditNV from './pages/NhanVien copy/EditNNN';
-import ViewNV from './pages/NhanVien copy/ViewNNN';
+import ListNNN from './pages/NguoiNuocNgoai/ListNNN';
+import AddNNN from './pages/NguoiNuocNgoai/AddNNN';
+import EditNNN from './pages/NguoiNuocNgoai/EditNNN';
+import ViewNNN from './pages/NguoiNuocNgoai/ViewNNN';
 
 import ListTT from './pages/TinTuc/ListTT';
 import AddTT from './pages/TinTuc/AddTT';
@@ -41,12 +41,6 @@ import CSLT from './pages/CoSoLuuTru/ListCSLT';
 import AddCSLT from './pages/CoSoLuuTru/AddCSLT';
 import EditCSLT from './pages/CoSoLuuTru/EditCSLT';
 import ViewCSLT from './pages/CoSoLuuTru/ViewCSLT';
-
-import ListNNN from './pages/NguoiNuocNgoai/ListNNN';
-import AddNNN from './pages/NguoiNuocNgoai/AddNNN';
-import EditNNN from './pages/NguoiNuocNgoai/EditNNN';
-import ViewNNN from './pages/NguoiNuocNgoai/ViewNNN';
-
 
 function App() {
   return (
@@ -86,8 +80,8 @@ function App() {
 
           <RouteWrapper path="/nnn" component={ListNNN} layout={Sidebar} />
           <RouteWrapper path="/addnnn" component={AddNNN} layout={Sidebar} />
-          <RouteWrapper path="/updatennn" component={EditNNN} layout={Sidebar} />
-          <RouteWrapper path="/viewnnn" component={ViewNNN} layout={Sidebar} />
+          <RouteWrapper path="/updatennn/:id" component={EditNNN} layout={Sidebar} />
+          <RouteWrapper path="/viewnnn/:id" component={ViewNNN} layout={Sidebar} />
         </Switch>
       </div>
     </BrowserRouter>

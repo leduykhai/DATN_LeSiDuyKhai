@@ -35,17 +35,17 @@ const AddChuCSLT = () => {
 
     const [thanh_pho, setThanh_pho] = useState([]);
     const [thanh_pho_id, setThanh_pho_id] = useState('');
+
     const [quan, setQuan] = useState([]);
     const [quan_id, setQuan_id] = useState('');
-    const [phuong, setPhuong] = useState([]);
 
-    const [khu_vuc, setKhu_vuc] = useState([]);
-    const [khu_vuc_id, setKhu_vuc_id] = useState('');
+    const [phuong, setPhuong] = useState([]);
 
     const [user, setUser] = useState([]);
 
     const [nhanvien, setNhanvien] = useState([]);
 
+    //thanh pho
     useEffect(() => {
         const getthanh_pho = async () => {
             const resthanh_pho = await fetch("http://localhost:3000/thanhphos");
@@ -55,11 +55,13 @@ const AddChuCSLT = () => {
         getthanh_pho();
     }, []);
 
+    //id thanh pho
     const handlethanh_pho = (event) => {
         const getThanh_pho_id = event.target.value;
         setThanh_pho_id(getThanh_pho_id);
     }
 
+    //quan
     useEffect(() => {
         const getquan = async () => {
             const resquan = await fetch(`http://localhost:3000/quans/${thanh_pho_id}`);
@@ -69,11 +71,13 @@ const AddChuCSLT = () => {
         getquan();
     }, [thanh_pho_id]);
 
+    //id quan
     const handlequan = (event) => {
         const getquan_id = event.target.value;
         setQuan_id(getquan_id);
     }
 
+    //phuong
     useEffect(() => {
         const getphuong = async () => {
             const resphuong = await fetch(`http://localhost:3000/phuongs/${quan_id}`);
@@ -83,20 +87,7 @@ const AddChuCSLT = () => {
         getphuong();
     }, [quan_id]);
 
-    useEffect(() => {
-        const getkhu_vuc = async () => {
-            const reskhu_vuc = await fetch("http://localhost:3000/khuvucs");
-            const reskv = await reskhu_vuc.json();
-            setKhu_vuc(await reskv);
-        }
-        getkhu_vuc();
-    }, []);
-
-    const handlekhu_vuc = (event) => {
-        const getkhu_vuc_id = event.target.value;
-        setKhu_vuc_id(getkhu_vuc_id);
-    }
-
+    //user
     useEffect(() => {
         const getUser = async () => {
             const resuser = await fetch("http://localhost:3000/users");
@@ -106,6 +97,7 @@ const AddChuCSLT = () => {
         getUser();
     }, []);
 
+    //nhan vien
     useEffect(() => {
         const getNV = async () => {
             const resnhanvien = await fetch("http://localhost:3000/nhanviens");
@@ -115,12 +107,12 @@ const AddChuCSLT = () => {
         getNV();
     }, []);
 
+    //chu co so luu tru
     useEffect(() => {
         axios
             .get(`http://localhost:3000/chucosoluutrus/${id}`)
             .then((resp) => setState({ ...resp.data[0] }));
     }, [id]);
-
 
     const validateAll = () => {
         const msg = {}
@@ -190,14 +182,13 @@ const AddChuCSLT = () => {
                             dia_chi: "",
                             sdt: "",
                             // hinh: "",
-                            ngay_sinh: "",
                             user_id: "",
                             phuong_id: "",
                             nhanvien_id: ""
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("Users Added Successfully")
+                toast.success("ChuCSLT Added Successfully")
             }
             setTimeout(() => history.push("/chucslt"), 100);
         }
@@ -210,16 +201,16 @@ const AddChuCSLT = () => {
 
     return (
         <body className='body'>
-            <div className="container-add">
+            <div className="container-addccslt">
                 <header className='header'>Registration</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
-                    <div className="form-add first-add">
+                    <div className="form-addccslt first-addccslt">
                         <div className="details personal">
-                            <span className="title-add">Personal Details</span>
+                            <span className="title-addccslt">Personal Details</span>
 
-                            <div className="fields-add">
-                                <div className="input-field-add">
+                            <div className="fields-addccslt">
+                                <div className="input-field-addccslt">
                                     <label className='label'>Full Name</label>
                                     <input
                                         type="text"
@@ -233,13 +224,13 @@ const AddChuCSLT = () => {
                                     <p className="error-text">{validationMsg.ho_ten}</p>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addccslt">
                                     <label className='label'>Date of Birth</label>
                                     <input
                                         type="date"
                                         id='ngay_sinh'
                                         name='ngay_sinh'
-                                        // value={moment(ngay_sinh).format("YYYY-MM-DD") || ""}
+                                        value={ngay_sinh || ""}
                                         placeholder="Enter birth date"
                                         required
                                         onChange={handleInputChange}
@@ -247,7 +238,7 @@ const AddChuCSLT = () => {
                                     <p className="error-text">{validationMsg.ngay_sinh}</p>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addccslt">
                                     <label className='label'>Gender</label>
                                     <select
                                         type="select"
@@ -265,7 +256,7 @@ const AddChuCSLT = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addccslt">
                                     <label className='label'>Email</label>
                                     <input
                                         type="email"
@@ -279,7 +270,7 @@ const AddChuCSLT = () => {
                                     <p className="error-text">{validationMsg.email}</p>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addccslt">
                                     <label className='label'>Citizen ID</label>
                                     <input
                                         type="number"
@@ -293,7 +284,7 @@ const AddChuCSLT = () => {
                                     <p className="error-text">{validationMsg.cccd}</p>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addccslt">
                                     <label className='label'>Address</label>
                                     <input
                                         type="text"
@@ -307,7 +298,7 @@ const AddChuCSLT = () => {
                                     <p className="error-text">{validationMsg.dia_chi}</p>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addccslt">
                                     <label className='label'>City</label>
                                     <select
                                         className="form-control p-2"
@@ -325,7 +316,7 @@ const AddChuCSLT = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addccslt">
                                     <label className='label'>District</label>
                                     <select
                                         className="form-select"
@@ -344,7 +335,7 @@ const AddChuCSLT = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addccslt">
                                     <label className='label'>Ward</label>
                                     <select
                                         className="form-select"
@@ -364,7 +355,7 @@ const AddChuCSLT = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addccslt">
                                     <label className='label'>Number Phone</label>
                                     <input
                                         type="number"
@@ -377,7 +368,7 @@ const AddChuCSLT = () => {
                                     />
                                     <p className="error-text">{validationMsg.sdt}</p>
                                 </div>
-                                {/* <div className="input-field-add">
+                                {/* <div className="input-field-addccslt">
                                     <label className='label'>Image</label>
                                     <input
                                         type="file"
@@ -394,15 +385,12 @@ const AddChuCSLT = () => {
                         </div>
 
                         <div className="details ID">
-                            <span className="title-add">Identity Details</span>
+                            <span className="title-addccslt">Identity Details</span>
 
-                            <div className="fields-add">
-                                <div className="input-field-add">
+                            <div className="fields-addccslt">
+                                <div className="input-field-addccslt">
                                     <label className='label'>User ID</label>
                                     <select
-                                        // name="khu_vuc"
-                                        // className="form-control p-2"
-                                        // onChange={(e) => handlekhu_vuc(e)}
                                         className="form-select"
                                         type="select"
                                         name="user_id"
@@ -420,12 +408,9 @@ const AddChuCSLT = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addccslt">
                                     <label className='label'>Employee ID</label>
                                     <select
-                                        // name="khu_vuc"
-                                        // className="form-control p-2"
-                                        // onChange={(e) => handlekhu_vuc(e)}
                                         className="form-select"
                                         type="select"
                                         name="nhanvien_id"
@@ -443,43 +428,8 @@ const AddChuCSLT = () => {
                                     </select>
                                 </div>
 
-                                {/* <div className="input-field-add">
-                                    <label className='label'>ID User</label>
-                                    <input
-                                        type="number"
-                                        id='user_id'
-                                        name='user_id'
-                                        value={user_id || ""}
-                                        placeholder="Enter ID User"
-                                        required
-                                        onChange={handleInputChange}
-                                    />
-                                </div> */}
+                                <div className="input-field-addccslt">
 
-                                {/* <div className="input-field-add">
-                                    <label className='label'>ID Ward</label>
-                                    <input
-                                        type="number"
-                                        id='phuong_id'
-                                        name='phuong_id'
-                                        value={phuong_id || ""}
-                                        placeholder="Enter ID Ward"
-                                        required
-                                        onChange={handleInputChange}
-                                    />
-                                </div> */}
-
-                                <div className="input-field-add">
-                                    {/* <label className='label'>ID Staff</label>
-                                    <input
-                                        type="number"
-                                        id='nhanvien_id'
-                                        name='nhanvien_id'
-                                        value={nhanvien_id || ""}
-                                        placeholder="Enter Staff"
-                                        required
-                                        onChange={handleInputChange}
-                                    /> */}
                                 </div>
                             </div>
                             <div className="buttons">

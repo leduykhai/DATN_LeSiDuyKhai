@@ -37,8 +37,8 @@ const Navbar = (props) => {
                     <i class="bx bx-search"></i>
                 </div>
                 <div class="profile-details">
-                    <img src="images/profile.jpg" alt="" />
-                    <span class="admin_name">Prem Shahi</span>
+                    <img src="" alt="" />
+                    <span class="admin_name">Admin</span>
                     <i class="bx bx-chevron-down"></i>
                 </div>
             </nav>
