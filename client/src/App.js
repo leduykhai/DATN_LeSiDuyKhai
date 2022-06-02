@@ -48,40 +48,50 @@ function App() {
       <div className='App'>
         <ToastContainer position='bottom-right' />
         <Switch>
+
           <Route exact path="/" component={Login} />
           <Route exact path="/login" component={Login} />
 
+          {/* dashboard */}
           <RouteWrapper exact path="/dashboard" component={Dashboard} layout={Sidebar} />
 
+          {/* user */}
           <RouteWrapper exact path="/users" component={ListUser} layout={Sidebar} />
           <RouteWrapper path="/addUser" component={AddUser} layout={Sidebar} />
           <RouteWrapper path="/updateUser/:id" component={EditUser} layout={Sidebar} />
           <RouteWrapper path="/viewUser/:id" component={ViewUser} layout={Sidebar} />
 
+          {/* Nhân Viên */}
           <RouteWrapper exact path="/nhanvien" component={ListNV} layout={Sidebar} />
           <RouteWrapper path="/addNhanVien" component={AddNV} layout={Sidebar} />
           <RouteWrapper path="/updateNhanVien/:id" component={EditNV} layout={Sidebar} />
           <RouteWrapper path="/ViewNhanVien/:id" component={ViewNV} layout={Sidebar} />
 
+          {/* Tin Tức */}
           <RouteWrapper exact path="/tintuc" component={ListTT} layout={Sidebar} />
           <RouteWrapper path="/addtintuc" component={AddTT} layout={Sidebar} />
           <RouteWrapper path="/updatetintuc/:id" component={EditTT} layout={Sidebar} />
           <RouteWrapper path="/Viewtintuc/:id" component={ViewTT} layout={Sidebar} />
 
+          {/* Chủ Cơ Sở Lưu Trú */}
           <RouteWrapper exact path="/chucslt" component={ChuCSLT} layout={Sidebar} />
           <RouteWrapper path="/addchucslt" component={AddChuCSLT} layout={Sidebar} />
           <RouteWrapper path="/updatechucslt/:id" component={EditChuCSLT} layout={Sidebar} />
           <RouteWrapper path="/viewchucslt/:id" component={ViewChuCSLT} layout={Sidebar} />
 
+          {/* Cơ Sở Lưu Trú */}
           <RouteWrapper exact path="/cslt" component={CSLT} layout={Sidebar} />
           <RouteWrapper path="/addcslt" component={AddCSLT} layout={Sidebar} />
           <RouteWrapper path="/updatecslt/:id" component={EditCSLT} layout={Sidebar} />
           <RouteWrapper path="/viewcslt/:id" component={ViewCSLT} layout={Sidebar} />
 
+          {/* Người Nước Ngoài */}
           <RouteWrapper path="/nnn" component={ListNNN} layout={Sidebar} />
           <RouteWrapper path="/addnnn" component={AddNNN} layout={Sidebar} />
           <RouteWrapper path="/updatennn/:id" component={EditNNN} layout={Sidebar} />
           <RouteWrapper path="/viewnnn/:id" component={ViewNNN} layout={Sidebar} />
+
+
         </Switch>
       </div>
     </BrowserRouter>
