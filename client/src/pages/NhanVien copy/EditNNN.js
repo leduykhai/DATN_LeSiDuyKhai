@@ -5,8 +5,10 @@ import isEmpty from "validator/lib/isEmpty";
 import "./EditNNN.scss";
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import moment from 'moment';
 
+import Moment from 'react-moment';
+// import 'moment-timezone';
+import moment from 'moment';
 
 const initialState = {
     ho_ten: "",
@@ -19,16 +21,16 @@ const initialState = {
     ngay_dang_ky: "",
     // hinh: "",
     user_id: "",
-    cslt_id: "",
-    quoc_tich_id: ""
+    quoc_tich_id: "",
+    cslt_id: ""
 }
 
 const EditNNN = () => {
     const [state, setState] = useState(initialState);
 
-    const { ho_ten, ngay_sinh, gioi_tinh, email, so_ho_chieu, dia_chi, sdt, ngay_dang_ky, user_id, cslt_id, quoc_tich_id } = state;
+    const { ho_ten, ngay_sinh, gioi_tinh, email, so_ho_chieu, dia_chi, sdt, ngay_dang_ky, user_id, quoc_tich_id, cslt_id } = state;
 
-    const [validationMsg, setValidationMsg] = useState({})
+    const [validationMsg, setValidationMsg] = useState({});
 
     const history = useHistory();
 
@@ -40,16 +42,14 @@ const EditNNN = () => {
     const [quan_id, setQuan_id] = useState('');
     const [phuong, setPhuong] = useState([]);
 
-    const [khu_vuc, setKhu_vuc] = useState([]);
+    const [cslt, setCslt] = useState([]);
     const [khu_vuc_id, setKhu_vuc_id] = useState('');
-
-    const [user, setUser] = useState([]);
-
-    const [nhanvien, setNhanvien] = useState([]);
 
     const [quoctich, setQuoc_tich] = useState([]);
 
-    const [cslt, setCslt] = useState([]);
+    const [user, setUser] = useState([]);
+
+
 
     useEffect(() => {
         const getthanh_pho = async () => {
@@ -90,9 +90,9 @@ const EditNNN = () => {
 
     useEffect(() => {
         const getkhu_vuc = async () => {
-            const reskhu_vuc = await fetch("http://localhost:3000/khuvucs");
+            const reskhu_vuc = await fetch("http://localhost:3000/cslts");
             const reskv = await reskhu_vuc.json();
-            setKhu_vuc(await reskv);
+            setCslt(await reskv);
         }
         getkhu_vuc();
     }, []);
@@ -101,6 +101,16 @@ const EditNNN = () => {
         const getkhu_vuc_id = event.target.value;
         setKhu_vuc_id(getkhu_vuc_id);
     }
+
+
+    useEffect(() => {
+        const getquoc_tich = async () => {
+            const resquoctich = await fetch("http://localhost:3000/quoctichs");
+            const resqt = await resquoctich.json();
+            setQuoc_tich(await resqt);
+        }
+        getquoc_tich();
+    }, []);
 
     useEffect(() => {
         const getUser = async () => {
@@ -111,40 +121,12 @@ const EditNNN = () => {
         getUser();
     }, []);
 
-    useEffect(() => {
-        const getNV = async () => {
-            const resnhanvien = await fetch("http://localhost:3000/nhanviens");
-            const resnv = await resnhanvien.json();
-            setNhanvien(await resnv);
-        }
-        getNV();
-    }, []);
-
-    useEffect(() => {
-        const getQT = async () => {
-            const resquoctich = await fetch("http://localhost:3000/quoctichs");
-            const resqt = await resquoctich.json();
-            setQuoc_tich(await resqt);
-        }
-        getQT();
-    }, []);
-
-
-    useEffect(() => {
-        const getcslt = async () => {
-            const rescslt = await fetch("http://localhost:3000/cslts");
-            const resc = await rescslt.json();
-            setCslt(await resc);
-        }
-        getcslt();
-    }, []);
 
     useEffect(() => {
         axios
             .get(`http://localhost:3000/nguoinuocngoais/${id}`)
             .then((resp) => setState({ ...resp.data[0] }));
     }, [id]);
-
 
     const validateAll = () => {
         const msg = {}
@@ -172,6 +154,9 @@ const EditNNN = () => {
         if (isEmpty(sdt)) {
             msg.sdt = "Please input your Phone Number"
         }
+        if (isEmpty(ngay_dang_ky)) {
+            msg.ngay_dang_ky = "Please input your Role"
+        }
         // if (isEmpty(hinh)) {
         //     msg.hinh = "Please input your Images"
         // }
@@ -194,6 +179,7 @@ const EditNNN = () => {
                 var ngay_dang_ky = moment(ngay_dang_ky).format('YYYY-MM-DD');
                 axios
                     .put("http://localhost:3000/nguoinuocngoais", {
+                        id,
                         ho_ten,
                         ngay_sinh,
                         gioi_tinh,
@@ -204,8 +190,8 @@ const EditNNN = () => {
                         ngay_dang_ky,
                         // hinh,
                         user_id,
-                        cslt_id,
                         quoc_tich_id,
+                        cslt_id,
                     })
                     .then(() => {
                         setState({
@@ -219,14 +205,14 @@ const EditNNN = () => {
                             ngay_dang_ky: "",
                             // hinh: "",
                             user_id: "",
-                            cslt_id: "",
-                            quoc_tich_id: ""
+                            quoc_tich_id: "",
+                            cslt_id: ""
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
                 toast.success("Users Added Successfully")
             }
-            setTimeout(() => history.push("/nnn"), 100);
+            setTimeout(() => history.push("/nhanvien"), 100);
         }
     };
 
@@ -237,44 +223,45 @@ const EditNNN = () => {
 
     return (
         <body className='body'>
-            <div className="container-add">
+            <div className="container-edit">
                 <header className='header'>Registration</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
-                    <div className="form-add first-add">
+                    <div className="form-edit first-edit">
                         <div className="details personal">
-                            <span className="title-add">Personal Details</span>
+                            <span className="title-edit">Personal Details</span>
 
-                            <div className="fields-add">
-                                <div className="input-field-add">
+                            <div className="fields-edit">
+                                <div className="input-field-edit">
                                     <label className='label'>Full Name</label>
                                     <input
                                         type="text"
                                         id='ho_ten'
                                         name='ho_ten'
                                         value={ho_ten || ""}
-                                        placeholder="Enter your name"
+                                        placeholder="Enter your Name"
                                         required
                                         onChange={handleInputChange}
                                     />
                                     <p className="error-text">{validationMsg.ho_ten}</p>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-edit">
                                     <label className='label'>Date of Birth</label>
                                     <input
                                         type="date"
                                         id='ngay_sinh'
                                         name='ngay_sinh'
-                                        value={moment(ngay_sinh).format("YYYY-MM-DD") || ""}
+                                        value={moment(ngay_sinh).format('YYYY-MM-DD') || ""}
                                         placeholder="Enter birth date"
                                         required
                                         onChange={handleInputChange}
                                     />
                                     <p className="error-text">{validationMsg.ngay_sinh}</p>
+
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-edit">
                                     <label className='label'>Gender</label>
                                     <select
                                         type="select"
@@ -284,15 +271,14 @@ const EditNNN = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value={""}>--Select gender--</option>
-                                        {/* <option>--Select gender--</option> */}
+                                        <option disabled selected >Select gender</option>
                                         <option>Male</option>
                                         <option>Female</option>
                                         <option>Others</option>
                                     </select>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-edit">
                                     <label className='label'>Email</label>
                                     <input
                                         type="email"
@@ -306,7 +292,7 @@ const EditNNN = () => {
                                     <p className="error-text">{validationMsg.email}</p>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-edit">
                                     <label className='label'>Citizen ID</label>
                                     <input
                                         type="text"
@@ -320,7 +306,7 @@ const EditNNN = () => {
                                     <p className="error-text">{validationMsg.so_ho_chieu}</p>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-edit">
                                     <label className='label'>Address</label>
                                     <input
                                         type="text"
@@ -334,7 +320,7 @@ const EditNNN = () => {
                                     <p className="error-text">{validationMsg.dia_chi}</p>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-edit">
                                     <label className='label'>Nationality</label>
                                     <select
                                         className="form-select"
@@ -345,7 +331,7 @@ const EditNNN = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select Nationality--</option>
+                                        <option value="">--Select Nationality--</option>
                                         {
                                             quoctich.map((getqt, index) => (
                                                 <option key={index} value={getqt.id}> {getqt.ten_quoc_tich} </option>
@@ -354,7 +340,7 @@ const EditNNN = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-edit">
                                     <label className='label'>Number Phone</label>
                                     <input
                                         type="number"
@@ -368,21 +354,55 @@ const EditNNN = () => {
                                     <p className="error-text">{validationMsg.sdt}</p>
                                 </div>
 
-                                <div className="input-field-add">
-                                    <label className='label'>Date</label>
+                                <div className="input-field-edit">
+                                    <label className='label'>Date Created</label>
                                     <input
                                         type="date"
                                         id='ngay_dang_ky'
                                         name='ngay_dang_ky'
-                                        value={moment(ngay_dang_ky).format("YYYY-MM-DD hh:mm:ss") || ""}
+                                        value={moment(ngay_dang_ky).format('YYYY-MM-DD') || ""}
                                         placeholder="Enter birth date"
                                         required
                                         onChange={handleInputChange}
                                     />
                                     <p className="error-text">{validationMsg.ngay_dang_ky}</p>
+
                                 </div>
 
-                                {/* <div className="input-field-add">
+                                <div className="input-field-edit">
+                                    <label className='label'>CSLT</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="cslt_id"
+                                        id='cslt_id'
+                                        value={cslt_id || ""}
+                                        required
+                                        onChange={handleInputChange}
+                                    >
+                                        <option value="">--Select CSLT--</option>
+                                        {
+                                            cslt.map((getcslt, index) => (
+                                                <option key={index} value={getcslt.id}>{getcslt.ten_cslt} </option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
+
+                                {/* <div className="input-field-edit">
+                                    <label className='label'>Position</label>
+                                    <input
+                                        type="text"
+                                        id='chuc_vu'
+                                        name='chuc_vu'
+                                        value={chuc_vu || ""}
+                                        placeholder="Enter your Position"
+                                        required
+                                        onChange={handleInputChange}
+                                    />
+                                    <p className="error-text">{validationMsg.sdt}</p>
+                                </div> */}
+                                {/* <div className="input-field-edit">
                                     <label className='label'>Image</label>
                                     <input
                                         type="file"
@@ -393,21 +413,19 @@ const EditNNN = () => {
                                         required
                                         onChange={handleInputChange}
                                     />
-                                    <p className="error-text">{validationMsg.dia_chi}</p>
+                                    <p className="error-text">{validationMsg.hinh}</p>
                                 </div> */}
                             </div>
                         </div>
 
                         <div className="details ID">
-                            <span className="title-add">Identity Details</span>
+                            <span className="title-edit">Identity Details</span>
 
-                            <div className="fields-add">
-                                <div className="input-field-add">
+                            <div className="fields-edit">
+
+                                <div className="input-field-edit">
                                     <label className='label'>User ID</label>
                                     <select
-                                        // name="khu_vuc"
-                                        // className="form-control p-2"
-                                        // onChange={(e) => handlekhu_vuc(e)}
                                         className="form-select"
                                         type="select"
                                         name="user_id"
@@ -424,33 +442,9 @@ const EditNNN = () => {
                                         }
                                     </select>
                                 </div>
-
-                                <div className="input-field-add">
-                                    <label className='label'>CSLT ID</label>
-                                    <select
-                                        className="form-select"
-                                        type="select"
-                                        name="cslt_id"
-                                        id='cslt_id'
-                                        value={cslt_id || ""}
-                                        required
-                                        onChange={handleInputChange}
-                                    >
-                                        <option disabled selected value="">--Select CSLT ID--</option>
-                                        {
-                                            cslt.map((getc, index) => (
-                                                <option key={index} value={getc.id}>{getc.ten_cslt} </option>
-                                            ))
-                                        }
-                                    </select>
-                                </div>
-
-                                <div className="input-field-add">
-
-                                </div>
                             </div>
                             <div className="buttons">
-                                <Link to="/nnn" className="backBtn">
+                                <Link to="/nhanvien" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
                                         <span className="btnText">Back</span>

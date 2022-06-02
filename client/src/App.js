@@ -22,10 +22,10 @@ import ViewUser from './pages/User/ViewUser';
 // import EditNV from './pages/NhanVien/EditNV';
 // import ViewNV from './pages/NhanVien/ViewNV';
 
-import ListNV from './pages/NhanVien copy/ListNV';
-import AddNV from './pages/NhanVien copy/AddNV';
-import EditNV from './pages/NhanVien copy/EditNV';
-import ViewNV from './pages/NhanVien copy/ViewNV';
+import ListNV from './pages/NhanVien copy/ListNNN';
+import AddNV from './pages/NhanVien copy/AddNNN';
+import EditNV from './pages/NhanVien copy/EditNNN';
+import ViewNV from './pages/NhanVien copy/ViewNNN';
 
 import ListTT from './pages/TinTuc/ListTT';
 import AddTT from './pages/TinTuc/AddTT';

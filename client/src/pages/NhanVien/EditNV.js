@@ -25,7 +25,7 @@ const initialState = {
     khuvuc_id: ""
 }
 
-const EditChuCSLT = () => {
+const EditNV = () => {
     const [state, setState] = useState(initialState);
 
     const { ho_ten, ngay_sinh, gioi_tinh, email, cccd, dia_chi, sdt, chuc_vu, user_id, phuong_id, khuvuc_id } = state;
@@ -589,4 +589,4 @@ const EditChuCSLT = () => {
     )
 }
 
-export default EditChuCSLT
+export default EditNV

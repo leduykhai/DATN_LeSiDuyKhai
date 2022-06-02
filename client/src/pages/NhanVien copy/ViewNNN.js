@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import "./ViewNV.scss"
+import "./ViewNNN.scss"
 import moment from 'moment';
 
-const ViewNV = () => {
+const ViewNNN = () => {
     const [NhanVien, setChuCSLT] = useState({});
 
     const { id } = useParams();
@@ -63,4 +63,4 @@ const ViewNV = () => {
     )
 }
 
-export default ViewNV
+export default ViewNNN

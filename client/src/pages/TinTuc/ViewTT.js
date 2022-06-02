@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-// import "./ViewTT.scss"
+import "./ViewTT.scss"
 import moment from 'moment';
 
 const ViewTT = () => {

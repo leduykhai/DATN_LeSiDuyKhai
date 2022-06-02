@@ -25,7 +25,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import './ListNV.scss'
+import './ListNNN.scss'
 
 
 // function createData(name, calories, fat, carbs, protein) {
@@ -235,7 +235,7 @@ import './ListNV.scss'
 // };
 
 // export default function EnhancedTable() {
-export default function ListNV() {
+export default function ListNNNT() {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
     const [selected, setSelected] = React.useState([]);
@@ -379,8 +379,8 @@ export default function ListNV() {
                                             </TableCell>
                                             <TableCell align="left">NV{row.id}</TableCell>
                                             <TableCell align="left">{row.ho_ten}</TableCell>
-                                            <TableCell align="left">{row.gioi_tinh}</TableCell>
                                             <TableCell align="left">{row.email}</TableCell>
+                                            <TableCell align="left">{row.so_ho_chieu}</TableCell>
                                             <TableCell align="left">
                                                 <Link to={`/updateNhanVien/${row.id}`}>
                                                     <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />
