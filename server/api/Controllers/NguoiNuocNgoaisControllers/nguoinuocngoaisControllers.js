@@ -15,7 +15,7 @@ module.exports = {
         })
     },
 
-    getNguoiNuocNgoaiById: (req, res) => {
+    getNNNById: (req, res) => {
         let nnn_id = req.params.id;
         let sql = 'SELECT * FROM nguoinuocngoais where id = ?'
         db.query(sql, nnn_id, (err, response) => {
@@ -24,9 +24,9 @@ module.exports = {
         })
     },
 
-    addNewNguoiNuocNgoai: (req, res) => {
+    addNewNNN: (req, res) => {
         let data = req.body;
-        console.log('addNewNguoiNuocNgoai: ', req.body)
+        console.log('addNewNNN: ', req.body)
         let sql = `INSERT INTO nguoinuocngoais SET ?`
         db.query(sql, [data], (err, response) => {
             if (err) throw err
@@ -36,7 +36,7 @@ module.exports = {
         })
     },
 
-    updateNguoiNuocNgoai: (req, res) => {
+    updateNNN: (req, res) => {
         let data = req.body;
         if (!data.id) {
             return res.status(400).send({
@@ -53,7 +53,7 @@ module.exports = {
         })
     },
 
-    deleteNguoiNuocNgoaiById: (req, res) => {
+    deleteNNNById: (req, res) => {
         let nnn_id = req.params.id;
         let sql = 'DELETE FROM nguoinuocngoais where id = ?'
         db.query(sql, nnn_id, (err, response) => {
@@ -61,39 +61,12 @@ module.exports = {
             res.json(response);
         })
     },
-    deleteNguoiNuocNgoaiByAll: (req, res) => {
-        let nguoinuocngoai_all = req.params.id;
+    deleteNNNByAll: (req, res) => {
+        let nnn_all = req.params.id;
         let sql = 'DELETE FROM nguoinuocngoais'
-        db.query(sql, nguoinuocngoai_all, (err, response) => {
+        db.query(sql, nnn_all, (err, response) => {
             if (err) throw err
             res.json(response);
         })
-    },
-
-    // login: (req, res) => {
-    //     let data = req.body;
-    //     console.log('login: ', data);
-    //     let sql = 'SELECT * FROM users where email = ? and password = ?'
-    //     db.query(sql, [data.email, data.password], (err, response) => {
-    //         if (err) {
-    //             res.json({
-    //                 status: "ERROR_IN_QUERY",
-    //                 message: 'Error in login'
-    //             });
-    //         } else {
-    //             console.log(response)
-    //             if (response.length > 0) {
-    //                 res.json({
-    //                     status: 'SUCCESS',
-    //                     data: response
-    //                 });
-    //             } else {
-    //                 res.json({
-    //                     status: 'ERROR_IN_LOGIN',
-    //                     message: 'Account or password wrong'
-    //                 });
-    //             }
-    //         }
-    //     })
-    // }
+    }
 }

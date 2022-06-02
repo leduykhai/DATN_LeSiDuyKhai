@@ -25,8 +25,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import './ListNNN.scss'
-import Moment from 'react-moment';
+import './ListNV.scss'
 
 
 // function createData(name, calories, fat, carbs, protein) {
@@ -236,7 +235,7 @@ import Moment from 'react-moment';
 // };
 
 // export default function EnhancedTable() {
-export default function ListNNN() {
+export default function ListNV() {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
     const [selected, setSelected] = React.useState([]);
@@ -257,10 +256,10 @@ export default function ListNNN() {
 
     const deleteContact = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that ChuCSLT ?")
+            window.confirm("Are you sure that you wanted to delete that Employee ?")
         ) {
             axios.delete(`http://localhost:3000/nguoinuocngoais/${id}`);
-            toast.success("User Delete Successfully");
+            toast.success("Employee Delete Successfully");
             setTimeout(() => loadData(), 100);
         }
     };
@@ -324,7 +323,7 @@ export default function ListNNN() {
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
-                <Link to={`/addnnn`}>
+                <Link to={`/addNhanVien`}>
                     <PersonAddAltIcon className='add-icon' sx={{ fontSize: 40 }} />
                 </Link>
                 <TableContainer>
@@ -378,20 +377,16 @@ export default function ListNNN() {
                                                 {/* {row.name} */}
                                                 {index + 1}
                                             </TableCell>
-                                            <TableCell align="left">NNN{row.id}</TableCell>
+                                            <TableCell align="left">NV{row.id}</TableCell>
                                             <TableCell align="left">{row.ho_ten}</TableCell>
-                                            <TableCell align="left">{row.so_ho_chieu}</TableCell>
+                                            <TableCell align="left">{row.gioi_tinh}</TableCell>
+                                            <TableCell align="left">{row.email}</TableCell>
                                             <TableCell align="left">
-                                                <Moment format='DD/MM/YYYY hh:ss:mm'>
-                                                    {row.ngay_dang_ky}
-                                                </Moment>
-                                            </TableCell>
-                                            <TableCell align="left">
-                                                <Link to={`/updatennn/${row.id}`}>
+                                                <Link to={`/updateNhanVien/${row.id}`}>
                                                     <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                                 <DeleteIcon className='delete-icon' sx={{ fontSize: 30 }} onClick={() => { deleteContact(row.id) }} />
-                                                <Link to={`/ViewNNN/${row.id}`}>
+                                                <Link to={`/viewNhanVien/${row.id}`}>
                                                     <GridViewIcon className='view-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                             </TableCell>

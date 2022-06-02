@@ -178,7 +178,6 @@ const EditChuCSLT = () => {
                             sdt: "",
                             chuc_vu: "",
                             // hinh: "",
-                            ngay_sinh: "",
                             user_id: "",
                             phuong_id: "",
                             khuvuc_id: ""

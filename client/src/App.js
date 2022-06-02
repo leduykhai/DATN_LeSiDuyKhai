@@ -17,10 +17,20 @@ import AddUser from './pages/User/AddUser';
 import EditUser from './pages/User/EditUser';
 import ViewUser from './pages/User/ViewUser';
 
-import ListNV from './pages/NhanVien/ListNV';
-import AddNV from './pages/NhanVien/AddNV';
-import EditNV from './pages/NhanVien/EditNV';
-import ViewNV from './pages/NhanVien/ViewNV';
+// import ListNV from './pages/NhanVien/ListNV';
+// import AddNV from './pages/NhanVien/AddNV';
+// import EditNV from './pages/NhanVien/EditNV';
+// import ViewNV from './pages/NhanVien/ViewNV';
+
+import ListNV from './pages/NhanVien copy/ListNV';
+import AddNV from './pages/NhanVien copy/AddNV';
+import EditNV from './pages/NhanVien copy/EditNV';
+import ViewNV from './pages/NhanVien copy/ViewNV';
+
+import ListTT from './pages/TinTuc/ListTT';
+import AddTT from './pages/TinTuc/AddTT';
+import EditTT from './pages/TinTuc/EditTT';
+import ViewTT from './pages/TinTuc/ViewTT';
 
 import ChuCSLT from './pages/Chu_CSLT/ListChuCSLT';
 import AddChuCSLT from './pages/Chu_CSLT/AddChuCSLT';
@@ -59,6 +69,11 @@ function App() {
           <RouteWrapper path="/updateNhanVien/:id" component={EditNV} layout={Sidebar} />
           <RouteWrapper path="/ViewNhanVien/:id" component={ViewNV} layout={Sidebar} />
 
+          <RouteWrapper exact path="/tintuc" component={ListTT} layout={Sidebar} />
+          <RouteWrapper path="/addtintuc" component={AddTT} layout={Sidebar} />
+          <RouteWrapper path="/updatetintuc/:id" component={EditTT} layout={Sidebar} />
+          <RouteWrapper path="/Viewtintuc/:id" component={ViewTT} layout={Sidebar} />
+
           <RouteWrapper exact path="/chucslt" component={ChuCSLT} layout={Sidebar} />
           <RouteWrapper path="/addchucslt" component={AddChuCSLT} layout={Sidebar} />
           <RouteWrapper path="/updatechucslt/:id" component={EditChuCSLT} layout={Sidebar} />
@@ -70,9 +85,9 @@ function App() {
           <RouteWrapper path="/viewcslt/:id" component={ViewCSLT} layout={Sidebar} />
 
           <RouteWrapper path="/nnn" component={ListNNN} layout={Sidebar} />
-          <RouteWrapper path="/addnnn" component={ListNNN} layout={Sidebar} />
-          <RouteWrapper path="/updatennn" component={ListNNN} layout={Sidebar} />
-          <RouteWrapper path="/viewnnn" component={ListNNN} layout={Sidebar} />
+          <RouteWrapper path="/addnnn" component={AddNNN} layout={Sidebar} />
+          <RouteWrapper path="/updatennn" component={EditNNN} layout={Sidebar} />
+          <RouteWrapper path="/viewnnn" component={ViewNNN} layout={Sidebar} />
         </Switch>
       </div>
     </BrowserRouter>

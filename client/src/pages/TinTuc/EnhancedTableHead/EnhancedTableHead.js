@@ -23,19 +23,13 @@ const headCells = [
         label: 'ID',
     },
     {
-        id: 'ho_ten',
+        id: 'tieu_de',
         numeric: false,
         disablePadding: false,
-        label: 'Name',
+        label: 'Title',
     },
     {
-        id: 'so_ho_chieu',
-        numeric: false,
-        disablePadding: false,
-        label: 'Passport',
-    },
-    {
-        id: 'ngay_dang_ky',
+        id: 'ngay_tao',
         numeric: false,
         disablePadding: false,
         label: 'Date Created',

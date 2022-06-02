@@ -25,7 +25,8 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import './ListNNN.scss'
+import './ListTT.scss'
+
 import Moment from 'react-moment';
 
 
@@ -236,7 +237,7 @@ import Moment from 'react-moment';
 // };
 
 // export default function EnhancedTable() {
-export default function ListNNN() {
+export default function ListTT() {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
     const [selected, setSelected] = React.useState([]);
@@ -247,7 +248,7 @@ export default function ListNNN() {
     const [data, setData] = React.useState([]);
 
     const loadData = async () => {
-        const response = await axios.get("http://localhost:3000/nguoinuocngoais");
+        const response = await axios.get("http://localhost:3000/tintucs");
         setData(response.data);
     };
 
@@ -257,10 +258,10 @@ export default function ListNNN() {
 
     const deleteContact = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that ChuCSLT ?")
+            window.confirm("Are you sure that you wanted to delete that News ?")
         ) {
-            axios.delete(`http://localhost:3000/nguoinuocngoais/${id}`);
-            toast.success("User Delete Successfully");
+            axios.delete(`http://localhost:3000/tintucs/${id}`);
+            toast.success("News Delete Successfully");
             setTimeout(() => loadData(), 100);
         }
     };
@@ -324,7 +325,7 @@ export default function ListNNN() {
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
-                <Link to={`/addnnn`}>
+                <Link to={`/addtintuc`}>
                     <PersonAddAltIcon className='add-icon' sx={{ fontSize: 40 }} />
                 </Link>
                 <TableContainer>
@@ -378,20 +379,19 @@ export default function ListNNN() {
                                                 {/* {row.name} */}
                                                 {index + 1}
                                             </TableCell>
-                                            <TableCell align="left">NNN{row.id}</TableCell>
-                                            <TableCell align="left">{row.ho_ten}</TableCell>
-                                            <TableCell align="left">{row.so_ho_chieu}</TableCell>
+                                            <TableCell align="left">N{row.id}</TableCell>
+                                            <TableCell align="left">{row.tieu_de}</TableCell>
                                             <TableCell align="left">
-                                                <Moment format='DD/MM/YYYY hh:ss:mm'>
-                                                    {row.ngay_dang_ky}
+                                                <Moment>
+                                                    {row.ngay_tao}
                                                 </Moment>
                                             </TableCell>
                                             <TableCell align="left">
-                                                <Link to={`/updatennn/${row.id}`}>
+                                                <Link to={`/updatetintuc/${row.id}`}>
                                                     <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                                 <DeleteIcon className='delete-icon' sx={{ fontSize: 30 }} onClick={() => { deleteContact(row.id) }} />
-                                                <Link to={`/ViewNNN/${row.id}`}>
+                                                <Link to={`/viewtintuc/${row.id}`}>
                                                     <GridViewIcon className='view-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                             </TableCell>

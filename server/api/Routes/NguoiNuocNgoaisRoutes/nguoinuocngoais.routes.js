@@ -1,16 +1,16 @@
 module.exports = function (app) {
     let nguoinuocngoaisCtrl = require('../../Controllers/NguoiNuocNgoaisControllers/nguoinuocngoaisControllers')
 
-    //NguoiNuocNgoai
+    //NNN
     app.route('/nguoinuocngoais')
         .get(nguoinuocngoaisCtrl.get)
-        .post(nguoinuocngoaisCtrl.addNewNguoiNuocNgoai)
-        .put(nguoinuocngoaisCtrl.updateNguoiNuocNgoai)
-        .delete(nguoinuocngoaisCtrl.deleteNguoiNuocNgoaiByAll);
+        .post(nguoinuocngoaisCtrl.addNewNNN)
+        .put(nguoinuocngoaisCtrl.updateNNN)
+        .delete(nguoinuocngoaisCtrl.deleteNNNByAll);
 
     app.route('/nguoinuocngoais/:id')
-        .get(nguoinuocngoaisCtrl.getNguoiNuocNgoaiById)
-        .delete(nguoinuocngoaisCtrl.deleteNguoiNuocNgoaiById);
+        .get(nguoinuocngoaisCtrl.getNNNById)
+        .delete(nguoinuocngoaisCtrl.deleteNNNById);
 
     // app.route('/api/nguoinuocngoais/login')
     //     .post(nguoinuocngoaisCtrl.login)

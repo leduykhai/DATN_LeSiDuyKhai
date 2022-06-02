@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import isEmail from "validator/lib/isEmail";
 import isEmpty from "validator/lib/isEmpty";
-import "./AddNNN.scss";
+import "./AddNV.scss";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import moment from 'moment';
@@ -13,20 +13,20 @@ const initialState = {
     ngay_sinh: "",
     gioi_tinh: "",
     email: "",
-    so_ho_chieu: "",
+    cccd: "",
     dia_chi: "",
     sdt: "",
-    ngay_dang_ky: "",
+    chuc_vu: "",
     // hinh: "",
     user_id: "",
-    cslt_id: "",
-    quoc_tich_id: ""
+    phuong_id: "",
+    khuvuc_id: ""
 }
 
-const AddNNN = () => {
+const AddChuCSLT = () => {
     const [state, setState] = useState(initialState);
 
-    const { ho_ten, ngay_sinh, gioi_tinh, email, so_ho_chieu, dia_chi, sdt, ngay_dang_ky, user_id, cslt_id, quoc_tich_id } = state;
+    const { ho_ten, ngay_sinh, gioi_tinh, email, cccd, dia_chi, sdt, chuc_vu, user_id, phuong_id, khuvuc_id } = state;
 
     const [validationMsg, setValidationMsg] = useState({})
 
@@ -45,11 +45,6 @@ const AddNNN = () => {
 
     const [user, setUser] = useState([]);
 
-    const [nhanvien, setNhanvien] = useState([]);
-
-    const [quoctich, setQuoc_tich] = useState([]);
-
-    const [cslt, setCslt] = useState([]);
 
     useEffect(() => {
         const getthanh_pho = async () => {
@@ -111,37 +106,10 @@ const AddNNN = () => {
         getUser();
     }, []);
 
-    useEffect(() => {
-        const getNV = async () => {
-            const resnhanvien = await fetch("http://localhost:3000/nhanviens");
-            const resnv = await resnhanvien.json();
-            setNhanvien(await resnv);
-        }
-        getNV();
-    }, []);
-
-    useEffect(() => {
-        const getQT = async () => {
-            const resquoctich = await fetch("http://localhost:3000/quoctichs");
-            const resqt = await resquoctich.json();
-            setQuoc_tich(await resqt);
-        }
-        getQT();
-    }, []);
-
-
-    useEffect(() => {
-        const getcslt = async () => {
-            const rescslt = await fetch("http://localhost:3000/cslts");
-            const resc = await rescslt.json();
-            setCslt(await resc);
-        }
-        getcslt();
-    }, []);
 
     useEffect(() => {
         axios
-            .get(`http://localhost:3000/nguoinuocngoais/${id}`)
+            .get(`http://localhost:3000/nhanviens/${id}`)
             .then((resp) => setState({ ...resp.data[0] }));
     }, [id]);
 
@@ -163,14 +131,17 @@ const AddNNN = () => {
         } else if (!isEmail(email)) {
             msg.email = "Your email is incorrect"
         }
-        if (isEmpty(so_ho_chieu)) {
-            msg.so_ho_chieu = "Please input your Citizen ID"
+        if (isEmpty(cccd)) {
+            msg.cccd = "Please input your Citizen ID"
         }
         if (isEmpty(dia_chi)) {
             msg.dia_chi = "Please input your Address"
         }
         if (isEmpty(sdt)) {
             msg.sdt = "Please input your Phone Number"
+        }
+        if (isEmpty(chuc_vu)) {
+            msg.chuc_vu = "Please input your Position"
         }
         // if (isEmpty(hinh)) {
         //     msg.hinh = "Please input your Images"
@@ -183,7 +154,7 @@ const AddNNN = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!ho_ten || !ngay_sinh || !gioi_tinh || !email || !so_ho_chieu || !dia_chi || !sdt) {
+        if (!ho_ten || !ngay_sinh || !gioi_tinh || !email || !cccd || !dia_chi || !sdt || !chuc_vu) {
             toast.error("please provide value into each input field");
         }
         const isValid = validateAll()
@@ -191,19 +162,19 @@ const AddNNN = () => {
         else {
             if (!id) {
                 axios
-                    .post("http://localhost:3000/nguoinuocngoais", {
+                    .post("http://localhost:3000/nhanviens", {
                         ho_ten,
                         ngay_sinh,
                         gioi_tinh,
                         email,
-                        so_ho_chieu,
+                        cccd,
                         dia_chi,
                         sdt,
-                        ngay_dang_ky,
+                        chuc_vu,
                         // hinh,
                         user_id,
-                        cslt_id,
-                        quoc_tich_id,
+                        phuong_id,
+                        khuvuc_id,
                     })
                     .then(() => {
                         setState({
@@ -211,20 +182,21 @@ const AddNNN = () => {
                             ngay_sinh: "",
                             gioi_tinh: "",
                             email: "",
-                            so_ho_chieu: "",
+                            cccd: "",
                             dia_chi: "",
                             sdt: "",
-                            ngay_dang_ky: "",
+                            chuc_vu: "",
                             // hinh: "",
+                            ngay_sinh: "",
                             user_id: "",
-                            cslt_id: "",
-                            quoc_tich_id: ""
+                            phuong_id: "",
+                            khuvuc_id: ""
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
                 toast.success("Users Added Successfully")
             }
-            setTimeout(() => history.push("/nnn"), 100);
+            setTimeout(() => history.push("/nhanvien"), 100);
         }
     };
 
@@ -307,15 +279,15 @@ const AddNNN = () => {
                                 <div className="input-field-add">
                                     <label className='label'>Citizen ID</label>
                                     <input
-                                        type="text"
-                                        id='so_ho_chieu'
-                                        name='so_ho_chieu'
-                                        value={so_ho_chieu || ""}
+                                        type="number"
+                                        id='cccd'
+                                        name='cccd'
+                                        value={cccd || ""}
                                         placeholder="Enter Citizen ID"
                                         required
                                         onChange={handleInputChange}
                                     />
-                                    <p className="error-text">{validationMsg.so_ho_chieu}</p>
+                                    <p className="error-text">{validationMsg.cccd}</p>
                                 </div>
 
                                 <div className="input-field-add">
@@ -333,20 +305,57 @@ const AddNNN = () => {
                                 </div>
 
                                 <div className="input-field-add">
-                                    <label className='label'>Nationality</label>
+                                    <label className='label'>City</label>
+                                    <select
+                                        className="form-control p-2"
+                                        name="thanh_pho"
+                                        id='thanh_pho'
+                                        required
+                                        onChange={(e) => handlethanh_pho(e)}
+                                    >
+                                        <option disabled selected value="">--Select City--</option>
+                                        {
+                                            thanh_pho.map((getcity, index) => (
+                                                <option key={index} value={getcity.id} >{getcity.ten_thanh_pho} </option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
+
+                                <div className="input-field-add">
+                                    <label className='label'>District</label>
                                     <select
                                         className="form-select"
                                         type="select"
-                                        name="quoc_tich_id"
-                                        id='quoc_tich_id'
-                                        value={quoc_tich_id || ""}
+                                        name="district"
+                                        id='district'
+                                        required
+                                        onChange={(e) => handlequan(e)}
+                                    >
+                                        <option disabled selected value="">--Select District--</option>
+                                        {
+                                            quan.map((getdistrict, index) => (
+                                                <option key={index} value={getdistrict.id}>{getdistrict.ten_quan} </option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
+
+                                <div className="input-field-add">
+                                    <label className='label'>Ward</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="phuong_id"
+                                        id='phuong_id'
+                                        value={phuong_id || ""}
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select Nationality--</option>
+                                        <option disabled selected value="">--Select Ward--</option>
                                         {
-                                            quoctich.map((getqt, index) => (
-                                                <option key={index} value={getqt.id}> {getqt.ten_quoc_tich} </option>
+                                            phuong.map((getward, index) => (
+                                                <option key={index} value={getward.id}> {getward.ten_phuong} </option>
                                             ))
                                         }
                                     </select>
@@ -366,18 +375,56 @@ const AddNNN = () => {
                                     <p className="error-text">{validationMsg.sdt}</p>
                                 </div>
 
-                                <div className="input-field-add">
-                                    <label className='label'>Date</label>
+                                {/* <div className="input-field-add">
+                                    <label className='label'>Position</label>
                                     <input
-                                        type="date"
-                                        id='ngay_dang_ky'
-                                        name='ngay_dang_ky'
-                                        // value={moment(ngay_sinh).format("YYYY-MM-DD") || ""}
-                                        placeholder="Enter birth date"
+                                        type="text"
+                                        id='chuc_vu'
+                                        name='chuc_vu'
+                                        value={chuc_vu || ""}
+                                        placeholder="Enter your Position"
                                         required
                                         onChange={handleInputChange}
                                     />
-                                    <p className="error-text">{validationMsg.ngay_dang_ky}</p>
+                                    <p className="error-text">{validationMsg.sdt}</p>
+                                </div> */}
+                                <div className="input-field-add">
+                                    <label className='label'>Position</label>
+                                    <select
+                                        type="select"
+                                        id='chuc_vu'
+                                        name='chuc_vu'
+                                        value={chuc_vu || ""}
+                                        required
+                                        onChange={handleInputChange}
+                                    >
+                                        {/* <option disabled selected>--Select gender--</option> */}
+                                        <option disabled selected value={""}>--Select gender--</option>
+                                        <option>Employee</option>
+                                    </select>
+                                </div>
+
+                                <div className="input-field-add">
+                                    <label className='label'>Area</label>
+                                    <select
+                                        // name="khu_vuc"
+                                        // className="form-control p-2"
+                                        // onChange={(e) => handlekhu_vuc(e)}
+                                        className="form-select"
+                                        type="select"
+                                        name="khuvuc_id"
+                                        id='khuvuc_id'
+                                        value={khuvuc_id || ""}
+                                        required
+                                        onChange={handleInputChange}
+                                    >
+                                        <option disabled selected value="">--Select Area--</option>
+                                        {
+                                            khu_vuc.map((getkv, index) => (
+                                                <option key={index} value={getkv.id}>{getkv.ten_khu_vuc} </option>
+                                            ))
+                                        }
+                                    </select>
                                 </div>
 
                                 {/* <div className="input-field-add">
@@ -423,32 +470,47 @@ const AddNNN = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-add">
-                                    <label className='label'>CSLT ID</label>
-                                    <select
-                                        className="form-select"
-                                        type="select"
-                                        name="cslt_id"
-                                        id='cslt_id'
-                                        value={cslt_id || ""}
+                                {/* <div className="input-field-add">
+                                    <label className='label'>ID User</label>
+                                    <input
+                                        type="number"
+                                        id='user_id'
+                                        name='user_id'
+                                        value={user_id || ""}
+                                        placeholder="Enter ID User"
                                         required
                                         onChange={handleInputChange}
-                                    >
-                                        <option disabled selected value="">--Select CSLT ID--</option>
-                                        {
-                                            cslt.map((getc, index) => (
-                                                <option key={index} value={getc.id}>{getc.ten_cslt} </option>
-                                            ))
-                                        }
-                                    </select>
+                                    />
+                                </div> */}
+
+                                {/* <div className="input-field-add">
+                                    <label className='label'>ID Ward</label>
+                                    <input
+                                        type="number"
+                                        id='phuong_id'
+                                        name='phuong_id'
+                                        value={phuong_id || ""}
+                                        placeholder="Enter ID Ward"
+                                        required
+                                        onChange={handleInputChange}
+                                    />
                                 </div>
 
                                 <div className="input-field-add">
-
-                                </div>
+                                    <label className='label'>ID Area</label>
+                                    <input
+                                        type="number"
+                                        id='khuvuc_id'
+                                        name='khuvuc_id'
+                                        value={khuvuc_id || ""}
+                                        placeholder="Enter Staff"
+                                        required
+                                        onChange={handleInputChange}
+                                    />
+                                </div> */}
                             </div>
                             <div className="buttons">
-                                <Link to="/nnn" className="backBtn">
+                                <Link to="/nhanvien" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
                                         <span className="btnText">Back</span>
@@ -462,10 +524,108 @@ const AddNNN = () => {
                             </div>
                         </div>
                     </div>
+
+                    {/* <div className="form-add second-add">
+                        <div className="details address">
+                            <span className="title-add">Address Details</span>
+
+                            <div className="fields-add">
+                                <div className="input-field-add">
+                                    <label className='label'>Address Type</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Permanent or Temporary"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="input-field-add">
+                                    <label className='label'>Nationality</label>
+                                    <input type="text" placeholder="Enter nationality" required />
+                                </div>
+
+                                <div className="input-field-add">
+                                    <label className='label'>State</label>
+                                    <input type="text" placeholder="Enter your state" required />
+                                </div>
+
+                                <div className="input-field-add">
+                                    <label className='label'>District</label>
+                                    <input type="text" placeholder="Enter your district" required />
+                                </div>
+
+                                <div className="input-field-add">
+                                    <label className='label'>Block Number</label>
+                                    <input
+                                        type="number"
+                                        placeholder="Enter block number"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="input-field-add">
+                                    <label className='label'>Ward Number</label>
+                                    <input type="number" placeholder="Enter ward number" required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="details family">
+                            <span className="title-add">Family Details</span>
+
+                            <div className="fields-add">
+                                <div className="input-field-add">
+                                    <label className='label'>Father Name</label>
+                                    <input type="text" placeholder="Enter father name" required />
+                                </div>
+
+                                <div className="input-field-add">
+                                    <label className='label'>Mother Name</label>
+                                    <input type="text" placeholder="Enter mother name" required />
+                                </div>
+
+                                <div className="input-field-add">
+                                    <label className='label'>Grandfather</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter grandfther name"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="input-field-add">
+                                    <label className='label'>Spouse Name</label>
+                                    <input type="text" placeholder="Enter spouse name" required />
+                                </div>
+
+                                <div className="input-field-add">
+                                    <label className='label'>Father in Law</label>
+                                    <input type="text" placeholder="Father in law name" required />
+                                </div>
+
+                                <div className="input-field-add">
+                                    <label className='label'>Mother in Law</label>
+                                    <input type="text" placeholder="Mother in law name" required />
+                                </div>
+                            </div>
+
+                            <div className="buttons">
+                                <div className="backBtn" >
+                                    <i className="uil uil-navigator"></i>
+                                    <span className="btnText">Back</span>
+                                </div>
+
+                                <button className="sumbit">
+                                    <span className="btnText">Submit</span>
+                                    <i className="uil uil-navigator"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div> */}
                 </form>
             </div>
         </body>
     )
 }
 
-export default AddNNN
+export default AddChuCSLT

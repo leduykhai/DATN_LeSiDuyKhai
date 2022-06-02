@@ -198,7 +198,6 @@ const EditChuCSLT = () => {
                             dia_chi: "",
                             sdt: "",
                             // hinh: "",
-                            ngay_sinh: "",
                             user_id: "",
                             phuong_id: "",
                             nhanvien_id: ""

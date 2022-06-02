@@ -71,7 +71,7 @@ const Sidebar = (props) => {
                         </Link>
                     </li>
                     <li>
-                        <Link exact to="/dashboard">
+                        <Link exact to="/tintuc">
                             <i class="bx bx-news"></i>
                             <span class="links_name">Tin Tức</span>
                         </Link>
