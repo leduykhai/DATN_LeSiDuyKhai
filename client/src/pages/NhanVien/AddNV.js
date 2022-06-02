@@ -5,8 +5,6 @@ import isEmpty from "validator/lib/isEmpty";
 import "./AddNV.scss";
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import moment from 'moment';
-
 
 const initialState = {
     ho_ten: "",
@@ -36,12 +34,13 @@ const AddNV = () => {
 
     const [thanh_pho, setThanh_pho] = useState([]);
     const [thanh_pho_id, setThanh_pho_id] = useState('');
+
     const [quan, setQuan] = useState([]);
     const [quan_id, setQuan_id] = useState('');
+
     const [phuong, setPhuong] = useState([]);
 
     const [khu_vuc, setKhu_vuc] = useState([]);
-    const [khu_vuc_id, setKhu_vuc_id] = useState('');
 
     const [user, setUser] = useState([]);
 
@@ -91,11 +90,6 @@ const AddNV = () => {
         }
         getkhu_vuc();
     }, []);
-
-    const handlekhu_vuc = (event) => {
-        const getkhu_vuc_id = event.target.value;
-        setKhu_vuc_id(getkhu_vuc_id);
-    }
 
     useEffect(() => {
         const getUser = async () => {
@@ -187,14 +181,13 @@ const AddNV = () => {
                             sdt: "",
                             chuc_vu: "",
                             // hinh: "",
-                            ngay_sinh: "",
                             user_id: "",
                             phuong_id: "",
                             khuvuc_id: ""
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("Users Added Successfully")
+                toast.success("Employee Added Successfully")
             }
             setTimeout(() => history.push("/nhanvien"), 100);
         }
@@ -207,16 +200,16 @@ const AddNV = () => {
 
     return (
         <body className='body'>
-            <div className="container-add">
+            <div className="container-addnv">
                 <header className='header'>Registration</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
-                    <div className="form-add first-add">
+                    <div className="form-addnv first-addnv">
                         <div className="details personal">
-                            <span className="title-add">Personal Details</span>
+                            <span className="title-addnv">Personal Details</span>
 
-                            <div className="fields-add">
-                                <div className="input-field-add">
+                            <div className="fields-addnv">
+                                <div className="input-field-addnv">
                                     <label className='label'>Full Name</label>
                                     <input
                                         type="text"
@@ -230,13 +223,13 @@ const AddNV = () => {
                                     <p className="error-text">{validationMsg.ho_ten}</p>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addnv">
                                     <label className='label'>Date of Birth</label>
                                     <input
                                         type="date"
                                         id='ngay_sinh'
                                         name='ngay_sinh'
-                                        // value={moment(ngay_sinh).format("YYYY-MM-DD") || ""}
+                                        value={ngay_sinh || ""}
                                         placeholder="Enter birth date"
                                         required
                                         onChange={handleInputChange}
@@ -244,7 +237,7 @@ const AddNV = () => {
                                     <p className="error-text">{validationMsg.ngay_sinh}</p>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addnv">
                                     <label className='label'>Gender</label>
                                     <select
                                         type="select"
@@ -262,7 +255,7 @@ const AddNV = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addnv">
                                     <label className='label'>Email</label>
                                     <input
                                         type="email"
@@ -276,7 +269,7 @@ const AddNV = () => {
                                     <p className="error-text">{validationMsg.email}</p>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addnv">
                                     <label className='label'>Citizen ID</label>
                                     <input
                                         type="number"
@@ -290,7 +283,7 @@ const AddNV = () => {
                                     <p className="error-text">{validationMsg.cccd}</p>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addnv">
                                     <label className='label'>Address</label>
                                     <input
                                         type="text"
@@ -304,7 +297,7 @@ const AddNV = () => {
                                     <p className="error-text">{validationMsg.dia_chi}</p>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addnv">
                                     <label className='label'>City</label>
                                     <select
                                         className="form-control p-2"
@@ -322,7 +315,7 @@ const AddNV = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addnv">
                                     <label className='label'>District</label>
                                     <select
                                         className="form-select"
@@ -341,7 +334,7 @@ const AddNV = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addnv">
                                     <label className='label'>Ward</label>
                                     <select
                                         className="form-select"
@@ -361,7 +354,7 @@ const AddNV = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addnv">
                                     <label className='label'>Number Phone</label>
                                     <input
                                         type="number"
@@ -374,21 +367,7 @@ const AddNV = () => {
                                     />
                                     <p className="error-text">{validationMsg.sdt}</p>
                                 </div>
-
-                                {/* <div className="input-field-add">
-                                    <label className='label'>Position</label>
-                                    <input
-                                        type="text"
-                                        id='chuc_vu'
-                                        name='chuc_vu'
-                                        value={chuc_vu || ""}
-                                        placeholder="Enter your Position"
-                                        required
-                                        onChange={handleInputChange}
-                                    />
-                                    <p className="error-text">{validationMsg.sdt}</p>
-                                </div> */}
-                                <div className="input-field-add">
+                                <div className="input-field-addnv">
                                     <label className='label'>Position</label>
                                     <select
                                         type="select"
@@ -404,12 +383,9 @@ const AddNV = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-add">
+                                <div className="input-field-addnv">
                                     <label className='label'>Area</label>
                                     <select
-                                        // name="khu_vuc"
-                                        // className="form-control p-2"
-                                        // onChange={(e) => handlekhu_vuc(e)}
                                         className="form-select"
                                         type="select"
                                         name="khuvuc_id"
@@ -427,7 +403,7 @@ const AddNV = () => {
                                     </select>
                                 </div>
 
-                                {/* <div className="input-field-add">
+                                {/* <div className="input-field-addnv">
                                     <label className='label'>Image</label>
                                     <input
                                         type="file"
@@ -444,15 +420,12 @@ const AddNV = () => {
                         </div>
 
                         <div className="details ID">
-                            <span className="title-add">Identity Details</span>
+                            <span className="title-addnv">Identity Details</span>
 
-                            <div className="fields-add">
-                                <div className="input-field-add">
+                            <div className="fields-addnv">
+                                <div className="input-field-addnv">
                                     <label className='label'>User ID</label>
                                     <select
-                                        // name="khu_vuc"
-                                        // className="form-control p-2"
-                                        // onChange={(e) => handlekhu_vuc(e)}
                                         className="form-select"
                                         type="select"
                                         name="user_id"
@@ -469,47 +442,9 @@ const AddNV = () => {
                                         }
                                     </select>
                                 </div>
-
-                                {/* <div className="input-field-add">
-                                    <label className='label'>ID User</label>
-                                    <input
-                                        type="number"
-                                        id='user_id'
-                                        name='user_id'
-                                        value={user_id || ""}
-                                        placeholder="Enter ID User"
-                                        required
-                                        onChange={handleInputChange}
-                                    />
-                                </div> */}
-
-                                {/* <div className="input-field-add">
-                                    <label className='label'>ID Ward</label>
-                                    <input
-                                        type="number"
-                                        id='phuong_id'
-                                        name='phuong_id'
-                                        value={phuong_id || ""}
-                                        placeholder="Enter ID Ward"
-                                        required
-                                        onChange={handleInputChange}
-                                    />
-                                </div>
-
-                                <div className="input-field-add">
-                                    <label className='label'>ID Area</label>
-                                    <input
-                                        type="number"
-                                        id='khuvuc_id'
-                                        name='khuvuc_id'
-                                        value={khuvuc_id || ""}
-                                        placeholder="Enter Staff"
-                                        required
-                                        onChange={handleInputChange}
-                                    />
-                                </div> */}
                             </div>
                             <div className="buttons">
+
                                 <Link to="/nhanvien" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
@@ -524,104 +459,6 @@ const AddNV = () => {
                             </div>
                         </div>
                     </div>
-
-                    {/* <div className="form-add second-add">
-                        <div className="details address">
-                            <span className="title-add">Address Details</span>
-
-                            <div className="fields-add">
-                                <div className="input-field-add">
-                                    <label className='label'>Address Type</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Permanent or Temporary"
-                                        required
-                                    />
-                                </div>
-
-                                <div className="input-field-add">
-                                    <label className='label'>Nationality</label>
-                                    <input type="text" placeholder="Enter nationality" required />
-                                </div>
-
-                                <div className="input-field-add">
-                                    <label className='label'>State</label>
-                                    <input type="text" placeholder="Enter your state" required />
-                                </div>
-
-                                <div className="input-field-add">
-                                    <label className='label'>District</label>
-                                    <input type="text" placeholder="Enter your district" required />
-                                </div>
-
-                                <div className="input-field-add">
-                                    <label className='label'>Block Number</label>
-                                    <input
-                                        type="number"
-                                        placeholder="Enter block number"
-                                        required
-                                    />
-                                </div>
-
-                                <div className="input-field-add">
-                                    <label className='label'>Ward Number</label>
-                                    <input type="number" placeholder="Enter ward number" required />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="details family">
-                            <span className="title-add">Family Details</span>
-
-                            <div className="fields-add">
-                                <div className="input-field-add">
-                                    <label className='label'>Father Name</label>
-                                    <input type="text" placeholder="Enter father name" required />
-                                </div>
-
-                                <div className="input-field-add">
-                                    <label className='label'>Mother Name</label>
-                                    <input type="text" placeholder="Enter mother name" required />
-                                </div>
-
-                                <div className="input-field-add">
-                                    <label className='label'>Grandfather</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter grandfther name"
-                                        required
-                                    />
-                                </div>
-
-                                <div className="input-field-add">
-                                    <label className='label'>Spouse Name</label>
-                                    <input type="text" placeholder="Enter spouse name" required />
-                                </div>
-
-                                <div className="input-field-add">
-                                    <label className='label'>Father in Law</label>
-                                    <input type="text" placeholder="Father in law name" required />
-                                </div>
-
-                                <div className="input-field-add">
-                                    <label className='label'>Mother in Law</label>
-                                    <input type="text" placeholder="Mother in law name" required />
-                                </div>
-                            </div>
-
-                            <div className="buttons">
-                                <div className="backBtn" >
-                                    <i className="uil uil-navigator"></i>
-                                    <span className="btnText">Back</span>
-                                </div>
-
-                                <button className="sumbit">
-                                    <span className="btnText">Submit</span>
-                                    <i className="uil uil-navigator"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div> */}
                 </form>
             </div>
         </body>

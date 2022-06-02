@@ -169,7 +169,7 @@ const EditTT = () => {
         if (!isValid) return
         else {
             if (id) {
-                var ngay_tao = moment().format();
+                var ngay_tao = moment(ngay_tao).format('YYYY/MM/DD hh:mm:ss');
                 axios
                     .put("http://localhost:3000/tintucs", {
                         id,
@@ -202,16 +202,16 @@ const EditTT = () => {
 
     return (
         <body className='body'>
-            <div className="container-edit-tt">
+            <div className="container-edittt">
                 <header className='header'>Registration</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
-                    <div className="form-edit-tt first-edit-tt">
+                    <div className="form-edittt first-edittt">
                         <div className="details personal">
-                            <span className="title-edit-tt">Personal Details</span>
+                            <span className="title-edittt">Personal Details</span>
 
-                            <div className="fields-edit-tt">
-                                <div className="input-field-edit-tt">
+                            <div className="fields-edittt">
+                                <div className="input-field-edittt">
                                     <label className='label'>Title</label>
                                     <input
                                         type="text"
@@ -227,7 +227,7 @@ const EditTT = () => {
 
 
 
-                                <div className="input-field-edit-tt">
+                                <div className="input-field-edittt">
                                     <label className='label'>Date Created</label>
                                     <input
                                         type="date"
@@ -241,14 +241,15 @@ const EditTT = () => {
                                     <p className="error-text">{validationMsg.ngay_tao}</p>
                                 </div>
 
-                                <div className="input-field-edit-tt">
+                                <div className="input-field-edittt">
 
                                 </div>
 
-                                <div className="input-field-edit-tt ">
+                                <div className="input-field-edittt ">
                                     <label className='label'>Content</label>
                                     <input
-                                        type="textlong"
+                                        className='input-content'
+                                        type="text"
                                         id='noi_dung'
                                         name='noi_dung'
                                         value={noi_dung || ""}
@@ -262,9 +263,9 @@ const EditTT = () => {
                         </div>
 
                         <div className="details ID">
-                            <span className="title-edit-tt">Identity Details</span>
-                            <div className="fields-edit-tt">
-                                <div className="input-field-edit-tt">
+                            <span className="title-edittt">Identity Details</span>
+                            <div className="fields-edittt">
+                                <div className="input-field-edittt">
                                     <label className='label'>Employee ID</label>
                                     <select
                                         className="form-select"

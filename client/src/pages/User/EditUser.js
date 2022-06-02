@@ -276,8 +276,6 @@ const EditUser = () => {
 
 export default EditUser
 
-
-
 // import React, { useState, useEffect } from 'react';
 // import { useHistory, useParams, Link } from 'react-router-dom';
 // import isEmail from "validator/lib/isEmail";

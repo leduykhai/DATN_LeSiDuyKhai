@@ -45,7 +45,7 @@ const Sidebar = (props) => {
                     </li>
 
                     <li>
-                        <Link exact to="/dashboard">
+                        <Link exact to="/kbt">
                             <i class="bx bx-book-alt"></i>
                             <span class="links_name">Khai Báo Trước</span>
                         </Link>

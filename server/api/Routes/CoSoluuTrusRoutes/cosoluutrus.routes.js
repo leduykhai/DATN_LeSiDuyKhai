@@ -11,5 +11,4 @@ module.exports = function (app) {
     app.route('/cslts/:id')
         .get(csltsCtrl.getCSLTById)
         .delete(csltsCtrl.deleteCSLTById);
-
 }

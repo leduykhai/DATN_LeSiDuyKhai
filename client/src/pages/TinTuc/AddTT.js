@@ -27,82 +27,7 @@ const AddTT = () => {
 
     const { id } = useParams();
 
-    const [thanh_pho, setThanh_pho] = useState([]);
-    const [thanh_pho_id, setThanh_pho_id] = useState('');
-    const [quan, setQuan] = useState([]);
-    const [quan_id, setQuan_id] = useState('');
-    const [phuong, setPhuong] = useState([]);
-
-    const [khu_vuc, setKhu_vuc] = useState([]);
-    const [khu_vuc_id, setKhu_vuc_id] = useState('');
-
-    const [user, setUser] = useState([]);
-
     const [nhanvien, setNhanvien] = useState([]);
-
-    const [quoctich, setQuoc_tich] = useState([]);
-
-    const [cslt, setCslt] = useState([]);
-
-    useEffect(() => {
-        const getthanh_pho = async () => {
-            const resthanh_pho = await fetch("http://localhost:3000/thanhphos");
-            const restp = await resthanh_pho.json();
-            setThanh_pho(await restp);
-        }
-        getthanh_pho();
-    }, []);
-
-    const handlethanh_pho = (event) => {
-        const getThanh_pho_id = event.target.value;
-        setThanh_pho_id(getThanh_pho_id);
-    }
-
-    useEffect(() => {
-        const getquan = async () => {
-            const resquan = await fetch(`http://localhost:3000/quans/${thanh_pho_id}`);
-            const resq = await resquan.json();
-            setQuan(await resq);
-        }
-        getquan();
-    }, [thanh_pho_id]);
-
-    const handlequan = (event) => {
-        const getquan_id = event.target.value;
-        setQuan_id(getquan_id);
-    }
-
-    useEffect(() => {
-        const getphuong = async () => {
-            const resphuong = await fetch(`http://localhost:3000/phuongs/${quan_id}`);
-            const rp = await resphuong.json();
-            setPhuong(await rp);
-        }
-        getphuong();
-    }, [quan_id]);
-
-    useEffect(() => {
-        const getkhu_vuc = async () => {
-            const reskhu_vuc = await fetch("http://localhost:3000/khuvucs");
-            const reskv = await reskhu_vuc.json();
-            setKhu_vuc(await reskv);
-        }
-        getkhu_vuc();
-    }, []);
-
-    const handlekhu_vuc = (event) => {
-        const getkhu_vuc_id = event.target.value;
-        setKhu_vuc_id(getkhu_vuc_id);
-    }
-
-    useEffect(() => {
-        const getUser = async () => {
-            const resuser = await fetch("http://localhost:3000/users");
-            const resu = await resuser.json();
-            setUser(await resu);
-        }
-        getUser();
-    }, []);
 
     useEffect(() => {
         const getNV = async () => {
@@ -111,25 +36,6 @@ const AddTT = () => {
             setNhanvien(await resnv);
         }
         getNV();
-    }, []);
-
-    useEffect(() => {
-        const getQT = async () => {
-            const resquoctich = await fetch("http://localhost:3000/quoctichs");
-            const resqt = await resquoctich.json();
-            setQuoc_tich(await resqt);
-        }
-        getQT();
-    }, []);
-
-
-    useEffect(() => {
-        const getcslt = async () => {
-            const rescslt = await fetch("http://localhost:3000/cslts");
-            const resc = await rescslt.json();
-            setCslt(await resc);
-        }
-        getcslt();
     }, []);
 
     useEffect(() => {
@@ -169,7 +75,7 @@ const AddTT = () => {
         if (!isValid) return
         else {
             if (!id) {
-                var ngay_tao = moment(ngay_tao).format('YYYY-MM-DD');
+                var ngay_tao = moment(ngay_tao).format('YYYY-MM-DD hh:mm:ss');
                 axios
                     .post("http://localhost:3000/tintucs", {
                         tieu_de,
@@ -201,16 +107,16 @@ const AddTT = () => {
 
     return (
         <body className='body'>
-            <div className="container-add-tt">
+            <div className="container-addtt">
                 <header className='header'>Registration</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
-                    <div className="form-add-tt first-add-tt">
+                    <div className="form-addtt first-addtt">
                         <div className="details personal">
-                            <span className="title-add-tt">Personal Details</span>
+                            <span className="title-addtt">News Details</span>
 
-                            <div className="fields-add-tt">
-                                <div className="input-field-add-tt">
+                            <div className="fields-addtt">
+                                <div className="input-field-addtt">
                                     <label className='label'>Title</label>
                                     <input
                                         type="text"
@@ -224,15 +130,13 @@ const AddTT = () => {
                                     <p className="error-text">{validationMsg.tieu_de}</p>
                                 </div>
 
-
-
-                                <div className="input-field-add-tt">
+                                <div className="input-field-addtt">
                                     <label className='label'>Date Created</label>
                                     <input
                                         type="date"
                                         id='ngay_tao'
                                         name='ngay_tao'
-                                        // value={moment(ngay_tao).format("YYYY-MM-DD") || ""}
+                                        value={ngay_tao || ""}
                                         placeholder="Enter date created"
                                         required
                                         onChange={handleInputChange}
@@ -240,14 +144,15 @@ const AddTT = () => {
                                     <p className="error-text">{validationMsg.ngay_tao}</p>
                                 </div>
 
-                                <div className="input-field-add-tt">
+                                <div className="input-field-addtt">
 
                                 </div>
 
-                                <div className="input-field-add-tt">
+                                <div className="input-field-addtt">
                                     <label className='label'>Content</label>
                                     <input
-                                        type="textlong"
+                                        className='input-content'
+                                        type="text"
                                         id='noi_dung'
                                         name='noi_dung'
                                         value={noi_dung || ""}
@@ -261,9 +166,9 @@ const AddTT = () => {
                         </div>
 
                         <div className="details ID">
-                            <span className="title-add-tt">Identity Details</span>
-                            <div className="fields-add-tt">
-                                <div className="input-field-add-tt">
+                            <span className="title-addtt">Identity Details</span>
+                            <div className="fields-addtt">
+                                <div className="input-field-addtt">
                                     <label className='label'>Employee ID</label>
                                     <select
                                         className="form-select"
@@ -284,6 +189,7 @@ const AddTT = () => {
                                 </div>
                             </div>
                             <div className="buttons">
+
                                 <Link to="/tintuc" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>

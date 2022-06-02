@@ -25,11 +25,10 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import './ListTT.scss'
+import './ListKBT.scss'
+// import Moment from 'react-moment';
 
-import Moment from 'react-moment';
-
-export default function ListTT() {
+export default function ListKBT() {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
     const [selected, setSelected] = React.useState([]);
@@ -40,7 +39,7 @@ export default function ListTT() {
     const [data, setData] = React.useState([]);
 
     const loadData = async () => {
-        const response = await axios.get("http://localhost:3000/tintucs");
+        const response = await axios.get("http://localhost:3000/khaibaotruocs");
         setData(response.data);
     };
 
@@ -50,10 +49,10 @@ export default function ListTT() {
 
     const deleteContact = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that News ?")
+            window.confirm("Are you sure that you wanted to delete that Khai Bao Truoc ?")
         ) {
-            axios.delete(`http://localhost:3000/tintucs/${id}`);
-            toast.success("News Delete Successfully");
+            axios.delete(`http://localhost:3000/khaibaotruocs/${id}`);
+            toast.success("Khai Bao Truoc Delete Successfully");
             setTimeout(() => loadData(), 100);
         }
     };
@@ -117,7 +116,7 @@ export default function ListTT() {
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
-                <Link to={`/addtintuc`}>
+                <Link to={`/addkbt`}>
                     <PersonAddAltIcon className='add-icon' sx={{ fontSize: 40 }} />
                 </Link>
                 <TableContainer>
@@ -171,19 +170,16 @@ export default function ListTT() {
                                                 {/* {row.name} */}
                                                 {index + 1}
                                             </TableCell>
-                                            <TableCell align="left">N{row.id}</TableCell>
-                                            <TableCell align="left">{row.tieu_de}</TableCell>
+                                            <TableCell align="left">NNN{row.id}</TableCell>
+                                            <TableCell align="left">{row.ho_ten}</TableCell>
+                                            <TableCell align="left">{row.email}</TableCell>
+                                            <TableCell align="left">{row.so_ho_chieu}</TableCell>
                                             <TableCell align="left">
-                                                <Moment>
-                                                    {row.ngay_tao}
-                                                </Moment>
-                                            </TableCell>
-                                            <TableCell align="left">
-                                                <Link to={`/updatetintuc/${row.id}`}>
+                                                <Link to={`/updatekbt/${row.id}`}>
                                                     <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                                 <DeleteIcon className='delete-icon' sx={{ fontSize: 30 }} onClick={() => { deleteContact(row.id) }} />
-                                                <Link to={`/viewtintuc/${row.id}`}>
+                                                <Link to={`/viewkbt/${row.id}`}>
                                                     <GridViewIcon className='view-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                             </TableCell>

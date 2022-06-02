@@ -1,51 +1,8 @@
-// .text{
-//     width: 100%;
-//     padding: 12px 20px;
-//     margin: 8px 0;
-//     display: inline-block;
-//     border: 1px solid #ccc;
-//     border-radius: 4px;
-//     box-sizing: border-box;
-// }
-
-// .submit{
-//     width: 100%;
-//     background-color: #4caf50;
-//     color: white;
-//     padding: 14px 20px;
-//     margin: 8px 0;
-//     border: none;
-//     border-radius: 4px;
-//     cursor: pointer;
-// }
-
-// .button{
-//     width: 100%;
-//     background-color: #40453e;
-//     color: white;
-//     padding: 14px 20px;
-//     margin: 8px 0;
-//     border: none;
-//     border-radius: 4px;
-//     cursor: pointer;
-// }
-
-// .submit:hover {
-//     background-color: #45a049;
-// }
-
-// .error-text {
-//     padding: 0 0 .5rem 0;
-//     font-size: .9rem;
-//     font-style: italic;
-//     color: red;
-//   }
-
 /* ===== Google Font Import - Poppins ===== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 @import url('https://unicons.iconscout.com/release/v4.0.0/css/line.css');
 
-  //Form add-tt
+  //Form addtt
   
   .body {
     min-height: 80vh;
@@ -63,7 +20,7 @@
     text-align: left;
 }
 
-.container-add-tt {
+.container-addtt {
     position: relative;
     max-width: 1000px;
     width: 100%;
@@ -74,14 +31,14 @@
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.container-add-tt header {
+.container-addtt header {
     position: relative;
     font-size: 20px;
     font-weight: 600;
     color: #333;
 }
 
-.container-add-tt header::before {
+.container-addtt header::before {
     content: "";
     position: absolute;
     left: 0;
@@ -92,39 +49,39 @@
     background-color: #4070f4;
 }
 
-.container-add-tt .form-all {
+.container-addtt .form-all {
     position: relative;
     margin-top: 16px;
-    min-height: 700px;
+    min-height: 500px;
     background-color: #fff;
-    overflow: hidden;
+    overflow: auto;
 }
 
-.container-add-tt .form-all .form-add-tt {
+.container-addtt .form-all .form-addtt {
     position: absolute;
     background-color: #fff;
     transition: 0.3s ease;
 }
 
-.container-add-tt .form-all .form-add-tt.second-add-tt {
+.container-addtt .form-all .form-addtt.second-addtt {
     opacity: 0;
     pointer-events: none;
     transform: translateX(100%);
 }
 
-.form-all.secActive .form-add-tt.second-add-tt {
+.form-all.secActive .form-addtt.second-addtt {
     opacity: 1;
     pointer-events: auto;
     transform: translateX(0);
 }
 
-.form-all.secActive .form-add-tt.first-add-tt {
+.form-all.secActive .form-addtt.first-addtt {
     opacity: 0;
     pointer-events: none;
     transform: translateX(-100%);
 }
 
-.container-add-tt .form-all .title-add-tt {
+.container-addtt .form-all .title-addtt {
     display: block;
     margin-bottom: 8px;
     font-size: 16px;
@@ -134,27 +91,27 @@
     text-align: left;
 }
 
-.container-add-tt .form-all .fields-add-tt {
+.container-addtt .form-all .fields-addtt {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.form-all .fields-add-tt .input-field-add-tt {
+.form-all .fields-addtt .input-field-addtt {
     display: flex;
     width: calc(100% / 3 - 15px);
     flex-direction: column;
     margin: 4px 0;
 }
 
-.input-field-add-tt label {
+.input-field-addtt label {
     font-size: 12px;
     font-weight: 500;
     color: #2e2e2e;
 }
 
-.input-field-add-tt input,
+.input-field-addtt input,
 select {
     outline: none;
     font-size: 14px;
@@ -167,21 +124,25 @@ select {
     margin: 8px 0;
 }
 
-.input-field-add-tt input :focus,
-.input-field-add-tt select:focus {
+.input-content {
+    width: 900px;
+}
+
+.input-field-addtt input :focus,
+.input-field-addtt select:focus {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
 }
 
-.input-field-add-tt select,
-.input-field-add-tt input[type="date"] {
+.input-field-addtt select,
+.input-field-addtt input[type="date"] {
     color: #707070;
 }
 
-.input-field-add-tt input[type="date"]:valid {
+.input-field-addtt input[type="date"]:valid {
     color: #333;
 }
 
-.container-add-tt .form-all button,
+.container-addtt .form-all button,
 .backBtn {
     display: flex;
     align-items: center;
@@ -204,7 +165,7 @@ select {
     text-decoration-line: none;
 }
 
-.container-add-tt .form-all .btnText {
+.container-addtt .form-all .btnText {
     font-size: 14px;
     font-weight: 400;
 }
@@ -234,21 +195,21 @@ select {
 }
 
 @media (max-width: 750px) {
-    .container-add-tt .form-all {
+    .container-addtt .form-all {
         overflow-y: scroll;
     }
 
-    .container-add-tt .form-all::-webkit-scrollbar {
+    .container-addtt .form-all::-webkit-scrollbar {
         display: none;
     }
 
-    .form-all .fields-add-tt .input-field-add-tt {
+    .form-all .fields-addtt .input-field-addtt {
         width: calc(100% / 2 - 15px);
     }
 }
 
 @media (max-width: 550px) {
-    .form-all .fields-add-tt .input-field-add-tt {
+    .form-all .fields-addtt .input-field-addtt {
         width: 100%;
     }
 }

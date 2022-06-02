@@ -1,52 +1,8 @@
-// .text{
-//     width: 100%;
-//     padding: 12px 20px;
-//     margin: 8px 0;
-//     display: inline-block;
-//     border: 1px solid #ccc;
-//     border-radius: 4px;
-//     box-sizing: border-box;
-// }
-
-// .submit{
-//     width: 100%;
-//     background-color: #4caf50;
-//     color: white;
-//     padding: 14px 20px;
-//     margin: 8px 0;
-//     border: none;
-//     border-radius: 4px;
-//     cursor: pointer;
-// }
-
-// .button{
-//     width: 100%;
-//     background-color: #40453e;
-//     color: white;
-//     padding: 14px 20px;
-//     margin: 8px 0;
-//     border: none;
-//     border-radius: 4px;
-//     cursor: pointer;
-// }
-
-// .submit:hover {
-//     background-color: #45a049;
-// }
-
-// .error-text {
-//     padding: 0 0 .5rem 0;
-//     font-size: .9rem;
-//     font-style: italic;
-//     color: red;
-//   }
-
 /* ===== Google Font Import - Poppins ===== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 @import url('https://unicons.iconscout.com/release/v4.0.0/css/line.css');
 
-  //Form edit-tt
-  
+  //Form edittt
   .body {
     min-height: 80vh;
     display: flex;
@@ -63,7 +19,7 @@
     text-align: left;
 }
 
-.container-edit-tt {
+.container-edittt {
     position: relative;
     max-width: 1000px;
     width: 100%;
@@ -74,14 +30,14 @@
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.container-edit-tt header {
+.container-edittt header {
     position: relative;
     font-size: 20px;
     font-weight: 600;
     color: #333;
 }
 
-.container-edit-tt header::before {
+.container-edittt header::before {
     content: "";
     position: absolute;
     left: 0;
@@ -92,39 +48,39 @@
     background-color: #4070f4;
 }
 
-.container-edit-tt .form-all {
+.container-edittt .form-all {
     position: relative;
     margin-top: 16px;
-    min-height: 700px;
+    min-height: 450px;
     background-color: #fff;
-    overflow: hidden;
+    overflow: auto;
 }
 
-.container-edit-tt .form-all .form-edit-tt {
+.container-edittt .form-all .form-edittt {
     position: absolute;
     background-color: #fff;
     transition: 0.3s ease;
 }
 
-.container-edit-tt .form-all .form-edit-tt.second-edit-tt {
+.container-edittt .form-all .form-edittt.second-edittt {
     opacity: 0;
     pointer-events: none;
     transform: translateX(100%);
 }
 
-.form-all.secActive .form-edit-tt.second-edit-tt {
+.form-all.secActive .form-edittt.second-edittt {
     opacity: 1;
     pointer-events: auto;
     transform: translateX(0);
 }
 
-.form-all.secActive .form-edit-tt.first-edit-tt {
+.form-all.secActive .form-edittt.first-edittt {
     opacity: 0;
     pointer-events: none;
     transform: translateX(-100%);
 }
 
-.container-edit-tt .form-all .title-edit-tt {
+.container-edittt .form-all .title-edittt {
     display: block;
     margin-bottom: 8px;
     font-size: 16px;
@@ -134,27 +90,27 @@
     text-align: left;
 }
 
-.container-edit-tt .form-all .fields-edit-tt {
+.container-edittt .form-all .fields-edittt {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.form-all .fields-edit-tt .input-field-edit-tt {
+.form-all .fields-edittt .input-field-edittt {
     display: flex;
     width: calc(100% / 3 - 15px);
     flex-direction: column;
     margin: 4px 0;
 }
 
-.input-field-edit-tt label {
+.input-field-edittt label {
     font-size: 12px;
     font-weight: 500;
     color: #2e2e2e;
 }
 
-.input-field-edit-tt input,
+.input-field-edittt input,
 select {
     outline: none;
     font-size: 14px;
@@ -167,21 +123,25 @@ select {
     margin: 8px 0;
 }
 
-.input-field-edit-tt input :focus,
-.input-field-edit-tt select:focus {
+.input-content {
+    width: 900px;
+}
+
+.input-field-edittt input :focus,
+.input-field-edittt select:focus {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
 }
 
-.input-field-edit-tt select,
-.input-field-edit-tt input[type="date"] {
+.input-field-edittt select,
+.input-field-edittt input[type="date"] {
     color: #707070;
 }
 
-.input-field-edit-tt input[type="date"]:valid {
+.input-field-edittt input[type="date"]:valid {
     color: #333;
 }
 
-.container-edit-tt .form-all button,
+.container-edittt .form-all button,
 .backBtn {
     display: flex;
     align-items: center;
@@ -204,7 +164,7 @@ select {
     text-decoration-line: none;
 }
 
-.container-edit-tt .form-all .btnText {
+.container-edittt .form-all .btnText {
     font-size: 14px;
     font-weight: 400;
 }
@@ -234,21 +194,21 @@ select {
 }
 
 @media (max-width: 750px) {
-    .container-edit-tt .form-all {
+    .container-edittt .form-all {
         overflow-y: scroll;
     }
 
-    .container-edit-tt .form-all::-webkit-scrollbar {
+    .container-edittt .form-all::-webkit-scrollbar {
         display: none;
     }
 
-    .form-all .fields-edit-tt .input-field-edit-tt {
+    .form-all .fields-edittt .input-field-edittt {
         width: calc(100% / 2 - 15px);
     }
 }
 
 @media (max-width: 550px) {
-    .form-all .fields-edit-tt .input-field-edit-tt {
+    .form-all .fields-edittt .input-field-edittt {
         width: 100%;
     }
 }

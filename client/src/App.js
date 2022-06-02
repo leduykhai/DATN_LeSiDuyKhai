@@ -27,6 +27,10 @@ import AddNNN from './pages/NguoiNuocNgoai/AddNNN';
 import EditNNN from './pages/NguoiNuocNgoai/EditNNN';
 import ViewNNN from './pages/NguoiNuocNgoai/ViewNNN';
 
+import ListKBT from './pages/KhaiBaoTruoc/ListKBT';
+import AddKBT from './pages/KhaiBaoTruoc/AddKBT';
+import EditKBT from './pages/KhaiBaoTruoc/EditKBT';
+
 import ListTT from './pages/TinTuc/ListTT';
 import AddTT from './pages/TinTuc/AddTT';
 import EditTT from './pages/TinTuc/EditTT';
@@ -84,6 +88,11 @@ function App() {
           <RouteWrapper path="/addcslt" component={AddCSLT} layout={Sidebar} />
           <RouteWrapper path="/updatecslt/:id" component={EditCSLT} layout={Sidebar} />
           <RouteWrapper path="/viewcslt/:id" component={ViewCSLT} layout={Sidebar} />
+
+          {/* Khai Báo Trước */}
+          <RouteWrapper path="/kbt" component={ListKBT} layout={Sidebar} />
+          <RouteWrapper path="/addkbt" component={AddKBT} layout={Sidebar} />
+          <RouteWrapper path="/updatekbt/:id" component={EditKBT} layout={Sidebar} />
 
           {/* Người Nước Ngoài */}
           <RouteWrapper path="/nnn" component={ListNNN} layout={Sidebar} />
