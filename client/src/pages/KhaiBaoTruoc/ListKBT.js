@@ -17,6 +17,8 @@ import EnhancedTableToolbar from '../../components/Table/EnhancedTableToolbar';
 import EnhancedTableHead from './EnhancedTableHead/EnhancedTableHead';
 
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import PostAddOutlinedIcon from '@mui/icons-material/PostAddOutlined';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import GridViewIcon from '@mui/icons-material/GridView';
@@ -26,6 +28,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 
 import './ListKBT.scss'
+import Moment from 'react-moment';
 // import Moment from 'react-moment';
 
 export default function ListKBT() {
@@ -117,7 +120,7 @@ export default function ListKBT() {
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
                 <Link to={`/addkbt`}>
-                    <PersonAddAltIcon className='add-icon' sx={{ fontSize: 40 }} />
+                    <PostAddOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} />
                 </Link>
                 <TableContainer>
                     <Table
@@ -170,18 +173,23 @@ export default function ListKBT() {
                                                 {/* {row.name} */}
                                                 {index + 1}
                                             </TableCell>
-                                            <TableCell align="left">NNN{row.id}</TableCell>
+                                            <TableCell align="left">KBT{row.id}</TableCell>
                                             <TableCell align="left">{row.ho_ten}</TableCell>
                                             <TableCell align="left">{row.email}</TableCell>
                                             <TableCell align="left">{row.so_ho_chieu}</TableCell>
+                                            <TableCell align="left">
+                                                <Moment>
+                                                    {row.ngay_dang_ky}
+                                                </Moment>
+                                            </TableCell>
                                             <TableCell align="left">
                                                 <Link to={`/updatekbt/${row.id}`}>
                                                     <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                                 <DeleteIcon className='delete-icon' sx={{ fontSize: 30 }} onClick={() => { deleteContact(row.id) }} />
-                                                <Link to={`/viewkbt/${row.id}`}>
+                                                {/* <Link to={`/viewkbt/${row.id}`}>
                                                     <GridViewIcon className='view-icon' sx={{ fontSize: 30 }} />
-                                                </Link>
+                                                </Link> */}
                                             </TableCell>
                                         </TableRow>
                                     );

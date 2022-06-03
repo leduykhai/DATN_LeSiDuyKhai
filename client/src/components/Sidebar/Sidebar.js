@@ -59,13 +59,13 @@ const Sidebar = (props) => {
                     </li>
 
                     <li>
-                        <Link exact to="/dashboard">
-                            <i class=" bx bx-home-alt"></i>
+                        <Link exact to="/lt">
+                            <i class=" bx bx-map"></i>
                             <span class="links_name">Lưu Trú</span>
                         </Link>
                     </li>
                     <li>
-                        <Link exact to="/dashboard">
+                        <Link exact to="/nklt">
                             <i class=" bx bx-book-content"></i>
                             <span class="links_name">Nhật Ký Lưu Trú</span>
                         </Link>
@@ -77,7 +77,7 @@ const Sidebar = (props) => {
                         </Link>
                     </li>
                     <li>
-                        <Link exact to="/dashboard">
+                        <Link exact to="/dg">
                             <i class="bx bx-message"></i>
                             <span class="links_name">Đánh Giá</span>
                         </Link>

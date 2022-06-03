@@ -23,28 +23,16 @@ const headCells = [
         label: 'ID',
     },
     {
-        id: 'ho_ten',
+        id: 'nnn_id',
         numeric: false,
         disablePadding: false,
-        label: 'Name',
+        label: 'Foreigner ID',
     },
     {
-        id: 'email',
+        id: 'cslt_id',
         numeric: false,
         disablePadding: false,
-        label: 'Email',
-    },
-    {
-        id: 'so_ho_chieu',
-        numeric: false,
-        disablePadding: false,
-        label: 'Passport',
-    },
-    {
-        id: 'ngay_dang_ky',
-        numeric: false,
-        disablePadding: false,
-        label: 'Registration Date',
+        label: 'Accommodation ID',
     },
     {
         id: 'action',

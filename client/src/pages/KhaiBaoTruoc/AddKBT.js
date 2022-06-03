@@ -5,6 +5,7 @@ import isEmpty from "validator/lib/isEmpty";
 import "./AddKBT.scss";
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import moment from 'moment';
 
 // import Moment from 'react-moment';
 // import 'moment-timezone';
@@ -123,13 +124,14 @@ const AddKBT = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!ho_ten || !ngay_sinh || !gioi_tinh || !email || !so_ho_chieu || !dia_chi || !sdt || !ngay_dang_ky || !ngay_den_luu_tru) {
+        if (!ho_ten || !ngay_sinh || !gioi_tinh || !email || !so_ho_chieu || !dia_chi || !sdt || !ngay_den_luu_tru) {
             toast.error("please provide value into each input field");
         }
         const isValid = validateAll()
         if (!isValid) return
         else {
             if (!id) {
+                var ngay_dang_ky = moment(ngay_dang_ky).format('YYYY-MM-DD hh:mm:ss')
                 axios
                     .post("http://localhost:3000/khaibaotruocs", {
                         ho_ten,
@@ -314,7 +316,7 @@ const AddKBT = () => {
                                         type="date"
                                         id='ngay_dang_ky'
                                         name='ngay_dang_ky'
-                                        value={ngay_dang_ky || ""}
+                                        // value={moment(ngay_dang_ky).format('YYYY-MM-DD') || ""}
                                         placeholder="Enter birth date"
                                         required
                                         onChange={handleInputChange}

@@ -16,7 +16,8 @@ import getComparator from '../../components/Table/getComparator';
 import EnhancedTableToolbar from '../../components/Table/EnhancedTableToolbar';
 import EnhancedTableHead from './EnhancedTableHead/EnhancedTableHead';
 
-import MapsHomeWorkOutlinedIcon from '@mui/icons-material/MapsHomeWorkOutlined';
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import LibraryBooksRoundedIcon from '@mui/icons-material/LibraryBooksRounded';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -26,9 +27,11 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import './ListCSLT.scss'
+import './ListNKLT.scss'
 
-export default function ListCSLT() {
+import Moment from 'react-moment';
+
+export default function ListNKLT() {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
     const [selected, setSelected] = React.useState([]);
@@ -39,7 +42,7 @@ export default function ListCSLT() {
     const [data, setData] = React.useState([]);
 
     const loadData = async () => {
-        const response = await axios.get("http://localhost:3000/cslts");
+        const response = await axios.get("http://localhost:3000/nhatkyluutrus");
         setData(response.data);
     };
 
@@ -49,10 +52,10 @@ export default function ListCSLT() {
 
     const deleteContact = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that CSLT ?")
+            window.confirm("Are you sure that you wanted to delete that destination ?")
         ) {
-            axios.delete(`http://localhost:3000/cslts/${id}`);
-            toast.success("CSLT Delete Successfully");
+            axios.delete(`http://localhost:3000/nhatkyluutrus/${id}`);
+            toast.success("Destination Delete Successfully");
             setTimeout(() => loadData(), 100);
         }
     };
@@ -116,8 +119,8 @@ export default function ListCSLT() {
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
-                <Link to={`/addcslt`}>
-                    <MapsHomeWorkOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} />
+                <Link to={`/addnklt`}>
+                    <LibraryBooksRoundedIcon className='add-icon' sx={{ fontSize: 40 }} />
                     <AddOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} />
                 </Link>
                 <TableContainer>
@@ -171,19 +174,18 @@ export default function ListCSLT() {
                                                 {/* {row.name} */}
                                                 {index + 1}
                                             </TableCell>
-                                            <TableCell align="left">CSLT{row.id}</TableCell>
-                                            <TableCell align="left">{row.chu_cslt_id}</TableCell>
-                                            <TableCell align="left">{row.ten_cslt}</TableCell>
-                                            <TableCell align="left">{row.loai_cslt}</TableCell>
-                                            <TableCell align="left">{row.nguoi_dai_dien}</TableCell>
+                                            <TableCell align="left">NKLT {row.id}</TableCell>
+                                            <TableCell align="left">{row.ten_diem_den}</TableCell>
+                                            <TableCell align="left">{row.dia_chi_diem_den}</TableCell>
+
                                             <TableCell align="left">
-                                                <Link to={`/updatecslt/${row.id}`}>
+                                                <Link to={`/updatenklt/${row.id}`}>
                                                     <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                                 <DeleteIcon className='delete-icon' sx={{ fontSize: 30 }} onClick={() => { deleteContact(row.id) }} />
-                                                <Link to={`/viewcslt/${row.id}`}>
+                                                {/* <Link to={`/viewtintuc/${row.id}`}>
                                                     <GridViewIcon className='view-icon' sx={{ fontSize: 30 }} />
-                                                </Link>
+                                                </Link> */}
                                             </TableCell>
                                         </TableRow>
                                     );

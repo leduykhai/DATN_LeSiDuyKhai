@@ -12,39 +12,62 @@ import Navbar from './components/Navbar/Navbar';
 
 import Dashboard from './pages/Dashboard/Dashboard';
 
+
+//User
 import ListUser from './pages/User/ListUser';
 import AddUser from './pages/User/AddUser';
 import EditUser from './pages/User/EditUser';
 import ViewUser from './pages/User/ViewUser';
 
+//Nhan Vien
 import ListNV from './pages/NhanVien/ListNV';
 import AddNV from './pages/NhanVien/AddNV';
 import EditNV from './pages/NhanVien/EditNV';
 import ViewNV from './pages/NhanVien/ViewNV';
 
-import ListNNN from './pages/NguoiNuocNgoai/ListNNN';
-import AddNNN from './pages/NguoiNuocNgoai/AddNNN';
-import EditNNN from './pages/NguoiNuocNgoai/EditNNN';
-import ViewNNN from './pages/NguoiNuocNgoai/ViewNNN';
-
-import ListKBT from './pages/KhaiBaoTruoc/ListKBT';
-import AddKBT from './pages/KhaiBaoTruoc/AddKBT';
-import EditKBT from './pages/KhaiBaoTruoc/EditKBT';
-
+//Tin Tuc
 import ListTT from './pages/TinTuc/ListTT';
 import AddTT from './pages/TinTuc/AddTT';
 import EditTT from './pages/TinTuc/EditTT';
 import ViewTT from './pages/TinTuc/ViewTT';
 
+//Chu Co So Luu Tru
 import ChuCSLT from './pages/Chu_CSLT/ListChuCSLT';
 import AddChuCSLT from './pages/Chu_CSLT/AddChuCSLT';
 import EditChuCSLT from './pages/Chu_CSLT/EditChuCSLT';
 import ViewChuCSLT from './pages/Chu_CSLT/ViewChuCSLT';
 
+//Co So Luu Tru
 import CSLT from './pages/CoSoLuuTru/ListCSLT';
 import AddCSLT from './pages/CoSoLuuTru/AddCSLT';
 import EditCSLT from './pages/CoSoLuuTru/EditCSLT';
 import ViewCSLT from './pages/CoSoLuuTru/ViewCSLT';
+
+//Danh Gia
+import ListDG from './pages/DanhGia/ListDG';
+import AddDG from './pages/DanhGia/AddDG';
+import EditDG from './pages/DanhGia/EditDG';
+
+//Khai Bao Truoc
+import ListKBT from './pages/KhaiBaoTruoc/ListKBT';
+import AddKBT from './pages/KhaiBaoTruoc/AddKBT';
+import EditKBT from './pages/KhaiBaoTruoc/EditKBT';
+
+//Nguoi Nuoc Ngoai
+import ListNNN from './pages/NguoiNuocNgoai/ListNNN';
+import AddNNN from './pages/NguoiNuocNgoai/AddNNN';
+import EditNNN from './pages/NguoiNuocNgoai/EditNNN';
+import ViewNNN from './pages/NguoiNuocNgoai/ViewNNN';
+
+//Luu Tru
+import ListLT from './pages/LuuTru/ListLT';
+import AddLT from './pages/LuuTru/AddLT';
+import EditLT from './pages/LuuTru/EditLT';
+
+//Nhat Ky Luu Tru
+import ListNKLT from './pages/NhatKyLuuTru/ListNKLT';
+import AddNKLT from './pages/NhatKyLuuTru/AddNKLT';
+import EditNKLT from './pages/NhatKyLuuTru/EditNKLT';
 
 function App() {
   return (
@@ -84,10 +107,14 @@ function App() {
           <RouteWrapper path="/viewchucslt/:id" component={ViewChuCSLT} layout={Sidebar} />
 
           {/* Cơ Sở Lưu Trú */}
+          <RouteWrapper exact path="/dg" component={ListDG} layout={Sidebar} />
+          <RouteWrapper path="/adddg" component={AddDG} layout={Sidebar} />
+          <RouteWrapper path="/updatedg/:id" component={EditDG} layout={Sidebar} />
+
+          {/* Đánh Giá */}
           <RouteWrapper exact path="/cslt" component={CSLT} layout={Sidebar} />
           <RouteWrapper path="/addcslt" component={AddCSLT} layout={Sidebar} />
           <RouteWrapper path="/updatecslt/:id" component={EditCSLT} layout={Sidebar} />
-          <RouteWrapper path="/viewcslt/:id" component={ViewCSLT} layout={Sidebar} />
 
           {/* Khai Báo Trước */}
           <RouteWrapper path="/kbt" component={ListKBT} layout={Sidebar} />
@@ -99,6 +126,16 @@ function App() {
           <RouteWrapper path="/addnnn" component={AddNNN} layout={Sidebar} />
           <RouteWrapper path="/updatennn/:id" component={EditNNN} layout={Sidebar} />
           <RouteWrapper path="/viewnnn/:id" component={ViewNNN} layout={Sidebar} />
+
+          {/* Lưu Trú */}
+          <RouteWrapper path="/lt" component={ListLT} layout={Sidebar} />
+          <RouteWrapper path="/addlt" component={AddLT} layout={Sidebar} />
+          <RouteWrapper path="/updatelt/:id" component={EditLT} layout={Sidebar} />
+
+          {/* Nhật Ký Lưu Trú */}
+          <RouteWrapper path="/nklt" component={ListNKLT} layout={Sidebar} />
+          <RouteWrapper path="/addnklt" component={AddNKLT} layout={Sidebar} />
+          <RouteWrapper path="/updatenklt/:id" component={EditNKLT} layout={Sidebar} />
 
 
         </Switch>

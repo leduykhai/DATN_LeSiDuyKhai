@@ -17,6 +17,8 @@ import EnhancedTableToolbar from '../../components/Table/EnhancedTableToolbar';
 import EnhancedTableHead from './EnhancedTableHead/EnhancedTableHead';
 
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import GridViewIcon from '@mui/icons-material/GridView';
@@ -118,7 +120,8 @@ export default function ListTT() {
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
                 <Link to={`/addtintuc`}>
-                    <PersonAddAltIcon className='add-icon' sx={{ fontSize: 40 }} />
+                    <ArticleOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} />
+                    <AddOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} />
                 </Link>
                 <TableContainer>
                     <Table

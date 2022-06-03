@@ -169,7 +169,7 @@ const EditTT = () => {
         if (!isValid) return
         else {
             if (id) {
-                var ngay_tao = moment(ngay_tao).format('YYYY/MM/DD hh:mm:ss');
+                var ngay_tao = moment(ngay_tao).format('YYYY-MM-DD hh:mm:ss');
                 axios
                     .put("http://localhost:3000/tintucs", {
                         id,

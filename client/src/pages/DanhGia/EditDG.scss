@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 @import url('https://unicons.iconscout.com/release/v4.0.0/css/line.css');
 
-  //Form editkbt
+  //Form editdg
   
   .body {
     min-height: 80vh;
@@ -20,7 +20,7 @@
     text-align: left;
 }
 
-.container-editkbt {
+.container-editdg {
     position: relative;
     max-width: 1000px;
     width: 100%;
@@ -31,14 +31,14 @@
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.container-editkbt header {
+.container-editdg header {
     position: relative;
     font-size: 20px;
     font-weight: 600;
     color: #333;
 }
 
-.container-editkbt header::before {
+.container-editdg header::before {
     content: "";
     position: absolute;
     left: 0;
@@ -49,39 +49,39 @@
     background-color: #4070f4;
 }
 
-.container-editkbt .form-all {
+.container-editdg .form-all {
     position: relative;
     margin-top: 16px;
-    min-height: 600px;
+    min-height: 400px;
     background-color: #fff;
     overflow: auto;
 }
 
-.container-editkbt .form-all .form-editkbt {
+.container-editdg .form-all .form-editdg {
     position: absolute;
     background-color: #fff;
     transition: 0.3s ease;
 }
 
-.container-editkbt .form-all .form-editkbt.second-editkbt {
+.container-editdg .form-all .form-editdg.second-editdg {
     opacity: 0;
     pointer-events: none;
     transform: translateX(100%);
 }
 
-.form-all.secActive .form-editkbt.second-editkbt {
+.form-all.secActive .form-editdg.second-editdg {
     opacity: 1;
     pointer-events: auto;
     transform: translateX(0);
 }
 
-.form-all.secActive .form-editkbt.first-editkbt {
+.form-all.secActive .form-editdg.first-editdg {
     opacity: 0;
     pointer-events: none;
     transform: translateX(-100%);
 }
 
-.container-editkbt .form-all .title-editkbt {
+.container-editdg .form-all .title-editdg {
     display: block;
     margin-bottom: 8px;
     font-size: 16px;
@@ -91,27 +91,27 @@
     text-align: left;
 }
 
-.container-editkbt .form-all .fields-editkbt {
+.container-editdg .form-all .fields-editdg {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.form-all .fields-editkbt .input-field-editkbt {
+.form-all .fields-editdg .input-field-editdg {
     display: flex;
     width: calc(100% / 3 - 15px);
     flex-direction: column;
     margin: 4px 0;
 }
 
-.input-field-editkbt label {
+.input-field-editdg label {
     font-size: 12px;
     font-weight: 500;
     color: #2e2e2e;
 }
 
-.input-field-editkbt input,
+.input-field-editdg input,
 select {
     outline: none;
     font-size: 14px;
@@ -124,21 +124,25 @@ select {
     margin: 8px 0;
 }
 
-.input-field-editkbt input :focus,
-.input-field-editkbt select:focus {
+.input-content {
+    width: 900px;
+}
+
+.input-field-editdg input :focus,
+.input-field-editdg select:focus {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
 }
 
-.input-field-editkbt select,
-.input-field-editkbt input[type="date"] {
+.input-field-editdg select,
+.input-field-editdg input[type="date"] {
     color: #707070;
 }
 
-.input-field-editkbt input[type="date"]:valid {
+.input-field-editdg input[type="date"]:valid {
     color: #333;
 }
 
-.container-editkbt .form-all button,
+.container-editdg .form-all button,
 .backBtn {
     display: flex;
     align-items: center;
@@ -161,7 +165,7 @@ select {
     text-decoration-line: none;
 }
 
-.container-editkbt .form-all .btnText {
+.container-editdg .form-all .btnText {
     font-size: 14px;
     font-weight: 400;
 }
@@ -191,21 +195,21 @@ select {
 }
 
 @media (max-width: 750px) {
-    .container-editkbt .form-all {
+    .container-editdg .form-all {
         overflow-y: scroll;
     }
 
-    .container-editkbt .form-all::-webkit-scrollbar {
+    .container-editdg .form-all::-webkit-scrollbar {
         display: none;
     }
 
-    .form-all .fields-editkbt .input-field-editkbt {
+    .form-all .fields-editdg .input-field-editdg {
         width: calc(100% / 2 - 15px);
     }
 }
 
 @media (max-width: 550px) {
-    .form-all .fields-editkbt .input-field-editkbt {
+    .form-all .fields-editdg .input-field-editdg {
         width: 100%;
     }
 }
