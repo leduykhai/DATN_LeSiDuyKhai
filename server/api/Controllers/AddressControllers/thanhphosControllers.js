@@ -25,7 +25,7 @@ module.exports = {
         })
     },
 
-    getThanhPhoById: (req, res) => {
+    getThanhPhoByQTId: (req, res) => {
         let tp_id = req.params.id;
         let sql = 'SELECT * FROM thanhphos where quoc_tich_id = ?'
         db.query(sql, tp_id, (err, response) => {

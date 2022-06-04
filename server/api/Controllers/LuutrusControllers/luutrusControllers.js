@@ -24,6 +24,15 @@ module.exports = {
         })
     },
 
+    getLuuTruByNNN_Id: (req, res) => {
+        let luu_tru_id = req.params.id;
+        let sql = 'SELECT * FROM luutrus where nnn_id = ?'
+        db.query(sql, luu_tru_id, (err, response) => {
+            if (err) throw err
+            res.json(response);
+        })
+    },
+
     addNewLuuTru: (req, res) => {
         let data = req.body;
         console.log('addNewLuuTru: ', req.body)

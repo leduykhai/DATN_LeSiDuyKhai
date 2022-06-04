@@ -11,6 +11,7 @@ module.exports = function (app) {
 
     app.route('/thanhphos/:id')
         .get(thanhphosCtrl.getThanhPhoById)
+        .get(thanhphosCtrl.getThanhPhoByQTId)
         .delete(thanhphosCtrl.deleteThanhPhoById);
 
 }

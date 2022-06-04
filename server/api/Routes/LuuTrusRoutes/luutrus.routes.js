@@ -10,6 +10,7 @@ module.exports = function (app) {
 
     app.route('/luutrus/:id')
         .get(luutrusCtrl.getLuuTruById)
+        .get(luutrusCtrl.getLuuTruByNNN_Id)
         .delete(luutrusCtrl.deleteLuuTruById);
 
 }

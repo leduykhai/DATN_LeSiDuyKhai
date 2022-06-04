@@ -59,6 +59,9 @@ import AddNNN from './pages/NguoiNuocNgoai/AddNNN';
 import EditNNN from './pages/NguoiNuocNgoai/EditNNN';
 import ViewNNN from './pages/NguoiNuocNgoai/ViewNNN';
 
+//Nguoi Nuoc Ngoai Hystory
+import History from './pages/NguoiNuocNgoai/Detail/Hiystory';
+
 //Luu Tru
 import ListLT from './pages/LuuTru/ListLT';
 import AddLT from './pages/LuuTru/AddLT';
@@ -126,6 +129,9 @@ function App() {
           <RouteWrapper path="/addnnn" component={AddNNN} layout={Sidebar} />
           <RouteWrapper path="/updatennn/:id" component={EditNNN} layout={Sidebar} />
           <RouteWrapper path="/viewnnn/:id" component={ViewNNN} layout={Sidebar} />
+
+          {/* History Người Nước Ngoài */}
+          <RouteWrapper path="/history/:id" component={History} layout={Sidebar} />
 
           {/* Lưu Trú */}
           <RouteWrapper path="/lt" component={ListLT} layout={Sidebar} />
