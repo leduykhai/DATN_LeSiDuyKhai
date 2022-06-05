@@ -10,7 +10,7 @@ module.exports = function (app) {
 
     app.route('/quans/:id')
         .get(quansCtrl.getQuanById)
-        .get(quansCtrl.getQuanByTPId)
+        // .get(quansCtrl.getQuanByTPId)
         .delete(quansCtrl.deleteQuanById);
 
 }

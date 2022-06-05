@@ -105,7 +105,45 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
+import {
+    DataGridPremium,
+    GridToolbarContainer,
+    GridToolbarExport,
+} from '@mui/x-data-grid-premium';
+
 import './ListUser.scss'
+
+function CustomToolbar() {
+    return (
+        <GridToolbarContainer>
+            <GridToolbarExport />
+        </GridToolbarContainer>
+    );
+}
+
+const columns = [
+    { field: 'id', headerName: 'ID', width: 200 },
+    {
+        field: 'email',
+        headerName: 'Email',
+        type: 'email',
+        width: 150,
+    },
+    {
+        field: 'ho_ten',
+        headerName: 'Name',
+        type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'sdt',
+        headerName: 'Phone Number',
+        type: 'number',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+];
 
 // function createData(name, calories, fat, carbs, protein) {
 //     return {
@@ -405,6 +443,15 @@ export default function ListUser() {
                 <Link to={`/addUser`}>
                     <PersonAddAltIcon className='add-icon' sx={{ fontSize: 40 }} />
                 </Link>
+                <div style={{ height: 300, width: '100%' }}>
+                    <DataGridPremium
+                        rows={data}
+                        columns={columns}
+                        components={{
+                            Toolbar: CustomToolbar,
+                        }}
+                    />
+                </div>
                 <TableContainer>
                     <Table
                         sx={{ minWidth: 750 }}

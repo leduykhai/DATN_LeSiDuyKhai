@@ -12,7 +12,6 @@ import Navbar from './components/Navbar/Navbar';
 
 import Dashboard from './pages/Dashboard/Dashboard';
 
-
 //User
 import ListUser from './pages/User/ListUser';
 import AddUser from './pages/User/AddUser';
@@ -72,6 +71,19 @@ import ListNKLT from './pages/NhatKyLuuTru/ListNKLT';
 import AddNKLT from './pages/NhatKyLuuTru/AddNKLT';
 import EditNKLT from './pages/NhatKyLuuTru/EditNKLT';
 
+
+//Trang Client
+
+
+//Navbar Client
+import Navbar_Client from './pages/Client/Components/Navbar/Navbar_Client'
+
+//Home_Aside
+import Home_Aside from './pages/Client/Components/Home_Aside/Home_Aside';
+
+//Co so luu tru client
+import ListCSLT_Client from './pages/Client/CoSoLuuTru/ListCSLT_Client'
+
 function App() {
   return (
     <BrowserRouter>
@@ -80,7 +92,16 @@ function App() {
         <Switch>
 
           <Route exact path="/" component={Login} />
+
           <Route exact path="/login" component={Login} />
+
+          {/* Client */}
+          <Route exact path="/client" component={Navbar_Client} />
+          <RouteWrapper exact path="/client_home" component={Home_Aside} layout={Navbar_Client} />
+          <RouteWrapper exact path="/client_dk" component={AddCSLT} layout={Navbar_Client} />
+
+          {/* Home */}
+          {/* <Route exact path="/home" component={Home} /> */}
 
           {/* dashboard */}
           <RouteWrapper exact path="/dashboard" component={Dashboard} layout={Sidebar} />
@@ -113,6 +134,7 @@ function App() {
           <RouteWrapper exact path="/dg" component={ListDG} layout={Sidebar} />
           <RouteWrapper path="/adddg" component={AddDG} layout={Sidebar} />
           <RouteWrapper path="/updatedg/:id" component={EditDG} layout={Sidebar} />
+          <RouteWrapper path="/viewcslt/:id" component={ViewCSLT} layout={Sidebar} />
 
           {/* Đánh Giá */}
           <RouteWrapper exact path="/cslt" component={CSLT} layout={Sidebar} />

@@ -1,0 +1,293 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+import './Home.scss'
+
+const Home = () => {
+
+    return (
+        <div className='container-home'>
+            <div className='wrapper-home'>
+
+                <nav className='nav-home'>
+                    <h2>Quản Lý Lưu Trú</h2>
+                </nav>
+
+                <header className='header-home'>
+                    {/* <a href="#" className="logo"><i className="fas"></i>Logo</a> */}
+
+                    <div className="navbar-home">
+                        {/* <Link className="active a" href="#home">Trang Chủ</Link> */}
+                        <Link className="active a" href="#home">Trang Chủ</Link>
+                        <Link className="a" href="#about">Tin tức</Link>
+                        <Link className="a" href="#menu">Lưu trú</Link>
+                        <Link className="a" href="#review">Đăng ký</Link>
+                        <Link className="a" href="#order">Đăng nhập</Link>
+                    </div>
+
+                    <div className="icons">
+                        <i className="fas fa-bars" id="menu-bars"></i>
+                        <i className="fas fa-search" id="search-icon"></i>
+                        <Link href="#" className="a fas fa-heart"></Link>
+                        <Link href="#" className="a fas fa-user"></Link>
+                    </div>
+                </header>
+
+                <article className='main-home'>
+                    <div className='all-card-cslt'>
+
+                        <div className="card-cslt">
+                            <div className="card-image-cslt">
+                                {/* <img src='addidas.jpg' /> */}
+                            </div>
+                            <div className="card-text-cslt">
+                                <span className="date-cslt">4 days ago</span>
+                                <h2 className='title-cslt'>Post One</h2>
+                                {/* <p className='about-cslt'>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod deserunt eligendi dolor</p> */}
+                            </div>
+                            <div className="card-stats-cslt">
+                                <div className="stat-cslt">
+                                    <div className="value-cslt">4<sup>m</sup></div>
+                                    <div className="type-cslt">read</div>
+                                </div>
+                                <div className="stat-cslt border-cslt">
+                                    <div className="value-cslt">5123</div>
+                                    <div className="type-cslt">views</div>
+                                </div>
+                                <div className="stat-cslt">
+                                    <div className="value-cslt">32</div>
+                                    <div className="type-cslt">comments</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="card-cslt">
+                            <div className="card-image-cslt">
+                                {/* <img src='addidas.jpg' /> */}
+                            </div>
+                            <div className="card-text-cslt">
+                                <span className="date-cslt">4 days ago</span>
+                                <h2 className='title-cslt'>Post One</h2>
+                                {/* <p className='about-cslt'>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod deserunt eligendi dolor</p> */}
+                            </div>
+                            <div className="card-stats-cslt">
+                                <div className="stat-cslt">
+                                    <div className="value-cslt">4<sup>m</sup></div>
+                                    <div className="type-cslt">read</div>
+                                </div>
+                                <div className="stat-cslt border-cslt">
+                                    <div className="value-cslt">5123</div>
+                                    <div className="type-cslt">views</div>
+                                </div>
+                                <div className="stat-cslt">
+                                    <div className="value-cslt">32</div>
+                                    <div className="type-cslt">comments</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="card-cslt">
+                            <div className="card-image-cslt">
+                                {/* <img src='addidas.jpg' /> */}
+                            </div>
+                            <div className="card-text-cslt">
+                                <span className="date-cslt">4 days ago</span>
+                                <h2 className='title-cslt'>Post One</h2>
+                                {/* <p className='about-cslt'>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod deserunt eligendi dolor</p> */}
+                            </div>
+                            <div className="card-stats-cslt">
+                                <div className="stat-cslt">
+                                    <div className="value-cslt">4<sup>m</sup></div>
+                                    <div className="type-cslt">read</div>
+                                </div>
+                                <div className="stat-cslt border-cslt">
+                                    <div className="value-cslt">5123</div>
+                                    <div className="type-cslt">views</div>
+                                </div>
+                                <div className="stat-cslt">
+                                    <div className="value-cslt">32</div>
+                                    <div className="type-cslt">comments</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="card-cslt">
+                            <div className="card-image-cslt">
+                                {/* <img src='addidas.jpg' /> */}
+                            </div>
+                            <div className="card-text-cslt">
+                                <span className="date-cslt">4 days ago</span>
+                                <h2 className='title-cslt'>Post One</h2>
+                                {/* <p className='about-cslt'>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod deserunt eligendi dolor</p> */}
+                            </div>
+                            <div className="card-stats-cslt">
+                                <div className="stat-cslt">
+                                    <div className="value-cslt">4<sup>m</sup></div>
+                                    <div className="type-cslt">read</div>
+                                </div>
+                                <div className="stat-cslt border-cslt">
+                                    <div className="value-cslt">5123</div>
+                                    <div className="type-cslt">views</div>
+                                </div>
+                                <div className="stat-cslt">
+                                    <div className="value-cslt">32</div>
+                                    <div className="type-cslt">comments</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="card-cslt">
+                            <div className="card-image-cslt">
+                                {/* <img src='addidas.jpg' /> */}
+                            </div>
+                            <div className="card-text-cslt">
+                                <span className="date-cslt">4 days ago</span>
+                                <h2 className='title-cslt'>Post One</h2>
+                                {/* <p className='about-cslt'>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod deserunt eligendi dolor</p> */}
+                            </div>
+                            <div className="card-stats-cslt">
+                                <div className="stat-cslt">
+                                    <div className="value-cslt">4<sup>m</sup></div>
+                                    <div className="type-cslt">read</div>
+                                </div>
+                                <div className="stat-cslt border-cslt">
+                                    <div className="value-cslt">5123</div>
+                                    <div className="type-cslt">views</div>
+                                </div>
+                                <div className="stat-cslt">
+                                    <div className="value-cslt">32</div>
+                                    <div className="type-cslt">comments</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="card-cslt">
+                            <div className="card-image-cslt">
+                                {/* <img src='addidas.jpg' /> */}
+                            </div>
+                            <div className="card-text-cslt">
+                                <span className="date-cslt">4 days ago</span>
+                                <h2 className='title-cslt'>Post One</h2>
+                                {/* <p className='about-cslt'>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod deserunt eligendi dolor</p> */}
+                            </div>
+                            <div className="card-stats-cslt">
+                                <div className="stat-cslt">
+                                    <div className="value-cslt">4<sup>m</sup></div>
+                                    <div className="type-cslt">read</div>
+                                </div>
+                                <div className="stat-cslt border-cslt">
+                                    <div className="value-cslt">5123</div>
+                                    <div className="type-cslt">views</div>
+                                </div>
+                                <div className="stat-cslt">
+                                    <div className="value-cslt">32</div>
+                                    <div className="type-cslt">comments</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="card-cslt">
+                            <div className="card-image-cslt">
+                                {/* <img src='addidas.jpg' /> */}
+                            </div>
+                            <div className="card-text-cslt">
+                                <span className="date-cslt">4 days ago</span>
+                                <h2 className='title-cslt'>Post One</h2>
+                                {/* <p className='about-cslt'>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod deserunt eligendi dolor</p> */}
+                            </div>
+                            <div className="card-stats-cslt">
+                                <div className="stat-cslt">
+                                    <div className="value-cslt">4<sup>m</sup></div>
+                                    <div className="type-cslt">read</div>
+                                </div>
+                                <div className="stat-cslt border-cslt">
+                                    <div className="value-cslt">5123</div>
+                                    <div className="type-cslt">views</div>
+                                </div>
+                                <div className="stat-cslt">
+                                    <div className="value-cslt">32</div>
+                                    <div className="type-cslt">comments</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="card-cslt">
+                            <div className="card-image-cslt">
+                                {/* <img src='addidas.jpg' /> */}
+                            </div>
+                            <div className="card-text-cslt">
+                                <span className="date-cslt">4 days ago</span>
+                                <h2 className='title-cslt'>Post One</h2>
+                                {/* <p className='about-cslt'>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod deserunt eligendi dolor</p> */}
+                            </div>
+                            <div className="card-stats-cslt">
+                                <div className="stat-cslt">
+                                    <div className="value-cslt">4<sup>m</sup></div>
+                                    <div className="type-cslt">read</div>
+                                </div>
+                                <div className="stat-cslt border-cslt">
+                                    <div className="value-cslt">5123</div>
+                                    <div className="type-cslt">views</div>
+                                </div>
+                                <div className="stat-cslt">
+                                    <div className="value-cslt">32</div>
+                                    <div className="type-cslt">comments</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="card-cslt">
+                            <div className="card-image-cslt">
+                                {/* <img src='addidas.jpg' /> */}
+                            </div>
+                            <div className="card-text-cslt">
+                                <span className="date-cslt">4 days ago</span>
+                                <h2 className='title-cslt'>Post One</h2>
+                                {/* <p className='about-cslt'>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod deserunt eligendi dolor</p> */}
+                            </div>
+                            <div className="card-stats-cslt">
+                                <div className="stat-cslt">
+                                    <div className="value-cslt">4<sup>m</sup></div>
+                                    <div className="type-cslt">read</div>
+                                </div>
+                                <div className="stat-cslt border-cslt">
+                                    <div className="value-cslt">5123</div>
+                                    <div className="type-cslt">views</div>
+                                </div>
+                                <div className="stat-cslt">
+                                    <div className="value-cslt">32</div>
+                                    <div className="type-cslt">comments</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </article>
+
+                {/* <aside className='aside-home aside1-home'>
+                    <h1>aside1</h1>
+                </aside> */}
+
+                <aside className='aside-home aside2-home'>
+                    <h1>News</h1>
+                    <div className='item-tt'>
+                        <div className='text-tt'>
+                            <h4 className='text-title-tt'>News</h4>
+                        </div>
+                    </div>
+                    <div className='item-tt'>
+                        <div className='text-tt'>
+                            <h4 className='text-title-tt'>News</h4>
+                        </div>
+                    </div>
+                </aside>
+
+                <footer className='footer-home'>
+                    <h1>footer</h1>
+                </footer>
+            </div>
+        </div>
+    )
+}
+
+export default Home

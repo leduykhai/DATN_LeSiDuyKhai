@@ -10,7 +10,7 @@ module.exports = function (app) {
 
     app.route('/phuongs/:id')
         .get(phuongsCtrl.getPhuongById)
-        .get(phuongsCtrl.getPhuongByQuanId)
+        // .get(phuongsCtrl.getPhuongByQuanId)
         .delete(phuongsCtrl.deletePhuongById);
 
 }
