@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import './ListTT_Client.scss'
 
-export default function ListCSLT() {
+export default function ListTT_Client() {
 
     const [data, setData] = React.useState([]);
 
@@ -17,16 +17,18 @@ export default function ListCSLT() {
     }, []);
 
     return (
-        <div>
+        <aside className='aside-home aside2-home'>
+            <h1 className='news'>Tin Tức</h1>
             {data.map((item, index) => {
                 return (
                     <div className='item-tt'>
                         <div className='text-tt'>
                             <h4 className='text-title-tt'>{item.tieu_de}</h4>
+                            <p className='text-content-tt'>{item.noi_dung}</p>
                         </div>
                     </div>
                 );
             })}
-        </div>
+        </aside>
     );
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import isEmail from "validator/lib/isEmail";
 import isEmpty from "validator/lib/isEmpty";
-import "./AddChuCSLT.scss";
+import "./DangKyCCslt.scss";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import moment from 'moment';
@@ -22,7 +22,7 @@ const initialState = {
     nhanvien_id: ""
 }
 
-const AddChuCSLT = () => {
+const DangKyCCslt = () => {
     const [state, setState] = useState(initialState);
 
     const { ho_ten, ngay_sinh, gioi_tinh, email, cccd, dia_chi, sdt, user_id, phuong_id, nhanvien_id } = state;
@@ -200,9 +200,9 @@ const AddChuCSLT = () => {
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("ChuCSLT Added Successfully")
+                toast.success("Proceed to step three")
             }
-            setTimeout(() => history.push("/chucslt"), 100);
+            setTimeout(() => history.push("/client_dk_b3"), 100);
         }
     };
 
@@ -213,30 +213,36 @@ const AddChuCSLT = () => {
 
     return (
         <body className='body'>
-            <div className="container-addccslt">
+            <div className="container-dk_ccslt">
                 <header className='header'>Registration</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
-                    <div className="form-addccslt first-addccslt">
+                    <div className="form-dk_ccslt first-dk_ccslt">
                         <div className="details personal">
-                            <span className="title-addccslt">Personal Details</span>
+                            <span className="title-dk_ccslt">Step II: Personal Details</span>
 
-                            <div className="fields-addccslt">
-                                <div className="input-field-addccslt">
-                                    <label className='label'>Full Name</label>
-                                    <input
-                                        type="text"
+                            <div className="fields-dk_ccslt">
+                                <div className="input-field-dk_ccslt">
+                                    <label className='label'>User ID</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="ho_ten"
                                         id='ho_ten'
-                                        name='ho_ten'
                                         value={ho_ten || ""}
-                                        placeholder="Enter your name"
                                         required
                                         onChange={handleInputChange}
-                                    />
-                                    <p className="error-text">{validationMsg.ho_ten}</p>
+                                    >
+                                        <option disabled selected value="">--Select Name--</option>
+                                        {
+                                            useridmax.map((getus, index) => (
+                                                <option key={index} value={getus.id}>{getus.ho_ten} </option>
+                                            ))
+                                        }
+                                    </select>
                                 </div>
 
-                                <div className="input-field-addccslt">
+                                <div className="input-field-dk_ccslt">
                                     <label className='label'>Date of Birth</label>
                                     <input
                                         type="date"
@@ -250,7 +256,7 @@ const AddChuCSLT = () => {
                                     <p className="error-text">{validationMsg.ngay_sinh}</p>
                                 </div>
 
-                                <div className="input-field-addccslt">
+                                <div className="input-field-dk_ccslt">
                                     <label className='label'>Gender</label>
                                     <select
                                         type="select"
@@ -268,21 +274,27 @@ const AddChuCSLT = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-addccslt">
+                                <div className="input-field-dk_ccslt">
                                     <label className='label'>Email</label>
-                                    <input
-                                        type="email"
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="email"
                                         id='email'
-                                        name='email'
                                         value={email || ""}
-                                        placeholder="Enter your email"
                                         required
                                         onChange={handleInputChange}
-                                    />
-                                    <p className="error-text">{validationMsg.email}</p>
+                                    >
+                                        <option disabled selected value="">--Select Email--</option>
+                                        {
+                                            useridmax.map((getus, index) => (
+                                                <option key={index} value={getus.id}>{getus.email} </option>
+                                            ))
+                                        }
+                                    </select>
                                 </div>
 
-                                <div className="input-field-addccslt">
+                                <div className="input-field-dk_ccslt">
                                     <label className='label'>Citizen ID</label>
                                     <input
                                         type="number"
@@ -296,7 +308,7 @@ const AddChuCSLT = () => {
                                     <p className="error-text">{validationMsg.cccd}</p>
                                 </div>
 
-                                <div className="input-field-addccslt">
+                                <div className="input-field-dk_ccslt">
                                     <label className='label'>Address</label>
                                     <input
                                         type="text"
@@ -310,7 +322,7 @@ const AddChuCSLT = () => {
                                     <p className="error-text">{validationMsg.dia_chi}</p>
                                 </div>
 
-                                <div className="input-field-addccslt">
+                                <div className="input-field-dk_ccslt">
                                     <label className='label'>City</label>
                                     <select
                                         className="form-control p-2"
@@ -328,7 +340,7 @@ const AddChuCSLT = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-addccslt">
+                                <div className="input-field-dk_ccslt">
                                     <label className='label'>District</label>
                                     <select
                                         className="form-select"
@@ -347,7 +359,7 @@ const AddChuCSLT = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-addccslt">
+                                <div className="input-field-dk_ccslt">
                                     <label className='label'>Ward</label>
                                     <select
                                         className="form-select"
@@ -367,21 +379,27 @@ const AddChuCSLT = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-addccslt">
-                                    <label className='label'>Number Phone</label>
-                                    <input
-                                        type="number"
+                                <div className="input-field-dk_ccslt">
+                                    <label className='label'>Phone Number</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="sdt"
                                         id='sdt'
-                                        name='sdt'
                                         value={sdt || ""}
-                                        placeholder="Enter your Number Phone"
                                         required
                                         onChange={handleInputChange}
-                                    />
-                                    <p className="error-text">{validationMsg.sdt}</p>
+                                    >
+                                        <option disabled selected value="">--Select Phone Number--</option>
+                                        {
+                                            useridmax.map((getus, index) => (
+                                                <option key={index} value={getus.id}>{getus.sdt} </option>
+                                            ))
+                                        }
+                                    </select>
                                 </div>
 
-                                {/* <div className="input-field-addccslt">
+                                {/* <div className="input-field-dk_ccslt">
                                     <label className='label'>Image</label>
                                     <input
                                         type="file"
@@ -398,10 +416,10 @@ const AddChuCSLT = () => {
                         </div>
 
                         <div className="details ID">
-                            <span className="title-addccslt">Identity Details</span>
+                            <span className="title-dk_ccslt">Identity Details</span>
 
-                            <div className="fields-addccslt">
-                                <div className="input-field-addccslt">
+                            <div className="fields-dk_ccslt">
+                                <div className="input-field-dk_ccslt">
                                     <label className='label'>User ID</label>
                                     <select
                                         className="form-select"
@@ -415,13 +433,13 @@ const AddChuCSLT = () => {
                                         <option disabled selected value="">--Select User ID--</option>
                                         {
                                             useridmax.map((getus, index) => (
-                                                <option key={index} value={getus.id}>{getus.ho_ten} </option>
+                                                <option key={index} value={getus.id}>{getus.ho_ten}</option>
                                             ))
                                         }
                                     </select>
                                 </div>
 
-                                <div className="input-field-addccslt">
+                                <div className="input-field-dk_ccslt">
                                     <label className='label'>Employee ID</label>
                                     <select
                                         className="form-select"
@@ -441,17 +459,17 @@ const AddChuCSLT = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-addccslt">
+                                <div className="input-field-dk_ccslt">
 
                                 </div>
                             </div>
                             <div className="buttons">
-                                <Link to="/chucslt" className="backBtn">
+                                {/* <Link to="/chucslt" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
                                         <span className="btnText">Back</span>
                                     </div>
-                                </Link>
+                                </Link> */}
                                 <button className="submit" type='submit'>
                                     <span className="btnText">Submit</span>
                                     <i className="uil uil-navigator"></i>
@@ -466,4 +484,4 @@ const AddChuCSLT = () => {
     )
 }
 
-export default AddChuCSLT
+export default DangKyCCslt

@@ -8,6 +8,9 @@ module.exports = function (app) {
         .put(usersCtrl.updateUser)
         .delete(usersCtrl.deleteUserByAll);
 
+    app.route('/usersidmax')
+        .get(usersCtrl.getUserByIdMax);
+
     app.route('/users/:id')
         .get(usersCtrl.getUserById)
         .delete(usersCtrl.deleteUserById);

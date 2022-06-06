@@ -78,11 +78,13 @@ import EditNKLT from './pages/NhatKyLuuTru/EditNKLT';
 //Navbar Client
 import Navbar_Client from './pages/Client/Components/Navbar/Navbar_Client'
 
-//Home_Aside
-import Home_Aside from './pages/Client/Components/Home_Aside/Home_Aside';
+//Main
+import Main from './pages/Client/Components/Main/Main';
 
-//Co so luu tru client
-import ListCSLT_Client from './pages/Client/CoSoLuuTru/ListCSLT_Client'
+//Dang Ky Chủ CSLT
+import DangKyAccount from './pages/Client/DangKyCSLT/DangKyAccount'
+import DangKyChuCslt from './pages/Client/DangKyCSLT/DangKyCCslt'
+import DangKyCslt from './pages/Client/DangKyCSLT/DangKyCslt'
 
 function App() {
   return (
@@ -96,9 +98,11 @@ function App() {
           <Route exact path="/login" component={Login} />
 
           {/* Client */}
-          <Route exact path="/client" component={Navbar_Client} />
-          <RouteWrapper exact path="/client_home" component={Home_Aside} layout={Navbar_Client} />
-          <RouteWrapper exact path="/client_dk" component={AddCSLT} layout={Navbar_Client} />
+          {/* <Route exact path="/client" component={Navbar_Client} /> */}
+          <RouteWrapper exact path="/client" component={Main} layout={Navbar_Client} />
+          <RouteWrapper exact path="/client_dk_b1" component={DangKyAccount} layout={Navbar_Client} />
+          <RouteWrapper exact path="/client_dk_b2" component={DangKyChuCslt} layout={Navbar_Client} />
+          <RouteWrapper exact path="/client_dk_b3" component={DangKyCslt} layout={Navbar_Client} />
 
           {/* Home */}
           {/* <Route exact path="/home" component={Home} /> */}

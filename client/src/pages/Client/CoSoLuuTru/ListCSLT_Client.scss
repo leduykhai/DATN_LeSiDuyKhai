@@ -1,0 +1,128 @@
+
+.main-home {
+    text-align: left;
+    background: rgba(210, 226, 228, 0);
+    height: 1200px;
+    font-size: 24px;
+    overflow: auto;
+}
+
+.all-card-cslt {
+    margin: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+    align-items: center;
+}
+
+.all-card-cslt > .card-cslt {
+    background: #ffffff86;
+    border: none;
+    box-shadow: 2px 2px 6px 0px rgba(0,0,0,3);
+    border-radius: 20px;
+    text-align: center;
+    width: 324px;
+    transition: transform .3s;
+}
+
+.card-image-cslt {
+    grid-area: image;
+    background: url("https://vietluat.vn/wp-content/uploads/2020/02/thanh-lap-cong-ty-nganh-khach-san.jpg");
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-size: cover;
+    height: 250px;
+  }
+  .card-text-cslt {
+    grid-area: text;
+    margin: 25px;
+    min-height: 120px;
+  }
+  .card-text-cslt .loai-cslt {
+    color: rgb(255, 7, 110);
+    font-size:13px;
+    text-transform: capitalize;
+  }
+  .card-text-cslt .about-cslt {
+    color: grey;
+    font-size:15px;
+    font-weight: 300;
+  }
+  .card-text-cslt .title-cslt {
+    margin-top: 10px;
+    font-size:25px;
+    justify-content: center;
+    text-transform: capitalize;
+    font-family: 'Arial', sans-serif;
+  }
+  .card-stats-cslt {
+    grid-area: stats; 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+  
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: rgb(83, 182, 235);
+  }
+
+  .card-stats-cslt .stat-cslt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  
+    color: white;
+    padding:10px;
+  }
+
+  .stat-cslt:hover {
+    background-color:  rgba(60, 234, 234, 0.344);
+    cursor: pointer;
+    border-radius: 20px;
+  }
+
+  .card-stats-cslt .type-cslt {
+      font-size: 11px;
+      font-weight: 300;
+      text-transform: uppercase;
+  }
+
+  .card-stats-cslt .value-cslt {
+      font-size: 22px;
+      font-weight: 500;
+  }
+
+  .card-stats-cslt .value-cslt sup{
+    font-size: 12px;
+}
+  .card-stats-cslt .border-cslt {
+      border-left: 1px solid rbg(172,26,87);
+      border-right: 1px solid rbg(172,26,87);
+  }
+
+
+.all-card-cslt > .card-cslt:hover {
+    box-shadow: 2px 2px 26px 2px rgba(38, 255, 0, 0.842);
+}
+
+@media (max-width: 800px) {
+    .all-card-cslt{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .all-card-cslt {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.news {
+    color: #da1010e8;
+}
+
+.news:hover {
+    color: #101adae8;
+    cursor: pointer;
+}

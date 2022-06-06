@@ -1,0 +1,26 @@
+.footer-home {
+    background: rgba(137, 205, 216, 0.859);
+    height: 80px;
+}
+
+@media all and (min-width: 800px) {
+    .main-home {
+        flex: 3;
+    }
+
+    .aside1-home {
+        order: 1;
+    }
+
+    .aside2-home {
+        order: 2;
+    }
+
+    .main-home {
+        order: 2;
+    }
+
+    .footer-home {
+        order: 4;
+    }
+}

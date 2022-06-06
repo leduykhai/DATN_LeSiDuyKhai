@@ -15,6 +15,16 @@ module.exports = {
         })
     },
 
+    getUserByIdMax: (req, res) => {
+        let user_id = req.params.id;
+        console.log('ID: ', user_id)
+        let sql = 'SELECT * FROM users WHERE id = (SELECT MAX(id) FROM users)'
+        db.query(sql, user_id, (err, response) => {
+            if (err) throw err
+            res.json(response);
+        })
+    },
+
     getUserById: (req, res) => {
         let user_id = req.params.id;
         console.log('ID: ', user_id)

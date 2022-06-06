@@ -18,7 +18,7 @@ const Aside = () => {
     return (
 
         <aside className='aside-home aside2-home'>
-            <h1 className='news'>News</h1>
+            <h1 className='news'>Tin Tức</h1>
             {data_tt.map((item, index) => {
                 return (
                     <div className='item-tt'>
