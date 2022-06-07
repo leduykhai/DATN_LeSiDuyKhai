@@ -19,22 +19,22 @@ const ViewNV = () => {
         <div style={{ marginTop: "150px" }}>
             <div className='Card'>
                 <div className='Card-header'>
-                    <p>NhanVien Detail</p>
+                    <p>Thông tin nhân viên</p>
                 </div>
                 <div className='Container'>
                     <strong>ID: </strong>
                     <span>{id}</span>
                     <br />
                     <br />
-                    <strong>FullName: </strong>
+                    <strong>Họ tên: </strong>
                     <span>{NhanVien.ho_ten}</span>
                     <br />
                     <br />
-                    <strong>Date of birth: </strong>
+                    <strong>Ngày sinh: </strong>
                     <span>{moment(NhanVien.ngay_sinh).format('DD/MM/YYYY')}</span>
                     <br />
                     <br />
-                    <strong>Gender: </strong>
+                    <strong>Giới tính: </strong>
                     <span>{NhanVien.gioi_tinh}</span>
                     <br />
                     <br />
@@ -42,20 +42,20 @@ const ViewNV = () => {
                     <span>{NhanVien.email}</span>
                     <br />
                     <br />
-                    <strong>Phone Number: </strong>
+                    <strong>Số điện thoại: </strong>
                     <span>{NhanVien.sdt}</span>
                     <br />
                     <br />
-                    <strong>Citizen ID: </strong>
+                    <strong>Căn Cước Công Dân: </strong>
                     <span>{NhanVien.cccd}</span>
                     <br />
                     <br />
-                    <strong>Address: </strong>
+                    <strong>Địa Chỉ: </strong>
                     <span>{NhanVien.dia_chi}</span>
                     <br />
                     <br />
                     <Link to="/NhanVien">
-                        <div className='btn'>Go Back</div>
+                        <div className='btn'>Quay lại</div>
                     </Link>
                 </div>
             </div>

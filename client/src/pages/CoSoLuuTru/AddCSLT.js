@@ -95,24 +95,24 @@ const AddCSLT = () => {
         const msg = {}
 
         if (isEmpty(ten_cslt)) {
-            msg.ten_cslt = "Please input your Name"
+            msg.ten_cslt = "Vui lòng nhập tên cslt"
         }
         if (isEmpty(loai_cslt)) {
-            msg.loai_cslt = "Please input your Type"
+            msg.loai_cslt = "Vui lòng nhập loại cslt"
         }
         if (isEmpty(nguoi_dai_dien)) {
-            msg.nguoi_dai_dien = "Please input your Surrogate"
+            msg.nguoi_dai_dien = "Vui lòng nhập người đại diện"
         }
         if (isEmpty(email)) {
-            msg.email = "Please input your Email"
+            msg.email = "Vui lòng nhập email"
         } else if (!isEmail(email)) {
-            msg.email = "Your email is incorrect"
+            msg.email = "Email không đúng"
         }
         if (isEmpty(sdt)) {
-            msg.sdt = "Please input your Number Phone"
+            msg.sdt = "Vui lòng nhập số điện thoại"
         }
         if (isEmpty(dia_chi)) {
-            msg.dia_chi = "Please input your Address"
+            msg.dia_chi = "Vui lòng nhập địa chỉ"
         }
         // if (isEmpty(file)) {
         //     msg.file = "Please input your File"
@@ -126,7 +126,7 @@ const AddCSLT = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!ten_cslt || !loai_cslt || !nguoi_dai_dien || !sdt || !email || !dia_chi) {
-            toast.error("please provide value into each input field");
+            toast.error("Vui lòng nhập đầy đủ thông tin");
         }
         const isValid = validateAll()
         if (!isValid) return

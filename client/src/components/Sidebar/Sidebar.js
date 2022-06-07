@@ -16,13 +16,13 @@ const Sidebar = (props) => {
                     <li>
                         <Link exact to="/dashboard" class="active">
                             <i class="bx bx-grid-alt"></i>
-                            <span class="links_name">Dashboard</span>
+                            <span class="links_name">Tổng Quan</span>
                         </Link>
                     </li>
                     <li>
                         <Link exact to="/users">
                             <i class="bx bx-user"></i>
-                            <span class="links_name">Account User</span>
+                            <span class="links_name">Tài Khoản</span>
                         </Link>
                     </li>
                     <li>
@@ -85,7 +85,7 @@ const Sidebar = (props) => {
                     <li class="log_out">
                         <Link exact to="/">
                             <i class="bx bx-log-out"></i>
-                            <span class="links_name">Log out</span>
+                            <span class="links_name">Đăng Xuất</span>
                         </Link>
                     </li>
                 </ul>

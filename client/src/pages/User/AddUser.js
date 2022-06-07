@@ -28,10 +28,22 @@ const AddUser = () => {
 
     const { id } = useParams();
 
+    const [user, setUser] = useState([]);
+
     const [userstatus, setUser_Status] = useState([]);
 
     const [usersrole, setUser_Role] = useState([]);
     // const [khu_vuc_id, setKhu_vuc_id] = useState('');
+
+    //user
+    useEffect(() => {
+        const getUser = async () => {
+            const resuser = await fetch("http://localhost:3000/users");
+            const resu = await resuser.json();
+            setUser(await resu);
+        }
+        getUser();
+    }, []);
 
     useEffect(() => {
         const getuser_status = async () => {
@@ -57,6 +69,7 @@ const AddUser = () => {
     // }
 
 
+
     useEffect(() => {
         axios
             .get(`http://localhost:3000/users/${id}`)
@@ -67,30 +80,64 @@ const AddUser = () => {
     const validateAll = () => {
         const msg = {}
 
+        // var username;
+        // for (var i = 0; i < user.length; i++) {
+        //     username = user[i].email;
+        //     if (username === email) {
+        //         msg.email = "Email already in use"
+        //     }
+        // }
+
+        for (var key in user) {
+            if (user[key].email === email) {
+                msg.email = "Email Đã Được Sử Dụng!"
+            }
+        }
+
+        if (sdt.length != 10) {
+            msg.sdt = "Số điện thoại không tồn tại"
+        }
+
+        if (sdt[0] != 0) {
+            msg.sdt = "Số điện thoại sai!"
+        }
+
+        if (password.length < 6) {
+            msg.sdt = "Mật khẩu từ 6 ký tự!"
+        }
+
+        var PhoneNumber;
+        for (var i = 0; i < user.length; i++) {
+            PhoneNumber = user[i].sdt;
+            if (PhoneNumber === sdt) {
+                msg.sdt = "Số điện thoại đã được sử dụng!"
+            }
+        }
+
         if (isEmpty(email)) {
-            msg.email = "Please input your Email"
+            msg.email = "Vui lòng nhập email"
         } else if (!isEmail(email)) {
-            msg.email = "Your email is incorrect"
+            msg.email = "Email không đúng"
         }
 
         if (isEmpty(password)) {
-            msg.password = "Please input your Password"
+            msg.password = "Vui lòng nhập mật khẩu"
         }
 
         if (isEmpty(ho_ten)) {
-            msg.ho_ten = "Please input your Name"
+            msg.ho_ten = "Vui lòng nhập họ tên"
         }
 
         if (isEmpty(sdt)) {
-            msg.sdt = "Please input your Phone Number"
+            msg.sdt = "Vui lòng nhập số điện thoại"
         }
 
         if (isEmpty(user_status_id)) {
-            msg.user_status_id = "Please input your Status"
+            msg.user_status_id = "Vui lòng chọn trạng thái"
         }
 
         if (isEmpty(role_id)) {
-            msg.role_id = "Please input your Role"
+            msg.role_id = "Vui lòng chọn vai trò"
         }
 
         setValidationMsg(msg)
@@ -101,7 +148,7 @@ const AddUser = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!email || !password || !ho_ten || !sdt || !user_status_id || !role_id) {
-            toast.error("please provide value into each input field");
+            toast.error("Vui lòng nhập đầy đủ thông tin!");
         }
         const isValid = validateAll()
         if (!isValid) return
@@ -127,7 +174,7 @@ const AddUser = () => {
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("Users Added Successfully")
+                toast.success("Đăng ký thành công")
             }
             setTimeout(() => history.push("/users"), 100);
         }
@@ -141,23 +188,23 @@ const AddUser = () => {
     return (
         <body className='body'>
             <div className="container-adduser">
-                <header className='header'>Registration</header>
+                <header className='header'>Thêm tài khoản</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
                     <div className="form-adduser first-adduser">
                         <div className="details personal">
-                            <span className="title-adduser">Personal Details</span>
+                            <span className="title-adduser">Thông tin tài khoản</span>
 
                             <div className="fields-adduser">
 
                                 <div className="input-field-adduser">
-                                    <label className='label'>Full Name</label>
+                                    <label className='label'>Họ Tên</label>
                                     <input
                                         type="text"
                                         id='ho_ten'
                                         name='ho_ten'
                                         value={ho_ten || ""}
-                                        placeholder="Enter your name"
+                                        placeholder="Nhập họ tên. . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -171,7 +218,7 @@ const AddUser = () => {
                                         id='email'
                                         name='email'
                                         value={email || ""}
-                                        placeholder="Enter your email"
+                                        placeholder="Nhập Email . . . "
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -179,13 +226,13 @@ const AddUser = () => {
                                 </div>
 
                                 <div className="input-field-adduser">
-                                    <label className='label'>Password</label>
+                                    <label className='label'>Mât Khẩu</label>
                                     <input
                                         type="text"
                                         id='password'
                                         name='password'
                                         value={password || ""}
-                                        placeholder="Enter your password"
+                                        placeholder="Nhập Mật Khẩu . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -195,13 +242,13 @@ const AddUser = () => {
 
 
                                 <div className="input-field-adduser">
-                                    <label className='label'>Number Phone</label>
+                                    <label className='label'>Số Điện Thoại</label>
                                     <input
                                         type="number"
                                         id='sdt'
                                         name='sdt'
                                         value={sdt || ""}
-                                        placeholder="Enter your Number Phone"
+                                        placeholder="Nhập Số Điện Thoại . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -209,7 +256,7 @@ const AddUser = () => {
                                 </div>
 
                                 <div className="input-field-adduser">
-                                    <label className='label'>Status</label>
+                                    <label className='label'>Trạng Thái</label>
                                     <select
                                         // name="userstatus"
                                         // className="form-control p-2"
@@ -222,7 +269,7 @@ const AddUser = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="" >-- Select Status --</option>
+                                        <option disabled selected value="" >-- Chọn Trạng Thái --</option>
                                         {
                                             userstatus.map((getus, index) => (
                                                 <option key={index} value={getus.id}>{getus.status_name} </option>
@@ -232,7 +279,7 @@ const AddUser = () => {
                                 </div>
 
                                 <div className="input-field-adduser">
-                                    <label className='label'>Role</label>
+                                    <label className='label'>vai Trò</label>
                                     <select
                                         // name="userstatus"
                                         // className="form-control p-2"
@@ -245,7 +292,7 @@ const AddUser = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="" >-- Select Role --</option>
+                                        <option disabled selected value="" >-- Chọn vai trò --</option>
                                         {
                                             usersrole.map((getrl, index) => (
                                                 <option key={index} value={getrl.id}>{getrl.role_name} </option>
@@ -262,11 +309,11 @@ const AddUser = () => {
                                 <Link to="/users" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
-                                        <span className="btnText">Back</span>
+                                        <span className="btnText">Quay Lại</span>
                                     </div>
                                 </Link>
                                 <button className="submit" type='submit'>
-                                    <span className="btnText">Submit</span>
+                                    <span className="btnText">Thêm</span>
                                     <i className="uil uil-navigator"></i>
                                 </button>
 

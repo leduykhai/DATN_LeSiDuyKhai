@@ -131,14 +131,14 @@ const columns = [
     },
     {
         field: 'ho_ten',
-        headerName: 'Name',
+        headerName: 'Họ Tên',
         type: 'text',
         // valueOptions: ['full time', 'part time', 'intern'],
         width: 150,
     },
     {
         field: 'sdt',
-        headerName: 'Phone Number',
+        headerName: 'Số Điện Thoại',
         type: 'number',
         // valueOptions: ['full time', 'part time', 'intern'],
         width: 150,
@@ -373,10 +373,10 @@ export default function ListUser() {
 
     const deleteContact = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that user ?")
+            window.confirm("Bạn Chắc chắn muốn xoá tài khoản này ?")
         ) {
             axios.delete(`http://localhost:3000/users/${id}`);
-            toast.success("User Delete Successfully");
+            toast.success("Xoá Tài Khoản Thành Công!");
             setTimeout(() => loadData(), 100);
         }
     };
@@ -443,15 +443,15 @@ export default function ListUser() {
                 <Link to={`/addUser`}>
                     <PersonAddAltIcon className='add-icon' sx={{ fontSize: 40 }} />
                 </Link>
-                <div style={{ height: 300, width: '100%' }}>
-                    <DataGridPremium
-                        rows={data}
-                        columns={columns}
-                        components={{
-                            Toolbar: CustomToolbar,
-                        }}
-                    />
-                </div>
+                {/* <div style={{ height: 300, width: '100%' }}> */}
+                <DataGridPremium
+                    rows={data}
+                    columns={columns}
+                    components={{
+                        Toolbar: CustomToolbar,
+                    }}
+                />
+                {/* </div> */}
                 <TableContainer>
                     <Table
                         sx={{ minWidth: 750 }}
@@ -543,7 +543,7 @@ export default function ListUser() {
             </Paper>
             <FormControlLabel
                 control={<Switch checked={dense} onChange={handleChangeDense} />}
-                label="Dense padding"
+                label="Thu Gọn"
             />
         </Box>
     );

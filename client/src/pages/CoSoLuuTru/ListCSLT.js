@@ -172,7 +172,7 @@ export default function ListCSLT() {
                                                 {index + 1}
                                             </TableCell>
                                             <TableCell align="left">CSLT{row.id}</TableCell>
-                                            <TableCell align="left">{row.chu_cslt_id}</TableCell>
+                                            <TableCell align="left">CCSLT{row.chu_cslt_id}</TableCell>
                                             <TableCell align="left">{row.ten_cslt}</TableCell>
                                             <TableCell align="left">{row.loai_cslt}</TableCell>
                                             <TableCell align="left">{row.nguoi_dai_dien}</TableCell>
@@ -212,7 +212,7 @@ export default function ListCSLT() {
             </Paper>
             <FormControlLabel
                 control={<Switch checked={dense} onChange={handleChangeDense} />}
-                label="Dense padding"
+                label="Thu Gọn"
             />
         </Box>
     );

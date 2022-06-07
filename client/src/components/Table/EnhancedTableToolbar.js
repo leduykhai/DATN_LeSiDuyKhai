@@ -31,7 +31,7 @@ const EnhancedTableToolbar = (props) => {
                     variant="subtitle1"
                     component="div"
                 >
-                    {numSelected} selected
+                    {numSelected} Đã Chọn
                 </Typography>
             ) : (
                 <Typography
@@ -40,7 +40,7 @@ const EnhancedTableToolbar = (props) => {
                     id="tableTitle"
                     component="div"
                 >
-                    Accommodation Management
+                    Quản Lý Lưu Trú
                 </Typography>
             )}
 

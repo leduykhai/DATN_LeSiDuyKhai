@@ -19,22 +19,22 @@ const ViewChuCSLT = () => {
         <div style={{ marginTop: "150px" }}>
             <div className='Card'>
                 <div className='Card-header'>
-                    <p>ChuCSLT Detail</p>
+                    <p>Thông tin Chủ Cơ sở lưu trú</p>
                 </div>
                 <div className='Container'>
                     <strong>ID: </strong>
                     <span>{id}</span>
                     <br />
                     <br />
-                    <strong>FullName: </strong>
+                    <strong>Họ tên: </strong>
                     <span>{ChuCSLT.ho_ten}</span>
                     <br />
                     <br />
-                    <strong>Date of birth: </strong>
+                    <strong>Ngày sinh: </strong>
                     <span>{moment(ChuCSLT.ngay_sinh).format('DD/MM/YYYY')}</span>
                     <br />
                     <br />
-                    <strong>Gender: </strong>
+                    <strong>Giới tính: </strong>
                     <span>{ChuCSLT.gioi_tinh}</span>
                     <br />
                     <br />
@@ -42,20 +42,20 @@ const ViewChuCSLT = () => {
                     <span>{ChuCSLT.email}</span>
                     <br />
                     <br />
-                    <strong>Phone Number: </strong>
+                    <strong>Số điện thoại: </strong>
                     <span>{ChuCSLT.sdt}</span>
                     <br />
                     <br />
-                    <strong>Citizen ID: </strong>
+                    <strong>CCCD: </strong>
                     <span>{ChuCSLT.cccd}</span>
                     <br />
                     <br />
-                    <strong>Address: </strong>
+                    <strong>Địa chỉ: </strong>
                     <span>{ChuCSLT.dia_chi}</span>
                     <br />
                     <br />
                     <Link to="/chucslt">
-                        <div className='btn'>Go Back</div>
+                        <div className='btn'>Quay lại</div>
                     </Link>
                 </div>
             </div>

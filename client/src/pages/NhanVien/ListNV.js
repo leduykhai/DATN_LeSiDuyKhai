@@ -208,7 +208,7 @@ export default function ListNV() {
             </Paper>
             <FormControlLabel
                 control={<Switch checked={dense} onChange={handleChangeDense} />}
-                label="Dense padding"
+                label="Thu Gọn"
             />
         </Box>
     );

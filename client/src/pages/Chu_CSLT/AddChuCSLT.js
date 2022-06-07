@@ -130,27 +130,27 @@ const AddChuCSLT = () => {
         const msg = {}
 
         if (isEmpty(ho_ten)) {
-            msg.ho_ten = "Please input your Name"
+            msg.ho_ten = "Vui lòng nhập họ tên"
         }
         if (isEmpty(ngay_sinh)) {
-            msg.ngay_sinh = "Please input your Date of birth"
+            msg.ngay_sinh = "Vui lòng chọn ngày sinh"
         }
         if (isEmpty(gioi_tinh)) {
-            msg.gioi_tinh = "Please input your Gender"
+            msg.gioi_tinh = "Vui lòng chọn giới tính"
         }
         if (isEmpty(email)) {
-            msg.email = "Please input your Email"
+            msg.email = "Vui lòng nhập email"
         } else if (!isEmail(email)) {
-            msg.email = "Your email is incorrect"
+            msg.email = "email không đúng"
         }
         if (isEmpty(cccd)) {
-            msg.cccd = "Please input your Citizen ID"
+            msg.cccd = "vui lòng nhập căn cước công dân"
         }
         if (isEmpty(dia_chi)) {
-            msg.dia_chi = "Please input your Address"
+            msg.dia_chi = "Vui lòng nhập địa chỉ"
         }
         if (isEmpty(sdt)) {
-            msg.sdt = "Please input your Phone Number"
+            msg.sdt = "vui lòng nhập số điện thoại"
         }
         // if (isEmpty(hinh)) {
         //     msg.hinh = "Please input your Images"
@@ -164,7 +164,7 @@ const AddChuCSLT = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!ho_ten || !ngay_sinh || !gioi_tinh || !email || !cccd || !dia_chi || !sdt) {
-            toast.error("please provide value into each input field");
+            toast.error("Vui lòng nhập đầy đủ");
         }
         const isValid = validateAll()
         if (!isValid) return
@@ -200,7 +200,7 @@ const AddChuCSLT = () => {
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("ChuCSLT Added Successfully")
+                toast.success("Thêm thành công")
             }
             setTimeout(() => history.push("/chucslt"), 100);
         }
@@ -214,22 +214,22 @@ const AddChuCSLT = () => {
     return (
         <body className='body'>
             <div className="container-addccslt">
-                <header className='header'>Registration</header>
+                <header className='header'>Thêm Chủ Cơ Sở Lưu Trú</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
                     <div className="form-addccslt first-addccslt">
                         <div className="details personal">
-                            <span className="title-addccslt">Personal Details</span>
+                            <span className="title-addccslt">Thông tin cá nhân</span>
 
                             <div className="fields-addccslt">
                                 <div className="input-field-addccslt">
-                                    <label className='label'>Full Name</label>
+                                    <label className='label'>Họ tên</label>
                                     <input
                                         type="text"
                                         id='ho_ten'
                                         name='ho_ten'
                                         value={ho_ten || ""}
-                                        placeholder="Enter your name"
+                                        placeholder="Nhập Họ Tên . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -237,13 +237,13 @@ const AddChuCSLT = () => {
                                 </div>
 
                                 <div className="input-field-addccslt">
-                                    <label className='label'>Date of Birth</label>
+                                    <label className='label'>Ngày Sinh</label>
                                     <input
                                         type="date"
                                         id='ngay_sinh'
                                         name='ngay_sinh'
                                         value={ngay_sinh || ""}
-                                        placeholder="Enter birth date"
+                                        placeholder="Chọn Ngày Sinh"
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -251,7 +251,7 @@ const AddChuCSLT = () => {
                                 </div>
 
                                 <div className="input-field-addccslt">
-                                    <label className='label'>Gender</label>
+                                    <label className='label'>Giới tính</label>
                                     <select
                                         type="select"
                                         id='gioi_tinh'
@@ -260,11 +260,11 @@ const AddChuCSLT = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value={""}>--Select gender--</option>
+                                        <option disabled selected value={""}>--Chọn Giới tính--</option>
                                         {/* <option>--Select gender--</option> */}
-                                        <option>Male</option>
-                                        <option>Female</option>
-                                        <option>Others</option>
+                                        <option>Nam</option>
+                                        <option>Nữ</option>
+                                        <option>Khác</option>
                                     </select>
                                 </div>
 
@@ -275,7 +275,7 @@ const AddChuCSLT = () => {
                                         id='email'
                                         name='email'
                                         value={email || ""}
-                                        placeholder="Enter your email"
+                                        placeholder="Nhập email . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -283,13 +283,13 @@ const AddChuCSLT = () => {
                                 </div>
 
                                 <div className="input-field-addccslt">
-                                    <label className='label'>Citizen ID</label>
+                                    <label className='label'>Căn Cước Công Dân</label>
                                     <input
                                         type="number"
                                         id='cccd'
                                         name='cccd'
                                         value={cccd || ""}
-                                        placeholder="Enter Citizen ID"
+                                        placeholder="Nhập CCCD . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -297,13 +297,13 @@ const AddChuCSLT = () => {
                                 </div>
 
                                 <div className="input-field-addccslt">
-                                    <label className='label'>Address</label>
+                                    <label className='label'>Địa Chỉ</label>
                                     <input
                                         type="text"
                                         id='dia_chi'
                                         name='dia_chi'
                                         value={dia_chi || ""}
-                                        placeholder="Enter your Address"
+                                        placeholder="Nhập Địa Chỉ . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -311,7 +311,7 @@ const AddChuCSLT = () => {
                                 </div>
 
                                 <div className="input-field-addccslt">
-                                    <label className='label'>City</label>
+                                    <label className='label'>Thành Phố</label>
                                     <select
                                         className="form-control p-2"
                                         name="thanh_pho"
@@ -319,7 +319,7 @@ const AddChuCSLT = () => {
                                         required
                                         onChange={(e) => handlethanh_pho(e)}
                                     >
-                                        <option disabled selected value="">--Select City--</option>
+                                        <option disabled selected value="">--Chọn Thành Phố--</option>
                                         {
                                             thanh_pho.map((getcity, index) => (
                                                 <option key={index} value={getcity.id} >{getcity.ten_thanh_pho} </option>
@@ -329,7 +329,7 @@ const AddChuCSLT = () => {
                                 </div>
 
                                 <div className="input-field-addccslt">
-                                    <label className='label'>District</label>
+                                    <label className='label'>Quận</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -338,7 +338,7 @@ const AddChuCSLT = () => {
                                         required
                                         onChange={(e) => handlequan(e)}
                                     >
-                                        <option disabled selected value="">--Select District--</option>
+                                        <option disabled selected value="">--Chọn Quận--</option>
                                         {
                                             quan.map((getdistrict, index) => (
                                                 <option key={index} value={getdistrict.id}>{getdistrict.ten_quan} </option>
@@ -348,7 +348,7 @@ const AddChuCSLT = () => {
                                 </div>
 
                                 <div className="input-field-addccslt">
-                                    <label className='label'>Ward</label>
+                                    <label className='label'>Phường</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -358,7 +358,7 @@ const AddChuCSLT = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select Ward--</option>
+                                        <option disabled selected value="">--Chọn Phường--</option>
                                         {
                                             phuong.map((getward, index) => (
                                                 <option key={index} value={getward.id}> {getward.ten_phuong} </option>
@@ -368,13 +368,13 @@ const AddChuCSLT = () => {
                                 </div>
 
                                 <div className="input-field-addccslt">
-                                    <label className='label'>Number Phone</label>
+                                    <label className='label'>Số Điện Thoại</label>
                                     <input
                                         type="number"
                                         id='sdt'
                                         name='sdt'
                                         value={sdt || ""}
-                                        placeholder="Enter your Number Phone"
+                                        placeholder="Nhập Số Điện Thoại . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -398,11 +398,11 @@ const AddChuCSLT = () => {
                         </div>
 
                         <div className="details ID">
-                            <span className="title-addccslt">Identity Details</span>
+                            <span className="title-addccslt"></span>
 
                             <div className="fields-addccslt">
                                 <div className="input-field-addccslt">
-                                    <label className='label'>User ID</label>
+                                    <label className='label'>Tài Khoản</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -412,7 +412,7 @@ const AddChuCSLT = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select User ID--</option>
+                                        <option disabled selected value="">--Tên Tài Khoản--</option>
                                         {
                                             useridmax.map((getus, index) => (
                                                 <option key={index} value={getus.id}>{getus.ho_ten} </option>
@@ -422,7 +422,7 @@ const AddChuCSLT = () => {
                                 </div>
 
                                 <div className="input-field-addccslt">
-                                    <label className='label'>Employee ID</label>
+                                    <label className='label'>Nhân Viên</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -432,7 +432,7 @@ const AddChuCSLT = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select Employee ID--</option>
+                                        <option disabled selected value="">--Tên Nhân Viên--</option>
                                         {
                                             nhanvien.map((getnv, index) => (
                                                 <option key={index} value={getnv.id}>{getnv.ho_ten} </option>
@@ -449,11 +449,11 @@ const AddChuCSLT = () => {
                                 <Link to="/chucslt" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
-                                        <span className="btnText">Back</span>
+                                        <span className="btnText">Quay Lại</span>
                                     </div>
                                 </Link>
                                 <button className="submit" type='submit'>
-                                    <span className="btnText">Submit</span>
+                                    <span className="btnText">Thêm</span>
                                     <i className="uil uil-navigator"></i>
                                 </button>
 

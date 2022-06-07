@@ -94,12 +94,47 @@ module.exports = {
                     message: 'Error in login'
                 });
             } else {
-                console.log(response)
+                // console.log(response[0].ho_ten)
                 if (response.length > 0) {
-                    res.json({
-                        status: 'SUCCESS',
-                        data: response
-                    });
+                    if (response[0].user_status_id === 1) {
+                        if (response[0].role_id === 1) {
+                            res.json({
+                                role: 'ADMIN',
+                                data: response
+                            });
+                        } else if (response[0].role_id === 2) {
+                            res.json({
+                                role: 'NHANVIEN',
+                                data: response
+                            });
+                        } else if (response[0].role_id === 3) {
+                            res.json({
+                                role: 'CCSLT',
+                                data: response
+                            });
+                        } else if (response[0].role_id === 4) {
+                            res.json({
+                                role: 'NNN',
+                                data: response
+                            });
+                        } else {
+                            res.json({
+                                status: 'ERROR_IN_LOGIN',
+                                message: 'Account or password wrong'
+                            });
+                        }
+                    } else if (response[0].user_status_id === 2) {
+                        res.json({
+                            status: 'ERROR_IN_LOGIN',
+                            message: 'Unapproved account'
+                        });
+                    } else {
+                        res.json({
+                            status: 'ERROR_IN_LOGIN',
+                            message: 'Locked account'
+                        });
+                    }
+
                 } else {
                     res.json({
                         status: 'ERROR_IN_LOGIN',

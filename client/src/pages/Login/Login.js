@@ -24,7 +24,7 @@ function Login(props) {
     useEffect(() => {
         const token = localStorage.getItem(APP_CONSTANTS.USER_TOKEN)
         if (token) {
-            history.replace('/dashboard') //./admins
+            history.replace('/dashboard') //./user
         }
     })
 
@@ -41,13 +41,13 @@ function Login(props) {
     const validateAll = () => {
         const msg = {}
         if (isEmpty(email)) {
-            msg.email = "Please input your Username"
+            msg.email = "Vui lòng nhập email"
         } else if (!isEmail(email)) {
-            msg.email = "Your email is incorrect"
+            msg.email = "Email không chính xác"
         }
 
         if (isEmpty(password)) {
-            msg.password = "Please input your Password"
+            msg.password = "Vui lòng nhập mật khẩu"
         }
 
         setValidationMsg(msg)
@@ -61,16 +61,15 @@ function Login(props) {
 
         // try {
         //     const params = {
-        //         email: email,
+        //         username: email,
         //         password: password
         //     }
-        //     console.log(params)
+
         //     const res = await axios.post(ENDPOINT.LOGIN, params)
-        //     console.log(res)
         //     if (res.data && res.data.messageCode === 1) {
         //         localStorage.setItem(APP_CONSTANTS.USER_TOKEN, res.data.result.access_token)
         //         setMessage("")
-        //         history.replace('/admins')
+        //         history.replace('/admin')
         //     } else {
         //         setMessage(res.data.message)
         //     }
@@ -85,16 +84,38 @@ function Login(props) {
         try {
             let { data } = await login(email, password);
             console.log(data);
-            if (data.status !== 'SUCCESS') {
-                console.log(data.message);
-                setMessage(data.message)
-            } else {
+            if (data.role === 'ADMIN') {
                 setMessage("");
                 history.push({
                     pathname: '/dashboard',
-                    state: { dashboard: data }
+                    state: { detail: data }
                 });
                 console.log('Success!!!');
+            } else if (data.role === 'NHANVIEN') {
+                setMessage("");
+                history.push({
+                    pathname: '/dashboard',
+                    state: { detail: data }
+                });
+                console.log('Success!!!');
+            } else if (data.role === 'CCSLT') {
+                setMessage("");
+                history.push({
+                    pathname: '/client',
+                    state: { detail: data }
+                });
+                console.log('Success!!!');
+            } else if (data.role === 'NNN') {
+                setMessage("");
+                history.push({
+                    pathname: '/client',
+                    state: { detail: data }
+                });
+                console.log('Success!!!');
+            }
+            else {
+                console.log(data.message);
+                setMessage(data.message)
             }
         } catch (e) {
             console.log('Error in signIn: ', e.response);
@@ -120,7 +141,7 @@ function Login(props) {
             <div class="forms-container">
                 <div class="signin-signup">
                     <form action="#" class="sign-in-form">
-                        <h2 class="title">Sign in</h2>
+                        <h2 class="title">Đăng Nhập</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
                             <input
@@ -139,21 +160,21 @@ function Login(props) {
                                 type="password"
                                 name="password"
                                 id='password'
-                                placeholder="password"
+                                placeholder="Mật Khẩu"
                                 autoComplete="password"
                                 onChange={onChangePassword}
                             />
                         </div>
                         <p className="error-text">{validationMsg.password}</p>
-                        <div className="text-center text-sm text-red-500 mt-2">{message}</div>
+                        <div className="error-text">{message}</div>
                         <button
                             type="button"
                             className="btn solid"
                             onClick={onSubmitLogin}
                         >
-                            LOGIN
+                            Đăng Nhập
                         </button>
-                        <p class="social-text">Or Sign in with social platforms</p>
+                        <p class="social-text"></p>
                         <div class="social-media">
                             <a href="#" class="social-icon">
                                 <i class="fab fa-facebook-f"></i>
@@ -170,10 +191,10 @@ function Login(props) {
                         </div>
                     </form>
                     <form action="#" class="sign-up-form">
-                        <h2 class="title">Sign up</h2>
+                        <h2 class="title">Đăng Ký</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" placeholder="Username" />
+                            <input type="text" placeholder="Họ Tên" />
                         </div>
                         <div class="input-field">
                             <i class="fas fa-envelope"></i>
@@ -181,10 +202,10 @@ function Login(props) {
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Password" />
+                            <input type="password" placeholder="Mật Khẩu" />
                         </div>
-                        <input type="submit" class="btn" value="Sign up" />
-                        <p class="social-text">Or Sign up with social platforms</p>
+                        <input type="submit" class="btn" value="Đăng Ký" />
+                        <p class="social-text"></p>
                         <div class="social-media">
                             <a href="#" class="social-icon">
                                 <i class="fab fa-facebook-f"></i>
@@ -206,24 +227,24 @@ function Login(props) {
             <div class="panels-container">
                 <div class="panel left-panel">
                     <div class="content">
-                        <h3>New here ?</h3>
+                        <h3>Tạo Mới Tài Khoản!</h3>
                         <p>
 
                         </p>
                         <button class="btn transparent" id="sign-up-btn" onClick={changeState} >
-                            Sign up
+                            Đăng Ký
                         </button>
                     </div>
                     <img src="" class="image" alt="" />
                 </div>
                 <div class="panel right-panel">
                     <div class="content">
-                        <h3>One of us ?</h3>
+                        <h3>Đã Có Tài Khoản!</h3>
                         <p>
 
                         </p>
                         <button class="btn transparent" id="sign-in-btn" >
-                            Sign in
+                            Đăng Nhập
                         </button>
                     </div>
                     <img src="" class="image" alt="" />

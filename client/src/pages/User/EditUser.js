@@ -68,9 +68,9 @@ const EditUser = () => {
         const msg = {}
 
         if (isEmpty(email)) {
-            msg.email = "Please input your Email"
+            msg.email = "Vui lòng nhập email"
         } else if (!isEmail(email)) {
-            msg.email = "Your email is incorrect"
+            msg.email = "Email không đúng"
         }
 
         // if (isEmpty(password)) {
@@ -78,11 +78,11 @@ const EditUser = () => {
         // }
 
         if (isEmpty(ho_ten)) {
-            msg.ho_ten = "Please input your Name"
+            msg.ho_ten = "Vui lòng nhập họ tên"
         }
 
         if (isEmpty(sdt)) {
-            msg.sdt = "Please input your Phone Number"
+            msg.sdt = "Vui lòng nhập số điện thoại"
         }
 
         // if (isEmpty(user_status_id)) {
@@ -101,7 +101,7 @@ const EditUser = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!ho_ten || !email || !password || !sdt || !user_status_id || !role_id) {
-            toast.error("please provide value into each input field");
+            toast.error("Vui lòng nhập đầy đủ thông tin!");
         }
         const isValid = validateAll()
         if (!isValid) return
@@ -128,7 +128,7 @@ const EditUser = () => {
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("Users Added Successfully")
+                toast.success("Cập nhật thành công!")
             }
             setTimeout(() => history.push("/users"), 100);
         }
@@ -142,23 +142,23 @@ const EditUser = () => {
     return (
         <body className='body'>
             <div className="container-edituser">
-                <header className='header'>Registration</header>
+                <header className='header'>Cập nhật</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
                     <div className="form-edituser first-edituser">
                         <div className="details personal">
-                            <span className="title-edituser">Personal Details</span>
+                            <span className="title-edituser">Thông tin tài khoản</span>
 
                             <div className="fields-edituser">
 
                                 <div className="input-field-edituser">
-                                    <label className='label'>Full Name</label>
+                                    <label className='label'>Họ tên</label>
                                     <input
                                         type="text"
                                         id='ho_ten'
                                         name='ho_ten'
                                         value={ho_ten || ""}
-                                        placeholder="Enter your name"
+                                        placeholder="Nhập họ tên . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -172,7 +172,7 @@ const EditUser = () => {
                                         id='email'
                                         name='email'
                                         value={email || ""}
-                                        placeholder="Enter your email"
+                                        placeholder="Nhập email . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -180,13 +180,13 @@ const EditUser = () => {
                                 </div>
 
                                 <div className="input-field-edituser">
-                                    <label className='label'>Password</label>
+                                    <label className='label'>Mật khẩu</label>
                                     <input
                                         type="text"
                                         id='password'
                                         name='password'
                                         value={password || ""}
-                                        placeholder="Enter your password"
+                                        placeholder="Nhập mật khẩu . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -196,13 +196,13 @@ const EditUser = () => {
 
 
                                 <div className="input-field-edituser">
-                                    <label className='label'>Number Phone</label>
+                                    <label className='label'>Số điện thoại</label>
                                     <input
                                         type="number"
                                         id='sdt'
                                         name='sdt'
                                         value={sdt || ""}
-                                        placeholder="Enter your Number Phone"
+                                        placeholder="Nhập số điện thoại . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -210,7 +210,7 @@ const EditUser = () => {
                                 </div>
 
                                 <div className="input-field-edituser">
-                                    <label className='label'>Status</label>
+                                    <label className='label'>Trạng thái</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -220,7 +220,7 @@ const EditUser = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="" >-- Select Status --</option>
+                                        <option disabled selected value="" >-- Chọn Trạng thái --</option>
                                         {
                                             userstatus.map((getus, index) => (
                                                 <option key={index} value={getus.id}>{getus.status_name} </option>
@@ -230,7 +230,7 @@ const EditUser = () => {
                                 </div>
 
                                 <div className="input-field-edituser">
-                                    <label className='label'>Role</label>
+                                    <label className='label'>Vai Trò</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -240,7 +240,7 @@ const EditUser = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="" >-- Select Role --</option>
+                                        <option disabled selected value="" >-- Chọn vai Trò --</option>
                                         {
                                             usersrole.map((getrl, index) => (
                                                 <option key={index} value={getrl.id}>{getrl.role_name} </option>
@@ -257,11 +257,11 @@ const EditUser = () => {
                                 <Link to="/users" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
-                                        <span className="btnText">Back</span>
+                                        <span className="btnText">Quay Lại</span>
                                     </div>
                                 </Link>
                                 <button className="submit" type='submit'>
-                                    <span className="btnText">Submit</span>
+                                    <span className="btnText">Cập Nhật</span>
                                     <i className="uil uil-navigator"></i>
                                 </button>
 

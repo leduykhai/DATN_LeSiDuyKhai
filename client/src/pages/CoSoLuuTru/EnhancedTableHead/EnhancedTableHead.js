@@ -14,7 +14,7 @@ const headCells = [
         id: 'no',
         numeric: false,
         disablePadding: true,
-        label: 'No. ',
+        label: 'STT',
     },
     {
         id: 'id',
@@ -26,31 +26,31 @@ const headCells = [
         id: 'chu_cslt_id',
         numeric: false,
         disablePadding: false,
-        label: 'ID Owner',
+        label: 'ID Chủ CSLT',
     },
     {
         id: 'ten_cslt',
         numeric: false,
         disablePadding: false,
-        label: 'Name',
+        label: 'Tên CSLT',
     },
     {
         id: 'loai_cslt',
         numeric: false,
         disablePadding: false,
-        label: 'Type',
+        label: 'Loại CSLT',
     },
     {
         id: 'nguoi_dai_dien',
         numeric: false,
         disablePadding: false,
-        label: 'Surrogate',
+        label: 'Người Đại Diện',
     },
     {
         id: 'action',
         numeric: false,
         disablePadding: false,
-        label: 'Action',
+        label: 'Hành Động',
     },
 ];
 

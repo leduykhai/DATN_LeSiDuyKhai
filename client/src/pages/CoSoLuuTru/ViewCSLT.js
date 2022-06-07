@@ -18,39 +18,39 @@ const ViewCSLT = () => {
         <div style={{ marginTop: "150px" }}>
             <div className='Card'>
                 <div className='Card-header'>
-                    <p>CSLT Detail</p>
+                    <p>Thông tin cơ sở lưu trú</p>
                 </div>
                 <div className='Container'>
                     <strong>ID: </strong>
                     <span>CSLT{id}</span>
                     <br />
                     <br />
-                    <strong>FullName: </strong>
+                    <strong>Tên CSLT: </strong>
                     <span>{CSLT.ten_cslt}</span>
                     <br />
                     <br />
-                    <strong>Type: </strong>
+                    <strong>Loại CSLT: </strong>
                     <span>{CSLT.loai_cslt}</span>
                     <br />
                     <br />
-                    <strong>Surrogate: </strong>
+                    <strong>Người Đại Diện: </strong>
                     <span>{CSLT.nguoi_dai_dien}</span>
                     <br />
                     <br />
-                    <strong>Email: </strong>
+                    <strong>Email CSLT: </strong>
                     <span>{CSLT.email}</span>
                     <br />
                     <br />
-                    <strong>Phone Number: </strong>
+                    <strong>Số Điện Thoại: </strong>
                     <span>{CSLT.sdt}</span>
                     <br />
                     <br />
-                    <strong>Address: </strong>
+                    <strong>Địa Chỉ: </strong>
                     <span>{CSLT.dia_chi}</span>
                     <br />
                     <br />
                     <Link to="/cslt">
-                        <div className='btn'>Go Back</div>
+                        <div className='btn'>Quay Lại</div>
                     </Link>
                 </div>
             </div>

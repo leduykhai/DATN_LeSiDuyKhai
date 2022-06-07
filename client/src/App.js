@@ -90,7 +90,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className='App'>
-        <ToastContainer position='bottom-right' />
+        <ToastContainer position='top-right' />
         <Switch>
 
           <Route exact path="/" component={Login} />
