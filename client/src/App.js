@@ -86,6 +86,10 @@ import DangKyAccount from './pages/Client/DangKyCSLT/DangKyAccount'
 import DangKyChuCslt from './pages/Client/DangKyCSLT/DangKyCCslt'
 import DangKyCslt from './pages/Client/DangKyCSLT/DangKyCslt'
 
+//khai báo trước
+import AddKBT_Client from './pages/Client/KhaiBaoTruoc/AddKBT_Client';
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -99,10 +103,15 @@ function App() {
 
           {/* Client */}
           {/* <Route exact path="/client" component={Navbar_Client} /> */}
+          {/* Đăng ký quản lý lưu trú */}
           <RouteWrapper exact path="/client" component={Main} layout={Navbar_Client} />
           <RouteWrapper exact path="/client_dk_b1" component={DangKyAccount} layout={Navbar_Client} />
           <RouteWrapper exact path="/client_dk_b2" component={DangKyChuCslt} layout={Navbar_Client} />
           <RouteWrapper exact path="/client_dk_b3" component={DangKyCslt} layout={Navbar_Client} />
+
+          {/* Khai báo trước */}
+          <RouteWrapper exact path="/client_kbt/:id" component={AddKBT_Client} layout={Navbar_Client} />
+
 
           {/* Home */}
           {/* <Route exact path="/home" component={Home} /> */}

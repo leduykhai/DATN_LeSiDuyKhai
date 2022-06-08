@@ -52,10 +52,10 @@ export default function ListDG() {
 
     const deleteContact = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that Comment ?")
+            window.confirm("Bạn chắc chắn muốn xoá đánh giá này ?")
         ) {
             axios.delete(`http://localhost:3000/danhgias/${id}`);
-            toast.success("Comment Delete Successfully");
+            toast.success("Xoá thành công");
             setTimeout(() => loadData(), 100);
         }
     };
@@ -214,7 +214,7 @@ export default function ListDG() {
             </Paper>
             <FormControlLabel
                 control={<Switch checked={dense} onChange={handleChangeDense} />}
-                label="Dense padding"
+                label="Thu Gọn"
             />
         </Box>
     );

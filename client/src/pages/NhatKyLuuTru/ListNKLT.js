@@ -52,10 +52,10 @@ export default function ListNKLT() {
 
     const deleteContact = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that destination ?")
+            window.confirm("Bạn chắc chắn muốn xoá điểm đến này ?")
         ) {
             axios.delete(`http://localhost:3000/nhatkyluutrus/${id}`);
-            toast.success("Destination Delete Successfully");
+            toast.success("Xoá thành công");
             setTimeout(() => loadData(), 100);
         }
     };
@@ -214,7 +214,7 @@ export default function ListNKLT() {
             </Paper>
             <FormControlLabel
                 control={<Switch checked={dense} onChange={handleChangeDense} />}
-                label="Dense padding"
+                label="Thu Gọn"
             />
         </Box>
     );

@@ -105,11 +105,11 @@ const AddNKLT = () => {
         const msg = {}
 
         if (isEmpty(ten_diem_den)) {
-            msg.ten_diem_den = "Please input your location"
+            msg.ten_diem_den = "Vui lòng nhập điểm đến"
         }
 
         if (isEmpty(dia_chi_diem_den)) {
-            msg.dia_chi_diem_den = "Please input your address"
+            msg.dia_chi_diem_den = "Vui lòng nhập địa chỉ điểm đến"
         }
 
         setValidationMsg(msg)
@@ -120,7 +120,7 @@ const AddNKLT = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!ten_diem_den || !dia_chi_diem_den) {
-            toast.error("please provide value into each input field");
+            toast.error("Vui lòng nhập đầy đủ thông tin!");
         }
         const isValid = validateAll()
         if (!isValid) return
@@ -148,7 +148,7 @@ const AddNKLT = () => {
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("Diary Added Successfully")
+                toast.success("Thêm thành công")
             }
             setTimeout(() => history.push("/nklt"), 100);
         }
@@ -162,22 +162,22 @@ const AddNKLT = () => {
     return (
         <body className='body'>
             <div className="container-addnklt">
-                <header className='header'>Registration</header>
+                <header className='header'>Thêm nhật ký lưu trú</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
                     <div className="form-addnklt first-addnklt">
                         <div className="details personal">
-                            <span className="title-addnklt">Diary Details</span>
+                            <span className="title-addnklt">Thông tin nhật ký lưu trú</span>
 
                             <div className="fields-addnklt">
                                 <div className="input-field-addnklt">
-                                    <label className='label'>Place Name</label>
+                                    <label className='label'>Tên điểm đến</label>
                                     <input
                                         type="text"
                                         id='ten_diem_den'
                                         name='ten_diem_den'
                                         value={ten_diem_den || ""}
-                                        placeholder="Enter Place Name"
+                                        placeholder="Nhập điểm đến . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -185,13 +185,13 @@ const AddNKLT = () => {
                                 </div>
 
                                 <div className="input-field-addnklt">
-                                    <label className='label'>Address Name</label>
+                                    <label className='label'>Địa chỉ điểm đến</label>
                                     <input
                                         type="text"
                                         id='dia_chi_diem_den'
                                         name='dia_chi_diem_den'
                                         value={dia_chi_diem_den || ""}
-                                        placeholder="Enter Address Name"
+                                        placeholder="Nhập địa chỉ . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -203,7 +203,7 @@ const AddNKLT = () => {
                                 </div>
 
                                 <div className="input-field-addnklt">
-                                    <label className='label'>City</label>
+                                    <label className='label'>Thành phố</label>
                                     <select
                                         className="form-control p-2"
                                         name="thanh_pho"
@@ -211,7 +211,7 @@ const AddNKLT = () => {
                                         required
                                         onChange={(e) => handlethanh_pho(e)}
                                     >
-                                        <option disabled selected value="">--Select City--</option>
+                                        <option disabled selected value="">--Thành phố--</option>
                                         {
                                             thanh_pho.map((getcity, index) => (
                                                 <option key={index} value={getcity.id} >{getcity.ten_thanh_pho} </option>
@@ -221,7 +221,7 @@ const AddNKLT = () => {
                                 </div>
 
                                 <div className="input-field-addnklt">
-                                    <label className='label'>District</label>
+                                    <label className='label'>Quận</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -230,7 +230,7 @@ const AddNKLT = () => {
                                         required
                                         onChange={(e) => handlequan(e)}
                                     >
-                                        <option disabled selected value="">--Select District--</option>
+                                        <option disabled selected value="">--Quận--</option>
                                         {
                                             quan.map((getdistrict, index) => (
                                                 <option key={index} value={getdistrict.id}>{getdistrict.ten_quan} </option>
@@ -240,7 +240,7 @@ const AddNKLT = () => {
                                 </div>
 
                                 <div className="input-field-addnklt">
-                                    <label className='label'>Ward</label>
+                                    <label className='label'>Phường</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -250,7 +250,7 @@ const AddNKLT = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select Ward--</option>
+                                        <option disabled selected value="">--Phường--</option>
                                         {
                                             phuong.map((getward, index) => (
                                                 <option key={index} value={getward.id}> {getward.ten_phuong} </option>
@@ -260,7 +260,7 @@ const AddNKLT = () => {
                                 </div>
 
                                 <div className="input-field-addnklt">
-                                    <label className='label'>Arrival Time</label>
+                                    <label className='label'>Thời gian đến</label>
                                     <input
                                         label="Arrival Time"
                                         type="datetime-local"
@@ -272,7 +272,7 @@ const AddNKLT = () => {
                                         id='thoi_gian_den'
                                         name='thoi_gian_den'
                                         value={thoi_gian_den || ""}
-                                        placeholder="Enter Arrival Time"
+                                        placeholder="Chọn thời gian"
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -281,7 +281,7 @@ const AddNKLT = () => {
 
 
                                 <div className="input-field-addnklt">
-                                    <label className='label'>Time To Leave</label>
+                                    <label className='label'>Thời gian rời đi</label>
                                     <input
                                         // label="Time To Leave"
                                         type="datetime-local"
@@ -293,7 +293,7 @@ const AddNKLT = () => {
                                         id='thoi_gian_roi_di'
                                         name='thoi_gian_roi_di'
                                         value={thoi_gian_roi_di || ""}
-                                        placeholder="Enter Time To Leave"
+                                        placeholder="Chọn thời gian"
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -301,13 +301,13 @@ const AddNKLT = () => {
                                 </div>
 
                                 <div className="input-field-addnklt">
-                                    <label className='label'>Note</label>
+                                    <label className='label'>Ghi chú</label>
                                     <input
                                         type="text"
                                         id='ghi_chu'
                                         name='ghi_chu'
                                         value={ghi_chu || ""}
-                                        placeholder="Enter Note"
+                                        placeholder="Nhập ghi chú . . ."
                                         onChange={handleInputChange}
                                     />
                                     <p className="error-text">{validationMsg.ghi_chu}</p>
@@ -316,10 +316,10 @@ const AddNKLT = () => {
                         </div>
 
                         <div className="details ID">
-                            <span className="title-addnklt">Identity Details</span>
+                            <span className="title-addnklt"></span>
                             <div className="fields-addnklt">
                                 <div className="input-field-addnklt">
-                                    <label className='label'>Stay ID</label>
+                                    <label className='label'>ID Lưu trú</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -329,7 +329,7 @@ const AddNKLT = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select Stay ID--</option>
+                                        <option disabled selected value="">--ID Lưu trú--</option>
                                         {
                                             lt.map((getlt, index) => (
                                                 <option key={index} value={getlt.id}>LT {getlt.id} </option>
@@ -347,11 +347,11 @@ const AddNKLT = () => {
                                 <Link to="/nklt" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
-                                        <span className="btnText">Back</span>
+                                        <span className="btnText">Quay lại</span>
                                     </div>
                                 </Link>
                                 <button className="submit" type='submit'>
-                                    <span className="btnText">Submit</span>
+                                    <span className="btnText">Thêm</span>
                                     <i className="uil uil-navigator"></i>
                                 </button>
 

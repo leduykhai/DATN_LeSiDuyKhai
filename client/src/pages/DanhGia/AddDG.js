@@ -60,7 +60,7 @@ const AddDG = () => {
         const msg = {}
 
         if (isEmpty(noi_dung)) {
-            msg.noi_dung = "Please input your content"
+            msg.noi_dung = "Vui lòng nhập nội dung"
         }
 
         setValidationMsg(msg)
@@ -71,7 +71,7 @@ const AddDG = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!noi_dung) {
-            toast.error("please provide value into each input field");
+            toast.error("Vui lòng nhập đầy đủ thôn tin!");
         }
         const isValid = validateAll()
         if (!isValid) return
@@ -91,7 +91,7 @@ const AddDG = () => {
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("Comment Added Successfully")
+                toast.success("Thêm thành công!")
             }
             setTimeout(() => history.push("/dg"), 100);
         }
@@ -105,23 +105,23 @@ const AddDG = () => {
     return (
         <body className='body'>
             <div className="container-adddg">
-                <header className='header'>Registration</header>
+                <header className='header'>Thêm đánh giá</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
                     <div className="form-adddg first-adddg">
                         <div className="details personal">
-                            <span className="title-adddg">Comment Details</span>
+                            <span className="title-adddg">thông tin đánh giá</span>
 
                             <div className="fields-adddg">
                                 <div className="input-field-adddg">
-                                    <label className='label'>Content</label>
+                                    <label className='label'>Nội dung</label>
                                     <input
                                         className='input-content'
                                         type="text"
                                         id='noi_dung'
                                         name='noi_dung'
                                         value={noi_dung || ""}
-                                        placeholder="Enter comment..."
+                                        placeholder="Nhập đánh giá..."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -131,10 +131,10 @@ const AddDG = () => {
                         </div>
 
                         <div className="details ID">
-                            <span className="title-adddg">Identity Details</span>
+                            <span className="title-adddg"></span>
                             <div className="fields-adddg">
                                 <div className="input-field-adddg">
-                                    <label className='label'>Foreigner ID</label>
+                                    <label className='label'>Người đánh giá</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -144,7 +144,7 @@ const AddDG = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select Foreigner ID--</option>
+                                        <option disabled selected value="">--Người nước ngoài--</option>
                                         {
                                             nnn.map((getnnn, index) => (
                                                 <option key={index} value={getnnn.id}>NNN {getnnn.id} - {getnnn.ho_ten} </option>
@@ -153,7 +153,7 @@ const AddDG = () => {
                                     </select>
                                 </div>
                                 <div className="input-field-adddg">
-                                    <label className='label'>Accommodation Facility ID</label>
+                                    <label className='label'>Cơ sở lưu trú</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -163,7 +163,7 @@ const AddDG = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select Accommodation ID--</option>
+                                        <option disabled selected value="">--Cơ sở lưu trú--</option>
                                         {
                                             cslt.map((getcslt, index) => (
                                                 <option key={index} value={getcslt.id}>CSLT {getcslt.id} - {getcslt.ten_cslt} </option>
@@ -180,11 +180,11 @@ const AddDG = () => {
                                 <Link to="/dg" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
-                                        <span className="btnText">Back</span>
+                                        <span className="btnText">Quay lại</span>
                                     </div>
                                 </Link>
                                 <button className="submit" type='submit'>
-                                    <span className="btnText">Submit</span>
+                                    <span className="btnText">Thêm</span>
                                     <i className="uil uil-navigator"></i>
                                 </button>
 

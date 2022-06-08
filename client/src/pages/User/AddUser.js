@@ -89,27 +89,23 @@ const AddUser = () => {
         // }
 
         for (var key in user) {
-            if (user[key].email === email) {
+            if (user[key].email == email) {
                 msg.email = "Email Đã Được Sử Dụng!"
             }
         }
 
-        if (sdt.length != 10) {
+        if (sdt.length != 10 || sdt[0] != 0) {
             msg.sdt = "Số điện thoại không tồn tại"
         }
 
-        if (sdt[0] != 0) {
-            msg.sdt = "Số điện thoại sai!"
-        }
-
         if (password.length < 6) {
-            msg.sdt = "Mật khẩu từ 6 ký tự!"
+            msg.password = "Mật khẩu từ 6 ký tự!"
         }
 
         var PhoneNumber;
         for (var i = 0; i < user.length; i++) {
             PhoneNumber = user[i].sdt;
-            if (PhoneNumber === sdt) {
+            if (PhoneNumber == sdt) {
                 msg.sdt = "Số điện thoại đã được sử dụng!"
             }
         }
@@ -176,7 +172,18 @@ const AddUser = () => {
                     .catch((err) => toast.error(err.response.data));
                 toast.success("Đăng ký thành công")
             }
-            setTimeout(() => history.push("/users"), 100);
+            console.log(role_id)
+            if (role_id == 2) {
+                setTimeout(() => history.push("/addNhanVien"), 100);
+            }
+            else if (role_id == 3) {
+                setTimeout(() => history.push("/addchucslt"), 100);
+            }
+            else if (role_id == 4) {
+                setTimeout(() => history.push("/addnnn"), 100);
+            } else {
+                setTimeout(() => history.push("/users"), 100);
+            }
         }
     };
 

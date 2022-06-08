@@ -13,13 +13,61 @@ const Dashboard = () => {
     //     setUserInfo(location.state.detail.data[0]);
     // }, []);
 
+
+    const [user, setUser] = useState([]);
+
+    useEffect(() => {
+        const getUser = async () => {
+            const resuser = await fetch("http://localhost:3000/users");
+            const resu = await resuser.json();
+            setUser(await resu);
+        }
+        getUser();
+    }, []);
+
+    const [nnn, setNnn] = useState([]);
+
+    //nguoi nuoc ngoai
+    useEffect(() => {
+        const getNNN = async () => {
+            const resnnn = await fetch("http://localhost:3000/nguoinuocngoais");
+            const resn = await resnnn.json();
+            setNnn(await resn);
+        }
+        getNNN();
+    }, []);
+
+    const [cslt, setCslt] = useState([]);
+
+    //CSLT
+    useEffect(() => {
+        const getCslt = async () => {
+            const rescslt = await fetch("http://localhost:3000/cslts");
+            const resc = await rescslt.json();
+            setCslt(await resc);
+        }
+        getCslt();
+    }, []);
+
+    const [nhanvien, setNhanvien] = useState([]);
+
+    //nhan vien
+    useEffect(() => {
+        const getNV = async () => {
+            const resnhanvien = await fetch("http://localhost:3000/nhanviens");
+            const resnv = await resnhanvien.json();
+            setNhanvien(await resnv);
+        }
+        getNV();
+    }, []);
+
     return (
         <div>
             <div className="overview-boxes">
                 <div className="box">
                     <div className="right-side">
-                        <div className="box-topic">Tổng Số Tài khoản</div>
-                        <div className="number">68</div>
+                        <div className="box-topic">Tài khoản</div>
+                        <div className="number">{user.length}</div>
                         <div className="indicator">
                             <i className="bx bx-up-arrow-alt"></i>
                             <span className="text">Vừa Cập Nhật</span>
@@ -30,7 +78,7 @@ const Dashboard = () => {
                 <div className="box">
                     <div className="right-side">
                         <div className="box-topic">Người Nước Ngoài</div>
-                        <div className="number">150</div>
+                        <div className="number">{nnn.length}</div>
                         <div className="indicator">
                             <i className="bx bx-up-arrow-alt"></i>
                             <span className="text">Vừa Cập Nhật</span>
@@ -41,7 +89,7 @@ const Dashboard = () => {
                 <div className="box">
                     <div className="right-side">
                         <div className="box-topic">Cơ Sở Lưu Trú</div>
-                        <div className="number">200</div>
+                        <div className="number">{cslt.length}</div>
                         <div className="indicator">
                             <i className="bx bx-up-arrow-alt"></i>
                             <span className="text">Vừa Cập Nhật</span>
@@ -52,7 +100,7 @@ const Dashboard = () => {
                 <div className="box">
                     <div className="right-side">
                         <div className="box-topic">Nhân Viên</div>
-                        <div className="number">16</div>
+                        <div className="number">{nhanvien.length}</div>
                         <div className="indicator">
                             <i className="bx bx-up-arrow-alt"></i>
                             <span className="text">Vừa Cập Nhật</span>

@@ -60,7 +60,7 @@ const EditDG = () => {
         const msg = {}
 
         if (isEmpty(noi_dung)) {
-            msg.noi_dung = "Please input your content"
+            msg.noi_dung = "Vui lòng nhập nội dung"
         }
 
         setValidationMsg(msg)
@@ -71,7 +71,7 @@ const EditDG = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!noi_dung) {
-            toast.error("please provide value into each input field");
+            toast.error("Vui lòng nhập đầy đủ thông tin!");
         }
         const isValid = validateAll()
         if (!isValid) return
@@ -92,7 +92,7 @@ const EditDG = () => {
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("Comment Updated Successfully")
+                toast.success("Cập nhật thành công!")
             }
             setTimeout(() => history.push("/dg"), 100);
         }
@@ -106,12 +106,12 @@ const EditDG = () => {
     return (
         <body className='body'>
             <div className="container-editdg">
-                <header className='header'>Registration</header>
+                <header className='header'>Cập nhật đánh giá</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
                     <div className="form-editdg first-editdg">
                         <div className="details personal">
-                            <span className="title-editdg">Comment Details</span>
+                            <span className="title-editdg">Thông tin đánh giá</span>
 
                             <div className="fields-editdg">
                                 <div className="input-field-editdg">
@@ -122,7 +122,7 @@ const EditDG = () => {
                                         id='noi_dung'
                                         name='noi_dung'
                                         value={noi_dung || ""}
-                                        placeholder="Enter comment..."
+                                        placeholder="Nhập nội dung..."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -132,10 +132,10 @@ const EditDG = () => {
                         </div>
 
                         <div className="details ID">
-                            <span className="title-editdg">Identity Details</span>
+                            <span className="title-editdg"></span>
                             <div className="fields-editdg">
                                 <div className="input-field-editdg">
-                                    <label className='label'>Foreigner ID</label>
+                                    <label className='label'>Người đánh giá</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -145,7 +145,7 @@ const EditDG = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select Foreigner ID--</option>
+                                        <option disabled selected value="">--Người đánh giá--</option>
                                         {
                                             nnn.map((getnnn, index) => (
                                                 <option key={index} value={getnnn.id}>NNN {getnnn.id} - {getnnn.ho_ten} </option>
@@ -154,7 +154,7 @@ const EditDG = () => {
                                     </select>
                                 </div>
                                 <div className="input-field-editdg">
-                                    <label className='label'>Accommodation Facility ID</label>
+                                    <label className='label'>Cơ sở lưu trú</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -164,7 +164,7 @@ const EditDG = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select Accommodation ID--</option>
+                                        <option disabled selected value="">--Cơ sở lưu trú--</option>
                                         {
                                             cslt.map((getcslt, index) => (
                                                 <option key={index} value={getcslt.id}>CSLT {getcslt.id} - {getcslt.ten_cslt} </option>
@@ -181,11 +181,11 @@ const EditDG = () => {
                                 <Link to="/dg" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
-                                        <span className="btnText">Back</span>
+                                        <span className="btnText">Quay lại</span>
                                     </div>
                                 </Link>
                                 <button className="submit" type='submit'>
-                                    <span className="btnText">Submit</span>
+                                    <span className="btnText">Cập nhật</span>
                                     <i className="uil uil-navigator"></i>
                                 </button>
 

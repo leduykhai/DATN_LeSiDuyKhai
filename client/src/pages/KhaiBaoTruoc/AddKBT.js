@@ -74,7 +74,7 @@ const AddKBT = () => {
         getkbt();
     }, []);
 
-    //Nguoi_nuoc_ngoai
+    //khai báo trước
     useEffect(() => {
         axios
             .get(`http://localhost:3000/khaibaotruocs/${id}`)
@@ -107,9 +107,9 @@ const AddKBT = () => {
         if (isEmpty(sdt)) {
             msg.sdt = "Vui lòng nhập số điện thoại"
         }
-        if (isEmpty(ngay_dang_ky)) {
-            msg.ngay_dang_ky = "Vui lòng chọn ngày khai báo"
-        }
+        // if (isEmpty(ngay_dang_ky)) {
+        //     msg.ngay_dang_ky = "Vui lòng chọn ngày khai báo"
+        // }
         if (isEmpty(ngay_den_luu_tru)) {
             msg.ngay_den_luu_tru = "Vui lòng chọn ngày đến lưu trú"
         }
@@ -131,7 +131,8 @@ const AddKBT = () => {
         if (!isValid) return
         else {
             if (!id) {
-                var ngay_dang_ky = moment(ngay_dang_ky).format('YYYY-MM-DD hh:mm:ss')
+                var ngay_dang_ky = moment(ngay_dang_ky).format('YYYY-MM-DD hh:mm:ss');
+                var kbt_status_id = 2;
                 axios
                     .post("http://localhost:3000/khaibaotruocs", {
                         ho_ten,
@@ -311,24 +312,24 @@ const AddKBT = () => {
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    <label className='label'>Ngày Khai Báo</label>
+                                    {/* <label className='label'>Ngày Khai Báo</label>
                                     <input
                                         type="date"
                                         id='ngay_dang_ky'
                                         name='ngay_dang_ky'
                                         // value={moment(ngay_dang_ky).format('YYYY-MM-DD') || ""}
-                                        placeholder="Enter birth date"
+                                        placeholder="Chọn ngày"
                                         required
                                         onChange={handleInputChange}
                                     />
-                                    <p className="error-text">{validationMsg.ngay_dang_ky}</p>
+                                    <p className="error-text">{validationMsg.ngay_dang_ky}</p> */}
 
                                 </div>
 
                                 <div className="input-field-addkbt">
                                     <label className='label'>Ngày Đến Lưu Trú</label>
                                     <input
-                                        type="date"
+                                        type="datetime-local"
                                         id='ngay_den_luu_tru'
                                         name='ngay_den_luu_tru'
                                         value={ngay_den_luu_tru || ""}
@@ -361,7 +362,7 @@ const AddKBT = () => {
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    <label className='label'>Trạng Thái</label>
+                                    {/* <label className='label'>Trạng Thái</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -377,7 +378,7 @@ const AddKBT = () => {
                                                 <option key={index} value={getkbt.id}>{getkbt.status_name} </option>
                                             ))
                                         }
-                                    </select>
+                                    </select> */}
                                 </div>
 
                             </div>

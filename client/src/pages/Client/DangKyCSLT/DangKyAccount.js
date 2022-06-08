@@ -68,30 +68,30 @@ const DangKyAccount = () => {
         const msg = {}
 
         if (isEmpty(email)) {
-            msg.email = "Please input your Email"
+            msg.email = "Vui lòng nhập email"
         } else if (!isEmail(email)) {
-            msg.email = "Your email is incorrect"
+            msg.email = "Email không đúng"
         }
 
         if (isEmpty(password)) {
-            msg.password = "Please input your Password"
+            msg.password = "Vui lòng nhập mật khẩu"
         }
 
         if (isEmpty(ho_ten)) {
-            msg.ho_ten = "Please input your Name"
+            msg.ho_ten = "Vui lòng nhập họ tên"
         }
 
         if (isEmpty(sdt)) {
-            msg.sdt = "Please input your Phone Number"
+            msg.sdt = "Vui lòng nhập số điện thoại"
         }
 
-        if (isEmpty(user_status_id)) {
-            msg.user_status_id = "Please input your Status"
-        }
+        // if (isEmpty(user_status_id)) {
+        //     msg.user_status_id = "Vui lòng chọn trạng thái"
+        // }
 
-        if (isEmpty(role_id)) {
-            msg.role_id = "Please input your Role"
-        }
+        // if (isEmpty(role_id)) {
+        //     msg.role_id = "Vui lòng chọn vai trò"
+        // }
 
         setValidationMsg(msg)
         if (Object.keys(msg).length > 0) return false
@@ -100,13 +100,14 @@ const DangKyAccount = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!email || !password || !ho_ten || !sdt || !user_status_id || !role_id) {
-            toast.error("please provide value into each input field");
+        if (!email || !password || !ho_ten || !sdt) {
+            toast.error("Vui lòng nhập đầy đủ thông tin");
         }
         const isValid = validateAll()
         if (!isValid) return
         else {
             if (!id) {
+                var user_status_id = 2;
                 axios
                     .post("http://localhost:3000/users", {
                         email,
@@ -114,7 +115,7 @@ const DangKyAccount = () => {
                         ho_ten,
                         sdt,
                         user_status_id,
-                        role_id,
+                        // role_id,
                     })
                     .then(() => {
                         setState({
@@ -123,11 +124,11 @@ const DangKyAccount = () => {
                             ho_ten: "",
                             sdt: "",
                             user_status_id: "",
-                            role_id: ""
+                            // role_id: ""
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("Proceed to step two")
+                toast.success("Tiếp tục bước 2")
             }
             setTimeout(() => history.push("/client_dk_b2"), 100);
         }
@@ -141,23 +142,23 @@ const DangKyAccount = () => {
     return (
         <body className='body'>
             <div className="container-dk_ac">
-                <header className='header'>Registration</header>
+                <header className='header'>Đăng ký Quản lý lưu trú</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
                     <div className="form-dk_ac first-dk_ac">
                         <div className="details personal">
-                            <span className="title-dk_ac">Step I: Account Information</span>
+                            <span className="title-dk_ac">Bước 1: Nhập thông tin tài khoản</span>
 
                             <div className="fields-dk_ac">
 
                                 <div className="input-field-dk_ac">
-                                    <label className='label'>Full Name</label>
+                                    <label className='label'>Họ tên</label>
                                     <input
                                         type="text"
                                         id='ho_ten'
                                         name='ho_ten'
                                         value={ho_ten || ""}
-                                        placeholder="Enter your name"
+                                        placeholder="Nhập họ tên  . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -171,7 +172,7 @@ const DangKyAccount = () => {
                                         id='email'
                                         name='email'
                                         value={email || ""}
-                                        placeholder="Enter your email"
+                                        placeholder="Nhập email . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -179,13 +180,13 @@ const DangKyAccount = () => {
                                 </div>
 
                                 <div className="input-field-dk_ac">
-                                    <label className='label'>Password</label>
+                                    <label className='label'>Mật Khẩu</label>
                                     <input
                                         type="text"
                                         id='password'
                                         name='password'
                                         value={password || ""}
-                                        placeholder="Enter your password"
+                                        placeholder="Nhập mật khẩu"
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -195,21 +196,21 @@ const DangKyAccount = () => {
 
 
                                 <div className="input-field-dk_ac">
-                                    <label className='label'>Number Phone</label>
+                                    <label className='label'>Số điện thoại</label>
                                     <input
                                         type="number"
                                         id='sdt'
                                         name='sdt'
                                         value={sdt || ""}
-                                        placeholder="Enter your Number Phone"
+                                        placeholder="Nhập số điện thoại . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
                                     <p className="error-text">{validationMsg.sdt}</p>
                                 </div>
 
-                                <div className="input-field-dk_ac">
-                                    <label className='label'>Status</label>
+                                {/* <div className="input-field-dk_ac">
+                                    <label className='label'>Trạng thái</label>
                                     <select
                                         type="select"
                                         id='user_status_id'
@@ -218,14 +219,14 @@ const DangKyAccount = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value={""}>--Select Status--</option>
-                                        {/* <option>--Select gender--</option> */}
-                                        <option value={2}>Chờ Xác Nhận</option>
+                                        <option disabled selected value={""}>--Trạng thái--</option> */}
+                                {/* <option>--Select gender--</option> */}
+                                {/* <option value={2}>Chờ Xác Nhận</option>
                                     </select>
-                                </div>
+                                </div> */}
 
-                                <div className="input-field-dk_ac">
-                                    <label className='label'>Role</label>
+                                {/* <div className="input-field-dk_ac">
+                                    <label className='label'>Vai Trò</label>
                                     <select
                                         type="select"
                                         id='role_id'
@@ -234,11 +235,11 @@ const DangKyAccount = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value={""}>--Select Role--</option>
-                                        {/* <option>--Select gender--</option> */}
-                                        <option value={3}>Chủ Cơ Sở Lưu Trú</option>
+                                        <option disabled selected value={""}>--Vai Trò--</option> */}
+                                {/* <option>--Select gender--</option> */}
+                                {/* <option value={3}>Chủ Cơ Sở Lưu Trú</option>
                                     </select>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
 
@@ -248,11 +249,11 @@ const DangKyAccount = () => {
                                 <Link to="/client" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
-                                        <span className="btnText">Back</span>
+                                        <span className="btnText">Huỷ</span>
                                     </div>
                                 </Link>
                                 <button className="submit" type='submit'>
-                                    <span className="btnText">Submit</span>
+                                    <span className="btnText">Tiếp Theo</span>
                                     <i className="uil uil-navigator"></i>
                                 </button>
 

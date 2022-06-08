@@ -54,12 +54,12 @@ const DangkyCslt = () => {
 
     useEffect(() => {
         const getquan = async () => {
-            const resquan = await fetch(`http://localhost:3000/quans/${thanh_pho_id}`);
+            const resquan = await fetch(`http://localhost:3000/quans/${48}`);
             const resq = await resquan.json();
             setQuan(await resq);
         }
         getquan();
-    }, [thanh_pho_id]);
+    }, [48]);
 
     const handlequan = (event) => {
         const getquan_id = event.target.value;
@@ -95,24 +95,24 @@ const DangkyCslt = () => {
         const msg = {}
 
         if (isEmpty(ten_cslt)) {
-            msg.ten_cslt = "Please input your Name"
+            msg.ten_cslt = "Vui lòng nhập tên cslt"
         }
         if (isEmpty(loai_cslt)) {
-            msg.loai_cslt = "Please input your Type"
+            msg.loai_cslt = "Vui lòng nhập loại cslt"
         }
         if (isEmpty(nguoi_dai_dien)) {
-            msg.nguoi_dai_dien = "Please input your Surrogate"
+            msg.nguoi_dai_dien = "Vui lòng nhập người đại diện"
         }
         if (isEmpty(email)) {
-            msg.email = "Please input your Email"
+            msg.email = "Vui lòng nhập email"
         } else if (!isEmail(email)) {
-            msg.email = "Your email is incorrect"
+            msg.email = "Email không đúng"
         }
         if (isEmpty(sdt)) {
-            msg.sdt = "Please input your Number Phone"
+            msg.sdt = "Vui lòng nhập số điện thoại"
         }
         if (isEmpty(dia_chi)) {
-            msg.dia_chi = "Please input your Address"
+            msg.dia_chi = "Vui lòng nhập địa chỉ"
         }
         // if (isEmpty(file)) {
         //     msg.file = "Please input your File"
@@ -126,7 +126,7 @@ const DangkyCslt = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!ten_cslt || !loai_cslt || !nguoi_dai_dien || !sdt || !email || !dia_chi) {
-            toast.error("please provide value into each input field");
+            toast.error("Vui lòng nhập đầy đủ thông tin");
         }
         const isValid = validateAll()
         if (!isValid) return
@@ -158,7 +158,7 @@ const DangkyCslt = () => {
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("Complete registration and wait for a response")
+                toast.success("Đăng ký thành công, vui lòng đợi phê duyệt!")
             }
             setTimeout(() => history.push("/client"), 100);
         }
@@ -172,22 +172,22 @@ const DangkyCslt = () => {
     return (
         <body className='body'>
             <div className="container-dk_cslt">
-                <header className='header'>Registration</header>
+                <header className='header'>Đăng ký quản lý lưu trú</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
                     <div className="form-dk_cslt first-dk_cslt">
                         <div className="details personal">
-                            <span className="title-dk_cslt">Step III: Accommodation information</span>
+                            <span className="title-dk_cslt">Bước 3: Thông tin cơ sở lưu trú</span>
 
                             <div className="fields-dk_cslt">
                                 <div className="input-field-dk_cslt">
-                                    <label className='label'>CSLT Name</label>
+                                    <label className='label'>Tên Cơ sở lưu trú</label>
                                     <input
                                         type="text"
                                         id='ten_cslt'
                                         name='ten_cslt'
                                         value={ten_cslt || ""}
-                                        placeholder="Enter CSLT name"
+                                        placeholder="Nhập tên Cơ sở lưu trú. . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -195,7 +195,7 @@ const DangkyCslt = () => {
                                 </div>
 
                                 <div className="input-field-dk_cslt">
-                                    <label className='label'> CSLT Type</label>
+                                    <label className='label'>Loại Cơ sở lưu trú</label>
                                     <select
                                         type="select"
                                         id='loai_cslt'
@@ -204,7 +204,7 @@ const DangkyCslt = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value={""}>--Select Type--</option>
+                                        <option disabled selected value={""}>--Chọn loại--</option>
                                         {/* <option>--Select gender--</option> */}
                                         <option>CC - Chung cư, cơ sở y tế, ký túc xá</option>
                                         <option>KCN - Khu công nghiệp, chế xuất</option>
@@ -215,13 +215,13 @@ const DangkyCslt = () => {
                                 </div>
 
                                 <div className="input-field-dk_cslt">
-                                    <label className='label'>Surrogate</label>
+                                    <label className='label'>Người đại diện</label>
                                     <input
                                         type="text"
                                         id='nguoi_dai_dien'
                                         name='nguoi_dai_dien'
                                         value={nguoi_dai_dien || ""}
-                                        placeholder="Enter Surrogate"
+                                        placeholder="Nhập tên người đại diện . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -229,13 +229,13 @@ const DangkyCslt = () => {
                                 </div>
 
                                 <div className="input-field-dk_cslt">
-                                    <label className='label'>Number Phone</label>
+                                    <label className='label'>Số điện thoại</label>
                                     <input
                                         type="number"
                                         id='sdt'
                                         name='sdt'
                                         value={sdt || ""}
-                                        placeholder="Enter your Number Phone"
+                                        placeholder="Nhập số điện thoại . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -243,13 +243,13 @@ const DangkyCslt = () => {
                                 </div>
 
                                 <div className="input-field-dk_cslt">
-                                    <label className='label'>Email</label>
+                                    <label className='label'>Email Cơ sở lưu trú</label>
                                     <input
                                         type="email"
                                         id='email'
                                         name='email'
                                         value={email || ""}
-                                        placeholder="Enter CSLT email"
+                                        placeholder="Nhập email . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -257,21 +257,21 @@ const DangkyCslt = () => {
                                 </div>
 
                                 <div className="input-field-dk_cslt">
-                                    <label className='label'>Address</label>
+                                    <label className='label'>Địa chỉ Cơ sở lưu trú</label>
                                     <input
                                         type="text"
                                         id='dia_chi'
                                         name='dia_chi'
                                         value={dia_chi || ""}
-                                        placeholder="Enter Address"
+                                        placeholder="Nhập địa chỉ . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
                                     <p className="error-text">{validationMsg.dia_chi}</p>
                                 </div>
 
-                                <div className="input-field-dk_cslt">
-                                    <label className='label'>City</label>
+                                {/* <div className="input-field-dk_cslt">
+                                    <label className='label'>Thành phố</label>
                                     <select
                                         className="form-control p-2"
                                         name="thanh_pho"
@@ -279,17 +279,17 @@ const DangkyCslt = () => {
                                         required
                                         onChange={(e) => handlethanh_pho(e)}
                                     >
-                                        <option disabled selected value="">--Select City--</option>
+                                        <option disabled selected value="">--Thành phố--</option>
                                         {
                                             thanh_pho.map((getcity, index) => (
                                                 <option key={index} value={getcity.id} >{getcity.ten_thanh_pho} </option>
                                             ))
                                         }
                                     </select>
-                                </div>
+                                </div> */}
 
                                 <div className="input-field-dk_cslt">
-                                    <label className='label'>District</label>
+                                    <label className='label'>Quận</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -298,7 +298,7 @@ const DangkyCslt = () => {
                                         required
                                         onChange={(e) => handlequan(e)}
                                     >
-                                        <option disabled selected value="">--Select District--</option>
+                                        <option disabled selected value="">--Quận--</option>
                                         {
                                             quan.map((getdistrict, index) => (
                                                 <option key={index} value={getdistrict.id}>{getdistrict.ten_quan} </option>
@@ -308,7 +308,7 @@ const DangkyCslt = () => {
                                 </div>
 
                                 <div className="input-field-dk_cslt">
-                                    <label className='label'>Ward</label>
+                                    <label className='label'>Phường</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -318,7 +318,7 @@ const DangkyCslt = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select Ward--</option>
+                                        <option disabled selected value="">--Phường--</option>
                                         {
                                             phuong.map((getward, index) => (
                                                 <option key={index} value={getward.id}> {getward.ten_phuong} </option>
@@ -326,15 +326,18 @@ const DangkyCslt = () => {
                                         }
                                     </select>
                                 </div>
+                                <div className="input-field-dk_cslt">
+
+                                </div>
                             </div>
                         </div>
 
                         <div className="details ID">
-                            <span className="title-dk_cslt">Identity Details</span>
+                            <span className="title-dk_cslt"></span>
 
                             <div className="fields-dk_cslt">
                                 <div className="input-field-dk_cslt">
-                                    <label className='label'>Accommodation Owner ID</label>
+                                    <label className='label'>Xác nhận chủ cơ sở lưu trú</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -344,7 +347,7 @@ const DangkyCslt = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select ID--</option>
+                                        <option disabled selected value="">--Chủ Cơ sở lưu trú--</option>
                                         {
                                             Chu_CSLT.map((getc, index) => (
                                                 <option key={index} value={getc.id}>{getc.ho_ten} </option>
@@ -361,8 +364,8 @@ const DangkyCslt = () => {
                                     </div>
                                 </Link> */}
                                 <button className="submit" type='submit'>
-                                    <span className="btnText">Submit</span>
-                                    <i className="uil uil-navigator"></i>
+                                    <span className="btnText">Hoàn Tất</span>
+                                    {/* <i className="uil uil-navigator"></i> */}
                                 </button>
 
                             </div>

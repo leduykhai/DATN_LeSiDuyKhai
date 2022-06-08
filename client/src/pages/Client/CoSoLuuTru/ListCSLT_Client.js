@@ -2,6 +2,7 @@ import * as React from 'react';
 import axios from 'axios';
 
 import './ListCSLT_Client.scss'
+import { Link } from 'react-router-dom';
 
 export default function ListCSLT_Client() {
 
@@ -32,16 +33,18 @@ export default function ListCSLT_Client() {
                             </div>
                             <div className="card-stats-cslt">
                                 <div className="stat-cslt">
-                                    <div className="value-cslt">4<sup>m</sup></div>
-                                    <div className="type-cslt">read</div>
+                                    <div className="value-cslt"><sup></sup></div>
+                                    <Link className="type-cslt" to={`/client_kbt/${item.id}`}>
+                                        <div className="type-cslt">Khai báo Lưu trú ở đây</div>
+                                    </Link>
                                 </div>
                                 <div className="stat-cslt border-cslt">
                                     <div className="value-cslt">5123</div>
-                                    <div className="type-cslt">views</div>
+                                    <div className="type-cslt">Lượt Xem</div>
                                 </div>
                                 <div className="stat-cslt">
                                     <div className="value-cslt">32</div>
-                                    <div className="type-cslt">comments</div>
+                                    <div className="type-cslt">Bình Luận</div>
                                 </div>
                             </div>
                         </div>
