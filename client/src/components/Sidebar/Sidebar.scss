@@ -22,7 +22,7 @@
   width: 60px;
 }
 .sidebar .logo-details{
-  height: 80px;
+  height: 62px;
   display: flex;
   align-items: center;
 }
@@ -41,6 +41,13 @@
 .sidebar .nav-links{
   margin-top: 10px;
 }
+
+.nav-part{
+  font-size: 18px;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+}
+
 .sidebar .nav-links li{
   position: relative;
   list-style: none;

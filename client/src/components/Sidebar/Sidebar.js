@@ -25,12 +25,22 @@ const Sidebar = (props) => {
                             <span class="links_name">Tài Khoản</span>
                         </Link>
                     </li>
+
+                    <span class="nav-part">Nhân Viên</span>
+
                     <li>
                         <Link exact to="/nhanvien">
                             <i class=" bx bx-user-circle"></i>
                             <span class="links_name">Nhân Viên</span>
                         </Link>
                     </li>
+                    <li>
+                        <Link exact to="/tintuc">
+                            <i class="bx bx-news"></i>
+                            <span class="links_name">Tin Tức</span>
+                        </Link>
+                    </li>
+                    <span class="nav-part">Cơ Sở Lưu Trú</span>
                     <li>
                         <Link exact to="/chucslt">
                             <i class="bx bx-buildings"></i>
@@ -45,11 +55,20 @@ const Sidebar = (props) => {
                     </li>
 
                     <li>
-                        <Link exact to="/kbt">
-                            <i class="bx bx-book-alt"></i>
-                            <span class="links_name">Khai Báo Trước</span>
+                        <Link exact to="/lt">
+                            <i class=" bx bx-map"></i>
+                            <span class="links_name">Lưu Trú</span>
                         </Link>
                     </li>
+
+                    <li>
+                        <Link exact to="/dg">
+                            <i class="bx bx-message"></i>
+                            <span class="links_name">Đánh Giá</span>
+                        </Link>
+                    </li>
+
+                    <span class="nav-part">Người Nước ngoài</span>
 
                     <li>
                         <Link exact to="/nnn">
@@ -59,30 +78,21 @@ const Sidebar = (props) => {
                     </li>
 
                     <li>
-                        <Link exact to="/lt">
-                            <i class=" bx bx-map"></i>
-                            <span class="links_name">Lưu Trú</span>
-                        </Link>
-                    </li>
-                    <li>
                         <Link exact to="/nklt">
                             <i class=" bx bx-book-content"></i>
                             <span class="links_name">Nhật Ký Lưu Trú</span>
                         </Link>
                     </li>
+
                     <li>
-                        <Link exact to="/tintuc">
-                            <i class="bx bx-news"></i>
-                            <span class="links_name">Tin Tức</span>
+                        <Link exact to="/kbt">
+                            <i class="bx bx-book-alt"></i>
+                            <span class="links_name">Khai Báo Trước</span>
                         </Link>
                     </li>
-                    <li>
-                        <Link exact to="/dg">
-                            <i class="bx bx-message"></i>
-                            <span class="links_name">Đánh Giá</span>
-                        </Link>
-                    </li>
-                    <li class="log_out">
+
+                    {/* <li class="log_out"> */}
+                    <li class="links_name">
                         <Link exact to="/">
                             <i class="bx bx-log-out"></i>
                             <span class="links_name">Đăng Xuất</span>

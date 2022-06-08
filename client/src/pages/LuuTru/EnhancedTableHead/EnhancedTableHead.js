@@ -14,7 +14,7 @@ const headCells = [
         id: 'no',
         numeric: false,
         disablePadding: true,
-        label: 'No. ',
+        label: 'STT',
     },
     {
         id: 'id',
@@ -26,19 +26,19 @@ const headCells = [
         id: 'nnn_id',
         numeric: false,
         disablePadding: false,
-        label: 'Foreigner ID',
+        label: 'ID Người Nước Ngoài',
     },
     {
         id: 'cslt_id',
         numeric: false,
         disablePadding: false,
-        label: 'Accommodation ID',
+        label: 'ID Cơ Sở Lưu Trú',
     },
     {
         id: 'action',
         numeric: false,
         disablePadding: false,
-        label: 'Action',
+        label: 'Hành Động',
     },
 ];
 

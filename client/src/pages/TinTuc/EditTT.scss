@@ -51,7 +51,7 @@
 .container-edittt .form-all {
     position: relative;
     margin-top: 16px;
-    min-height: 450px;
+    min-height: 670px;
     background-color: #fff;
     overflow: auto;
 }
@@ -125,6 +125,10 @@ select {
 
 .input-content {
     width: 900px;
+}
+
+.input-title {
+    width: 600px;
 }
 
 .input-field-edittt input :focus,

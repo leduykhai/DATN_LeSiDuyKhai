@@ -19,23 +19,23 @@ const ViewTT = () => {
         <div style={{ marginTop: "150px" }}>
             <div className='Card'>
                 <div className='Card-header'>
-                    <p>News Detail</p>
+                    <p>Tin Tức</p>
                 </div>
                 <div className='Container'>
                     <strong>ID: </strong>
                     <span>N{id}</span>
                     <br />
                     <br />
-                    <strong>Tittle: </strong>
+                    <strong>Tiêu Đề: </strong>
                     <span>{TT.tieu_de}</span>
                     <br />
                     <br />
-                    <strong>Date Created: </strong>
+                    <strong>Ngày Tạo: </strong>
                     <span>{moment(TT.ngay_tao).format('DD/MM/YYYY hh:ss:mm')}</span>
                     <br />
                     <br />
                     <Link to="/tintuc">
-                        <div className='btn'>Go Back</div>
+                        <div className='btn'>Quay Lại</div>
                     </Link>
                 </div>
             </div>

@@ -14,7 +14,7 @@ const headCells = [
         id: 'no',
         numeric: false,
         disablePadding: true,
-        label: 'No. ',
+        label: 'STT',
     },
     {
         id: 'id',
@@ -26,19 +26,19 @@ const headCells = [
         id: 'tieu_de',
         numeric: false,
         disablePadding: false,
-        label: 'Title',
+        label: 'Tiêu Đề',
     },
     {
         id: 'ngay_tao',
         numeric: false,
         disablePadding: false,
-        label: 'Date Created',
+        label: 'Ngày Tạo',
     },
     {
         id: 'action',
         numeric: false,
         disablePadding: false,
-        label: 'Action',
+        label: 'Hành Động',
     },
 ];
 

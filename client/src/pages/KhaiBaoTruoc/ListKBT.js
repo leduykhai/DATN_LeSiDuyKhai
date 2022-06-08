@@ -52,10 +52,10 @@ export default function ListKBT() {
 
     const deleteContact = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that Khai Bao Truoc ?")
+            window.confirm("Bạn chắc chắn muốn xoá khai báo này ?")
         ) {
             axios.delete(`http://localhost:3000/khaibaotruocs/${id}`);
-            toast.success("Khai Bao Truoc Delete Successfully");
+            toast.success("Xoá Thành Công!");
             setTimeout(() => loadData(), 100);
         }
     };
@@ -218,7 +218,7 @@ export default function ListKBT() {
             </Paper>
             <FormControlLabel
                 control={<Switch checked={dense} onChange={handleChangeDense} />}
-                label="Dense padding"
+                label="Thu Gọn"
             />
         </Box>
     );

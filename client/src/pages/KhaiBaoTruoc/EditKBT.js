@@ -84,33 +84,33 @@ const EditKBT = () => {
         const msg = {}
 
         if (isEmpty(ho_ten)) {
-            msg.ho_ten = "Please input your Name"
+            msg.ho_ten = "Vui lòng nhập họ tên"
         }
         if (isEmpty(ngay_sinh)) {
-            msg.ngay_sinh = "Please input your Date of birth"
+            msg.ngay_sinh = "Vui lòng chọn ngày sinh"
         }
         if (isEmpty(gioi_tinh)) {
-            msg.gioi_tinh = "Please input your Gender"
+            msg.gioi_tinh = "Vui lòng chọn giới tính"
         }
         if (isEmpty(email)) {
-            msg.email = "Please input your Email"
+            msg.email = "Vui lòng nhập email"
         } else if (!isEmail(email)) {
-            msg.email = "Your email is incorrect"
+            msg.email = "Email không đúng"
         }
         if (isEmpty(so_ho_chieu)) {
-            msg.so_ho_chieu = "Please input your Passport ID"
+            msg.so_ho_chieu = "Vui lòng nhập số hộ chiếu"
         }
         if (isEmpty(dia_chi)) {
-            msg.dia_chi = "Please input your Address"
+            msg.dia_chi = "Vui lòng nhập địa chỉ"
         }
         if (isEmpty(sdt)) {
-            msg.sdt = "Please input your Phone Number"
+            msg.sdt = "Vui lòng nhập số điện thoại"
         }
         if (isEmpty(ngay_dang_ky)) {
-            msg.ngay_dang_ky = "Please input your Date created"
+            msg.ngay_dang_ky = "Vui lòng chọn ngày khai báo"
         }
         if (isEmpty(ngay_den_luu_tru)) {
-            msg.ngay_den_luu_tru = "Please input your arrival date "
+            msg.ngay_den_luu_tru = "Vui lòng chọn ngày đến lưu trú"
         }
         // if (isEmpty(file)) {
         //     msg.file = "Please input your File"
@@ -124,7 +124,7 @@ const EditKBT = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!ho_ten || !gioi_tinh || !email || !so_ho_chieu || !dia_chi || !sdt) {
-            toast.error("please provide value into each input field");
+            toast.error("Vui lòng nhập đầy đủ thông tin!");
         }
         const isValid = validateAll()
         if (!isValid) return
@@ -143,7 +143,7 @@ const EditKBT = () => {
                         so_ho_chieu,
                         dia_chi,
                         sdt,
-                        ngay_dang_ky,
+                        // ngay_dang_ky,
                         // ngay_den_luu_tru,
                         // file,
                         cslt_id,
@@ -168,7 +168,7 @@ const EditKBT = () => {
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("KBT Updated Successfully")
+                toast.success("Cập nhật thành công!")
             }
             setTimeout(() => history.push("/kbt"), 100);
         }
@@ -182,22 +182,22 @@ const EditKBT = () => {
     return (
         <body className='body'>
             <div className="container-addkbt">
-                <header className='header'>Registration</header>
+                <header className='header'>Cập Nhật</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
                     <div className="form-addkbt first-addkbt">
                         <div className="details personal">
-                            <span className="title-addkbt">Personal Details</span>
+                            <span className="title-addkbt">Thông tin khai báo</span>
 
                             <div className="fields-addkbt">
                                 <div className="input-field-addkbt">
-                                    <label className='label'>Full Name</label>
+                                    <label className='label'>Họ tên</label>
                                     <input
                                         type="text"
                                         id='ho_ten'
                                         name='ho_ten'
                                         value={ho_ten || ""}
-                                        placeholder="Enter your Name"
+                                        placeholder="Nhập họ tên . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -205,13 +205,13 @@ const EditKBT = () => {
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    <label className='label'>Date of Birth</label>
+                                    <label className='label'>Ngày sinh</label>
                                     <input
                                         type="date"
                                         id='ngay_sinh'
                                         name='ngay_sinh'
                                         value={moment(ngay_sinh).format("YYYY-MM-DD") || ""}
-                                        placeholder="Enter birth date"
+                                        placeholder="Chọn ngày sinh"
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -220,7 +220,7 @@ const EditKBT = () => {
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    <label className='label'>Gender</label>
+                                    <label className='label'>Giới tính</label>
                                     <select
                                         type="select"
                                         id='gioi_tinh'
@@ -229,10 +229,10 @@ const EditKBT = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value={""} > --Select gender--</option>
-                                        <option>Male</option>
-                                        <option>Female</option>
-                                        <option>Others</option>
+                                        <option disabled selected value={""} > --Chọn Giới Tính--</option>
+                                        <option>Nam</option>
+                                        <option>Nữ</option>
+                                        <option>Khác</option>
                                     </select>
                                 </div>
 
@@ -243,7 +243,7 @@ const EditKBT = () => {
                                         id='email'
                                         name='email'
                                         value={email || ""}
-                                        placeholder="Enter your email"
+                                        placeholder="Nhập email . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -251,13 +251,13 @@ const EditKBT = () => {
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    <label className='label'>Passport ID</label>
+                                    <label className='label'>Số Hộ Chiếu</label>
                                     <input
                                         type="text"
                                         id='so_ho_chieu'
                                         name='so_ho_chieu'
                                         value={so_ho_chieu || ""}
-                                        placeholder="Enter Passport ID"
+                                        placeholder="Nhập Số Hộ Chiếu . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -265,13 +265,13 @@ const EditKBT = () => {
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    <label className='label'>Address</label>
+                                    <label className='label'>Địa Chỉ</label>
                                     <input
                                         type="text"
                                         id='dia_chi'
                                         name='dia_chi'
                                         value={dia_chi || ""}
-                                        placeholder="Enter your Address"
+                                        placeholder="Nhập Địa Chỉ . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -279,7 +279,7 @@ const EditKBT = () => {
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    <label className='label'>Nationality</label>
+                                    <label className='label'>Quốc Tịch</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -289,7 +289,7 @@ const EditKBT = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select Nationality--</option>
+                                        <option disabled selected value="">--Chọn Quốc Tịch--</option>
                                         {
                                             quoctich.map((getqt, index) => (
                                                 <option key={index} value={getqt.id}> {getqt.ten_quoc_tich} </option>
@@ -299,13 +299,13 @@ const EditKBT = () => {
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    <label className='label'>Number Phone</label>
+                                    <label className='label'>Số Điện Thoại</label>
                                     <input
                                         type="number"
                                         id='sdt'
                                         name='sdt'
                                         value={sdt || ""}
-                                        placeholder="Enter your Number Phone"
+                                        placeholder="Nhập Số Điện Thoại . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -313,13 +313,13 @@ const EditKBT = () => {
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    <label className='label'>Date Created</label>
+                                    <label className='label'>Ngày Khai Báo</label>
                                     <input
                                         type="date"
                                         id='ngay_dang_ky'
                                         name='ngay_dang_ky'
                                         value={moment(ngay_dang_ky).format("YYYY-MM-DD") || ""}
-                                        placeholder="Enter birth date"
+                                        placeholder="Chọn Ngày Khai Báo"
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -328,13 +328,13 @@ const EditKBT = () => {
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    <label className='label'>Arrival Date</label>
+                                    <label className='label'>Ngày Đến Lưu Trú</label>
                                     <input
                                         type="date"
                                         id='ngay_den_luu_tru'
                                         name='ngay_den_luu_tru'
                                         value={moment(ngay_den_luu_tru).format("YYYY-MM-DD") || ""}
-                                        placeholder="Enter Arrival date"
+                                        placeholder="Chọn Ngày Đến Lưu Trú"
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -343,7 +343,7 @@ const EditKBT = () => {
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    <label className='label'>CSLT</label>
+                                    <label className='label'>Cơ Sở Lưu Trú</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -353,7 +353,7 @@ const EditKBT = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select CSLT--</option>
+                                        <option disabled selected value="">--Tên Cơ Sở Lưu Trú--</option>
                                         {
                                             cslt.map((getcslt, index) => (
                                                 <option key={index} value={getcslt.id}>{getcslt.ten_cslt} </option>
@@ -363,7 +363,7 @@ const EditKBT = () => {
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    <label className='label'>Status</label>
+                                    <label className='label'>Trạng Thái</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -373,7 +373,7 @@ const EditKBT = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select Status--</option>
+                                        <option disabled selected value="">--Trạng Thái--</option>
                                         {
                                             kbt.map((getkbt, index) => (
                                                 <option key={index} value={getkbt.id}>{getkbt.status_name} </option>
@@ -386,7 +386,7 @@ const EditKBT = () => {
                         </div>
 
                         <div className="details ID">
-                            <span className="title-addkbt">Identity Details</span>
+                            <span className="title-addkbt"></span>
 
                             <div className="fields-addkbt">
 
@@ -395,11 +395,11 @@ const EditKBT = () => {
                                 <Link to="/kbt" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
-                                        <span className="btnText">Back</span>
+                                        <span className="btnText">Quay lại</span>
                                     </div>
                                 </Link>
                                 <button className="submit" type='submit'>
-                                    <span className="btnText">Submit</span>
+                                    <span className="btnText">Cập Nhật</span>
                                     <i className="uil uil-navigator"></i>
                                 </button>
 

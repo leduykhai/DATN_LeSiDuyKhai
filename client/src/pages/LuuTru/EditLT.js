@@ -77,7 +77,7 @@ const EditLT = () => {
         const msg = {}
 
         if (isEmpty(ten_phong)) {
-            msg.ten_phong = "Please input your Title"
+            msg.ten_phong = "Vui lòng nhập tên phòng"
         }
 
         setValidationMsg(msg)
@@ -88,7 +88,7 @@ const EditLT = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!ten_phong) {
-            toast.error("please provide value into each input field");
+            toast.error("Vui lòng nhập đầy đủ thông tin!");
         }
         const isValid = validateAll()
         if (!isValid) return
@@ -110,7 +110,7 @@ const EditLT = () => {
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("Stay Added Successfully")
+                toast.success("Cập nhật thành công!")
             }
             setTimeout(() => history.push("/lt"), 100);
         }
@@ -124,22 +124,22 @@ const EditLT = () => {
     return (
         <body className='body'>
             <div className="container-editlt">
-                <header className='header'>Registration</header>
+                <header className='header'>Cập nhật thông tin lưu trú</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
                     <div className="form-editlt first-editlt">
                         <div className="details personal">
-                            <span className="title-editlt">Stay Details</span>
+                            <span className="title-editlt">Thông tin người nước ngoài đi</span>
 
                             <div className="fields-editlt">
                                 <div className="input-field-editlt">
-                                    <label className='label'>Registration Date</label>
+                                    <label className='label'>Ngày đăng ký lưu trú</label>
                                     <input
                                         type="date"
                                         id='ngay_dang_ky_lt'
                                         name='ngay_dang_ky_lt'
                                         value={moment(ngay_dang_ky_lt).format('YYYY-MM-DD') || ""}
-                                        placeholder="Enter Registration Date"
+                                        placeholder="Chọn ngày"
                                         disabled
                                         required
                                         onChange={handleInputChange}
@@ -148,13 +148,13 @@ const EditLT = () => {
                                 </div>
 
                                 <div className="input-field-editlt">
-                                    <label className='label'>Arrival Date</label>
+                                    <label className='label'>Ngày đến lưu trú</label>
                                     <input
                                         type="date"
                                         id='ngay_den_lt'
                                         name='ngay_den_lt'
                                         value={moment(ngay_den_lt).format('YYYY-MM-DD') || ""}
-                                        placeholder="Enter Arrival Date"
+                                        placeholder="Chọn ngày"
                                         disabled
                                         required
                                         onChange={handleInputChange}
@@ -163,13 +163,13 @@ const EditLT = () => {
                                 </div>
 
                                 <div className="input-field-editlt">
-                                    <label className='label'>Room Name</label>
+                                    <label className='label'>Tên phòng</label>
                                     <input
                                         type="text"
                                         id='ten_phong'
                                         name='ten_phong'
                                         value={ten_phong || ""}
-                                        placeholder="Enter Room Name"
+                                        placeholder="Nhập tên phòng . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -177,14 +177,14 @@ const EditLT = () => {
                                 </div>
 
                                 <div className="input-field-editlt">
-                                    <label className='label'>Estimated Travel Date</label>
+                                    <label className='label'>Ngày đi dự kiến</label>
                                     <input
                                         type="date"
                                         id='ngay_di_du_kien'
                                         name='ngay_di_du_kien'
                                         value={moment(ngay_di_du_kien).format('YYYY-MM-DD') || ""}
                                         disabled
-                                        placeholder="Enter Estimated Travel Date"
+                                        placeholder="Chọn ngày đi"
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -192,13 +192,13 @@ const EditLT = () => {
                                 </div>
 
                                 <div className="input-field-editlt">
-                                    <label className='label'>Actual Travel Date</label>
+                                    <label className='label'>Ngày đi thực tế</label>
                                     <input
                                         type="date"
                                         id='ngay_di_thuc'
                                         name='ngay_di_thuc'
                                         value={moment(ngay_di_thuc).format('YYYY-MM-DD') || ""}
-                                        placeholder="Enter Actual Travel Date"
+                                        placeholder="Chọn ngày"
                                         onChange={handleInputChange}
                                     />
                                     <p className="error-text">{validationMsg.ngay_di_thuc}</p>
@@ -207,10 +207,10 @@ const EditLT = () => {
                         </div>
 
                         <div className="details ID">
-                            <span className="title-editlt">Identity Details</span>
+                            <span className="title-editlt"></span>
                             <div className="fields-editlt">
                                 <div className="input-field-editlt">
-                                    <label className='label'>Foreigner ID</label>
+                                    <label className='label'>Người nước ngoài</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -221,7 +221,7 @@ const EditLT = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select Foreigner ID--</option>
+                                        <option disabled selected value="">--Người nước ngoài--</option>
                                         {
                                             nnn.map((getnnn, index) => (
                                                 <option key={index} value={getnnn.id}>NNN {getnnn.id} - {getnnn.ho_ten} </option>
@@ -230,7 +230,7 @@ const EditLT = () => {
                                     </select>
                                 </div>
                                 <div className="input-field-editlt">
-                                    <label className='label'>Accommodation Facility ID</label>
+                                    <label className='label'>Cơ sở lưu trú</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -241,7 +241,7 @@ const EditLT = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select Accommodation ID--</option>
+                                        <option disabled selected value="">--Cơ sở lưu trú--</option>
                                         {
                                             cslt.map((getcslt, index) => (
                                                 <option key={index} value={getcslt.id}>CSLT {getcslt.id} - {getcslt.ten_cslt} </option>
@@ -250,7 +250,7 @@ const EditLT = () => {
                                     </select>
                                 </div>
                                 <div className="input-field-editlt">
-                                    <label className='label'>Status</label>
+                                    <label className='label'>Trạng thái</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -260,7 +260,7 @@ const EditLT = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select Status--</option>
+                                        <option disabled selected value="">--Trạng thái--</option>
                                         {
                                             ltstt.map((getstt, index) => (
                                                 <option key={index} value={getstt.id}>{getstt.status_name} </option>
@@ -274,11 +274,11 @@ const EditLT = () => {
                                 <Link to="/lt" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
-                                        <span className="btnText">Back</span>
+                                        <span className="btnText">quay lại</span>
                                     </div>
                                 </Link>
                                 <button className="submit" type='submit'>
-                                    <span className="btnText">Submit</span>
+                                    <span className="btnText">Cập nhật</span>
                                     <i className="uil uil-navigator"></i>
                                 </button>
 

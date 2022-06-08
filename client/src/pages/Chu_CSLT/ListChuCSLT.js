@@ -48,10 +48,10 @@ export default function ListChuCSLT() {
 
     const deleteContact = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that Chu CSLT ?")
+            window.confirm("Bạn chắc chắn muốn xoá chủ cơ sở lưu trú này?")
         ) {
             axios.delete(`http://localhost:3000/chucosoluutrus/${id}`);
-            toast.success("Chu CSLT Delete Successfully");
+            toast.success("Xoá Thành Công!");
             setTimeout(() => loadData(), 100);
         }
     };
@@ -209,7 +209,7 @@ export default function ListChuCSLT() {
             </Paper>
             <FormControlLabel
                 control={<Switch checked={dense} onChange={handleChangeDense} />}
-                label="Dense padding"
+                label="Thu Gọn"
             />
         </Box>
     );

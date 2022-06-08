@@ -48,10 +48,10 @@ export default function ListNV() {
 
     const deleteContact = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that Employee ?")
+            window.confirm("Bạn chắc chắn muốn xoá nhân viên này ?")
         ) {
             axios.delete(`http://localhost:3000/nhanviens/${id}`);
-            toast.success("Employee Delete Successfully");
+            toast.success("Xoá Thành Công!");
             setTimeout(() => loadData(), 100);
         }
     };

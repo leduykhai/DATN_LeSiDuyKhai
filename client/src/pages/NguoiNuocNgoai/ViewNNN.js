@@ -19,22 +19,22 @@ const ViewNNN = () => {
         <div style={{ marginTop: "150px" }}>
             <div className='Card'>
                 <div className='Card-header'>
-                    <p>Detail</p>
+                    <p>Thông tin người nước ngoài</p>
                 </div>
                 <div className='Container'>
                     <strong>ID: </strong>
                     <span>{id}</span>
                     <br />
                     <br />
-                    <strong>FullName: </strong>
+                    <strong>Họ Tên: </strong>
                     <span>{NNN.ho_ten}</span>
                     <br />
                     <br />
-                    <strong>Date of birth: </strong>
+                    <strong>Ngày Sinh: </strong>
                     <span>{moment(NNN.ngay_sinh).format('DD/MM/YYYY')}</span>
                     <br />
                     <br />
-                    <strong>Gender: </strong>
+                    <strong>Giới Tính: </strong>
                     <span>{NNN.gioi_tinh}</span>
                     <br />
                     <br />
@@ -42,20 +42,20 @@ const ViewNNN = () => {
                     <span>{NNN.email}</span>
                     <br />
                     <br />
-                    <strong>Phone Number: </strong>
+                    <strong>Số Điện Thoại: </strong>
                     <span>{NNN.sdt}</span>
                     <br />
                     <br />
-                    <strong>Citizen ID: </strong>
+                    <strong>Số Hộ Chiếu: </strong>
                     <span>{NNN.so_ho_chieu}</span>
                     <br />
                     <br />
-                    <strong>Address: </strong>
+                    <strong>Địa Chỉ: </strong>
                     <span>{NNN.dia_chi}</span>
                     <br />
                     <br />
                     <Link to="/nnn">
-                        <div className='btn'>Go Back</div>
+                        <div className='btn'>Quay Lại</div>
                     </Link>
                 </div>
             </div>

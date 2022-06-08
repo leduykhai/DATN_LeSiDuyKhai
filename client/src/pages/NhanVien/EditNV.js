@@ -137,7 +137,7 @@ const EditNV = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!ho_ten || !gioi_tinh || !email || !cccd || !dia_chi || !sdt || !chuc_vu) {
-            toast.error("Vui lòng nhập đầy đủ");
+            toast.error("Vui lòng nhập đầy đủ thông tin");
         }
         const isValid = validateAll()
         if (!isValid) return

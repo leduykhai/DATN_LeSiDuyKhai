@@ -52,10 +52,10 @@ export default function ListTT() {
 
     const deleteContact = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that stay ?")
+            window.confirm("Bạn Chắc Chắn Xoá Lưu Trú này?")
         ) {
             axios.delete(`http://localhost:3000/luutrus/${id}`);
-            toast.success("News Delete Successfully");
+            toast.success("Xoá Thành Công!");
             setTimeout(() => loadData(), 100);
         }
     };
@@ -214,7 +214,7 @@ export default function ListTT() {
             </Paper>
             <FormControlLabel
                 control={<Switch checked={dense} onChange={handleChangeDense} />}
-                label="Dense padding"
+                label="Thu Gọn"
             />
         </Box>
     );

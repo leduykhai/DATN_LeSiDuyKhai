@@ -49,10 +49,10 @@ export default function ListCSLT() {
 
     const deleteContact = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that CSLT ?")
+            window.confirm("Bạn chắc chắn muốn xoá cơ sở lưu trú này ?")
         ) {
             axios.delete(`http://localhost:3000/cslts/${id}`);
-            toast.success("CSLT Delete Successfully");
+            toast.success("Xoá Thành Công!");
             setTimeout(() => loadData(), 100);
         }
     };

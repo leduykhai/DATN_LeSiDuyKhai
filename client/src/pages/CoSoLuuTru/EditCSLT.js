@@ -95,13 +95,13 @@ const EditCSLT = () => {
         const msg = {}
 
         if (isEmpty(ten_cslt)) {
-            msg.ten_cslt = "Please input CSLT Name"
+            msg.ten_cslt = "Vui lòng nhập Tên cslt"
         }
         if (isEmpty(loai_cslt)) {
-            msg.loai_cslt = "Please input CLST Type"
+            msg.loai_cslt = "Vui lòng Loại cslt"
         }
         if (isEmpty(nguoi_dai_dien)) {
-            msg.nguoi_dai_dien = "Please input Surrogate"
+            msg.nguoi_dai_dien = "Vui lòng nhập tên người đại diện"
         }
         if (isEmpty(email)) {
             msg.email = "Please input your Email"
@@ -126,7 +126,7 @@ const EditCSLT = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!ten_cslt || !loai_cslt || !nguoi_dai_dien || !sdt || !email || !dia_chi) {
-            toast.error("please provide value into each input field");
+            toast.error("Vui lòng nhập đầy đủ thông tin");
         }
         const isValid = validateAll()
         if (!isValid) return
@@ -159,7 +159,7 @@ const EditCSLT = () => {
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("CSLT Added Successfully")
+                toast.success("Cập nhật thành công!")
             }
             setTimeout(() => history.push("/cslt"), 100);
         }
@@ -173,22 +173,22 @@ const EditCSLT = () => {
     return (
         <body className='body'>
             <div className="container-editcslt">
-                <header className='header'>Registration</header>
+                <header className='header'>Cập nhật</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
                     <div className="form-editcslt first-editcslt">
                         <div className="details personal">
-                            <span className="title-editcslt">Personal Details</span>
+                            <span className="title-editcslt">Thông Tin Cơ Sở Lưu Trú</span>
 
                             <div className="fields-editcslt">
                                 <div className="input-field-editcslt">
-                                    <label className='label'>CSLT Name</label>
+                                    <label className='label'>Tên Cơ Sở Lưu Trú</label>
                                     <input
                                         type="text"
                                         id='ten_cslt'
                                         name='ten_cslt'
                                         value={ten_cslt || ""}
-                                        placeholder="Enter CSLT name"
+                                        placeholder="Nhập Tên CSLT . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -196,7 +196,7 @@ const EditCSLT = () => {
                                 </div>
 
                                 <div className="input-field-editcslt">
-                                    <label className='label'>Name Type</label>
+                                    <label className='label'>Loại Cơ Sở Lưu Trú</label>
                                     <select
                                         type="select"
                                         id='loai_cslt'
@@ -205,7 +205,7 @@ const EditCSLT = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value={""}>--Select Type--</option>
+                                        <option disabled selected value={""}>--Chọn Loại CSLT--</option>
                                         {/* <option>--Select gender--</option> */}
                                         <option>CC - Chung cư, cơ sở y tế, ký túc xá</option>
                                         <option>KCN - Khu công nghiệp, chế xuất</option>
@@ -216,13 +216,13 @@ const EditCSLT = () => {
                                 </div>
 
                                 <div className="input-field-editcslt">
-                                    <label className='label'>Surrogate</label>
+                                    <label className='label'>Người Đại Diện</label>
                                     <input
                                         type="text"
                                         id='nguoi_dai_dien'
                                         name='nguoi_dai_dien'
                                         value={nguoi_dai_dien || ""}
-                                        placeholder="Enter Surrogate"
+                                        placeholder="Nhập Tên Người Đại Diện . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -230,13 +230,13 @@ const EditCSLT = () => {
                                 </div>
 
                                 <div className="input-field-editcslt">
-                                    <label className='label'>Number Phone</label>
+                                    <label className='label'>Số Điện Thoại</label>
                                     <input
                                         type="number"
                                         id='sdt'
                                         name='sdt'
                                         value={sdt || ""}
-                                        placeholder="Enter your Number Phone"
+                                        placeholder="Nhập Số Điện Thoại . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -250,7 +250,7 @@ const EditCSLT = () => {
                                         id='email'
                                         name='email'
                                         value={email || ""}
-                                        placeholder="Enter CSLT email"
+                                        placeholder="Nhập email . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -258,13 +258,13 @@ const EditCSLT = () => {
                                 </div>
 
                                 <div className="input-field-editcslt">
-                                    <label className='label'>Address</label>
+                                    <label className='label'>Địa Chỉ</label>
                                     <input
                                         type="text"
                                         id='dia_chi'
                                         name='dia_chi'
                                         value={dia_chi || ""}
-                                        placeholder="Enter Address"
+                                        placeholder="Nhập Địa Chỉ"
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -272,7 +272,7 @@ const EditCSLT = () => {
                                 </div>
 
                                 <div className="input-field-editcslt">
-                                    <label className='label'>City</label>
+                                    <label className='label'>Thành Phố</label>
                                     <select
                                         className="form-control p-2"
                                         name="thanh_pho"
@@ -280,7 +280,7 @@ const EditCSLT = () => {
                                         // required
                                         onChange={(e) => handlethanh_pho(e)}
                                     >
-                                        <option disabled selected value="">--Select City--</option>
+                                        <option disabled selected value="">--Chọn Thành Phố--</option>
                                         {
                                             thanh_pho.map((getcity, index) => (
                                                 <option key={index} value={getcity.id} >{getcity.ten_thanh_pho} </option>
@@ -290,7 +290,7 @@ const EditCSLT = () => {
                                 </div>
 
                                 <div className="input-field-editcslt">
-                                    <label className='label'>District</label>
+                                    <label className='label'>Quận</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -299,7 +299,7 @@ const EditCSLT = () => {
                                         // required
                                         onChange={(e) => handlequan(e)}
                                     >
-                                        <option disabled selected value="">--Select District--</option>
+                                        <option disabled selected value="">--Chọn Quận--</option>
                                         {
                                             quan.map((getdistrict, index) => (
                                                 <option key={index} value={getdistrict.id}>{getdistrict.ten_quan} </option>
@@ -309,7 +309,7 @@ const EditCSLT = () => {
                                 </div>
 
                                 <div className="input-field-editcslt">
-                                    <label className='label'>Ward</label>
+                                    <label className='label'>Phường</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -319,7 +319,7 @@ const EditCSLT = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select Ward--</option>
+                                        <option disabled selected value="">--Chọn Phường--</option>
                                         {
                                             phuong.map((getward, index) => (
                                                 <option key={index} value={getward.id}> {getward.ten_phuong} </option>
@@ -331,11 +331,11 @@ const EditCSLT = () => {
                         </div>
 
                         <div className="details ID">
-                            <span className="title-editcslt">Identity Details</span>
+                            <span className="title-editcslt"></span>
 
                             <div className="fields-editcslt">
                                 <div className="input-field-editcslt">
-                                    <label className='label'>Chu CSLT ID</label>
+                                    <label className='label'>Tài Khoản</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -346,7 +346,7 @@ const EditCSLT = () => {
                                         disabled
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select User ID--</option>
+                                        <option disabled selected value="">--Tên Tài Khoản--</option>
                                         {
                                             Chu_CSLT.map((getc, index) => (
                                                 <option key={index} value={getc.id}>{getc.ho_ten} </option>
@@ -360,11 +360,11 @@ const EditCSLT = () => {
                                 <Link to="/cslt" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
-                                        <span className="btnText">Back</span>
+                                        <span className="btnText">Quay Lại</span>
                                     </div>
                                 </Link>
                                 <button className="submit" type='submit'>
-                                    <span className="btnText">Submit</span>
+                                    <span className="btnText">Cập Nhật</span>
                                     <i className="uil uil-navigator"></i>
                                 </button>
 

@@ -49,10 +49,10 @@ export default function ListNNN() {
 
     const deleteContact = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that Foreigner ?")
+            window.confirm("Bạn chắc chắn muốn xoá người nước ngoài này ?")
         ) {
             axios.delete(`http://localhost:3000/nguoinuocngoais/${id}`);
-            toast.success("Foreigner Delete Successfully");
+            toast.success("Xoá Thành Công!");
             setTimeout(() => loadData(), 100);
         }
     };
@@ -210,7 +210,7 @@ export default function ListNNN() {
             </Paper>
             <FormControlLabel
                 control={<Switch checked={dense} onChange={handleChangeDense} />}
-                label="Dense padding"
+                label="Thu Gọn"
             />
         </Box>
     );

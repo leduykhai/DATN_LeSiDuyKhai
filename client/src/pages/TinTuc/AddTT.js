@@ -49,13 +49,13 @@ const AddTT = () => {
         const msg = {}
 
         if (isEmpty(tieu_de)) {
-            msg.tieu_de = "Please input your Title"
+            msg.tieu_de = "Vui lòng nhập tiêu đề"
         }
         if (isEmpty(noi_dung)) {
-            msg.noi_dung = "Please input your Content"
+            msg.noi_dung = "Vui lòng nhập nội dung"
         }
         if (isEmpty(ngay_tao)) {
-            msg.ngay_tao = "Please input your Date Created"
+            msg.ngay_tao = "Vui chọn ngày"
         }
         // if (isEmpty(file)) {
         //     msg.file = "Please input your file"
@@ -69,7 +69,7 @@ const AddTT = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!tieu_de || !noi_dung) {
-            toast.error("please provide value into each input field");
+            toast.error("Vui lòng nhập đầy đủ thông tin!");
         }
         const isValid = validateAll()
         if (!isValid) return
@@ -94,7 +94,7 @@ const AddTT = () => {
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("News Added Successfully")
+                toast.success("Thêm thành công!")
             }
             setTimeout(() => history.push("/tintuc"), 100);
         }
@@ -108,22 +108,23 @@ const AddTT = () => {
     return (
         <body className='body'>
             <div className="container-addtt">
-                <header className='header'>Registration</header>
+                <header className='header'>Thêm Tin Tức</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
                     <div className="form-addtt first-addtt">
                         <div className="details personal">
-                            <span className="title-addtt">News Details</span>
+                            <span className="title-addtt"></span>
 
                             <div className="fields-addtt">
                                 <div className="input-field-addtt">
-                                    <label className='label'>Title</label>
+                                    <label className='label'>Tiêu Đề</label>
                                     <input
+                                        className='input-title'
                                         type="text"
                                         id='tieu_de'
                                         name='tieu_de'
                                         value={tieu_de || ""}
-                                        placeholder="Enter your title"
+                                        placeholder="Nhập Tiêu Đề . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -131,13 +132,17 @@ const AddTT = () => {
                                 </div>
 
                                 <div className="input-field-addtt">
-                                    <label className='label'>Date Created</label>
+
+                                </div>
+
+                                <div className="input-field-addtt">
+                                    <label className='label'>Ngày Tạo</label>
                                     <input
-                                        type="date"
+                                        type="datetime-local"
                                         id='ngay_tao'
                                         name='ngay_tao'
                                         value={ngay_tao || ""}
-                                        placeholder="Enter date created"
+                                        placeholder="Chọn Ngày"
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -145,12 +150,9 @@ const AddTT = () => {
                                 </div>
 
                                 <div className="input-field-addtt">
-
-                                </div>
-
-                                <div className="input-field-addtt">
-                                    <label className='label'>Content</label>
-                                    <input
+                                    <label className='label'>Nội dung</label>
+                                    <br />
+                                    {/* <input
                                         className='input-content'
                                         type="text"
                                         id='noi_dung'
@@ -159,17 +161,29 @@ const AddTT = () => {
                                         placeholder="Enter your content"
                                         required
                                         onChange={handleInputChange}
-                                    />
+                                    /> */}
+                                    <textarea
+                                        className="textarea"
+                                        type="text"
+                                        id='noi_dung'
+                                        name='noi_dung'
+                                        value={noi_dung || ""}
+                                        placeholder="Nhập Nội Dung..."
+                                        required
+                                        onChange={handleInputChange}
+                                    >
+
+                                    </textarea>
                                     <p className="error-text">{validationMsg.noi_dung}</p>
                                 </div>
                             </div>
                         </div>
 
                         <div className="details ID">
-                            <span className="title-addtt">Identity Details</span>
+                            <span className="title-addtt">Thông tin người tạo</span>
                             <div className="fields-addtt">
                                 <div className="input-field-addtt">
-                                    <label className='label'>Employee ID</label>
+                                    <label className='label'>Nhân Viên</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -179,7 +193,7 @@ const AddTT = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Select Employee ID--</option>
+                                        <option disabled selected value="">--Tên Nhân Viên--</option>
                                         {
                                             nhanvien.map((getnv, index) => (
                                                 <option key={index} value={getnv.id}>{getnv.ho_ten} </option>
@@ -193,11 +207,11 @@ const AddTT = () => {
                                 <Link to="/tintuc" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
-                                        <span className="btnText">Back</span>
+                                        <span className="btnText">Quay lại</span>
                                     </div>
                                 </Link>
                                 <button className="submit" type='submit'>
-                                    <span className="btnText">Submit</span>
+                                    <span className="btnText">Thêm</span>
                                     <i className="uil uil-navigator"></i>
                                 </button>
 
