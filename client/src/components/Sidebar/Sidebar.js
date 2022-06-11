@@ -5,6 +5,11 @@ import Navbar from '../Navbar/Navbar'
 import './Sidebar.scss'
 
 const Sidebar = (props) => {
+
+    const logout = () => {
+        localStorage.removeItem("user")
+    }
+
     return (
         <body>
             <div class="sidebar">
@@ -93,7 +98,7 @@ const Sidebar = (props) => {
 
                     {/* <li class="log_out"> */}
                     <li class="links_name">
-                        <Link exact to="/">
+                        <Link exact to="/" onClick={logout}>
                             <i class="bx bx-log-out"></i>
                             <span class="links_name">Đăng Xuất</span>
                         </Link>

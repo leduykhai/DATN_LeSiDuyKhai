@@ -79,6 +79,22 @@ const EditLT = () => {
         if (isEmpty(ten_phong)) {
             msg.ten_phong = "Vui lòng nhập tên phòng"
         }
+        let date = moment(Date()).format("YYYY-MM-DD");
+        // console.log(date)
+
+
+        if (ngay_dang_ky_lt > ngay_den_lt) {
+            msg.ngay_dang_ky_lt = "Ngày đăng ký phải nhỏ hơn hoặc bằng ngày đến"
+        }
+
+        if (ngay_di_du_kien < ngay_den_lt) {
+            msg.ngay_di_du_kien = "Ngày đi dự kiến phải lớn hơn hoặc bằng ngày hiện tại"
+        }
+
+        if (ngay_di_thuc !== date) {
+            msg.ngay_di_thuc = "Ngày đi thực phải là ngày hiện tại"
+        }
+
 
         setValidationMsg(msg)
         if (Object.keys(msg).length > 0) return false

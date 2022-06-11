@@ -94,6 +94,8 @@ const AddUser = () => {
             }
         }
 
+        // console.log(sdt[0]) //bắt đầu bằng số 0
+
         if (sdt.length != 10 || sdt[0] != 0) {
             msg.sdt = "Số điện thoại không tồn tại"
         }

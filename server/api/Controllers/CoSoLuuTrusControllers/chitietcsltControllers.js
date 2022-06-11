@@ -8,7 +8,7 @@ const {
 
 module.exports = {
     get: (req, res) => {
-        let sql = 'SELECT * FROM chitietcosoluutrus'
+        let sql = 'SELECT * FROM chitietcosoluutrus ORDER BY id DESC'
         db.query(sql, (err, response) => {
             if (err) throw err
             res.json(response);

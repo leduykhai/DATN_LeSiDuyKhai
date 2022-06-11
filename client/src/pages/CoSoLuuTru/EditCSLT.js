@@ -54,12 +54,12 @@ const EditCSLT = () => {
 
     useEffect(() => {
         const getquan = async () => {
-            const resquan = await fetch(`http://localhost:3000/quans/${thanh_pho_id}`);
+            const resquan = await fetch(`http://localhost:3000/quans/${48}`);
             const resq = await resquan.json();
             setQuan(await resq);
         }
         getquan();
-    }, [thanh_pho_id]);
+    }, [48]);
 
     const handlequan = (event) => {
         const getquan_id = event.target.value;
@@ -271,7 +271,7 @@ const EditCSLT = () => {
                                     <p className="error-text">{validationMsg.dia_chi}</p>
                                 </div>
 
-                                <div className="input-field-editcslt">
+                                {/* <div className="input-field-editcslt">
                                     <label className='label'>Thành Phố</label>
                                     <select
                                         className="form-control p-2"
@@ -287,7 +287,7 @@ const EditCSLT = () => {
                                             ))
                                         }
                                     </select>
-                                </div>
+                                </div> */}
 
                                 <div className="input-field-editcslt">
                                     <label className='label'>Quận</label>
@@ -326,6 +326,9 @@ const EditCSLT = () => {
                                             ))
                                         }
                                     </select>
+                                </div>
+                                <div className="input-field-editcslt">
+
                                 </div>
                             </div>
                         </div>

@@ -6,9 +6,12 @@ const {
 } = require('express')
 // const { response } = require('../../index')
 
+const { hashSync, genSaltSync, compareSync } = require("bcrypt");
+const { sign } = require("jsonwebtoken");
+
 module.exports = {
     get: (req, res) => {
-        let sql = 'SELECT * FROM users'
+        let sql = 'SELECT * FROM users ORDER BY id DESC'
         db.query(sql, (err, response) => {
             if (err) throw err
             res.json(response);
@@ -37,6 +40,8 @@ module.exports = {
 
     addNewUser: (req, res) => {
         let data = req.body;
+        const salt = genSaltSync(10);
+        data.password = hashSync(data.password, salt);
         console.log('addNewUser: ', data)
         let sql = `INSERT INTO users SET ?`
         db.query(sql, [data], (err, response) => {
@@ -49,6 +54,8 @@ module.exports = {
 
     updateUser: (req, res) => {
         let data = req.body;
+        const salt = genSaltSync(10);
+        data.password = hashSync(data.password, salt);
         console.log('updateUser: ', data)
         if (!data.id) {
             return res.status(400).send({
@@ -85,60 +92,96 @@ module.exports = {
 
     login: (req, res) => {
         let data = req.body;
+        // const salt = genSaltSync(10);
+        // data.password = hashSync(data.password, salt);
+
         console.log('login: ', data);
         let sql = 'SELECT * FROM users where email = ? and password = ?'
         db.query(sql, [data.email, data.password], (err, response) => {
             if (err) {
                 res.json({
                     status: "ERROR_IN_QUERY",
-                    message: 'Error in login'
+                    message: 'Lỗi Đăng Nhập'
                 });
-            } else {
+            }
+            else {
                 // console.log(response[0].ho_ten)
+                console.log(response.length)
+
                 if (response.length > 0) {
+
+                    const jsontoken = sign({
+                        id: response[0].id,
+                        email: response[0].email,
+                        password: response[0].password,
+                        ho_ten: response[0].ho_ten,
+                        user_status_id: response[0].user_status_id,
+                        role_id: response[0].role_id,
+                        sdt: response[0].sdt,
+                    }, "nfb32iur32ibfqfvi3vf932bg932g932", {
+                        expiresIn: "360000"
+                    });
+
                     if (response[0].user_status_id === 1) {
                         if (response[0].role_id === 1) {
+
                             res.json({
-                                role: 'ADMIN',
-                                data: response
+                                // role: 'ADMIN',
+                                // data: response
+                                success: 1,
+                                message: "Đăng nhập thành công",
+                                accessToken: jsontoken,
+                                user: response[0]
                             });
                         } else if (response[0].role_id === 2) {
                             res.json({
-                                role: 'NHANVIEN',
-                                data: response
+                                // role: 'NHANVIEN',
+                                // data: response
+                                success: 2,
+                                message: "Đăng nhập thành công",
+                                accessToken: jsontoken,
+                                user: response[0]
                             });
                         } else if (response[0].role_id === 3) {
                             res.json({
-                                role: 'CCSLT',
-                                data: response
+                                // role: 'CCSLT',
+                                // data: response
+                                success: 3,
+                                message: "Đăng nhập thành công",
+                                accessToken: jsontoken,
+                                user: response[0]
                             });
                         } else if (response[0].role_id === 4) {
                             res.json({
-                                role: 'NNN',
-                                data: response
+                                // role: 'NNN',
+                                // data: response
+                                success: 4,
+                                message: "Đăng nhập thành công",
+                                accessToken: jsontoken,
+                                user: response[0]
                             });
                         } else {
                             res.json({
                                 status: 'ERROR_IN_LOGIN',
-                                message: 'Account or password wrong'
+                                message: 'Tài khoản hoặc mật khẩu không đúng!'
                             });
                         }
                     } else if (response[0].user_status_id === 2) {
                         res.json({
                             status: 'ERROR_IN_LOGIN',
-                            message: 'Unapproved account'
+                            message: 'Tài khoản đang chờ phê duyệt!'
                         });
                     } else {
                         res.json({
                             status: 'ERROR_IN_LOGIN',
-                            message: 'Locked account'
+                            message: 'Tài khoản tạm thời bị khoá'
                         });
                     }
 
                 } else {
                     res.json({
                         status: 'ERROR_IN_LOGIN',
-                        message: 'Account or password wrong'
+                        message: 'Tài khoản hoặc mật khẩu không đúng!'
                     });
                 }
             }

@@ -117,66 +117,66 @@ function App() {
           {/* <Route exact path="/home" component={Home} /> */}
 
           {/* dashboard */}
-          <RouteWrapper exact path="/dashboard" component={Dashboard} layout={Sidebar} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} layout={Sidebar} />
 
           {/* user */}
-          <RouteWrapper exact path="/users" component={ListUser} layout={Sidebar} />
-          <RouteWrapper path="/addUser" component={AddUser} layout={Sidebar} />
-          <RouteWrapper path="/updateUser/:id" component={EditUser} layout={Sidebar} />
-          <RouteWrapper path="/viewUser/:id" component={ViewUser} layout={Sidebar} />
+          <PrivateRoute exact path="/users" component={ListUser} layout={Sidebar} />
+          <PrivateRoute path="/addUser" component={AddUser} layout={Sidebar} />
+          <PrivateRoute path="/updateUser/:id" component={EditUser} layout={Sidebar} />
+          <PrivateRoute path="/viewUser/:id" component={ViewUser} layout={Sidebar} />
 
           {/* Nhân Viên */}
-          <RouteWrapper exact path="/nhanvien" component={ListNV} layout={Sidebar} />
-          <RouteWrapper path="/addNhanVien" component={AddNV} layout={Sidebar} />
-          <RouteWrapper path="/updateNhanVien/:id" component={EditNV} layout={Sidebar} />
-          <RouteWrapper path="/ViewNhanVien/:id" component={ViewNV} layout={Sidebar} />
+          <PrivateRoute exact path="/nhanvien" component={ListNV} layout={Sidebar} />
+          <PrivateRoute path="/addNhanVien" component={AddNV} layout={Sidebar} />
+          <PrivateRoute path="/updateNhanVien/:id" component={EditNV} layout={Sidebar} />
+          <PrivateRoute path="/ViewNhanVien/:id" component={ViewNV} layout={Sidebar} />
 
           {/* Tin Tức */}
-          <RouteWrapper exact path="/tintuc" component={ListTT} layout={Sidebar} />
-          <RouteWrapper path="/addtintuc" component={AddTT} layout={Sidebar} />
-          <RouteWrapper path="/updatetintuc/:id" component={EditTT} layout={Sidebar} />
-          <RouteWrapper path="/Viewtintuc/:id" component={ViewTT} layout={Sidebar} />
+          <PrivateRoute exact path="/tintuc" component={ListTT} layout={Sidebar} />
+          <PrivateRoute path="/addtintuc" component={AddTT} layout={Sidebar} />
+          <PrivateRoute path="/updatetintuc/:id" component={EditTT} layout={Sidebar} />
+          <PrivateRoute path="/Viewtintuc/:id" component={ViewTT} layout={Sidebar} />
 
           {/* Chủ Cơ Sở Lưu Trú */}
-          <RouteWrapper exact path="/chucslt" component={ChuCSLT} layout={Sidebar} />
-          <RouteWrapper path="/addchucslt" component={AddChuCSLT} layout={Sidebar} />
-          <RouteWrapper path="/updatechucslt/:id" component={EditChuCSLT} layout={Sidebar} />
-          <RouteWrapper path="/viewchucslt/:id" component={ViewChuCSLT} layout={Sidebar} />
+          <PrivateRoute exact path="/chucslt" component={ChuCSLT} layout={Sidebar} />
+          <PrivateRoute path="/addchucslt" component={AddChuCSLT} layout={Sidebar} />
+          <PrivateRoute path="/updatechucslt/:id" component={EditChuCSLT} layout={Sidebar} />
+          <PrivateRoute path="/viewchucslt/:id" component={ViewChuCSLT} layout={Sidebar} />
 
           {/* Cơ Sở Lưu Trú */}
-          <RouteWrapper exact path="/dg" component={ListDG} layout={Sidebar} />
-          <RouteWrapper path="/adddg" component={AddDG} layout={Sidebar} />
-          <RouteWrapper path="/updatedg/:id" component={EditDG} layout={Sidebar} />
-          <RouteWrapper path="/viewcslt/:id" component={ViewCSLT} layout={Sidebar} />
+          <PrivateRoute exact path="/dg" component={ListDG} layout={Sidebar} />
+          <PrivateRoute path="/adddg" component={AddDG} layout={Sidebar} />
+          <PrivateRoute path="/updatedg/:id" component={EditDG} layout={Sidebar} />
+          <PrivateRoute path="/viewcslt/:id" component={ViewCSLT} layout={Sidebar} />
 
           {/* Đánh Giá */}
-          <RouteWrapper exact path="/cslt" component={CSLT} layout={Sidebar} />
-          <RouteWrapper path="/addcslt" component={AddCSLT} layout={Sidebar} />
-          <RouteWrapper path="/updatecslt/:id" component={EditCSLT} layout={Sidebar} />
+          <PrivateRoute exact path="/cslt" component={CSLT} layout={Sidebar} />
+          <PrivateRoute path="/addcslt" component={AddCSLT} layout={Sidebar} />
+          <PrivateRoute path="/updatecslt/:id" component={EditCSLT} layout={Sidebar} />
 
           {/* Khai Báo Trước */}
-          <RouteWrapper path="/kbt" component={ListKBT} layout={Sidebar} />
-          <RouteWrapper path="/addkbt" component={AddKBT} layout={Sidebar} />
-          <RouteWrapper path="/updatekbt/:id" component={EditKBT} layout={Sidebar} />
+          <PrivateRoute path="/kbt" component={ListKBT} layout={Sidebar} />
+          <PrivateRoute path="/addkbt" component={AddKBT} layout={Sidebar} />
+          <PrivateRoute path="/updatekbt/:id" component={EditKBT} layout={Sidebar} />
 
           {/* Người Nước Ngoài */}
-          <RouteWrapper path="/nnn" component={ListNNN} layout={Sidebar} />
-          <RouteWrapper path="/addnnn" component={AddNNN} layout={Sidebar} />
-          <RouteWrapper path="/updatennn/:id" component={EditNNN} layout={Sidebar} />
-          <RouteWrapper path="/viewnnn/:id" component={ViewNNN} layout={Sidebar} />
+          <PrivateRoute path="/nnn" component={ListNNN} layout={Sidebar} />
+          <PrivateRoute path="/addnnn" component={AddNNN} layout={Sidebar} />
+          <PrivateRoute path="/updatennn/:id" component={EditNNN} layout={Sidebar} />
+          <PrivateRoute path="/viewnnn/:id" component={ViewNNN} layout={Sidebar} />
 
           {/* History Người Nước Ngoài */}
           <RouteWrapper path="/history/:id" component={History} layout={Sidebar} />
 
           {/* Lưu Trú */}
-          <RouteWrapper path="/lt" component={ListLT} layout={Sidebar} />
-          <RouteWrapper path="/addlt" component={AddLT} layout={Sidebar} />
-          <RouteWrapper path="/updatelt/:id" component={EditLT} layout={Sidebar} />
+          <PrivateRoute path="/lt" component={ListLT} layout={Sidebar} />
+          <PrivateRoute path="/addlt" component={AddLT} layout={Sidebar} />
+          <PrivateRoute path="/updatelt/:id" component={EditLT} layout={Sidebar} />
 
           {/* Nhật Ký Lưu Trú */}
-          <RouteWrapper path="/nklt" component={ListNKLT} layout={Sidebar} />
-          <RouteWrapper path="/addnklt" component={AddNKLT} layout={Sidebar} />
-          <RouteWrapper path="/updatenklt/:id" component={EditNKLT} layout={Sidebar} />
+          <PrivateRoute path="/nklt" component={ListNKLT} layout={Sidebar} />
+          <PrivateRoute path="/addnklt" component={AddNKLT} layout={Sidebar} />
+          <PrivateRoute path="/updatenklt/:id" component={EditNKLT} layout={Sidebar} />
 
 
         </Switch>

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import './Dashboard.scss'
 
-import { useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 
 const Dashboard = () => {
     const location = useLocation();
+
+    const history = useHistory()
+
 
     const [userinfo, setUserInfo] = useState({});
 
@@ -12,6 +15,13 @@ const Dashboard = () => {
     //     console.log('Data:', location.state.detail)
     //     setUserInfo(location.state.detail.data[0]);
     // }, []);
+
+    // useEffect(() => {
+    //     const token = localStorage.getItem('user')
+    //     if (!token) {
+    //         history.replace('/login') //./user
+    //     }
+    // })
 
 
     const [user, setUser] = useState([]);

@@ -6,7 +6,7 @@ class Authentication {
     }
 
     isAuthentication() {
-        const token = localStorage.getItem(APP_CONSTANTS.USER_TOKEN)
+        const token = localStorage.getItem('user')
         return token
     }
 }

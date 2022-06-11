@@ -1,5 +1,7 @@
 module.exports = function (app) {
     let usersCtrl = require('../../Controllers/UsersControllers/usersControllers')
+    // const { checkToken } = require("../../auth/token_validation");
+
 
     //Users
     app.route('/users')

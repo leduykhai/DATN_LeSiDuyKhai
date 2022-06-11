@@ -28,10 +28,23 @@ const EditUser = () => {
 
     const { id } = useParams();
 
+    const [user, setUser] = useState([]);
+
     const [userstatus, setUser_Status] = useState([]);
 
     const [usersrole, setUser_Role] = useState([]);
     // const [khu_vuc_id, setKhu_vuc_id] = useState('');
+
+
+    //user
+    useEffect(() => {
+        const getUser = async () => {
+            const resuser = await fetch("http://localhost:3000/users");
+            const resu = await resuser.json();
+            setUser(await resu);
+        }
+        getUser();
+    }, []);
 
     useEffect(() => {
         const getuser_status = async () => {
@@ -72,6 +85,28 @@ const EditUser = () => {
         } else if (!isEmail(email)) {
             msg.email = "Email không đúng"
         }
+
+        // for (var key in user) {
+        //     if (user[key].email === email) {
+        //         msg.email = "Email Đã Được Sử Dụng!"
+        //     }
+        // }
+
+        if (sdt.length != 10 || sdt[0] != 0) {
+            msg.sdt = "Số điện thoại không tồn tại"
+        }
+
+        if (password.length < 6) {
+            msg.password = "Mật khẩu từ 6 ký tự!"
+        }
+
+        // var PhoneNumber;
+        // for (var i = 0; i < user.length; i++) {
+        //     PhoneNumber = user[i].sdt;
+        //     if (PhoneNumber === sdt) {
+        //         msg.sdt = "Số điện thoại đã được sử dụng!"
+        //     }
+        // }
 
         // if (isEmpty(password)) {
         //     msg.password = "Please input your Password"

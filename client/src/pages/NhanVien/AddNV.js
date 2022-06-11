@@ -5,6 +5,7 @@ import isEmpty from "validator/lib/isEmpty";
 import "./AddNV.scss";
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import moment from 'moment';
 
 const initialState = {
     ho_ten: "",
@@ -43,6 +44,8 @@ const AddNV = () => {
     const [khu_vuc, setKhu_vuc] = useState([]);
 
     const [user, setUser] = useState([]);
+
+    const [nhanvien, setNhanvien] = useState([]);
 
 
     useEffect(() => {
@@ -100,6 +103,16 @@ const AddNV = () => {
         getUser();
     }, []);
 
+    //nhan vien
+    useEffect(() => {
+        const getNV = async () => {
+            const resnhanvien = await fetch("http://localhost:3000/nhanviens");
+            const resnv = await resnhanvien.json();
+            setNhanvien(await resnv);
+        }
+        getNV();
+    }, []);
+
 
     useEffect(() => {
         axios
@@ -110,6 +123,36 @@ const AddNV = () => {
 
     const validateAll = () => {
         const msg = {}
+
+        let date = moment(Date()).format("YYYY");
+
+        if ((date - (moment(ngay_sinh).format("YYYY"))) < 18) {
+            msg.ngay_sinh = "Tuổi từ 18 trở lên"
+        }
+
+        for (var key in nhanvien) {
+            if (nhanvien[key].email == email) {
+                msg.email = "Email Đã Được Sử Dụng!"
+            }
+        }
+
+        for (var key in nhanvien) {
+            if (nhanvien[key].cccd == cccd) {
+                msg.cccd = "CCCD Đã Được Sử Dụng!"
+            }
+        }
+
+        if (sdt.length != 10 || sdt[0] != 0) {
+            msg.sdt = "Số điện thoại không tồn tại"
+        }
+
+        var PhoneNumber;
+        for (var i = 0; i < nhanvien.length; i++) {
+            PhoneNumber = nhanvien[i].sdt;
+            if (PhoneNumber == sdt) {
+                msg.sdt = "Số điện thoại đã được sử dụng!"
+            }
+        }
 
         if (isEmpty(ho_ten)) {
             msg.ho_ten = "Vui lòng nhập họ tên"

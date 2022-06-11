@@ -38,6 +38,9 @@ const AddCSLT = () => {
 
     const [Chu_CSLT, setChu_CSLT] = useState([]);
 
+    const [cslt, setCslt] = useState([]);
+
+
     useEffect(() => {
         const getthanh_pho = async () => {
             const resthanh_pho = await fetch("http://localhost:3000/thanhphos");
@@ -54,12 +57,12 @@ const AddCSLT = () => {
 
     useEffect(() => {
         const getquan = async () => {
-            const resquan = await fetch(`http://localhost:3000/quans/${thanh_pho_id}`);
+            const resquan = await fetch(`http://localhost:3000/quans/${48}`);
             const resq = await resquan.json();
             setQuan(await resq);
         }
         getquan();
-    }, [thanh_pho_id]);
+    }, [48]);
 
     const handlequan = (event) => {
         const getquan_id = event.target.value;
@@ -85,6 +88,15 @@ const AddCSLT = () => {
     }, []);
 
     useEffect(() => {
+        const getCSLT = async () => {
+            const rescslt = await fetch("http://localhost:3000/cslts");
+            const resc = await rescslt.json();
+            setCslt(await resc);
+        }
+        getCSLT();
+    }, []);
+
+    useEffect(() => {
         axios
             .get(`http://localhost:3000/cslts/${id}`)
             .then((resp) => setState({ ...resp.data[0] }));
@@ -93,6 +105,24 @@ const AddCSLT = () => {
 
     const validateAll = () => {
         const msg = {}
+
+        for (var key in cslt) {
+            if (cslt[key].email == email) {
+                msg.email = "Email Đã Được Sử Dụng!"
+            }
+        }
+
+        if (sdt.length != 10 || sdt[0] != 0) {
+            msg.sdt = "Số điện thoại không tồn tại"
+        }
+
+        var PhoneNumber;
+        for (var i = 0; i < cslt.length; i++) {
+            PhoneNumber = cslt[i].sdt;
+            if (PhoneNumber == sdt) {
+                msg.sdt = "Số điện thoại đã được sử dụng!"
+            }
+        }
 
         if (isEmpty(ten_cslt)) {
             msg.ten_cslt = "Vui lòng nhập tên cslt"
@@ -270,7 +300,7 @@ const AddCSLT = () => {
                                     <p className="error-text">{validationMsg.dia_chi}</p>
                                 </div>
 
-                                <div className="input-field-addcslt">
+                                {/* <div className="input-field-addcslt">
                                     <label className='label'>Thành Phố</label>
                                     <select
                                         className="form-control p-2"
@@ -286,7 +316,7 @@ const AddCSLT = () => {
                                             ))
                                         }
                                     </select>
-                                </div>
+                                </div> */}
 
                                 <div className="input-field-addcslt">
                                     <label className='label'>Quận</label>
@@ -325,6 +355,9 @@ const AddCSLT = () => {
                                             ))
                                         }
                                     </select>
+                                </div>
+                                <div className="input-field-addcslt">
+
                                 </div>
                             </div>
                         </div>
