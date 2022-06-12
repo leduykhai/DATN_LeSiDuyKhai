@@ -26,7 +26,7 @@ module.exports = {
 
     getLuuTruByNNN_Id: (req, res) => {
         let luu_tru_id = req.params.id;
-        let sql = 'SELECT * FROM luutrus where nnn_id = ?'
+        let sql = 'SELECT * FROM luutrus where nnn_id = ? ORDER BY id DESC'
         db.query(sql, luu_tru_id, (err, response) => {
             if (err) throw err
             res.json(response);

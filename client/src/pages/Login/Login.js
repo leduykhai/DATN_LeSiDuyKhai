@@ -107,7 +107,7 @@ function Login(props) {
                 localStorage.setItem("user", JSON.stringify(data.user))
                 setMessage("");
                 history.push({
-                    pathname: '/client',
+                    pathname: '/chu_cslt',
                     state: { detail: data }
                 });
                 console.log('Success!!!');
@@ -116,7 +116,7 @@ function Login(props) {
                 localStorage.setItem("user", JSON.stringify(data.user))
                 setMessage("");
                 history.push({
-                    pathname: '/client',
+                    pathname: '/account_nnn',
                     state: { detail: data }
                 });
                 console.log('Success!!!');

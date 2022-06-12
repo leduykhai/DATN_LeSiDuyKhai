@@ -24,6 +24,24 @@ module.exports = {
         })
     },
 
+    getNNNByCsltId: (req, res) => {
+        let nnn_id = req.params.id;
+        let sql = 'SELECT * FROM nguoinuocngoais where cslt_id = ?'
+        db.query(sql, nnn_id, (err, response) => {
+            if (err) throw err
+            res.json(response);
+        })
+    },
+
+    getNNNByUserId: (req, res) => {
+        let nnn_id = req.params.id;
+        let sql = 'SELECT * FROM nguoinuocngoais where user_id = ?'
+        db.query(sql, nnn_id, (err, response) => {
+            if (err) throw err
+            res.json(response);
+        })
+    },
+
     addNewNNN: (req, res) => {
         let data = req.body;
         console.log('addNewNNN: ', req.body)

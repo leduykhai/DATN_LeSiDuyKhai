@@ -12,6 +12,13 @@ module.exports = function (app) {
         .get(nguoinuocngoaisCtrl.getNNNById)
         .delete(nguoinuocngoaisCtrl.deleteNNNById);
 
+    app.route('/nguoinuocngoaiscslt/:id')
+        .get(nguoinuocngoaisCtrl.getNNNByCsltId);
+
+    app.route('/nguoinuocngoaisuser/:id')
+        .get(nguoinuocngoaisCtrl.getNNNByUserId);
+
+
     // app.route('/api/nguoinuocngoais/login')
     //     .post(nguoinuocngoaisCtrl.login)
 

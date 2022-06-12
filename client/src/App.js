@@ -94,6 +94,47 @@ import DangKyCslt from './pages/Client/DangKyCSLT/DangKyCslt'
 import AddKBT_Client from './pages/Client/KhaiBaoTruoc/AddKBT_Client';
 
 
+//Tài khoản Chủ cơ sở lưu trú
+import Account from './pages/Client/ChuCSLT/Account/EditUser'
+
+//Chủ Cơ Sở Lưu Trú
+import Chu_CSLT from './pages/Client/ChuCSLT/ChuCSLT';
+import EditChu_CSLT_Cl from './pages/Client/ChuCSLT/EditChuCSLT_Cl';
+
+//Co so luu tru
+import ListCSLT from './pages/Client/ChuCSLT/CoSoLuuTru/ListCSLT';
+import Edit_CSLT from './pages/Client/ChuCSLT/CoSoLuuTru/EditCSLT';
+
+//Navbar
+import Navbar_ChuCSLT from './pages/Client/ChuCSLT/Navbar_ChuCSLT/Navbar_ChuCSLT';
+
+//Quản lý Người nước ngoài
+import AddAccount from './pages/Client/ChuCSLT/NguoiNuocNgoai/NewAccount/AddUser'
+import ListNNN_Client from './pages/Client/ChuCSLT/NguoiNuocNgoai/ListNNN';
+import AddNNN_Client from './pages/Client/ChuCSLT/NguoiNuocNgoai/AddNNN';
+import EditNNN_Client from './pages/Client/ChuCSLT/NguoiNuocNgoai/EditNNN';
+
+//Bang Luu Tru
+
+import ListLT_Client from './pages/Client/ChuCSLT/NguoiNuocNgoai/LuuTru/ListLT'
+import AddLT_Client from './pages/Client/ChuCSLT/NguoiNuocNgoai/LuuTru/AddLT'
+import EditLT_Client from './pages/Client/ChuCSLT/NguoiNuocNgoai/LuuTru/EditLT'
+
+// Navbar nguoi nuoc ngoai
+import Navbar_NNN from './pages/Client/NguoiNuocNgoai/Navbar_NNN/Navbar_NNN'
+
+//Tài khoản Người nước ngoài
+import Account_NNN from './pages/Client/NguoiNuocNgoai/Account/EditUser'
+import NNN from './pages/Client/NguoiNuocNgoai/NNN'
+import LSLT_NNN from './pages/Client/NguoiNuocNgoai/LuuTru/ListLT'
+
+//Nhật ký lưu trú
+import NKLT_client from './pages/Client/NguoiNuocNgoai/LuuTru/NhatKyLuuTru/ListNKLT'
+import Edit_NKLT from './pages/Client/NguoiNuocNgoai/LuuTru/NhatKyLuuTru/EditNKLT'
+import ADD_NKLT from './pages/Client/NguoiNuocNgoai/LuuTru/NhatKyLuuTru/AddNKLT'
+
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -118,6 +159,43 @@ function App() {
 
           {/* Chi tiet co so luu tru */}
           <RouteWrapper exact path="/client_ctcslt/:id" component={ChiTietCSLT_Client} layout={Navbar_Client} />
+
+
+          {/* Tài khoản Client */}
+          <RouteWrapper exact path="/account_ccslt" component={Account} layout={Navbar_ChuCSLT} />
+
+          {/* Chủ Cơ sở lưu trú */}
+          <RouteWrapper exact path="/chu_cslt" component={Chu_CSLT} layout={Navbar_ChuCSLT} />
+          <RouteWrapper exact path="/editchu_cslt/:id" component={EditChu_CSLT_Cl} layout={Navbar_ChuCSLT} />
+
+          {/* co so luu tru */}
+          <RouteWrapper exact path="/listcslt/:id" component={ListCSLT} layout={Navbar_ChuCSLT} />
+          <RouteWrapper exact path="/editcslt/:id" component={Edit_CSLT} layout={Navbar_ChuCSLT} />
+
+          {/* Quản lý Người nước ngoài */}
+          <RouteWrapper exact path="/addaccount" component={AddAccount} layout={Navbar_ChuCSLT} />
+          <RouteWrapper exact path="/client_nnn/:id" component={ListNNN_Client} layout={Navbar_ChuCSLT} />
+          <RouteWrapper exact path="/add_nnn/:id" component={AddNNN_Client} layout={Navbar_ChuCSLT} />
+          <RouteWrapper exact path="/editnnn/:id" component={EditNNN_Client} layout={Navbar_ChuCSLT} />
+
+          {/* luu tru */}
+          <RouteWrapper exact path="/list_lt/:id" component={ListLT_Client} layout={Navbar_ChuCSLT} />
+          <RouteWrapper exact path="/add_lt/:id" component={AddLT_Client} layout={Navbar_ChuCSLT} />
+          <RouteWrapper exact path="/edit_lt/:id" component={EditLT_Client} layout={Navbar_ChuCSLT} />
+
+
+          {/* Tài khoản Người nước ngoài */}
+          <RouteWrapper exact path="/account_nnn" component={Account_NNN} layout={Navbar_NNN} />
+          <RouteWrapper exact path="/nnn_client" component={NNN} layout={Navbar_NNN} />
+          <RouteWrapper exact path="/lslt_nnn/:id" component={LSLT_NNN} layout={Navbar_NNN} />
+
+          {/* Nhat ky luu tru */}
+          <RouteWrapper exact path="/nklt_client/:id" component={NKLT_client} layout={Navbar_NNN} />
+          <RouteWrapper exact path="/edit_nklt/:id" component={Edit_NKLT} layout={Navbar_NNN} />
+          <RouteWrapper exact path="/add_nklt/:id" component={ADD_NKLT} layout={Navbar_NNN} />
+
+
+
 
 
           {/* Home */}

@@ -24,6 +24,15 @@ module.exports = {
         })
     },
 
+    getChuCSLTByUserId: (req, res) => {
+        let chu_cslt_id = req.params.id;
+        let sql = 'SELECT * FROM chucosoluutrus where user_id = ?'
+        db.query(sql, chu_cslt_id, (err, response) => {
+            if (err) throw err
+            res.json(response);
+        })
+    },
+
     addNewChuCSLT: (req, res) => {
         let data = req.body;
         console.log('addNewChuCSLT: ', req.body)

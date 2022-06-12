@@ -11,7 +11,8 @@ module.exports = function (app) {
     app.route('/chucosoluutrus/:id')
         .get(chucosoluutrusCtrl.getChuCSLTById)
         .delete(chucosoluutrusCtrl.deleteChuCSLTById);
-
+    app.route('/chucosoluutrususerid/:id')
+        .get(chucosoluutrusCtrl.getChuCSLTByUserId);
     // app.route('/api/chucosoluutrus/login')
     //     .post(chucosoluutrusCtrl.login)
 

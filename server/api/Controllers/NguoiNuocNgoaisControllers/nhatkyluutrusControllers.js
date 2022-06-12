@@ -24,6 +24,15 @@ module.exports = {
         })
     },
 
+    getNhatKyLuuTruByLTId: (req, res) => {
+        let nklt_id = req.params.id;
+        let sql = 'SELECT * FROM nhatkyluutrus where luu_trus_id = ?'
+        db.query(sql, nklt_id, (err, response) => {
+            if (err) throw err
+            res.json(response);
+        })
+    },
+
     addNewNhatKyLuuTru: (req, res) => {
         let data = req.body;
         console.log('addNewNhatKyLuuTru: ', req.body)

@@ -1,0 +1,217 @@
+@import url('https://unpkg.com/swiper/swiper-bundle.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+
+:root{
+    --green:#27ae60;
+    --black:#192a56;
+    --light-color:rgb(255, 255, 255);
+    --box-shadow:0 .5rem 1.5rem rgba(0,0,0,.1);
+}
+
+*{
+    // font-family: 'Nunito', sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none; border:none;
+    // text-transform: capitalize;
+    transition: all .2s linear;
+}
+
+
+html{
+    // font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 5.5rem;
+    scroll-behavior: smooth;
+}
+
+.img-nav{
+    // grid-area: image;
+    background: url("../../../../assets/images/Navbar/banner.png");
+    // border-top-left-radius: 15px;
+    // border-top-right-radius: 15px;
+    background-size: cover;
+    height: 80px;
+    text-transform: uppercase;
+}
+
+.title-nav {
+    color: #fff;
+    text-align: left;
+    margin: -10px 0px 0px 180px;
+}
+
+.header-home .logo{
+    color:var(--black);
+    font-size: 2.5rem;
+    font-weight: bolder;
+}
+
+.header-home .logo i{
+    color:var(--green);
+}
+
+.header-home .navbar-home .a{
+    font-size: 0.9rem;
+    border-radius: .5rem;
+    padding:.5rem 1.5rem;
+    color:var(--light-color);
+    text-transform: uppercase;
+}
+
+.header-home .navbar-home .a.active,
+.header-home .navbar-home .a:hover{
+    color:#fff;
+    background: var(--green);
+}
+
+.header-home .icons i,
+.header-home .icons .a{
+    cursor: pointer;
+    margin-left: .5rem;
+    height:3rem;
+    line-height: 3rem;
+    width:3rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color:var(--black);
+    border-radius: 50%;
+    background: #eee;
+}
+
+.header-home .icons i:hover,
+.header-home .icons .a:hover{
+    color:#fff;
+    background: var(--green);
+    transform: rotate(360deg);
+}
+
+.header-home .icons #menu-bars{
+    display: none;
+}
+
+/* media queries  */
+
+@media (max-width:991px){
+
+    .header-home{
+        padding:1rem 2rem;
+    }
+}
+
+@media (max-width:768px){
+
+    .header-home .icons #menu-bars{
+        display: inline-block;
+    }
+
+    .header-home .navbar-home{
+        position: absolute;
+        top:100%; left:0; right:0;
+        background:#fff;
+        border-top: .1rem solid rgba(0,0,0,.2);
+        border-bottom: .1rem solid rgba(0,0,0,.2);
+        padding:1rem;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    .header-home .navbar-home.active{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    .header-home .navbar-home .a{
+        display: block;
+        padding:1.5rem;
+        margin:1rem;
+        font-size: 2rem;
+        background:#eee;
+    }
+
+    #search-form #search-box{
+        width:90%;
+        margin:0 1rem;
+    }
+
+    .home .home-slider .slide .content h3{
+        font-size: 5rem;
+    }
+
+}
+
+@media (max-width:450px){
+
+    .dishes .box-container .box img{
+        height:auto;
+        width: 100%;
+    }
+
+    .order form .inputBox .input{
+        width:100%;
+    }
+
+}
+
+.wrapper-home {
+    display: flex;
+    flex-flow: row wrap;
+    text-align: center;
+}
+
+.wrapper-home > * {
+    padding: 10px;
+    margin: 1px;
+    flex: 10 100%;
+    border-radius: 10px;
+}
+
+.nav-home {
+    background: rgba(202, 230, 201, 0.707);
+    height: 90px;
+    background-size: 100%;
+}
+
+.header-home {
+    top:0; left: 0; right:0;
+    padding:1rem 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    background: rgba(6, 99, 250, 0.799);
+    height: 54px;
+    position: sticky;
+    top: 0px;
+}
+
+@media all and (min-width: 800px) {
+    .main-home {
+        flex: 3;
+    }
+
+    .aside1-home {
+        order: 1;
+    }
+
+    .aside2-home {
+        order: 2;
+    }
+
+    .main-home {
+        order: 2;
+    }
+
+    .footer-home {
+        order: 4;
+    }
+}
+
+@media all and (min-width: 600px) {
+    .aside-home {
+        flex: 1;
+    }
+}
+
+

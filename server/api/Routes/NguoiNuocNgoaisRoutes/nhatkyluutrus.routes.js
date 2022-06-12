@@ -12,4 +12,7 @@ module.exports = function (app) {
         .get(nhatkyluutrusCtrl.getNhatKyLuuTruById)
         .delete(nhatkyluutrusCtrl.deleteNhatKyLuuTruById);
 
+    app.route('/nhatkyluutrusnklt/:id')
+        .get(nhatkyluutrusCtrl.getNhatKyLuuTruByLTId)
+
 }

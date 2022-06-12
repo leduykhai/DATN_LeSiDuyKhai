@@ -13,4 +13,8 @@ module.exports = function (app) {
         .get(luutrusCtrl.getLuuTruByNNN_Id)
         .delete(luutrusCtrl.deleteLuuTruById);
 
+    app.route('/luutrusnnnid/:id')
+        .get(luutrusCtrl.getLuuTruByNNN_Id);
+
+
 }
