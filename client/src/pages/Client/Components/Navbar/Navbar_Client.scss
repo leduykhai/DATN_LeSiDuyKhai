@@ -20,11 +20,28 @@
     transition: all .2s linear;
 }
 
+
 html{
     // font-size: 62.5%;
     overflow-x: hidden;
     scroll-padding-top: 5.5rem;
     scroll-behavior: smooth;
+}
+
+.img-nav{
+    // grid-area: image;
+    background: url("../../../../assets/images/Navbar/banner.png");
+    // border-top-left-radius: 15px;
+    // border-top-right-radius: 15px;
+    background-size: cover;
+    height: 80px;
+    text-transform: uppercase;
+}
+
+.title-nav {
+    color: #fff;
+    text-align: left;
+    margin: -10px 0px 0px 180px;
 }
 
 .header-home .logo{
@@ -163,7 +180,7 @@ html{
     align-items: center;
     justify-content: space-between;
     z-index: 1000;
-    background: rgba(66, 134, 244, 0.862);
+    background: rgba(6, 99, 250, 0.799);
     height: 54px;
     position: sticky;
     top: 0px;

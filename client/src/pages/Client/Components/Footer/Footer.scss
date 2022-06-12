@@ -1,7 +1,84 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+
 .footer-home {
-    background: rgba(137, 205, 216, 0.859);
-    height: 80px;
+    background: rgb(7, 148, 242);
+    height: 185px;
+    color: #fff;
 }
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.footer-content h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-transform: capitalize;
+    line-height: 2rem;
+}
+
+.footer-content p {
+    max-width: 500px;
+    margin: 10px auto;
+    line-height: 28px;
+    font-size: 16px;
+}
+
+.socials {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.socials li {
+    margin: 0 10px;
+}
+
+.socials a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.socials a li {
+    font-size: 1.1rem;
+    transition: color .4s ease;
+}
+
+.socials a:hover i {
+    color: aqua;
+}
+
+.footer-bottom {
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-top: 10px;
+    padding: 20px 0;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    word-spacing: 2px;
+    text-transform: capitalize;
+}
+
+.footer-bottom span {
+    text-transform: uppercase;
+    // opacity: .4;
+    font-weight: 500;
+}
+
+
+
+
+
 
 @media all and (min-width: 800px) {
     .main-home {
@@ -24,3 +101,4 @@
         order: 4;
     }
 }
+

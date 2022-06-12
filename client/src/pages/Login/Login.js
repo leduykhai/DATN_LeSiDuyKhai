@@ -98,7 +98,7 @@ function Login(props) {
                 localStorage.setItem("user", JSON.stringify(data.user))
                 setMessage("");
                 history.push({
-                    pathname: '/dashboard',
+                    pathname: '/users',
                     state: { detail: data }
                 });
                 console.log('Success!!!');

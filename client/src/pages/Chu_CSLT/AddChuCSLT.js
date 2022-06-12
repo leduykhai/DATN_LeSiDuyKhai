@@ -47,6 +47,9 @@ const AddChuCSLT = () => {
 
     const [nhanvien, setNhanvien] = useState([]);
 
+    const response = JSON.parse(localStorage.getItem('user'));
+
+
     //thanh pho
     useEffect(() => {
         const getthanh_pho = async () => {
@@ -119,12 +122,12 @@ const AddChuCSLT = () => {
         getNV();
     }, []);
 
-    //chu co so luu tru
-    useEffect(() => {
-        axios
-            .get(`http://localhost:3000/chucosoluutrus/${id}`)
-            .then((resp) => setState({ ...resp.data[0] }));
-    }, [id]);
+    // //chu co so luu tru
+    // useEffect(() => {
+    //     axios
+    //         .get(`http://localhost:3000/chucosoluutrus/${id}`)
+    //         .then((resp) => setState({ ...resp.data[0] }));
+    // }, [id]);
 
     const validateAll = () => {
         const msg = {}
@@ -434,13 +437,26 @@ const AddChuCSLT = () => {
                                     >
                                         <option disabled selected value="">--Tên Nhân Viên--</option>
                                         {
-                                            nhanvien.map((getnv, index) => (
+                                            response.map((getnv, index) => (
                                                 <option key={index} value={getnv.id}>{getnv.ho_ten} </option>
                                             ))
                                         }
                                     </select>
                                 </div>
 
+
+                                {/* <div className="input-field-addccslt">
+                                    <label className='label'>Nhân Viên Tạo</label>
+                                    <input
+                                        type="text"
+                                        id='nhanvien_id'
+                                        name='nhanvien_id'
+                                        value={(response[0].id)}
+                                        required
+                                        onChange={handleInputChange}
+                                    />
+                                    <p className="error-text">{validationMsg.ho_ten}</p>
+                                </div> */}
                                 <div className="input-field-addccslt">
 
                                 </div>

@@ -9,6 +9,15 @@
   // font-family: 'Poppins', sans-serif;
 }
 
+.avatar{
+  grid-area: image;
+    background: url("https://vietluat.vn/wp-content/uploads/2020/02/thanh-lap-cong-ty-nganh-khach-san.jpg");
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-size: cover;
+    height: 40px;
+}
+
 .sidebar {
   position: fixed;
   height: 100%;

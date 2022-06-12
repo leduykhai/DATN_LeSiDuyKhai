@@ -101,9 +101,12 @@ import getComparator from '../../components/Table/getComparator';
 import EnhancedTableToolbar from '../../components/Table/EnhancedTableToolbar';
 import EnhancedTableHead from './EnhancedTableHead/EnhancedTableHead';
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+
+import ENDPOINT from '../../api/endpoint'
+
 
 import {
     DataGridPremium,
@@ -360,10 +363,14 @@ export default function ListUser() {
     const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
+    const history = useHistory();
+
+
     const [data, setData] = React.useState([]);
 
     const loadData = async () => {
-        const response = await axios.get("http://localhost:3000/users");
+        const response = await axios.get(ENDPOINT.USERS);
+        console.log(response)
         setData(response.data);
     };
 
@@ -372,12 +379,18 @@ export default function ListUser() {
     }, []);
 
     const deleteContact = (id) => {
-        if (
-            window.confirm("Bạn Chắc chắn muốn xoá tài khoản này ?")
-        ) {
-            axios.delete(`http://localhost:3000/users/${id}`);
-            toast.success("Xoá Tài Khoản Thành Công!");
-            setTimeout(() => loadData(), 100);
+        const response = JSON.parse(localStorage.getItem('user'));
+        if (response[0].id != 1) {
+            window.alert("Tài Khoản của bạn không có quyền xoá!")
+            setTimeout(() => history.goBack(), 100);
+        } else {
+            if (
+                window.confirm("Bạn có chắc chắn muốn xoá?")
+            ) {
+                axios.delete(`http://localhost:3000/users/${id}`);
+                toast.success("Xoá Tài Khoản Thành Công!");
+                setTimeout(() => loadData(), 100);
+            }
         }
     };
 
@@ -505,7 +518,7 @@ export default function ListUser() {
                                             </TableCell>
                                             <TableCell align="left">US{row.id}</TableCell>
                                             <TableCell align="left">{row.email}</TableCell>
-                                            <TableCell align="left">{row.password}</TableCell>
+                                            <TableCell align="left">{row.ho_ten}</TableCell>
                                             {/* <TableCell align="left">{row.user_status_id}</TableCell> */}
                                             <TableCell align="left">
                                                 <Link to={`/updateUser/${row.id}`}>

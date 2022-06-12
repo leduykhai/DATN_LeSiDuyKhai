@@ -24,6 +24,15 @@ module.exports = {
         })
     },
 
+    getDanhGiaByCsltId: (req, res) => {
+        let danhgia_id = req.params.id;
+        let sql = 'SELECT * FROM danhgias where cslt_id = ?'
+        db.query(sql, danhgia_id, (err, response) => {
+            if (err) throw err
+            res.json(response);
+        })
+    },
+
     addNewDanhGia: (req, res) => {
         let data = req.body;
         console.log('addNewDanhGia: ', req.body)

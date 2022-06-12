@@ -8,6 +8,7 @@ import "./App.css"
 import Login from './pages/Login/Login';
 
 import Sidebar from './components/Sidebar/Sidebar';
+import Sidebar_Nv from './pages/Admin/Page_NhanVien/Sidebar_Nv/Sidebar_Nv';
 import Navbar from './components/Navbar/Navbar';
 
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -81,6 +82,9 @@ import Navbar_Client from './pages/Client/Components/Navbar/Navbar_Client'
 //Main
 import Main from './pages/Client/Components/Main/Main';
 
+//Chi tiet co so luu tru
+import ChiTietCSLT_Client from './pages/Client/CoSoLuuTru/ChiTietCSLT_Client';
+
 //Dang Ky Chủ CSLT
 import DangKyAccount from './pages/Client/DangKyCSLT/DangKyAccount'
 import DangKyChuCslt from './pages/Client/DangKyCSLT/DangKyCCslt'
@@ -111,6 +115,9 @@ function App() {
 
           {/* Khai báo trước */}
           <RouteWrapper exact path="/client_kbt/:id" component={AddKBT_Client} layout={Navbar_Client} />
+
+          {/* Chi tiet co so luu tru */}
+          <RouteWrapper exact path="/client_ctcslt/:id" component={ChiTietCSLT_Client} layout={Navbar_Client} />
 
 
           {/* Home */}
@@ -177,6 +184,58 @@ function App() {
           <PrivateRoute path="/nklt" component={ListNKLT} layout={Sidebar} />
           <PrivateRoute path="/addnklt" component={AddNKLT} layout={Sidebar} />
           <PrivateRoute path="/updatenklt/:id" component={EditNKLT} layout={Sidebar} />
+
+
+          {/* Nhân Viên Quản Lý */}
+          <PrivateRoute exact path="/sidebar_nv" component={ListTT} layout={Sidebar_Nv} />
+
+
+          {/* Tin Tức */}
+          <PrivateRoute exact path="/tintuc" component={ListTT} layout={Sidebar_Nv} />
+          <PrivateRoute path="/addtintuc" component={AddTT} layout={Sidebar_Nv} />
+          <PrivateRoute path="/updatetintuc/:id" component={EditTT} layout={Sidebar_Nv} />
+          <PrivateRoute path="/Viewtintuc/:id" component={ViewTT} layout={Sidebar_Nv} />
+
+          {/* Chủ Cơ Sở Lưu Trú */}
+          <PrivateRoute exact path="/chucslt" component={ChuCSLT} layout={Sidebar_Nv} />
+          <PrivateRoute path="/addchucslt" component={AddChuCSLT} layout={Sidebar_Nv} />
+          <PrivateRoute path="/updatechucslt/:id" component={EditChuCSLT} layout={Sidebar_Nv} />
+          <PrivateRoute path="/viewchucslt/:id" component={ViewChuCSLT} layout={Sidebar_Nv} />
+
+          {/* Cơ Sở Lưu Trú */}
+          <PrivateRoute exact path="/dg" component={ListDG} layout={Sidebar_Nv} />
+          <PrivateRoute path="/adddg" component={AddDG} layout={Sidebar_Nv} />
+          <PrivateRoute path="/updatedg/:id" component={EditDG} layout={Sidebar_Nv} />
+          <PrivateRoute path="/viewcslt/:id" component={ViewCSLT} layout={Sidebar_Nv} />
+
+          {/* Đánh Giá */}
+          <PrivateRoute exact path="/cslt" component={CSLT} layout={Sidebar_Nv} />
+          <PrivateRoute path="/addcslt" component={AddCSLT} layout={Sidebar_Nv} />
+          <PrivateRoute path="/updatecslt/:id" component={EditCSLT} layout={Sidebar_Nv} />
+
+          {/* Khai Báo Trước */}
+          <PrivateRoute path="/kbt" component={ListKBT} layout={Sidebar_Nv} />
+          <PrivateRoute path="/addkbt" component={AddKBT} layout={Sidebar_Nv} />
+          <PrivateRoute path="/updatekbt/:id" component={EditKBT} layout={Sidebar_Nv} />
+
+          {/* Người Nước Ngoài */}
+          <PrivateRoute path="/nnn" component={ListNNN} layout={Sidebar_Nv} />
+          <PrivateRoute path="/addnnn" component={AddNNN} layout={Sidebar_Nv} />
+          <PrivateRoute path="/updatennn/:id" component={EditNNN} layout={Sidebar_Nv} />
+          <PrivateRoute path="/viewnnn/:id" component={ViewNNN} layout={Sidebar_Nv} />
+
+          {/* History Người Nước Ngoài */}
+          <RouteWrapper path="/history/:id" component={History} layout={Sidebar_Nv} />
+
+          {/* Lưu Trú */}
+          <PrivateRoute path="/lt" component={ListLT} layout={Sidebar_Nv} />
+          <PrivateRoute path="/addlt" component={AddLT} layout={Sidebar_Nv} />
+          <PrivateRoute path="/updatelt/:id" component={EditLT} layout={Sidebar_Nv} />
+
+          {/* Nhật Ký Lưu Trú */}
+          <PrivateRoute path="/nklt" component={ListNKLT} layout={Sidebar_Nv} />
+          <PrivateRoute path="/addnklt" component={AddNKLT} layout={Sidebar_Nv} />
+          <PrivateRoute path="/updatenklt/:id" component={EditNKLT} layout={Sidebar_Nv} />
 
 
         </Switch>

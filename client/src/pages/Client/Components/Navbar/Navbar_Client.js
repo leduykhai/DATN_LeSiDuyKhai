@@ -11,7 +11,15 @@ const Navbar = (props) => {
             <div className='wrapper-home'>
 
                 <nav className='nav-home'>
-                    <h2>Quản Lý Lưu Trú</h2>
+                    <div>
+                        <div className="img-nav">
+                            <img src='' alt='' />
+                            <div className='title-nav'>
+                                <h3>Công An Thành Phố Đà Nẵng</h3>
+                                <h3>Hệ Thống Quản Lý Thông Tin Lưu Trú</h3>
+                            </div>
+                        </div>
+                    </div>
                 </nav>
 
                 <header className='header-home'>

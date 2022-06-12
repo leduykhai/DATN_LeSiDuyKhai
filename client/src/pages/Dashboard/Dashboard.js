@@ -9,12 +9,25 @@ const Dashboard = () => {
     const history = useHistory()
 
 
-    const [userinfo, setUserInfo] = useState({});
+    const [userinfo, setUserInfo] = useState([]);
+
+    // const loadData = async () => {
+    //     const response = JSON.parse(localStorage.getItem('user'));
+    //     setUserInfo(response);
+    // };
+
+    // useEffect(() => {
+    //     loadData();
+    // }, []);
+
 
     // useEffect(() => {
     //     console.log('Data:', location.state.detail)
     //     setUserInfo(location.state.detail.data[0]);
     // }, []);
+
+
+
 
     // useEffect(() => {
     //     const token = localStorage.getItem('user')
@@ -22,6 +35,11 @@ const Dashboard = () => {
     //         history.replace('/login') //./user
     //     }
     // })
+
+    // const response = JSON.parse(localStorage.getItem('user'));
+
+    // console.log(response)
+
 
 
     const [user, setUser] = useState([]);
@@ -126,7 +144,7 @@ const Dashboard = () => {
                     <div className="sales-details">
                         <ul className="details">
                             <li className="topic">Ngày</li>
-                            <li><a href="#">10/06/2022</a></li>
+                            <li><a href="#">25/06/2022</a></li>
                         </ul>
                         <ul className="details">
                             <li className="topic">Người Nước Ngoài</li>

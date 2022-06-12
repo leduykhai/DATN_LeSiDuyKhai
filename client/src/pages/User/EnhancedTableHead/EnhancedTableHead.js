@@ -29,10 +29,10 @@ const headCells = [
         label: 'Email',
     },
     {
-        id: 'password',
+        id: 'ho_ten',
         numeric: false,
         disablePadding: false,
-        label: 'Mật Khẩu',
+        label: 'Họ Tên',
     },
     // {
     //     id: 'status',

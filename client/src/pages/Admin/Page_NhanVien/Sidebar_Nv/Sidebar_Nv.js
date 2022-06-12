@@ -1,52 +1,28 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import Navbar from '../Navbar/Navbar'
+import { Link } from 'react-router-dom'
+import Navbar from '../../../../components/Navbar/Navbar'
 
-import './Sidebar.scss'
+// import './Sidebar.scss'
 
-const Sidebar = (props) => {
-
-    const history = useHistory();
+const Sidebar = (data) => {
 
     const logout = () => {
         localStorage.removeItem("user")
     }
-
-    const role = () => {
-        const response = JSON.parse(localStorage.getItem('user'));
-        if (response[0].id != 1) {
-            window.alert("Tài Khoản Của Bạn không Có quyền truy cập")
-            setTimeout(() => history.goBack(), 100);
-        }
-    };
 
     return (
         <body>
             <div class="sidebar">
                 <div class="logo-details">
                     <i class="bx"></i>
-                    <span class="logo_name">DUY KHAI</span>
+                    <span class="logo_name">NHAN VIEN</span>
                 </div>
                 <ul class="nav-links">
-                    <li onClick={role}>
-                        <Link exact to="/dashboard" class="active">
-                            <i class="bx bx-grid-alt"></i>
-                            <span class="links_name">Tổng Quan</span>
-                        </Link>
-                    </li>
+
                     <li>
-                        <Link exact to="/users">
-                            <i class="bx bx-user"></i>
-                            <span class="links_name">Tài Khoản</span>
-                        </Link>
-                    </li>
-
-                    <span class="nav-part">Nhân Viên</span>
-
-                    <li onClick={role}>
-                        <Link exact to="/nhanvien">
+                        <Link exact to="">
                             <i class=" bx bx-user-circle"></i>
-                            <span class="links_name">Nhân Viên</span>
+                            <span class="links_name">Thông Tin Cá Nhân</span>
                         </Link>
                     </li>
                     <li>
@@ -118,7 +94,7 @@ const Sidebar = (props) => {
             <section class="home-section">
                 <Navbar />
                 <div class="home-content">
-                    {props.children}
+                    {data.children}
                 </div>
             </section>
         </body>

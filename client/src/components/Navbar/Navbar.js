@@ -3,6 +3,10 @@ import React from 'react'
 import './Navbar.scss'
 
 const Navbar = (props) => {
+
+    const response = JSON.parse(localStorage.getItem('user'));
+
+
     // let sidebar = document.querySelector(".sidebar");
     // let sidebarBtn = document.querySelector(".sidebarBtn");
     // sidebarBtn.onclick = function () {
@@ -37,8 +41,10 @@ const Navbar = (props) => {
                     <i class="bx bx-search"></i>
                 </div>
                 <div class="profile-details">
-                    <img src="" alt="" />
-                    <span class="admin_name">Quản Trị Viên</span>
+                    <div className="avatar">
+                        <img src='' alt='' />
+                    </div>
+                    <span class="admin_name">{response[0].ho_ten}</span>
                     <i class="bx bx-chevron-down"></i>
                 </div>
             </nav>

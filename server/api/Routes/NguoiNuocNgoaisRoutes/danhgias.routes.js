@@ -11,5 +11,7 @@ module.exports = function (app) {
     app.route('/danhgias/:id')
         .get(danhgiasCtrl.getDanhGiaById)
         .delete(danhgiasCtrl.deleteDanhGiaById);
+    app.route('/danhgiascslt/:id')
+        .get(danhgiasCtrl.getDanhGiaByCsltId)
 
 }

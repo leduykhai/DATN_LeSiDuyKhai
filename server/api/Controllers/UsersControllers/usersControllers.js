@@ -40,8 +40,8 @@ module.exports = {
 
     addNewUser: (req, res) => {
         let data = req.body;
-        const salt = genSaltSync(10);
-        data.password = hashSync(data.password, salt);
+        // const salt = genSaltSync(10);
+        // data.password = hashSync(data.password, salt);
         console.log('addNewUser: ', data)
         let sql = `INSERT INTO users SET ?`
         db.query(sql, [data], (err, response) => {
@@ -54,8 +54,8 @@ module.exports = {
 
     updateUser: (req, res) => {
         let data = req.body;
-        const salt = genSaltSync(10);
-        data.password = hashSync(data.password, salt);
+        // const salt = genSaltSync(10);
+        // data.password = hashSync(data.password, salt);
         console.log('updateUser: ', data)
         if (!data.id) {
             return res.status(400).send({
@@ -131,7 +131,7 @@ module.exports = {
                                 success: 1,
                                 message: "Đăng nhập thành công",
                                 accessToken: jsontoken,
-                                user: response[0]
+                                user: response
                             });
                         } else if (response[0].role_id === 2) {
                             res.json({
@@ -140,7 +140,7 @@ module.exports = {
                                 success: 2,
                                 message: "Đăng nhập thành công",
                                 accessToken: jsontoken,
-                                user: response[0]
+                                user: response
                             });
                         } else if (response[0].role_id === 3) {
                             res.json({
@@ -149,7 +149,7 @@ module.exports = {
                                 success: 3,
                                 message: "Đăng nhập thành công",
                                 accessToken: jsontoken,
-                                user: response[0]
+                                user: response
                             });
                         } else if (response[0].role_id === 4) {
                             res.json({
@@ -158,7 +158,7 @@ module.exports = {
                                 success: 4,
                                 message: "Đăng nhập thành công",
                                 accessToken: jsontoken,
-                                user: response[0]
+                                user: response
                             });
                         } else {
                             res.json({
