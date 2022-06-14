@@ -1,41 +1,15 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
-
-import stableSort from '../../../../components/Table/stableSort';
-import getComparator from '../../../../components/Table/getComparator';
-import EnhancedTableToolbar from '../../../../components/Table/EnhancedTableToolbar';
-import EnhancedTableHead from './EnhancedTableHead/EnhancedTableHead';
-
-import MapsHomeWorkOutlinedIcon from '@mui/icons-material/MapsHomeWorkOutlined';
-import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import GridViewIcon from '@mui/icons-material/GridView';
-
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+
+
 import './ListCSLT.scss'
+import moment from 'moment';
 
 export default function ListCSLT() {
-    const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('calories');
-    const [selected, setSelected] = React.useState([]);
-    const [page, setPage] = React.useState(0);
-    const [dense, setDense] = React.useState(false);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
     const [data, setData] = React.useState([]);
 
@@ -52,174 +26,109 @@ export default function ListCSLT() {
         loadData();
     }, []);
 
-    const deleteContact = (id) => {
-        if (
-            window.confirm("Bạn chắc chắn muốn xoá cơ sở lưu trú này ?")
-        ) {
-            axios.delete(`http://localhost:3000/cslts/${id}`);
-            toast.success("Xoá Thành Công!");
-            setTimeout(() => loadData(), 100);
-        }
-    };
+    const Dropdown = (e) => {
+        let click = document.querySelector('.click-list-cslt');
+        let list = document.querySelector('.list-list-cslt');
+        click.addEventListener("click", () => {
+            list.classList.toggle('newlist-list-cslt');
+        });
+    }
 
-
-    const handleRequestSort = (event, property) => {
-        const isAsc = orderBy === property && order === 'asc';
-        setOrder(isAsc ? 'desc' : 'asc');
-        setOrderBy(property);
-    };
-
-    const handleSelectAllClick = (event) => {
-        if (event.target.checked) {
-            const newSelecteds = data.map((n) => n.id);
-            setSelected(newSelecteds);
-            return;
-        }
-        setSelected([]);
-    };
-
-    const handleClick = (event, id) => {
-        const selectedIndex = selected.indexOf(id);
-        let newSelected = [];
-
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, id);
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(
-                selected.slice(0, selectedIndex),
-                selected.slice(selectedIndex + 1),
-            );
-        }
-
-        setSelected(newSelected);
-    };
-
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
-
-    const handleChangeDense = (event) => {
-        setDense(event.target.checked);
-    };
-
-    const isSelected = (id) => selected.indexOf(id) !== -1;
-
-    // Avoid a layout jump when reaching the last page with empty data.
-    const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
+    const handleBack = (e) => {
+        setTimeout(() => history.goBack(), 100);
+    }
 
     return (
-        <Box sx={{ width: '100%' }}>
-            <Paper sx={{ width: '100%', mb: 2 }}>
-                <EnhancedTableToolbar numSelected={selected.length} />
-                <Link to={`/addaccount`}>
-                    <PersonAddAltIcon className='add-icon' sx={{ fontSize: 40 }} />
-                </Link>
-                <TableContainer>
-                    <Table
-                        sx={{ minWidth: 750 }}
-                        aria-labelledby="tableTitle"
-                        size={dense ? 'small' : 'medium'}
-                    >
-                        <EnhancedTableHead
-                            numSelected={selected.length}
-                            order={order}
-                            orderBy={orderBy}
-                            onSelectAllClick={handleSelectAllClick}
-                            onRequestSort={handleRequestSort}
-                            rowCount={data.length}
-                        />
-                        <TableBody>
-                            {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-                 data.slice().sort(getComparator(order, orderBy)) */}
-                            {stableSort(data, getComparator(order, orderBy))
-                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                .map((row, index) => {
-                                    const isItemSelected = isSelected(row.id);
-                                    const labelId = `enhanced-table-checkbox-${index}`;
+        <div>
+            {data.map((item, index) => {
+                return (
+                    <body className='body'>
+                        <div className="container-chucslt">
+                            <header className='header'>Quản Lý Cơ Sở Lưu Trú</header>
+                            <div className='body-list-cslt' onClick={Dropdown}>
+                                <div class="container-list-cslt">
+                                    <ArrowCircleLeftIcon className='add-icon' sx={{ fontSize: 50 }} onClick={handleBack} />
+                                    <button class="click-list-cslt">-- Chọn Danh Mục --</button>
+                                    <div class="list-list-cslt newlist-list-cslt">
+                                        <Link to={`/editcslt/${item.id}`}>
+                                            <button class="links-list-cslt">Cập Nhật Thông Tin</button>
+                                        </Link>
+                                        <Link to={`/addaccount`}>
+                                            <button class="links-list-cslt">Thêm Tài Khoản Người Nước Ngoài</button>
+                                        </Link>
+                                        <Link to={`/ds_kbt/${item.id}`}>
+                                            <button class="links-list-cslt">Danh Sách Khai Báo Lưu Trú</button>
+                                        </Link>
+                                        <Link to={`/add_nnn/${item.id}`}>
+                                            <button class="links-list-cslt">Thêm Thông Tin Người Nước Ngoài</button>
+                                        </Link>
+                                        <Link to={`/client_nnn/${item.id}`}>
+                                            <button class="links-list-cslt">Quản Lý Người Nước Ngoài</button>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <form className='form-all'>
+                                <div className="form-chucslt first-chucslt">
+                                    <div className="details personal">
+                                        <span className="title-chucslt">Thông tin cơ sở lưu trú</span>
 
-                                    return (
-                                        <TableRow
-                                            hover
-                                            onClick={(event) => handleClick(event, row.id)}
-                                            role="checkbox"
-                                            aria-checked={isItemSelected}
-                                            tabIndex={-1}
-                                            key={row.id}
-                                            selected={isItemSelected}
-                                        >
-                                            <TableCell padding="checkbox">
-                                                <Checkbox
-                                                    color="primary"
-                                                    checked={isItemSelected}
-                                                    inputProps={{
-                                                        'aria-labelledby': labelId,
-                                                    }}
+                                        <div className="fields-chucslt">
+                                            <div className="input-field-chucslt">
+                                                <label className='label'>Tên Cơ Sở Lưu trú</label>
+                                                <input
+                                                    type="text"
+                                                    value={item.ten_cslt}
                                                 />
-                                            </TableCell>
-                                            <TableCell
-                                                component="th"
-                                                id={labelId}
-                                                scope="row"
-                                                padding="none"
-                                            >
-                                                {/* {row.name} */}
-                                                {index + 1}
-                                            </TableCell>
-                                            <TableCell align="left">CSLT{row.id}</TableCell>
-                                            <TableCell align="left">CCSLT{row.chu_cslt_id}</TableCell>
-                                            <TableCell align="left">{row.ten_cslt}</TableCell>
-                                            <TableCell align="left">{row.loai_cslt}</TableCell>
-                                            <TableCell align="left">{row.nguoi_dai_dien}</TableCell>
-                                            <TableCell align="left">
-                                                <Link to={`/editcslt/${row.id}`}>
-                                                    <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />
-                                                </Link>
-                                                <Link to={`/client_nnn/${row.id}`}>
-                                                    <GridViewIcon className='view-icon' sx={{ fontSize: 30 }} />
-                                                </Link>
-                                                <Link to={`/add_nnn/${row.id}`}>
-                                                    <PersonAddAltIcon className='add-icon' sx={{ fontSize: 30 }} />
-                                                </Link>
-                                            </TableCell>
-                                        </TableRow>
-                                    );
-                                })}
-                            {emptyRows > 0 && (
-                                <TableRow
-                                    style={{
-                                        height: (dense ? 33 : 53) * emptyRows,
-                                    }}
-                                >
-                                    <TableCell colSpan={6} />
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <TablePagination
-                    rowsPerPageOptions={[5, 10, 25]}
-                    component="div"
-                    count={data.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-            </Paper>
-            <FormControlLabel
-                control={<Switch checked={dense} onChange={handleChangeDense} />}
-                label="Thu Gọn"
-            />
-        </Box>
+                                            </div>
+
+                                            <div className="input-field-chucslt">
+                                                <label className='label'>Loại Cơ Sở Lưu Trú</label>
+                                                <input
+                                                    type="text"
+                                                    value={item.loai_cslt}
+                                                />
+                                            </div>
+
+                                            <div className="input-field-chucslt">
+                                                <label className='label'>Người Đại Diện</label>
+                                                <input
+                                                    type="text"
+                                                    value={item.nguoi_dai_dien}
+                                                />
+                                            </div>
+
+                                            <div className="input-field-chucslt">
+                                                <label className='label'>Email</label>
+                                                <input
+                                                    type="email"
+                                                    value={item.email}
+                                                />
+                                            </div>
+
+                                            <div className="input-field-chucslt">
+                                                <label className='label'>Địa Chỉ</label>
+                                                <input
+                                                    type="text"
+                                                    value={item.dia_chi}
+                                                />
+                                            </div>
+
+                                            <div className="input-field-chucslt">
+                                                <label className='label'>Số Điện Thoại</label>
+                                                <input
+                                                    type="text"
+                                                    value={item.sdt}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </body>
+                );
+            })}
+        </div>
     );
 }

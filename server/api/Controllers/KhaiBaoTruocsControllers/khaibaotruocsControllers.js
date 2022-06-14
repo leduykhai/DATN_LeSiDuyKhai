@@ -24,6 +24,15 @@ module.exports = {
         })
     },
 
+    getKhaiBaoTruocByCSLTId: (req, res) => {
+        let kbt_id = req.params.id;
+        let sql = 'SELECT * FROM khaibaotruocs where cslt_id = ?'
+        db.query(sql, kbt_id, (err, response) => {
+            if (err) throw err
+            res.json(response);
+        })
+    },
+
     addNewKhaiBaoTruoc: (req, res) => {
         let data = req.body;
         console.log('addNewKhaiBaoTruoc: ', req.body)

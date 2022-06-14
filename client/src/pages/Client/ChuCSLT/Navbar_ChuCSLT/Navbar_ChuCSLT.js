@@ -35,7 +35,7 @@ const Navbar_ChuCSLT = (props) => {
                         {/* <Link className="active a" href="#home">Trang Chủ</Link> */}
                         <Link exact to="" className="a" ></Link>
                         <Link exact to="" className="a" ></Link>
-                        <Link exact to="" className="a" href="#about"></Link>
+                        {/* <Link exact to="/ds_kbt" className="a" href="#about">Danh Sách Khai Báo</Link> */}
                         <Link exact to="/account_ccslt" className="a" >Xin Chào {response[0].ho_ten}</Link>
                         <Link exact to="/login" className="a" href="#about" onClick={logout} >Đăng Xuất</Link>
                     </div>

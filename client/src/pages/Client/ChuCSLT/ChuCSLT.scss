@@ -1,4 +1,4 @@
-.body-list-cslt{   
+.body-dd{   
     width:100%;
     display: flex;
     justify-content: center;
@@ -7,32 +7,32 @@
     background-size: cover;
 }
 
-.container-list-cslt {
-    width:350px;
+.container-dd {
+    width:200px;
     // position: relative;
 }
 
-.click-list-cslt{
+.click-dd{
     background-color: #165fe8;
     cursor: pointer;
 }
 
-.click-list-cslt:hover {
+.click-dd:hover {
     background-color: #26e539;
 }
 
-.click-list-cslt,.links-list-cslt {
+.click-dd,.links-dd {
     padding: 12px;
     font-size: 1.2em;
     font-family: futura Md BT;
     border: none;
     outline: none;
-    width:350px;
+    width:300px;
     color:#fff;
     transition: 0.3s;
 }
 
-.list-list-cslt {
+.list-dd {
     // position: absolute;
     transform: scaleY(0);
     transform-origin: top;
@@ -40,17 +40,17 @@
     display: none;
 }
 
-.newlist-list-cslt {
+.newlist-dd {
     transform: scaleY(1);
     display: block;
 }
 
-.links-list-cslt {
+.links-dd {
     background-color: #2b3991d5;
     cursor: pointer;
 }
 
-.links-list-cslt:hover {
+.links-dd:hover {
     background-color: #0e96ff;
     transform: scale(1.1);
 }

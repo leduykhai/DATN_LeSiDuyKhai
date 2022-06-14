@@ -103,7 +103,7 @@ export default function ListDG_Client() {
                     .catch((err) => toast.error(err.response.data));
                 toast.success("Cảm Ơn Bạn Đã Bình Luận!")
             }
-            setTimeout(() => history.action(`/client_ctcslt/${id}`), 100);
+            setTimeout(() => loadData(), 100);
         }
     };
 

@@ -137,7 +137,7 @@ const AddNNN = () => {
         const isValid = validateAll()
         if (!isValid) return
         else {
-            if (!id) {
+            if (id) {
                 axios
                     .post("http://localhost:3000/nguoinuocngoais", {
                         ho_ten,
@@ -172,7 +172,7 @@ const AddNNN = () => {
                     .catch((err) => toast.error(err.response.data));
                 toast.success("Thêm thành công!")
             }
-            setTimeout(() => history.push(), 100);
+            setTimeout(() => history.goBack(), 100);
         }
     };
 
@@ -210,7 +210,7 @@ const AddNNN = () => {
                                         <option disabled selected value="">--Tên đăng ký--</option>
                                         {
                                             useridmax.map((getus, index) => (
-                                                <option key={index} value={getus.id}>{getus.ho_ten} </option>
+                                                <option key={index}>{getus.ho_ten} </option>
                                             ))
                                         }
                                     </select>
@@ -262,7 +262,7 @@ const AddNNN = () => {
                                         <option disabled selected value="">--Email--</option>
                                         {
                                             useridmax.map((getus, index) => (
-                                                <option key={index} value={getus.id}>{getus.email} </option>
+                                                <option key={index}>{getus.email} </option>
                                             ))
                                         }
                                     </select>
@@ -330,7 +330,7 @@ const AddNNN = () => {
                                         <option disabled selected value="">--Số điện thoại--</option>
                                         {
                                             useridmax.map((getus, index) => (
-                                                <option key={index} value={getus.id}>{getus.sdt} </option>
+                                                <option key={index}>{getus.sdt} </option>
                                             ))
                                         }
                                     </select>

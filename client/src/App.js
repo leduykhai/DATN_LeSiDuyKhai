@@ -133,6 +133,15 @@ import NKLT_client from './pages/Client/NguoiNuocNgoai/LuuTru/NhatKyLuuTru/ListN
 import Edit_NKLT from './pages/Client/NguoiNuocNgoai/LuuTru/NhatKyLuuTru/EditNKLT'
 import ADD_NKLT from './pages/Client/NguoiNuocNgoai/LuuTru/NhatKyLuuTru/AddNKLT'
 
+//Danh Sách khai báo trước
+
+import DS_KBT from './pages/Client/ChuCSLT/KhaiBaoTruoc/ListKBT'
+import EDIT_KBT from './pages/Client/ChuCSLT/KhaiBaoTruoc/EditKBT'
+
+//Tao Tai Khoan
+import TaoTaiKhoan from './pages/Client/ChuCSLT/KhaiBaoTruoc/TaoTaiKhoan/AddUser'
+import TaoNNN from './pages/Client/ChuCSLT/KhaiBaoTruoc/TaoNguoiNuocNgoai/AddNNN'
+
 
 
 function App() {
@@ -172,6 +181,14 @@ function App() {
           <RouteWrapper exact path="/listcslt/:id" component={ListCSLT} layout={Navbar_ChuCSLT} />
           <RouteWrapper exact path="/editcslt/:id" component={Edit_CSLT} layout={Navbar_ChuCSLT} />
 
+          {/* Danh sách khai báo trước */}
+          <RouteWrapper exact path="/ds_kbt/:id" component={DS_KBT} layout={Navbar_ChuCSLT} />
+          <RouteWrapper exact path="/edit_kbt/:id" component={EDIT_KBT} layout={Navbar_ChuCSLT} />
+
+          {/* Tạo Tài Khoản */}
+          <RouteWrapper exact path="/taotaikhoan/:id" component={TaoTaiKhoan} layout={Navbar_ChuCSLT} />
+          <RouteWrapper exact path="/taonnn/:id" component={TaoNNN} layout={Navbar_ChuCSLT} />
+
           {/* Quản lý Người nước ngoài */}
           <RouteWrapper exact path="/addaccount" component={AddAccount} layout={Navbar_ChuCSLT} />
           <RouteWrapper exact path="/client_nnn/:id" component={ListNNN_Client} layout={Navbar_ChuCSLT} />
@@ -193,6 +210,10 @@ function App() {
           <RouteWrapper exact path="/nklt_client/:id" component={NKLT_client} layout={Navbar_NNN} />
           <RouteWrapper exact path="/edit_nklt/:id" component={Edit_NKLT} layout={Navbar_NNN} />
           <RouteWrapper exact path="/add_nklt/:id" component={ADD_NKLT} layout={Navbar_NNN} />
+
+
+
+
 
 
 

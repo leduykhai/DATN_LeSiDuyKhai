@@ -11,98 +11,28 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
-import stableSort from '../../components/Table/stableSort';
-import getComparator from '../../components/Table/getComparator';
-import EnhancedTableToolbar from '../../components/Table/EnhancedTableToolbar';
+import stableSort from '../../../../components/Table/stableSort';
+import getComparator from '../../../../components/Table/getComparator';
+import EnhancedTableToolbar from '../../../../components/Table/EnhancedTableToolbar';
 import EnhancedTableHead from './EnhancedTableHead/EnhancedTableHead';
 
-import MapsHomeWorkOutlinedIcon from '@mui/icons-material/MapsHomeWorkOutlined';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import PostAddOutlinedIcon from '@mui/icons-material/PostAddOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import GridViewIcon from '@mui/icons-material/GridView';
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import './ListCSLT.scss'
+import './ListKBT.scss'
+import Moment from 'react-moment';
+// import Moment from 'react-moment';
 
-import {
-    DataGridPremium,
-    GridToolbarContainer,
-    GridToolbarExport,
-} from '@mui/x-data-grid-premium';
-
-function CustomToolbar() {
-    return (
-        <GridToolbarContainer>
-            <GridToolbarExport />
-        </GridToolbarContainer>
-    );
-}
-
-const columns = [
-    { field: 'id', headerName: 'ID', width: 200 },
-    {
-        field: 'chu_cslt_id',
-        headerName: 'Chủ cơ sở lưu trú ID',
-        type: 'number',
-        width: 150,
-    },
-    {
-        field: 'phuong_id',
-        headerName: 'Phường ID',
-        type: 'number',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    },
-    {
-        field: 'ten_cslt',
-        headerName: 'Tên Cơ sở Lưu Trú',
-        type: 'text',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    },
-    {
-        field: 'loai_cslt',
-        headerName: 'Loại Cơ sở Lưu Trú',
-        type: 'text',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    },
-    {
-        field: 'nguoi_dai_dien',
-        headerName: 'Người Đại diện',
-        type: 'text',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    },
-    {
-        field: 'sdt',
-        headerName: 'Số điện thoại',
-        type: 'number',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    },
-    {
-        field: 'email',
-        headerName: 'Email',
-        type: 'email',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    },
-    {
-        field: 'dia_chi',
-        headerName: 'Địa Chỉ',
-        type: 'text',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    },
-
-];
-
-export default function ListCSLT() {
+export default function ListKBT() {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
     const [selected, setSelected] = React.useState([]);
@@ -110,10 +40,16 @@ export default function ListCSLT() {
     const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
+    const history = useHistory();
+
+    const response = JSON.parse(localStorage.getItem('user'));
+
+    const { id } = useParams();
+
     const [data, setData] = React.useState([]);
 
     const loadData = async () => {
-        const response = await axios.get("http://localhost:3000/cslts");
+        const response = await axios.get(`http://localhost:3000/khaibaotruocscslt/${id}`);
         setData(response.data);
     };
 
@@ -123,9 +59,9 @@ export default function ListCSLT() {
 
     const deleteContact = (id) => {
         if (
-            window.confirm("Bạn chắc chắn muốn xoá cơ sở lưu trú này ?")
+            window.confirm("Bạn chắc chắn muốn xoá khai báo này ?")
         ) {
-            axios.delete(`http://localhost:3000/cslts/${id}`);
+            axios.delete(`http://localhost:3000/khaibaotruocs/${id}`);
             toast.success("Xoá Thành Công!");
             setTimeout(() => loadData(), 100);
         }
@@ -186,23 +122,18 @@ export default function ListCSLT() {
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
+    const handleBack = (e) => {
+        setTimeout(() => history.goBack(), 100);
+    }
+
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
-                <Link to={`/addcslt`}>
-                    <MapsHomeWorkOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} />
-                    <AddOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} />
-                </Link>
-                {/* <div style={{ height: 300, width: '100%' }}> */}
-                <DataGridPremium
-                    rows={data}
-                    columns={columns}
-                    components={{
-                        Toolbar: CustomToolbar,
-                    }}
-                />
-                {/* </div> */}
+                <ArrowCircleLeftIcon className='add-icon' sx={{ fontSize: 50 }} onClick={handleBack} />
+                {/* <Link to={`/addkbt`}>
+                    <PostAddOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} />
+                </Link> */}
                 <TableContainer>
                     <Table
                         sx={{ minWidth: 750 }}
@@ -254,18 +185,26 @@ export default function ListCSLT() {
                                                 {/* {row.name} */}
                                                 {index + 1}
                                             </TableCell>
-                                            <TableCell align="left">CSLT{row.id}</TableCell>
-                                            <TableCell align="left">CCSLT{row.chu_cslt_id}</TableCell>
-                                            <TableCell align="left">{row.ten_cslt}</TableCell>
-                                            <TableCell align="left">{row.loai_cslt}</TableCell>
-                                            <TableCell align="left">{row.nguoi_dai_dien}</TableCell>
+                                            <TableCell align="left">KBT{row.id}</TableCell>
+                                            <TableCell align="left">{row.ho_ten}</TableCell>
+                                            <TableCell align="left">{row.email}</TableCell>
+                                            <TableCell align="left">{row.so_ho_chieu}</TableCell>
                                             <TableCell align="left">
-                                                <Link to={`/updatecslt/${row.id}`}>
+                                                <Moment>
+                                                    {row.ngay_dang_ky}
+                                                </Moment>
+                                            </TableCell>
+                                            <TableCell align="left">
+                                                <Link to={`/edit_kbt/${row.id}`}>
                                                     <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                                 <DeleteIcon className='delete-icon' sx={{ fontSize: 30 }} onClick={() => { deleteContact(row.id) }} />
-                                                <Link to={`/viewcslt/${row.id}`}>
+                                                {/* <Link to={`/viewkbt/${row.id}`}>
                                                     <GridViewIcon className='view-icon' sx={{ fontSize: 30 }} />
+                                                </Link> */}
+                                                <Link to={`/taotaikhoan/${row.id}`}>
+                                                    {/* <OtherHousesOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} /> */}
+                                                    <AddOutlinedIcon className='add-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                             </TableCell>
                                         </TableRow>

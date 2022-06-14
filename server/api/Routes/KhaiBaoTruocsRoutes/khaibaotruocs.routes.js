@@ -12,4 +12,7 @@ module.exports = function (app) {
         .get(khaibaotruocsCtrl.getKhaiBaoTruocById)
         .delete(khaibaotruocsCtrl.deleteKhaiBaoTruocById);
 
+    app.route('/khaibaotruocscslt/:id')
+        .get(khaibaotruocsCtrl.getKhaiBaoTruocByCSLTId);
+
 }

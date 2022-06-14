@@ -16,6 +16,7 @@ import getComparator from '../../../../components/Table/getComparator';
 import EnhancedTableToolbar from '../../../../components/Table/EnhancedTableToolbar';
 import EnhancedTableHead from './EnhancedTableHead/EnhancedTableHead';
 
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import OtherHousesOutlinedIcon from '@mui/icons-material/OtherHousesOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
@@ -29,6 +30,80 @@ import axios from 'axios';
 
 import './ListNNN.scss'
 // import Moment from 'react-moment';
+
+import {
+    DataGridPremium,
+    GridToolbarContainer,
+    GridToolbarExport,
+} from '@mui/x-data-grid-premium';
+
+function CustomToolbar() {
+    return (
+        <GridToolbarContainer>
+            <GridToolbarExport />
+        </GridToolbarContainer>
+    );
+}
+
+const columns = [
+    { field: 'id', headerName: 'ID', width: 200 },
+    {
+        field: 'ho_ten',
+        headerName: 'Họ Tên',
+        type: 'text',
+        width: 150,
+    },
+    {
+        field: 'ngay_sinh',
+        headerName: 'Ngày Sinh',
+        type: 'date',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'gioi_tinh',
+        headerName: 'Giới Tính',
+        type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'email',
+        headerName: 'Email',
+        type: 'email',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'so_ho_chieu',
+        headerName: 'Số Hộ Chiếu',
+        type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'dia_chi',
+        headerName: 'Địa Chỉ',
+        type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'sdt',
+        headerName: 'Số điện thoại',
+        type: 'number',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'ngay_dang_ky',
+        headerName: 'Ngày Đăng Ký',
+        type: 'datetime',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+
+];
 
 export default function ListNNN_Client() {
     const [order, setOrder] = React.useState('asc');
@@ -118,10 +193,24 @@ export default function ListNNN_Client() {
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
+    const handleBack = (e) => {
+        setTimeout(() => history.goBack(), 100);
+    }
+
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
+                <ArrowCircleLeftIcon className='add-icon' sx={{ fontSize: 50 }} onClick={handleBack} />
+                {/* <div style={{ height: 300, width: '100%' }}> */}
+                <DataGridPremium
+                    rows={data}
+                    columns={columns}
+                    components={{
+                        Toolbar: CustomToolbar,
+                    }}
+                />
+                {/* </div> */}
                 <TableContainer>
                     <Table
                         sx={{ minWidth: 750 }}

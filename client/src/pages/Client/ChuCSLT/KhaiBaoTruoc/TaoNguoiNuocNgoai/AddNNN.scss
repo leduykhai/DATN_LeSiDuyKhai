@@ -1,113 +1,8 @@
-.body-list-cslt{   
-    width:100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('https://www.cdgroupcredentialing.com/wp-content/uploads/2019/07/logo-background-shapes-png-5.png');
-    background-size: cover;
-}
-
-.container-list-cslt {
-    width:350px;
-    // position: relative;
-}
-
-.click-list-cslt{
-    background-color: #165fe8;
-    cursor: pointer;
-}
-
-.click-list-cslt:hover {
-    background-color: #26e539;
-}
-
-.click-list-cslt,.links-list-cslt {
-    padding: 12px;
-    font-size: 1.2em;
-    font-family: futura Md BT;
-    border: none;
-    outline: none;
-    width:350px;
-    color:#fff;
-    transition: 0.3s;
-}
-
-.list-list-cslt {
-    // position: absolute;
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: 0.3s;
-    display: none;
-}
-
-.newlist-list-cslt {
-    transform: scaleY(1);
-    display: block;
-}
-
-.links-list-cslt {
-    background-color: #2b3991d5;
-    cursor: pointer;
-}
-
-.links-list-cslt:hover {
-    background-color: #0e96ff;
-    transform: scale(1.1);
-}
-
-
-
-
-
-.text{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.submit{
-    width: 100%;
-    background-color: #4caf50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.button{
-    width: 100%;
-    background-color: #a4a9a3c0;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.submit:hover {
-    background-color: #45a049;
-}
-
-.error-text {
-    padding: 0 0 .5rem 0;
-    font-size: .9rem;
-    font-style: italic;
-    color: red;
-  }
-
-
-  /* ===== Google Font Import - Poppins ===== */
+/* ===== Google Font Import - Poppins ===== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 @import url('https://unicons.iconscout.com/release/v4.0.0/css/line.css');
 
-  //Form chucslt
+  //Form addnnn
   
   .body {
     min-height: 80vh;
@@ -125,7 +20,7 @@
     text-align: left;
 }
 
-.container-chucslt {
+.container-addnnn {
     position: relative;
     max-width: 1000px;
     width: 100%;
@@ -136,14 +31,14 @@
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.container-chucslt header {
+.container-addnnn header {
     position: relative;
     font-size: 20px;
     font-weight: 600;
     color: #333;
 }
 
-.container-chucslt header::before {
+.container-addnnn header::before {
     content: "";
     position: absolute;
     left: 0;
@@ -154,41 +49,39 @@
     background-color: #4070f4;
 }
 
-.container-chucslt .form-all {
+.container-addnnn .form-all {
     position: relative;
     margin-top: 16px;
-    min-height: 300px;
+    min-height: 650px;
     background-color: #fff;
-    overflow: hidden;
-    overflow:auto;
-
+    overflow: auto;
 }
 
-.container-chucslt .form-all .form-chucslt {
+.container-addnnn .form-all .form-addnnn {
     position: absolute;
     background-color: #fff;
     transition: 0.3s ease;
 }
 
-.container-chucslt .form-all .form-chucslt.second-chucslt {
+.container-addnnn .form-all .form-addnnn.second-addnnn {
     opacity: 0;
     pointer-events: none;
     transform: translateX(100%);
 }
 
-.form-all.secActive .form-chucslt.second-chucslt {
+.form-all.secActive .form-addnnn.second-addnnn {
     opacity: 1;
     pointer-events: auto;
     transform: translateX(0);
 }
 
-.form-all.secActive .form-chucslt.first-chucslt {
+.form-all.secActive .form-addnnn.first-addnnn {
     opacity: 0;
     pointer-events: none;
     transform: translateX(-100%);
 }
 
-.container-chucslt .form-all .title-chucslt {
+.container-addnnn .form-all .title-addnnn {
     display: block;
     margin-bottom: 8px;
     font-size: 16px;
@@ -198,27 +91,27 @@
     text-align: left;
 }
 
-.container-chucslt .form-all .fields-chucslt {
+.container-addnnn .form-all .fields-addnnn {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.form-all .fields-chucslt .input-field-chucslt {
+.form-all .fields-addnnn .input-field-addnnn {
     display: flex;
     width: calc(100% / 3 - 15px);
     flex-direction: column;
     margin: 4px 0;
 }
 
-.input-field-chucslt label {
+.input-field-addnnn label {
     font-size: 12px;
     font-weight: 500;
     color: #2e2e2e;
 }
 
-.input-field-chucslt input,
+.input-field-addnnn input,
 select {
     outline: none;
     font-size: 14px;
@@ -231,21 +124,21 @@ select {
     margin: 8px 0;
 }
 
-.input-field-chucslt input :focus,
-.input-field-chucslt select:focus {
+.input-field-addnnn input :focus,
+.input-field-addnnn select:focus {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
 }
 
-.input-field-chucslt select,
-.input-field-chucslt input[type="date"] {
+.input-field-addnnn select,
+.input-field-addnnn input[type="date"] {
     color: #707070;
 }
 
-.input-field-chucslt input[type="date"]:valid {
+.input-field-addnnn input[type="date"]:valid {
     color: #333;
 }
 
-.container-chucslt .form-all button,
+.container-addnnn .form-all button,
 .backBtn {
     display: flex;
     align-items: center;
@@ -268,7 +161,7 @@ select {
     text-decoration-line: none;
 }
 
-.container-chucslt .form-all .btnText {
+.container-addnnn .form-all .btnText {
     font-size: 14px;
     font-weight: 400;
 }
@@ -298,21 +191,21 @@ select {
 }
 
 @media (max-width: 750px) {
-    .container-chucslt .form-all {
+    .container-addnnn .form-all {
         overflow-y: scroll;
     }
 
-    .container-chucslt .form-all::-webkit-scrollbar {
+    .container-addnnn .form-all::-webkit-scrollbar {
         display: none;
     }
 
-    .form-all .fields-chucslt .input-field-chucslt {
+    .form-all .fields-addnnn .input-field-addnnn {
         width: calc(100% / 2 - 15px);
     }
 }
 
 @media (max-width: 550px) {
-    .form-all .fields-chucslt .input-field-chucslt {
+    .form-all .fields-addnnn .input-field-addnnn {
         width: 100%;
     }
 }

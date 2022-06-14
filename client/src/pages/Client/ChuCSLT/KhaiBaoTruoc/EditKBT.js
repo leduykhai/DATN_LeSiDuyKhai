@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import isEmail from "validator/lib/isEmail";
 import isEmpty from "validator/lib/isEmpty";
-import "./EditNNN.scss";
+import "./EditKBT.scss";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-import Moment from 'react-moment';
+// import Moment from 'react-moment';
 // import 'moment-timezone';
 import moment from 'moment';
 
@@ -19,16 +19,17 @@ const initialState = {
     dia_chi: "",
     sdt: "",
     ngay_dang_ky: "",
-    // hinh: "",
-    user_id: "",
+    ngay_den_luu_tru: "",
+    // file: "",
     cslt_id: "",
-    quoc_tich_id: ""
+    quoc_tich_id: "",
+    kbt_status_id: ""
 }
 
-const EditNNN = () => {
+const EditKBT = () => {
     const [state, setState] = useState(initialState);
 
-    const { ho_ten, ngay_sinh, gioi_tinh, email, so_ho_chieu, dia_chi, sdt, ngay_dang_ky, user_id, cslt_id, quoc_tich_id } = state;
+    const { ho_ten, ngay_sinh, gioi_tinh, email, so_ho_chieu, dia_chi, sdt, ngay_dang_ky, ngay_den_luu_tru, cslt_id, quoc_tich_id, kbt_status_id } = state;
 
     const [validationMsg, setValidationMsg] = useState({});
 
@@ -36,21 +37,11 @@ const EditNNN = () => {
 
     const { id } = useParams();
 
-    const [user, setUser] = useState([]);
-
     const [cslt, setCslt] = useState([]);
 
     const [quoctich, setQuoc_tich] = useState([]);
 
-    //User
-    useEffect(() => {
-        const getUser = async () => {
-            const resuser = await fetch("http://localhost:3000/users");
-            const resu = await resuser.json();
-            setUser(await resu);
-        }
-        getUser();
-    }, []);
+    const [kbt, setKbt] = useState([]);
 
     //CSLT
     useEffect(() => {
@@ -72,10 +63,20 @@ const EditNNN = () => {
         getquoc_tich();
     }, []);
 
+    //kbt_status
+    useEffect(() => {
+        const getkbt = async () => {
+            const reskbt = await fetch("http://localhost:3000/kbtstatus");
+            const resk = await reskbt.json();
+            setKbt(await resk);
+        }
+        getkbt();
+    }, []);
 
+    //khai báo trước
     useEffect(() => {
         axios
-            .get(`http://localhost:3000/nguoinuocngoais/${id}`)
+            .get(`http://localhost:3000/khaibaotruocs/${id}`)
             .then((resp) => setState({ ...resp.data[0] }));
     }, [id]);
 
@@ -108,8 +109,11 @@ const EditNNN = () => {
         if (isEmpty(ngay_dang_ky)) {
             msg.ngay_dang_ky = "Vui lòng chọn ngày khai báo"
         }
-        // if (isEmpty(hinh)) {
-        //     msg.hinh = "Please input your Images"
+        if (isEmpty(ngay_den_luu_tru)) {
+            msg.ngay_den_luu_tru = "Vui lòng chọn ngày đến lưu trú"
+        }
+        // if (isEmpty(file)) {
+        //     msg.file = "Please input your File"
         // }
 
         setValidationMsg(msg)
@@ -127,9 +131,10 @@ const EditNNN = () => {
         else {
             if (id) {
                 var ngay_sinh = moment(ngay_sinh).format('YYYY-MM-DD');
-                var ngay_dang_ky = moment(ngay_dang_ky).format('YYYY-MM-DD');
+                var ngay_dang_ky = moment(ngay_dang_ky).format('YYYY-MM-DD hh:mm:ss');
+                var ngay_den_luu_tru = moment(ngay_den_luu_tru).format('YYYY-MM-DD hh:mm:ss');
                 axios
-                    .put("http://localhost:3000/nguoinuocngoais", {
+                    .put("http://localhost:3000/khaibaotruocs", {
                         id,
                         ho_ten,
                         // ngay_sinh,
@@ -139,10 +144,11 @@ const EditNNN = () => {
                         dia_chi,
                         sdt,
                         // ngay_dang_ky,
-                        // hinh,
-                        user_id,
+                        // ngay_den_luu_tru,
+                        // file,
                         cslt_id,
-                        quoc_tich_id
+                        quoc_tich_id,
+                        kbt_status_id
                     })
                     .then(() => {
                         setState({
@@ -154,60 +160,61 @@ const EditNNN = () => {
                             dia_chi: "",
                             sdt: "",
                             ngay_dang_ky: "",
-                            // hinh: "",
-                            user_id: "",
+                            ngay_den_luu_tru: "",
+                            // file: "",
                             cslt_id: "",
-                            quoc_tich_id: ""
+                            quoc_tich_id: "",
+                            kbt_status_id: ""
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
                 toast.success("Cập nhật thành công!")
             }
-            setTimeout(() => history.goBack(), 100);
+            setTimeout(() => history.push(`/taotaikhoan/${id}`), 100);
         }
     };
-
-    const handleBack = (e) => {
-        setTimeout(() => history.goBack(), 100);
-    }
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setState({ ...state, [name]: value });
     }
 
+    const handleBack = (e) => {
+        setTimeout(() => history.goBack(), 100);
+    }
+
     return (
         <body className='body'>
-            <div className="container-editnnn">
+            <div className="container-addkbt">
                 <header className='header'>Cập Nhật</header>
 
                 <form className='form-all' onSubmit={handleSubmit}>
-                    <div className="form-editnnn first-editnnn">
+                    <div className="form-addkbt first-addkbt">
                         <div className="details personal">
-                            <span className="title-editnnn">Thông tin người nước ngoài</span>
+                            <span className="title-addkbt">Thông tin khai báo</span>
 
-                            <div className="fields-editnnn">
-                                <div className="input-field-editnnn">
-                                    <label className='label'>Họ Tên</label>
+                            <div className="fields-addkbt">
+                                <div className="input-field-addkbt">
+                                    <label className='label'>Họ tên</label>
                                     <input
                                         type="text"
                                         id='ho_ten'
                                         name='ho_ten'
                                         value={ho_ten || ""}
-                                        placeholder="Nhập Họ tên . . . "
+                                        placeholder="Nhập họ tên . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
                                     <p className="error-text">{validationMsg.ho_ten}</p>
                                 </div>
 
-                                <div className="input-field-editnnn">
-                                    <label className='label'>Ngày Sinh</label>
+                                <div className="input-field-addkbt">
+                                    <label className='label'>Ngày sinh</label>
                                     <input
                                         type="date"
                                         id='ngay_sinh'
                                         name='ngay_sinh'
-                                        value={moment(ngay_sinh).format('YYYY-MM-DD') || ""}
+                                        value={moment(ngay_sinh).format("YYYY-MM-DD") || ""}
                                         placeholder="Chọn ngày sinh"
                                         required
                                         onChange={handleInputChange}
@@ -216,8 +223,8 @@ const EditNNN = () => {
 
                                 </div>
 
-                                <div className="input-field-editnnn">
-                                    <label className='label'>Giới Tính</label>
+                                <div className="input-field-addkbt">
+                                    <label className='label'>Giới tính</label>
                                     <select
                                         type="select"
                                         id='gioi_tinh'
@@ -226,14 +233,14 @@ const EditNNN = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value={""}>--Chọn Giới Tính--</option>
+                                        <option disabled selected value={""} > --Chọn Giới Tính--</option>
                                         <option>Nam</option>
                                         <option>Nữ</option>
                                         <option>Khác</option>
                                     </select>
                                 </div>
 
-                                <div className="input-field-editnnn">
+                                <div className="input-field-addkbt">
                                     <label className='label'>Email</label>
                                     <input
                                         type="email"
@@ -247,21 +254,21 @@ const EditNNN = () => {
                                     <p className="error-text">{validationMsg.email}</p>
                                 </div>
 
-                                <div className="input-field-editnnn">
+                                <div className="input-field-addkbt">
                                     <label className='label'>Số Hộ Chiếu</label>
                                     <input
                                         type="text"
                                         id='so_ho_chieu'
                                         name='so_ho_chieu'
                                         value={so_ho_chieu || ""}
-                                        placeholder="Nhập CCCD . . ."
+                                        placeholder="Nhập Số Hộ Chiếu . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
                                     <p className="error-text">{validationMsg.so_ho_chieu}</p>
                                 </div>
 
-                                <div className="input-field-editnnn">
+                                <div className="input-field-addkbt">
                                     <label className='label'>Địa Chỉ</label>
                                     <input
                                         type="text"
@@ -275,7 +282,7 @@ const EditNNN = () => {
                                     <p className="error-text">{validationMsg.dia_chi}</p>
                                 </div>
 
-                                <div className="input-field-editnnn">
+                                <div className="input-field-addkbt">
                                     <label className='label'>Quốc Tịch</label>
                                     <select
                                         className="form-select"
@@ -295,7 +302,7 @@ const EditNNN = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-editnnn">
+                                <div className="input-field-addkbt">
                                     <label className='label'>Số Điện Thoại</label>
                                     <input
                                         type="number"
@@ -309,14 +316,14 @@ const EditNNN = () => {
                                     <p className="error-text">{validationMsg.sdt}</p>
                                 </div>
 
-                                <div className="input-field-editnnn">
-                                    <label className='label'>Ngày Đăng Ký</label>
+                                <div className="input-field-addkbt">
+                                    <label className='label'>Ngày Khai Báo</label>
                                     <input
                                         type="date"
                                         id='ngay_dang_ky'
                                         name='ngay_dang_ky'
-                                        value={moment(ngay_dang_ky).format('YYYY-MM-DD') || ""}
-                                        placeholder="Chọn Ngày Đăng Ký"
+                                        value={moment(ngay_dang_ky).format("YYYY-MM-DD") || ""}
+                                        placeholder="Chọn Ngày Khai Báo"
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -324,7 +331,22 @@ const EditNNN = () => {
 
                                 </div>
 
-                                <div className="input-field-editnnn">
+                                <div className="input-field-addkbt">
+                                    <label className='label'>Ngày Đến Lưu Trú</label>
+                                    <input
+                                        type="date"
+                                        id='ngay_den_luu_tru'
+                                        name='ngay_den_luu_tru'
+                                        value={moment(ngay_den_luu_tru).format("YYYY-MM-DD") || ""}
+                                        placeholder="Chọn Ngày Đến Lưu Trú"
+                                        required
+                                        onChange={handleInputChange}
+                                    />
+                                    <p className="error-text">{validationMsg.ngay_den_luu_tru}</p>
+
+                                </div>
+
+                                <div className="input-field-addkbt">
                                     <label className='label'>Cơ Sở Lưu Trú</label>
                                     <select
                                         className="form-select"
@@ -335,7 +357,7 @@ const EditNNN = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Tên Cơ sỡ lưu trú--</option>
+                                        <option disabled selected value="">--Tên Cơ Sở Lưu Trú--</option>
                                         {
                                             cslt.map((getcslt, index) => (
                                                 <option key={index} value={getcslt.id}>{getcslt.ten_cslt} </option>
@@ -343,41 +365,41 @@ const EditNNN = () => {
                                         }
                                     </select>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div className="details ID">
-                            <span className="title-editnnn"></span>
-
-                            <div className="fields-editnnn">
-
-                                <div className="input-field-editnnn">
-                                    <label className='label'>Tài Khoản</label>
+                                <div className="input-field-addkbt">
+                                    <label className='label'>Trạng Thái</label>
                                     <select
                                         className="form-select"
                                         type="select"
-                                        name="user_id"
-                                        id='user_id'
-                                        value={user_id || ""}
+                                        name="kbt_status_id"
+                                        id='kbt_status_id'
+                                        value={kbt_status_id || ""}
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Tên Tài Khoản--</option>
+                                        <option disabled selected value="">--Trạng Thái--</option>
                                         {
-                                            user.map((getus, index) => (
-                                                <option key={index} value={getus.id}>{getus.ho_ten} </option>
+                                            kbt.map((getkbt, index) => (
+                                                <option key={index} value={getkbt.id}>{getkbt.status_name} </option>
                                             ))
                                         }
                                     </select>
                                 </div>
+
+                            </div>
+                        </div>
+
+                        <div className="details ID">
+                            <span className="title-addkbt"></span>
+
+                            <div className="fields-addkbt">
+
                             </div>
                             <div className="buttons">
-
-                                {/* <Link to="/nnn" className="backBtn"> */}
-                                <div className="backBtn" onClick={handleBack}>
-
+                                {/* <Link to="/kbt" className="backBtn"> */}
+                                <div className="backBtn" onClick={handleBack} >
                                     <i className="uil uil-navigator"></i>
-                                    <span className="btnText">Quay Lại</span>
+                                    <span className="btnText">Quay lại</span>
                                 </div>
                                 {/* </Link> */}
                                 <button className="submit" type='submit'>
@@ -394,4 +416,4 @@ const EditNNN = () => {
     )
 }
 
-export default EditNNN
+export default EditKBT
