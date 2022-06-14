@@ -21,10 +21,20 @@ function Login(props) {
     const [validationMsg, setValidationMsg] = useState({})
     const [message, setMessage] = useState("")
 
+    const response = JSON.parse(localStorage.getItem('user'));
+
     useEffect(() => {
         const token = localStorage.getItem('user')
         if (token) {
-            history.replace('/dashboard') //./user
+            if (response[0].role_id == 1) {
+                history.replace('/dashboard') //./user
+            } else if (response[0].role_id == 2) {
+                history.replace('/users')
+            } else if (response[0].role_id == 3) {
+                history.replace('/chu_cslt')
+            } else if (response[0].role_id == 4) {
+                history.replace('/account_nnn')
+            }
         }
     })
 

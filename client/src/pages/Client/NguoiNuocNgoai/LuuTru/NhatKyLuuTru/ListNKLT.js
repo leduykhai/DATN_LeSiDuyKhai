@@ -17,19 +17,21 @@ import EnhancedTableToolbar from '../../../../../components/Table/EnhancedTableT
 import EnhancedTableHead from './EnhancedTableHead/EnhancedTableHead';
 
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import LibraryBooksRoundedIcon from '@mui/icons-material/LibraryBooksRounded';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import GridViewIcon from '@mui/icons-material/GridView';
 
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
 import './ListNKLT.scss'
 
 import Moment from 'react-moment';
+import moment from 'moment';
 
 export default function ListNKLT() {
     const [order, setOrder] = React.useState('asc');
@@ -40,6 +42,8 @@ export default function ListNKLT() {
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
     const [data, setData] = React.useState([]);
+
+    const history = useHistory();
 
     const { id } = useParams();
 
@@ -117,10 +121,15 @@ export default function ListNKLT() {
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
+    const handleBack = (e) => {
+        setTimeout(() => history.goBack(), 100);
+    }
+
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
+                <ArrowCircleLeftIcon className='add-icon' sx={{ fontSize: 50 }} onClick={handleBack} />
 
                 <TableContainer>
                     <Table
@@ -176,6 +185,9 @@ export default function ListNKLT() {
                                             <TableCell align="left">NKLT {row.id}</TableCell>
                                             <TableCell align="left">{row.ten_diem_den}</TableCell>
                                             <TableCell align="left">{row.dia_chi_diem_den}</TableCell>
+                                            <TableCell align="left">{moment(row.thoi_gian_den).format('YYYY-MM-DD hh:mm:ss')}</TableCell>
+                                            <TableCell align="left">{moment(row.thoi_gian_roi_di).format('YYYY-MM-DD hh:mm:ss')}</TableCell>
+
 
                                             <TableCell align="left">
                                                 <Link to={`/edit_nklt/${row.id}`}>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Dashboard.scss'
 
 import { useHistory, useLocation } from 'react-router-dom'
+import moment from 'moment';
 
 const Dashboard = () => {
     const location = useLocation();
@@ -89,6 +90,9 @@ const Dashboard = () => {
         getNV();
     }, []);
 
+    const date = moment(Date()).format("DD/MM/YYYY");
+
+
     return (
         <div>
             <div className="overview-boxes">
@@ -144,15 +148,15 @@ const Dashboard = () => {
                     <div className="sales-details">
                         <ul className="details">
                             <li className="topic">Ngày</li>
-                            <li><a href="#">25/06/2022</a></li>
+                            <li><a href="#">{date}</a></li>
                         </ul>
                         <ul className="details">
                             <li className="topic">Người Nước Ngoài</li>
-                            <li><a href="#">90</a></li>
+                            <li><a href="#">{nnn.length}</a></li>
                         </ul>
                         <ul className="details">
                             <li className="topic">Tổng</li>
-                            <li><a href="#">90</a></li>
+                            <li><a href="#">{nnn.length}</a></li>
                         </ul>
                     </div>
                     <div className="button">

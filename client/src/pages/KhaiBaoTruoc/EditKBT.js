@@ -43,6 +43,18 @@ const EditKBT = () => {
 
     const [kbt, setKbt] = useState([]);
 
+    const [user, setUser] = useState([]);
+
+    //user
+    useEffect(() => {
+        const getUser = async () => {
+            const resuser = await fetch("http://localhost:3000/users");
+            const resu = await resuser.json();
+            setUser(await resu);
+        }
+        getUser();
+    }, []);
+
     //CSLT
     useEffect(() => {
         const getCslt = async () => {
@@ -82,6 +94,42 @@ const EditKBT = () => {
 
     const validateAll = () => {
         const msg = {}
+
+        // for (var key in user) {
+        //     if (user[key].email == email) {
+        //         msg.email = "Email Đã Được Sử Dụng!"
+        //     }
+        // }
+
+        // console.log(sdt[0]) //bắt đầu bằng số 0
+
+        if (sdt.length != 10 || sdt[0] != 0) {
+            msg.sdt = "Số điện thoại không tồn tại!"
+        }
+
+        // var PhoneNumber;
+        // for (var i = 0; i < user.length; i++) {
+        //     PhoneNumber = user[i].sdt;
+        //     if (PhoneNumber == sdt) {
+        //         msg.sdt = "Số điện thoại đã được sử dụng!"
+        //     }
+        // }
+
+        let date = moment(Date()).format("YYYY-MM-DD");
+        let year = moment(Date()).format("YYYY");
+        // console.log(date)
+
+        if ((year - (moment(ngay_sinh).format("YYYY"))) < 18) {
+            msg.ngay_sinh = "Tuổi không hợp lệ!"
+        }
+
+        if (so_ho_chieu.length < 3) {
+            msg.so_ho_chieu = "Số hộ chiếu không tồn tại!"
+        }
+
+        if (ngay_den_luu_tru < date) {
+            msg.ngay_den_luu_tru = "Ngày đến lưu trú phải bằng hoặc lớn hơn ngày hiện tại!"
+        }
 
         if (isEmpty(ho_ten)) {
             msg.ho_ten = "Vui lòng nhập họ tên"

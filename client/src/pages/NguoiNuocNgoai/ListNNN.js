@@ -28,6 +28,80 @@ import axios from 'axios';
 import './ListNNN.scss'
 // import Moment from 'react-moment';
 
+import {
+    DataGridPremium,
+    GridToolbarContainer,
+    GridToolbarExport,
+} from '@mui/x-data-grid-premium';
+
+
+function CustomToolbar() {
+    return (
+        <GridToolbarContainer>
+            <GridToolbarExport />
+        </GridToolbarContainer>
+    );
+}
+
+const columns = [
+    { field: 'id', headerName: 'ID', width: 200 },
+    {
+        field: 'ho_ten',
+        headerName: 'Họ Tên',
+        type: 'text',
+        width: 150,
+    },
+    {
+        field: 'ngay_sinh',
+        headerName: 'Ngày Sinh',
+        type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'gioi_tinh',
+        headerName: 'Giới Tính',
+        type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'email',
+        headerName: 'Email',
+        type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'so_ho_chieu',
+        headerName: 'Số Hộ Chiếu',
+        type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'dia_chi',
+        headerName: 'Địa Chỉ',
+        type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'sdt',
+        headerName: 'Số Điện Thoại',
+        type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'ngay_dang_ky',
+        headerName: 'Ngày Đăng ký',
+        type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+];
+
 export default function ListNNN() {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
@@ -116,9 +190,19 @@ export default function ListNNN() {
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
+
                 <Link to={`/addnnn`}>
                     <PersonAddAltIcon className='add-icon' sx={{ fontSize: 40 }} />
                 </Link>
+                {/* <div style={{ height: 300, width: '100%' }}> */}
+                <DataGridPremium
+                    rows={data}
+                    columns={columns}
+                    components={{
+                        Toolbar: CustomToolbar,
+                    }}
+                />
+                {/* </div> */}
                 <TableContainer>
                     <Table
                         sx={{ minWidth: 750 }}

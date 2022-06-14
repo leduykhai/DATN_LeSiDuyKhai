@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import isEmail from "validator/lib/isEmail";
 import isEmpty from "validator/lib/isEmpty";
-import "./AddKBT.scss";
+import "./AddKBT_NNN.scss";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import moment from 'moment';
@@ -27,7 +27,7 @@ const initialState = {
     kbt_status_id: ""
 }
 
-const AddKBT = () => {
+const AddKBT_Client = () => {
     const [state, setState] = useState(initialState);
 
     const { ho_ten, ngay_sinh, gioi_tinh, email, so_ho_chieu, dia_chi, sdt, ngay_dang_ky, ngay_den_luu_tru, cslt_id, quoc_tich_id, kbt_status_id } = state;
@@ -42,24 +42,28 @@ const AddKBT = () => {
 
     const [quoctich, setQuoc_tich] = useState([]);
 
-    const [kbt_stt, setKbtStt] = useState([]);
+    const [kbt, setKbt] = useState([]);
 
-    const [user, setUser] = useState([]);
+    const [nnn, setNnn] = useState([]);
 
-    //user
+    const response = JSON.parse(localStorage.getItem('user'));
+
+    const id_nnn = response[0].id;
+
+    //Nguoi Nuoc Ngoai
     useEffect(() => {
-        const getUser = async () => {
-            const resuser = await fetch("http://localhost:3000/users");
-            const resu = await resuser.json();
-            setUser(await resu);
+        const getNnn = async () => {
+            const resnnn = await fetch(`http://localhost:3000/nguoinuocngoaisuser/${id_nnn}`);
+            const resn = await resnnn.json();
+            setNnn(await resn);
         }
-        getUser();
+        getNnn();
     }, []);
 
     //CSLT
     useEffect(() => {
         const getCslt = async () => {
-            const rescslt = await fetch("http://localhost:3000/cslts");
+            const rescslt = await fetch(`http://localhost:3000/cslts/${id}`);
             const resc = await rescslt.json();
             setCslt(await resc);
         }
@@ -81,17 +85,17 @@ const AddKBT = () => {
         const getkbt = async () => {
             const reskbt = await fetch("http://localhost:3000/kbtstatus");
             const resk = await reskbt.json();
-            setKbtStt(await resk);
+            setKbt(await resk);
         }
         getkbt();
     }, []);
 
-    //khai báo trước
-    useEffect(() => {
-        axios
-            .get(`http://localhost:3000/khaibaotruocs/${id}`)
-            .then((resp) => setState({ ...resp.data[0] }));
-    }, [id]);
+    //Nguoi_nuoc_ngoai
+    // useEffect(() => {
+    //     axios
+    //         .get(`http://localhost:3000/khaibaotruocs/${id}`)
+    //         .then((resp) => setState({ ...resp.data[0] }));
+    // }, [id]);
 
     const validateAll = () => {
         const msg = {}
@@ -131,7 +135,6 @@ const AddKBT = () => {
         if (ngay_den_luu_tru < date) {
             msg.ngay_den_luu_tru = "Ngày đến lưu trú phải bằng hoặc lớn hơn ngày hiện tại!"
         }
-
 
         if (isEmpty(ho_ten)) {
             msg.ho_ten = "Vui lòng nhập họ tên"
@@ -179,9 +182,8 @@ const AddKBT = () => {
         const isValid = validateAll()
         if (!isValid) return
         else {
-            if (!id) {
-                var ngay_dang_ky = moment(ngay_dang_ky).format('YYYY-MM-DD hh:mm:ss');
-                var kbt_status_id = 2;
+            if (id) {
+                var ngay_dang_ky = moment(ngay_dang_ky).format('YYYY-MM-DD hh:mm:ss')
                 axios
                     .post("http://localhost:3000/khaibaotruocs", {
                         ho_ten,
@@ -196,7 +198,7 @@ const AddKBT = () => {
                         // file,
                         cslt_id,
                         quoc_tich_id,
-                        kbt_status_id
+                        // kbt_status_id
                     })
                     .then(() => {
                         setState({
@@ -212,13 +214,13 @@ const AddKBT = () => {
                             // file: "",
                             cslt_id: "",
                             quoc_tich_id: "",
-                            kbt_status_id: ""
+                            // kbt_status_id: ""
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("Khai Báo Thành Công")
+                toast.success("Khai Báo Thành Công, Vui lòng đến lưu trú đúng ngày!")
             }
-            setTimeout(() => history.push("/kbt"), 100);
+            setTimeout(() => history.push("/client"), 100);
         }
     };
 
@@ -239,16 +241,23 @@ const AddKBT = () => {
 
                             <div className="fields-addkbt">
                                 <div className="input-field-addkbt">
-                                    <label className='label'>Họ Tên</label>
-                                    <input
-                                        type="text"
+                                    <label className='label'>Xác nhận tên đăng ký</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="ho_ten"
                                         id='ho_ten'
-                                        name='ho_ten'
                                         value={ho_ten || ""}
-                                        placeholder="Nhập họ tên . . ."
                                         required
                                         onChange={handleInputChange}
-                                    />
+                                    >
+                                        <option disabled selected value="">--Tên đăng ký--</option>
+                                        {
+                                            nnn.map((getus, index) => (
+                                                <option key={index}>{getus.ho_ten} </option>
+                                            ))
+                                        }
+                                    </select>
                                     <p className="error-text">{validationMsg.ho_ten}</p>
                                 </div>
 
@@ -268,66 +277,112 @@ const AddKBT = () => {
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    <label className='label'>Giới tính</label>
+                                    <label className='label'>Xác nhận giới tính</label>
                                     <select
+                                        className="form-select"
                                         type="select"
+                                        name="gioi_tinh"
                                         id='gioi_tinh'
-                                        name='gioi_tinh'
                                         value={gioi_tinh || ""}
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value={""} > --Chọn Giới Tính--</option>
-                                        <option>Nam</option>
-                                        <option>Nữ</option>
-                                        <option>Khác</option>
+                                        <option disabled selected value="">--Giới tính--</option>
+                                        {
+                                            nnn.map((getus, index) => (
+                                                <option key={index}>{getus.gioi_tinh} </option>
+                                            ))
+                                        }
                                     </select>
+                                    <p className="error-text">{validationMsg.gioi_tinh}</p>
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    <label className='label'>Email</label>
-                                    <input
-                                        type="email"
+                                    <label className='label'>Xác nhận Email</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="email"
                                         id='email'
-                                        name='email'
                                         value={email || ""}
-                                        placeholder="Nhập Email . . ."
                                         required
                                         onChange={handleInputChange}
-                                    />
+                                    >
+                                        <option disabled selected value="">--Email--</option>
+                                        {
+                                            nnn.map((getus, index) => (
+                                                <option key={index}>{getus.email} </option>
+                                            ))
+                                        }
+                                    </select>
                                     <p className="error-text">{validationMsg.email}</p>
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    <label className='label'>Số Hộ Chiếu</label>
-                                    <input
-                                        type="text"
+                                    <label className='label'>Xác nhận Số Hộ Chiếu</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="so_ho_chieu"
                                         id='so_ho_chieu'
-                                        name='so_ho_chieu'
                                         value={so_ho_chieu || ""}
-                                        placeholder="Nhập Số hộ chiếu . . ."
                                         required
                                         onChange={handleInputChange}
-                                    />
+                                    >
+                                        <option disabled selected value="">--Số Hộ Chiếu--</option>
+                                        {
+                                            nnn.map((getus, index) => (
+                                                <option key={index}>{getus.so_ho_chieu} </option>
+                                            ))
+                                        }
+                                    </select>
                                     <p className="error-text">{validationMsg.so_ho_chieu}</p>
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    <label className='label'>Địa chỉ</label>
-                                    <input
-                                        type="text"
-                                        id='dia_chi'
-                                        name='dia_chi'
-                                        value={dia_chi || ""}
-                                        placeholder="Nhập Địa Chỉ . . ."
+                                    <label className='label'>Xác nhận số điện thoại</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="sdt"
+                                        id='sdt'
+                                        value={sdt || ""}
                                         required
                                         onChange={handleInputChange}
-                                    />
+                                    >
+                                        <option disabled selected value="">--Số điện thoại--</option>
+                                        {
+                                            nnn.map((getus, index) => (
+                                                <option key={index}>{getus.sdt} </option>
+                                            ))
+                                        }
+                                    </select>
+                                    <p className="error-text">{validationMsg.sdt}</p>
+                                </div>
+
+                                <div className="input-field-addkbt">
+                                    <label className='label'>Xác nhận Địa chỉ</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="dia_chi"
+                                        id='dia_chi'
+                                        value={dia_chi || ""}
+                                        required
+                                        onChange={handleInputChange}
+                                    >
+                                        <option disabled selected value="">--Địa Chỉ--</option>
+                                        {
+                                            nnn.map((getus, index) => (
+                                                <option key={index}>{getus.dia_chi} </option>
+                                            ))
+                                        }
+                                    </select>
                                     <p className="error-text">{validationMsg.dia_chi}</p>
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    <label className='label'>Quốc Tịch</label>
+                                    <label className='label'>Xác nhận ID Quốc Tịch</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -337,41 +392,32 @@ const AddKBT = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Chọn Quốc Tịch--</option>
+                                        <option disabled selected value="">--Quốc Tịch--</option>
                                         {
-                                            quoctich.map((getqt, index) => (
-                                                <option key={index} value={getqt.id}> {getqt.ten_quoc_tich} </option>
+                                            nnn.map((getus, index) => (
+                                                <option key={index}>{getus.quoc_tich_id} </option>
                                             ))
                                         }
                                     </select>
+                                    <p className="error-text">{validationMsg.quoc_tich_id}</p>
                                 </div>
 
-                                <div className="input-field-addkbt">
-                                    <label className='label'>Số Điện Thoại</label>
-                                    <input
-                                        type="number"
-                                        id='sdt'
-                                        name='sdt'
-                                        value={sdt || ""}
-                                        placeholder="Nhập Số Điện thoại . . ."
-                                        required
-                                        onChange={handleInputChange}
-                                    />
-                                    <p className="error-text">{validationMsg.sdt}</p>
-                                </div>
-
-                                <div className="input-field-addkbt">
-                                    {/* <label className='label'>Ngày Khai Báo</label>
+                                {/* <div className="input-field-addkbt">
+                                    <label className='label'>Ngày Khai Báo</label>
                                     <input
                                         type="date"
                                         id='ngay_dang_ky'
                                         name='ngay_dang_ky'
                                         // value={moment(ngay_dang_ky).format('YYYY-MM-DD') || ""}
-                                        placeholder="Chọn ngày"
+                                        placeholder="Enter birth date"
                                         required
                                         onChange={handleInputChange}
                                     />
-                                    <p className="error-text">{validationMsg.ngay_dang_ky}</p> */}
+                                    <p className="error-text">{validationMsg.ngay_dang_ky}</p>
+
+                                </div> */}
+
+                                <div className="input-field-addkbt">
 
                                 </div>
 
@@ -411,7 +457,11 @@ const AddKBT = () => {
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    {/* <label className='label'>Trạng Thái</label>
+
+                                </div>
+
+                                {/* <div className="input-field-addkbt">
+                                    <label className='label'>Trạng Thái</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -423,12 +473,14 @@ const AddKBT = () => {
                                     >
                                         <option disabled selected value="">--Trạng Thái--</option>
                                         {
-                                            kbt_stt.map((getkbt, index) => (
+                                            kbt.map((getkbt, index) => (
                                                 <option key={index} value={getkbt.id}>{getkbt.status_name} </option>
                                             ))
                                         }
-                                    </select> */}
-                                </div>
+                                    </select>
+                                </div> */}
+
+
 
                             </div>
                         </div>
@@ -440,7 +492,7 @@ const AddKBT = () => {
 
                             </div>
                             <div className="buttons">
-                                <Link to="/kbt" className="backBtn">
+                                <Link to="/client" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
                                         <span className="btnText">Quay lại</span>
@@ -460,4 +512,4 @@ const AddKBT = () => {
     )
 }
 
-export default AddKBT
+export default AddKBT_Client

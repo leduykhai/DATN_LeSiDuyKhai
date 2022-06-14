@@ -35,6 +35,18 @@ const headCells = [
         label: 'Địa chỉ',
     },
     {
+        id: 'thoi_gian_den',
+        numeric: false,
+        disablePadding: false,
+        label: 'Thời gian đến',
+    },
+    {
+        id: 'thoi_gian_roi_di',
+        numeric: false,
+        disablePadding: false,
+        label: 'Thời gian rời đi',
+    },
+    {
         id: 'action',
         numeric: false,
         disablePadding: false,

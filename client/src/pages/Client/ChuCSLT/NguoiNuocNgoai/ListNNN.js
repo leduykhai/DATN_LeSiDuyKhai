@@ -56,7 +56,7 @@ const columns = [
     {
         field: 'ngay_sinh',
         headerName: 'Ngày Sinh',
-        type: 'date',
+        type: 'text',
         // valueOptions: ['full time', 'part time', 'intern'],
         width: 150,
     },
@@ -70,7 +70,7 @@ const columns = [
     {
         field: 'email',
         headerName: 'Email',
-        type: 'email',
+        type: 'text',
         // valueOptions: ['full time', 'part time', 'intern'],
         width: 150,
     },
@@ -91,14 +91,14 @@ const columns = [
     {
         field: 'sdt',
         headerName: 'Số điện thoại',
-        type: 'number',
+        type: 'text',
         // valueOptions: ['full time', 'part time', 'intern'],
         width: 150,
     },
     {
         field: 'ngay_dang_ky',
         headerName: 'Ngày Đăng Ký',
-        type: 'datetime',
+        type: 'text',
         // valueOptions: ['full time', 'part time', 'intern'],
         width: 150,
     },

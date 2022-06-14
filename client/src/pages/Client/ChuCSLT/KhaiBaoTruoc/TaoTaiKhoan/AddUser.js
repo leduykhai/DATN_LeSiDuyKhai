@@ -100,29 +100,29 @@ const AddUser = () => {
         //     }
         // }
 
-        // for (var key in user) {
-        //     if (user[key].email == email) {
-        //         msg.email = "Email Đã Được Sử Dụng!"
-        //     }
-        // }
+        for (var key in user) {
+            if (user[key].email == email) {
+                msg.email = "Email Đã Được Sử Dụng!"
+            }
+        }
 
-        // // console.log(sdt[0]) //bắt đầu bằng số 0
+        // console.log(sdt[0]) //bắt đầu bằng số 0
 
-        // if (sdt.length != 10 || sdt[0] != 0) {
-        //     msg.sdt = "Số điện thoại không tồn tại"
-        // }
+        if (sdt.length != 10 || sdt[0] != 0) {
+            msg.sdt = "Số điện thoại không tồn tại"
+        }
 
-        // if (password.length < 6) {
-        //     msg.password = "Mật khẩu từ 6 ký tự!"
-        // }
+        if (password.length < 6) {
+            msg.password = "Mật khẩu từ 6 ký tự!"
+        }
 
-        // var PhoneNumber;
-        // for (var i = 0; i < user.length; i++) {
-        //     PhoneNumber = user[i].sdt;
-        //     if (PhoneNumber == sdt) {
-        //         msg.sdt = "Số điện thoại đã được sử dụng!"
-        //     }
-        // }
+        var PhoneNumber;
+        for (var i = 0; i < user.length; i++) {
+            PhoneNumber = user[i].sdt;
+            if (PhoneNumber == sdt) {
+                msg.sdt = "Số điện thoại đã được sử dụng!"
+            }
+        }
 
         if (isEmpty(email)) {
             msg.email = "Vui lòng nhập email"

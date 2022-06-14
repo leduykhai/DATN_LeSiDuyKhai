@@ -107,6 +107,7 @@ import axios from 'axios';
 
 import ENDPOINT from '../../api/endpoint'
 
+import './ListUser.scss'
 
 import {
     DataGridPremium,
@@ -114,7 +115,6 @@ import {
     GridToolbarExport,
 } from '@mui/x-data-grid-premium';
 
-import './ListUser.scss'
 
 function CustomToolbar() {
     return (

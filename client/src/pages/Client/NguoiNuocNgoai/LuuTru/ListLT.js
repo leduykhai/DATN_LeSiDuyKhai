@@ -17,6 +17,7 @@ import EnhancedTableToolbar from '../../../../components/Table/EnhancedTableTool
 import EnhancedTableHead from './EnhancedTableHead/EnhancedTableHead';
 
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import LibraryBooksRoundedIcon from '@mui/icons-material/LibraryBooksRounded';
 import OtherHousesOutlinedIcon from '@mui/icons-material/OtherHousesOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
@@ -31,6 +32,7 @@ import axios from 'axios';
 import './ListLT.scss'
 
 import Moment from 'react-moment';
+import moment from 'moment';
 
 export default function ListLT() {
     const [order, setOrder] = React.useState('asc');
@@ -39,6 +41,8 @@ export default function ListLT() {
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+    const history = useHistory();
 
     const [data, setData] = React.useState([]);
 
@@ -110,10 +114,15 @@ export default function ListLT() {
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
+    const handleBack = (e) => {
+        setTimeout(() => history.goBack(), 100);
+    }
+
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
+                <ArrowCircleLeftIcon className='add-icon' sx={{ fontSize: 50 }} onClick={handleBack} />
                 {/* <Link to={`/addlt`}>
                     <OtherHousesOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} />
                     <AddOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} />
@@ -171,12 +180,13 @@ export default function ListLT() {
                                                 {index + 1}
                                             </TableCell>
                                             <TableCell align="left">LT {row.id}</TableCell>
-                                            <TableCell align="left">NNN {row.nnn_id}</TableCell>
                                             <TableCell align="left">CSLT {row.cslt_id}</TableCell>
+                                            <TableCell align="left">{moment(row.ngay_dang_ky).format('YYYY-MM-DD hh:mm:ss')}</TableCell>
+                                            <TableCell align="left">{moment(row.ngay_den_lt).format('YYYY-MM-DD hh:mm:ss')}</TableCell>
 
                                             <TableCell align="left">
                                                 <Link to={`/nklt_client/${row.id}`}>
-                                                    <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />
+                                                    <GridViewIcon className='edit-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                                 <Link to={`/add_nklt/${row.id}`}>
                                                     {/* <LibraryBooksRoundedIcon className='add-icon' sx={{ fontSize: 40 }} /> */}

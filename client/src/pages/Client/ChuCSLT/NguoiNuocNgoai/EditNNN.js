@@ -284,6 +284,7 @@ const EditNNN = () => {
                                         id='quoc_tich_id'
                                         value={quoc_tich_id || ""}
                                         required
+                                        // disabled
                                         onChange={handleInputChange}
                                     >
                                         <option disabled selected value="">--Chọn Quốc Tịch--</option>
@@ -304,6 +305,7 @@ const EditNNN = () => {
                                         value={sdt || ""}
                                         placeholder="Nhập Số Điện Thoại . . ."
                                         required
+                                        // disabled
                                         onChange={handleInputChange}
                                     />
                                     <p className="error-text">{validationMsg.sdt}</p>
@@ -318,6 +320,7 @@ const EditNNN = () => {
                                         value={moment(ngay_dang_ky).format('YYYY-MM-DD') || ""}
                                         placeholder="Chọn Ngày Đăng Ký"
                                         required
+                                        disabled
                                         onChange={handleInputChange}
                                     />
                                     <p className="error-text">{validationMsg.ngay_dang_ky}</p>
@@ -333,6 +336,7 @@ const EditNNN = () => {
                                         id='cslt_id'
                                         value={cslt_id || ""}
                                         required
+                                        disabled
                                         onChange={handleInputChange}
                                     >
                                         <option disabled selected value="">--Tên Cơ sỡ lưu trú--</option>
@@ -343,13 +347,6 @@ const EditNNN = () => {
                                         }
                                     </select>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div className="details ID">
-                            <span className="title-editnnn"></span>
-
-                            <div className="fields-editnnn">
 
                                 <div className="input-field-editnnn">
                                     <label className='label'>Tài Khoản</label>
@@ -360,6 +357,7 @@ const EditNNN = () => {
                                         id='user_id'
                                         value={user_id || ""}
                                         required
+                                        disabled
                                         onChange={handleInputChange}
                                     >
                                         <option disabled selected value="">--Tên Tài Khoản--</option>
@@ -370,6 +368,17 @@ const EditNNN = () => {
                                         }
                                     </select>
                                 </div>
+                                <div className="input-field-editnnn">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="details ID">
+                            <span className="title-editnnn"></span>
+
+                            <div className="fields-editnnn">
+
                             </div>
                             <div className="buttons">
 

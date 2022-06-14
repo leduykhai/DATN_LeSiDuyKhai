@@ -83,6 +83,46 @@ const EditKBT = () => {
     const validateAll = () => {
         const msg = {}
 
+        // for (var key in user) {
+        //     if (user[key].email == email) {
+        //         msg.email = "Email Đã Được Sử Dụng!"
+        //     }
+        // }
+
+        // console.log(sdt[0]) //bắt đầu bằng số 0
+
+        if (sdt.length != 10 || sdt[0] != 0) {
+            msg.sdt = "Số điện thoại không tồn tại!"
+        }
+
+        // var PhoneNumber;
+        // for (var i = 0; i < user.length; i++) {
+        //     PhoneNumber = user[i].sdt;
+        //     if (PhoneNumber == sdt) {
+        //         msg.sdt = "Số điện thoại đã được sử dụng!"
+        //     }
+        // }
+
+        let date = moment(Date()).format("YYYY-MM-DD");
+        let year = moment(Date()).format("YYYY");
+        // console.log(date)
+
+        if ((year - (moment(ngay_sinh).format("YYYY"))) < 18) {
+            msg.ngay_sinh = "Tuổi không hợp lệ!"
+        }
+
+        if (so_ho_chieu.length < 3) {
+            msg.so_ho_chieu = "Số hộ chiếu không tồn tại!"
+        }
+
+        if (ngay_den_luu_tru < date) {
+            msg.ngay_den_luu_tru = "Ngày đến lưu trú phải bằng hoặc lớn hơn ngày hiện tại!"
+        }
+
+        if (kbt_status_id == 2) {
+            msg.kbt_status_id = "Vui lòng chọn xác nhận khai báo để tiếp tục!"
+        }
+
         if (isEmpty(ho_ten)) {
             msg.ho_ten = "Vui lòng nhập họ tên"
         }
@@ -181,6 +221,13 @@ const EditKBT = () => {
 
     const handleBack = (e) => {
         setTimeout(() => history.goBack(), 100);
+    }
+
+    const handleCancel = (e) => {
+        if (kbt_status_id == 3) {
+            toast.success("Bạn Đã huỷ 1 khai báo!")
+            setTimeout(() => history.goBack(), 100);
+        }
     }
 
     return (
@@ -384,6 +431,7 @@ const EditKBT = () => {
                                             ))
                                         }
                                     </select>
+                                    <p className="error-text">{validationMsg.kbt_status_id}</p>
                                 </div>
 
                             </div>
@@ -402,8 +450,8 @@ const EditKBT = () => {
                                     <span className="btnText">Quay lại</span>
                                 </div>
                                 {/* </Link> */}
-                                <button className="submit" type='submit'>
-                                    <span className="btnText">Cập Nhật</span>
+                                <button className="submit" type='submit' onClick={handleCancel}>
+                                    <span className="btnText">Tiếp Theo</span>
                                     <i className="uil uil-navigator"></i>
                                 </button>
 

@@ -220,7 +220,7 @@ const EditUser = () => {
                                 <div className="input-field-edituser">
                                     <label className='label'>Mật khẩu</label>
                                     <input
-                                        type="text"
+                                        type="password"
                                         id='password'
                                         name='password'
                                         value={password || ""}
