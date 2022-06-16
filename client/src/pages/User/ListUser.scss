@@ -1,3 +1,17 @@
+.search_user {
+    border: 1px solid rgb(56, 226, 18);
+    width: 400px; 
+    margin: 20px 0px 30px 100px;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+  }
+  
+.search_user .label-search_user {
+    padding: 10px 0;
+    font-size: 20px;
+  }
+
 .styled-table{
     border-collapse: collapse;
     margin: auto;

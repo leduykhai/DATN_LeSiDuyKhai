@@ -110,11 +110,38 @@ export default function ListCSLT() {
     const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
+    const [searchTerm, setSearchTerm] = React.useState('');
+
+    const [nhanvien, setNhanvien] = React.useState([]);
+
     const [data, setData] = React.useState([]);
 
+    const loadDataNv = async () => {
+        const responses = JSON.parse(localStorage.getItem('user'));
+        const id = responses[0].id;
+        const response = await axios.get(`http://localhost:3000/nhanviensuser/${id}`);
+        localStorage.setItem("nhanvien", JSON.stringify(response.data))
+        setNhanvien(response.data);
+    };
+
+    React.useEffect(() => {
+        loadDataNv();
+    }, []);
+
+
     const loadData = async () => {
-        const response = await axios.get("http://localhost:3000/cslts");
-        setData(response.data);
+        const responses = JSON.parse(localStorage.getItem('user'));
+        const id = responses[0].id;
+        if (id === 1) {
+            const response = await axios.get(`http://localhost:3000/cslts`);
+            setData(response.data);
+        } else {
+            const responses = JSON.parse(localStorage.getItem('nhanvien'));
+            const id = responses[0].khuvuc_id;
+            console.log(id)
+            const response = await axios.get(`http://localhost:3000/csltsphuong/${id}`);
+            setData(response.data);
+        }
     };
 
     React.useEffect(() => {
@@ -203,6 +230,16 @@ export default function ListCSLT() {
                     }}
                 />
                 {/* </div> */}
+                <div className="search_user">
+                    <input
+                        className='label-search_user'
+                        type="text"
+                        placeholder='Tìm Kiếm . . .'
+                        onChange={(event) => {
+                            setSearchTerm(event.target.value);
+                        }}
+                    />
+                </div>
                 <TableContainer>
                     <Table
                         sx={{ minWidth: 750 }}
@@ -221,6 +258,17 @@ export default function ListCSLT() {
                             {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  data.slice().sort(getComparator(order, orderBy)) */}
                             {stableSort(data, getComparator(order, orderBy))
+                                .filter((item) => {
+                                    if (searchTerm == "") {
+                                        return item
+                                    } else if (item.ten_cslt.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                        return item
+                                    } else if (item.nguoi_dai_dien.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                        return item
+                                    } else if (item.loai_cslt.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                        return item
+                                    }
+                                })
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => {
                                     const isItemSelected = isSelected(row.id);

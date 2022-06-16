@@ -369,6 +369,8 @@ export default function ListUser() {
 
     const [usersrole, setUser_Role] = React.useState([]);
 
+    const [searchTerm, setSearchTerm] = React.useState('');
+
     const [data, setData] = React.useState([]);
 
     const loadData = async () => {
@@ -496,6 +498,16 @@ export default function ListUser() {
                     }}
                 />
                 {/* </div> */}
+                <div className="search_user">
+                    <input
+                        className='label-search_user'
+                        type="text"
+                        placeholder='Tìm Kiếm . . .'
+                        onChange={(event) => {
+                            setSearchTerm(event.target.value);
+                        }}
+                    />
+                </div>
                 <TableContainer>
                     <Table
                         sx={{ minWidth: 750 }}
@@ -514,6 +526,15 @@ export default function ListUser() {
                             {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  data.slice().sort(getComparator(order, orderBy)) */}
                             {stableSort(data, getComparator(order, orderBy))
+                                .filter((item) => {
+                                    if (searchTerm == "") {
+                                        return item
+                                    } else if (item.email.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                        return item
+                                    } else if (item.ho_ten.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                        return item
+                                    }
+                                })
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => {
                                     const isItemSelected = isSelected(row.id);

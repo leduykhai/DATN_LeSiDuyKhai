@@ -39,6 +39,8 @@ export default function ListCSLT_Client() {
 
     const [searchTerm, setSearchTerm] = React.useState('');
 
+    const [datadg, setDataDg] = React.useState([]);
+
     const loadData = async () => {
         const response = await axios.get("http://localhost:3000/cslts");
         setData(response.data);
@@ -46,6 +48,17 @@ export default function ListCSLT_Client() {
 
     React.useEffect(() => {
         loadData();
+    }, []);
+
+
+
+    const loadDataDg = async () => {
+        const response = await axios.get(`http://localhost:3000/danhgiascslt/${data[0].id}`);
+        setDataDg(response.data);
+    };
+
+    React.useEffect(() => {
+        loadDataDg();
     }, []);
 
     const handleRequestSort = (event, property) => {
@@ -104,19 +117,24 @@ export default function ListCSLT_Client() {
 
     return (
         <article className='main-home'>
-            <input
-                type="text"
-                placeholder='Tìm Kiếm . . .'
-                onChange={(event) => {
-                    setSearchTerm(event.target.value);
-                }}
-            />
+            <div className="search_client">
+                <input
+                    className='label-search'
+                    type="text"
+                    placeholder='Tìm Kiếm . . .'
+                    onChange={(event) => {
+                        setSearchTerm(event.target.value);
+                    }}
+                />
+            </div>
             <div className='all-card-cslt'>
                 {stableSort(data, getComparator(order, orderBy))
                     .filter((item) => {
                         if (searchTerm == "") {
                             return item
                         } else if (item.ten_cslt.toLowerCase().includes(searchTerm.toLowerCase())) {
+                            return item
+                        } else if (item.loai_cslt.toLowerCase().includes(searchTerm.toLowerCase())) {
                             return item
                         }
                     })
@@ -142,13 +160,13 @@ export default function ListCSLT_Client() {
                                     </Link>
                                     <Link className="type-cslt" to={`/client_ctcslt/${item.id}`}>
                                         <div className="stat-cslt border-cslt">
-                                            <div className="value-cslt">5123</div>
+                                            <div className="value-cslt">123</div>
                                             <div className="type-cslt">Lượt Xem</div>
                                         </div>
                                     </Link>
                                     <Link className="type-cslt" to={`/client_ctcslt/${item.id}`}>
                                         <div className="stat-cslt">
-                                            <div className="value-cslt">32</div>
+                                            <div className="value-cslt">{datadg.length}</div>
                                             <div className="type-cslt">Bình Luận</div>
                                         </div>
                                     </Link>

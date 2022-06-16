@@ -6,6 +6,7 @@ import "./AddCSLT.scss";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import moment from 'moment';
+import DropFileInput from '../../components/drop-file-input/DropFileInput';
 
 const initialState = {
     ten_cslt: "",
@@ -369,7 +370,7 @@ const AddCSLT = () => {
                                     </select>
                                 </div>
                                 <div className="input-field-addcslt">
-
+                                    {/* <DropFileInput /> */}
                                 </div>
                             </div>
                         </div>

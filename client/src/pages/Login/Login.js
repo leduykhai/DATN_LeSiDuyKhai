@@ -245,13 +245,16 @@ function Login(props) {
             <div class="panels-container">
                 <div class="panel left-panel">
                     <div class="content">
-                        <h3>Tạo Mới Tài Khoản!</h3>
-                        <p>
+                        {/* <h3>Tạo Mới Tài Khoản!</h3> */}
+                        <h3>Hệ Thống Hỗ Trợ Quản Lý Lưu Trú Người Nước Ngoài</h3>
+                        <br />
+                        <h3>Tại Thành Phố Đà Nẵng</h3>
 
+                        <p>
                         </p>
-                        <button class="btn transparent" id="sign-up-btn" onClick={changeState} >
+                        {/* <button class="btn transparent" id="sign-up-btn" onClick={changeState} >
                             Đăng Ký
-                        </button>
+                        </button> */}
                     </div>
                     <img src="" class="image" alt="" />
                 </div>

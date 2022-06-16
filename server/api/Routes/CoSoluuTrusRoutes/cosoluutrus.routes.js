@@ -17,4 +17,7 @@ module.exports = function (app) {
 
     app.route('/ccslts/:id')
         .get(csltsCtrl.getCSLTByCCsltId);
+
+    app.route('/csltsphuong/:id')
+        .get(csltsCtrl.getCSLTByPhuongId);
 }

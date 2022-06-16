@@ -10,6 +10,7 @@ const Sidebar = (props) => {
 
     const logout = () => {
         localStorage.removeItem("user")
+        localStorage.removeItem("nhanvien")
     }
 
     const role = () => {

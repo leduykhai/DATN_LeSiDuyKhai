@@ -38,8 +38,8 @@ const Navbar = (props) => {
                     <span class="dashboard">Quản Lý Lưu Trú</span>
                 </div>
                 <div class="search-box">
-                    <input type="text" placeholder="Tìm Kiếm..." />
-                    <i class="bx bx-search"></i>
+                    {/* <input type="text" placeholder="Tìm Kiếm..." /> */}
+                    {/* <i class="bx bx-search"></i> */}
                 </div>
                 <Link to='/userinfo'>
                     <div class="profile-details">

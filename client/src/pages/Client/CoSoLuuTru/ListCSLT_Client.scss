@@ -7,6 +7,20 @@
     overflow: auto;
 }
 
+.search_client {
+  border: 2px solid rgb(106, 97, 97);
+  width: 400px; 
+  margin: auto;
+  border-radius: 10px;
+  text-align: center;
+  justify-content: center;
+}
+
+.search_client .label-search{
+  padding: 10px 0;
+  font-size: 24px;
+}
+
 .all-card-cslt {
     margin: 30px;
     display: grid;
