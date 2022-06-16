@@ -18,6 +18,22 @@ module.exports = {
         })
     },
 
+    getAccC: (req, res) => {
+        let sql = 'SELECT * FROM users WHERE role_id = 3 ORDER BY id DESC'
+        db.query(sql, (err, response) => {
+            if (err) throw err
+            res.json(response);
+        })
+    },
+
+    getAccN: (req, res) => {
+        let sql = 'SELECT * FROM users WHERE role_id = 4 ORDER BY id DESC'
+        db.query(sql, (err, response) => {
+            if (err) throw err
+            res.json(response);
+        })
+    },
+
     getUserByIdMax: (req, res) => {
         let user_id = req.params.id;
         console.log('ID: ', user_id)

@@ -8,6 +8,9 @@ module.exports = function (app) {
         .put(csltsCtrl.updateCSLT)
         .delete(csltsCtrl.deleteCSLTByAll);
 
+    app.route('/csltsmaxid')
+        .get(csltsCtrl.getCSLTByMaxId)
+
     app.route('/cslts/:id')
         .get(csltsCtrl.getCSLTById)
         .delete(csltsCtrl.deleteCSLTById);

@@ -31,6 +31,7 @@ import axios from 'axios';
 import './ListLT.scss'
 
 import Moment from 'react-moment';
+import moment from 'moment';
 
 export default function ListTT() {
     const [order, setOrder] = React.useState('asc');
@@ -41,6 +42,8 @@ export default function ListTT() {
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
     const [data, setData] = React.useState([]);
+
+    const [lutrustatus, setLuutru_Status] = React.useState([]);
 
     const history = useHistory();
 
@@ -53,6 +56,16 @@ export default function ListTT() {
 
     React.useEffect(() => {
         loadData();
+    }, []);
+
+    // trạng thái
+    React.useEffect(() => {
+        const getluutru_status = async () => {
+            const reslt_status = await fetch("http://localhost:3000/ltstatus");
+            const reslt = await reslt_status.json();
+            setLuutru_Status(await reslt);
+        }
+        getluutru_status();
     }, []);
 
     const deleteContact = (id) => {
@@ -183,6 +196,26 @@ export default function ListTT() {
                                             <TableCell align="left">LT {row.id}</TableCell>
                                             <TableCell align="left">NNN {row.nnn_id}</TableCell>
                                             <TableCell align="left">CSLT {row.cslt_id}</TableCell>
+                                            <TableCell align="left">{moment(row.ngay_dang_ky).format('YYYY-MM-DD hh:mm:ss')}</TableCell>
+                                            <TableCell align="left">{moment(row.ngay_dang_ky).format('YYYY-MM-DD hh:mm:ss')}</TableCell>
+                                            <TableCell align="left">
+                                                <select
+                                                    className="form-select"
+                                                    type="select"
+                                                    name="luutru_status_id"
+                                                    id='luutru_status_id'
+                                                    value={row.luutru_status_id}
+                                                    disabled
+                                                >
+                                                    <option disabled selected value="" >-- Chọn Trạng thái --</option>
+                                                    {
+                                                        lutrustatus.map((getlt, index) => (
+                                                            <option key={index} value={getlt.id}>{getlt.status_name} </option>
+                                                        ))
+                                                    }
+                                                </select>
+                                            </TableCell>
+
 
                                             <TableCell align="left">
                                                 <Link to={`/edit_lt/${row.id}`}>

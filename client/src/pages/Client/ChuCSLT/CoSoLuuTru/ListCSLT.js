@@ -65,6 +65,9 @@ export default function ListCSLT() {
                                         <Link to={`/client_nnn/${item.id}`}>
                                             <button class="links-list-cslt">Quản Lý Người Nước Ngoài</button>
                                         </Link>
+                                        <Link to={`/edit_gt/${item.id}`}>
+                                            <button class="links-list-cslt">Giới thiệu</button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

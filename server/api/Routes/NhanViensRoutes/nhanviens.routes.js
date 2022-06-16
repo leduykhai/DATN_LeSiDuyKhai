@@ -8,6 +8,9 @@ module.exports = function (app) {
         .put(nhanviensCtrl.updateNhanVien)
         .delete(nhanviensCtrl.deleteNhanVienByAll);
 
+    app.route('/nhanviensuser/:id')
+        .get(nhanviensCtrl.getNhanVienByUserId)
+
     app.route('/nhanviens/:id')
         .get(nhanviensCtrl.getNhanVienById)
         .delete(nhanviensCtrl.deleteNhanVienById);

@@ -182,7 +182,7 @@ export default function ListChuCSLT() {
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
-                <Link to={`/addchucslt`}>
+                <Link to={`/addUser`}>
                     <PersonAddAltIcon className='add-icon' sx={{ fontSize: 40 }} />
                 </Link>
                 {/* <div style={{ height: 300, width: '100%' }}> */}

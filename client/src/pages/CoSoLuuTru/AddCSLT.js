@@ -38,6 +38,8 @@ const AddCSLT = () => {
 
     const [Chu_CSLT, setChu_CSLT] = useState([]);
 
+    const [Chu_CSLTMaxId, setChu_CSLTMaxId] = useState([]);
+
     const [cslt, setCslt] = useState([]);
 
 
@@ -85,6 +87,16 @@ const AddCSLT = () => {
             setChu_CSLT(await rescc);
         }
         getChu_CSLT();
+    }, []);
+
+    //Chủ cơ sở lưu trú ID Max
+    useEffect(() => {
+        const getChu_CSLTMaxId = async () => {
+            const resccsltim = await fetch(`http://localhost:3000/chucosoluutrusmaxid`);
+            const resccim = await resccsltim.json();
+            setChu_CSLTMaxId(await resccim);
+        }
+        getChu_CSLTMaxId();
     }, []);
 
     useEffect(() => {
@@ -190,7 +202,7 @@ const AddCSLT = () => {
                     .catch((err) => toast.error(err.response.data));
                 toast.success("Thêm thành công!")
             }
-            setTimeout(() => history.push("/cslt"), 100);
+            setTimeout(() => history.push("/add_gt"), 100);
         }
     };
 
@@ -217,7 +229,7 @@ const AddCSLT = () => {
                                         id='ten_cslt'
                                         name='ten_cslt'
                                         value={ten_cslt || ""}
-                                        placeholder="Enter CSLT name"
+                                        placeholder="Nhập tên cơ sở lưu trú . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
@@ -379,7 +391,7 @@ const AddCSLT = () => {
                                     >
                                         <option disabled selected value="">--Tên Chủ CSLT--</option>
                                         {
-                                            Chu_CSLT.map((getc, index) => (
+                                            Chu_CSLTMaxId.map((getc, index) => (
                                                 <option key={index} value={getc.id}>{getc.ho_ten} </option>
                                             ))
                                         }

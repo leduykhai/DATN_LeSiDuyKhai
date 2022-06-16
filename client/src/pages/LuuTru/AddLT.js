@@ -158,7 +158,7 @@ const AddLT = () => {
                                 <div className="input-field-addlt">
                                     <label className='label'>Ngày đăng ký lưu trú</label>
                                     <input
-                                        type="date"
+                                        type="datetime-local"
                                         id='ngay_dang_ky_lt'
                                         name='ngay_dang_ky_lt'
                                         value={ngay_dang_ky_lt || ""}
@@ -172,7 +172,7 @@ const AddLT = () => {
                                 <div className="input-field-addlt">
                                     <label className='label'>Ngày đến lưu trú</label>
                                     <input
-                                        type="date"
+                                        type="datetime-local"
                                         id='ngay_den_lt'
                                         name='ngay_den_lt'
                                         value={ngay_den_lt || ""}
@@ -200,7 +200,7 @@ const AddLT = () => {
                                 <div className="input-field-addlt">
                                     <label className='label'>Ngày đi dự kiến</label>
                                     <input
-                                        type="date"
+                                        type="datetime-local"
                                         id='ngay_di_du_kien'
                                         name='ngay_di_du_kien'
                                         value={ngay_di_du_kien || ""}

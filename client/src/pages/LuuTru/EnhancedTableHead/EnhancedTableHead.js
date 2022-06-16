@@ -35,6 +35,18 @@ const headCells = [
         label: 'ID Cơ Sở Lưu Trú',
     },
     {
+        id: 'Ngay_dang_ky_lt',
+        numeric: false,
+        disablePadding: false,
+        label: 'Ngày đăng ký lưu trú',
+    },
+    {
+        id: 'ngay_den_lt',
+        numeric: false,
+        disablePadding: false,
+        label: 'Ngày đến lưu trú',
+    },
+    {
         id: 'action',
         numeric: false,
         disablePadding: false,

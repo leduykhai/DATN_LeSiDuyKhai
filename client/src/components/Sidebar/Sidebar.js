@@ -34,7 +34,7 @@ const Sidebar = (props) => {
                             <span class="links_name">Tổng Quan</span>
                         </Link>
                     </li>
-                    <li>
+                    <li onClick={role}>
                         <Link exact to="/users">
                             <i class="bx bx-user"></i>
                             <span class="links_name">Tài Khoản</span>
@@ -56,6 +56,12 @@ const Sidebar = (props) => {
                         </Link>
                     </li>
                     <span class="nav-part">Cơ Sở Lưu Trú</span>
+                    <li>
+                        <Link exact to="/tk_cslt">
+                            <i class="bx bx-user-circle"></i>
+                            <span class="links_name">TK Cơ Sở Lưu Trú</span>
+                        </Link>
+                    </li>
                     <li>
                         <Link exact to="/chucslt">
                             <i class="bx bx-buildings"></i>
@@ -84,6 +90,13 @@ const Sidebar = (props) => {
                     </li>
 
                     <span class="nav-part">Người Nước ngoài</span>
+
+                    <li>
+                        <Link exact to="/tk_nnn">
+                            <i class="bx bx-group"></i>
+                            <span class="links_name">TK Người Nước Ngoài</span>
+                        </Link>
+                    </li>
 
                     <li>
                         <Link exact to="/nnn">

@@ -15,8 +15,8 @@ const Navbar = (props) => {
                         <div className="img-nav">
                             <img src='' alt='' />
                             <div className='title-nav'>
-                                <h3>Công An Thành Phố Đà Nẵng</h3>
-                                <h3>Hệ Thống Quản Lý Thông Tin Lưu Trú</h3>
+                                <h3 className='content-nav'>Công An Thành Phố Đà Nẵng</h3>
+                                <h3 className='content-nav'>Hệ Thống Quản Lý Thông Tin Lưu Trú</h3>
                             </div>
                         </div>
                     </div>

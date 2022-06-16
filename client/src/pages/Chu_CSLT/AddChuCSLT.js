@@ -47,6 +47,9 @@ const AddChuCSLT = () => {
 
     const [nhanvien, setNhanvien] = useState([]);
 
+    const [ccslt, setCCslt] = useState([]);
+
+
     const response = JSON.parse(localStorage.getItem('user'));
 
 
@@ -115,11 +118,23 @@ const AddChuCSLT = () => {
     //nhan vien
     useEffect(() => {
         const getNV = async () => {
-            const resnhanvien = await fetch("http://localhost:3000/nhanviens");
+            const response = JSON.parse(localStorage.getItem('user'));
+            const id = response[0].id;
+            const resnhanvien = await fetch(`http://localhost:3000/nhanviensuser/${id}`);
             const resnv = await resnhanvien.json();
             setNhanvien(await resnv);
         }
         getNV();
+    }, []);
+
+    //Chủ Cơ sở lưu trus
+    useEffect(() => {
+        const getCCslt = async () => {
+            const rescc = await fetch("http://localhost:3000/chucosoluutrus");
+            const resc = await rescc.json();
+            setCCslt(await resc);
+        }
+        getCCslt();
     }, []);
 
     // //chu co so luu tru
@@ -131,6 +146,18 @@ const AddChuCSLT = () => {
 
     const validateAll = () => {
         const msg = {}
+
+        let date = moment(Date()).format("YYYY");
+
+        if ((date - (moment(ngay_sinh).format("YYYY"))) < 18) {
+            msg.ngay_sinh = "Tuổi từ 18 trở lên"
+        }
+
+        for (var key in ccslt) {
+            if (ccslt[key].cccd == cccd) {
+                msg.cccd = "CCCD Đã Được Sử Dụng!"
+            }
+        }
 
         if (isEmpty(ho_ten)) {
             msg.ho_ten = "Vui lòng nhập họ tên"
@@ -144,7 +171,7 @@ const AddChuCSLT = () => {
         if (isEmpty(email)) {
             msg.email = "Vui lòng nhập email"
         } else if (!isEmail(email)) {
-            msg.email = "email không đúng"
+            msg.email = "Email không đúng"
         }
         if (isEmpty(cccd)) {
             msg.cccd = "vui lòng nhập căn cước công dân"
@@ -214,6 +241,10 @@ const AddChuCSLT = () => {
         setState({ ...state, [name]: value });
     }
 
+    const handleBack = (e) => {
+        setTimeout(() => history.goBack(), 100);
+    }
+
     return (
         <body className='body'>
             <div className="container-addccslt">
@@ -225,7 +256,7 @@ const AddChuCSLT = () => {
                             <span className="title-addccslt">Thông tin cá nhân</span>
 
                             <div className="fields-addccslt">
-                                <div className="input-field-addccslt">
+                                {/* <div className="input-field-addccslt">
                                     <label className='label'>Họ tên</label>
                                     <input
                                         type="text"
@@ -236,6 +267,27 @@ const AddChuCSLT = () => {
                                         required
                                         onChange={handleInputChange}
                                     />
+                                    <p className="error-text">{validationMsg.ho_ten}</p>
+                                </div> */}
+
+                                <div className="input-field-addccslt">
+                                    <label className='label'>Xác Nhận Tên Đăng Ký</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="ho_ten"
+                                        id='ho_ten'
+                                        value={ho_ten || ""}
+                                        required
+                                        onChange={handleInputChange}
+                                    >
+                                        <option disabled selected value="">--Tên Đăng Ký--</option>
+                                        {
+                                            useridmax.map((getus, index) => (
+                                                <option key={index} >{getus.ho_ten} </option>
+                                            ))
+                                        }
+                                    </select>
                                     <p className="error-text">{validationMsg.ho_ten}</p>
                                 </div>
 
@@ -271,7 +323,7 @@ const AddChuCSLT = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-addccslt">
+                                {/* <div className="input-field-addccslt">
                                     <label className='label'>Email</label>
                                     <input
                                         type="email"
@@ -282,6 +334,27 @@ const AddChuCSLT = () => {
                                         required
                                         onChange={handleInputChange}
                                     />
+                                    <p className="error-text">{validationMsg.email}</p>
+                                </div> */}
+
+                                <div className="input-field-addccslt">
+                                    <label className='label'>Xác Nhận Email</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="email"
+                                        id='email'
+                                        value={email || ""}
+                                        required
+                                        onChange={handleInputChange}
+                                    >
+                                        <option disabled selected value="">--Email Đăng Ký--</option>
+                                        {
+                                            useridmax.map((getus, index) => (
+                                                <option key={index} >{getus.email} </option>
+                                            ))
+                                        }
+                                    </select>
                                     <p className="error-text">{validationMsg.email}</p>
                                 </div>
 
@@ -370,7 +443,7 @@ const AddChuCSLT = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-addccslt">
+                                {/* <div className="input-field-addccslt">
                                     <label className='label'>Số Điện Thoại</label>
                                     <input
                                         type="number"
@@ -381,6 +454,27 @@ const AddChuCSLT = () => {
                                         required
                                         onChange={handleInputChange}
                                     />
+                                    <p className="error-text">{validationMsg.sdt}</p>
+                                </div> */}
+
+                                <div className="input-field-addccslt">
+                                    <label className='label'>Số Điện thoại</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="sdt"
+                                        id='sdt'
+                                        value={sdt || ""}
+                                        required
+                                        onChange={handleInputChange}
+                                    >
+                                        <option disabled selected value="">--Số Điện Thoại--</option>
+                                        {
+                                            useridmax.map((getus, index) => (
+                                                <option key={index}>{getus.sdt} </option>
+                                            ))
+                                        }
+                                    </select>
                                     <p className="error-text">{validationMsg.sdt}</p>
                                 </div>
 
@@ -437,7 +531,7 @@ const AddChuCSLT = () => {
                                     >
                                         <option disabled selected value="">--Tên Nhân Viên--</option>
                                         {
-                                            response.map((getnv, index) => (
+                                            nhanvien.map((getnv, index) => (
                                                 <option key={index} value={getnv.id}>{getnv.ho_ten} </option>
                                             ))
                                         }
@@ -462,12 +556,12 @@ const AddChuCSLT = () => {
                                 </div>
                             </div>
                             <div className="buttons">
-                                <Link to="/chucslt" className="backBtn">
-                                    <div className="backBtn" >
-                                        <i className="uil uil-navigator"></i>
-                                        <span className="btnText">Quay Lại</span>
-                                    </div>
-                                </Link>
+                                {/* <Link to="/chucslt" className="backBtn"> */}
+                                <div className="backBtn" onClick={handleBack} >
+                                    <i className="uil uil-navigator"></i>
+                                    <span className="btnText">Quay Lại</span>
+                                </div>
+                                {/* </Link> */}
                                 <button className="submit" type='submit'>
                                     <span className="btnText">Thêm</span>
                                     <i className="uil uil-navigator"></i>

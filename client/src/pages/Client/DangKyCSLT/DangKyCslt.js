@@ -158,9 +158,9 @@ const DangkyCslt = () => {
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("Đăng ký thành công, vui lòng đợi phê duyệt!")
+                toast.success("Tiếp tục bước 4")
             }
-            setTimeout(() => history.push("/client"), 100);
+            setTimeout(() => history.push("/client_dk_b4"), 100);
         }
     };
 

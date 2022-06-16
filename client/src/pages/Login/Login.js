@@ -29,7 +29,7 @@ function Login(props) {
             if (response[0].role_id == 1) {
                 history.replace('/dashboard') //./user
             } else if (response[0].role_id == 2) {
-                history.replace('/users')
+                history.replace('/userinfo')
             } else if (response[0].role_id == 3) {
                 history.replace('/chu_cslt')
             } else if (response[0].role_id == 4) {
@@ -108,7 +108,7 @@ function Login(props) {
                 localStorage.setItem("user", JSON.stringify(data.user))
                 setMessage("");
                 history.push({
-                    pathname: '/users',
+                    pathname: '/userinfo',
                     state: { detail: data }
                 });
                 console.log('Success!!!');

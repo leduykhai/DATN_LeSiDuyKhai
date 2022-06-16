@@ -46,7 +46,9 @@ export default function ListDG_Client() {
     //nguoi nuoc ngoai
     React.useEffect(() => {
         const getNNN = async () => {
-            const resnnn = await fetch(`http://localhost:3000/nguoinuocngoais`);
+            const response = JSON.parse(localStorage.getItem('user'));
+            const user_id = response[0].id;
+            const resnnn = await fetch(`http://localhost:3000/nguoinuocngoaisuser/${user_id}`);
             const resn = await resnnn.json();
             setNnn(await resn);
         }
@@ -75,6 +77,7 @@ export default function ListDG_Client() {
         return true
     }
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!noi_dung) {
@@ -86,7 +89,8 @@ export default function ListDG_Client() {
             if (id) {
 
                 var cslt_id = id;
-                var nnn_id = response[0].id;
+                var nnn_id = nnn[0].id;
+                console.log(nnn_id)
                 axios
                     .post("http://localhost:3000/danhgias", {
                         cslt_id,

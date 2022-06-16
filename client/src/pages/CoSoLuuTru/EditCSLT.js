@@ -94,6 +94,10 @@ const EditCSLT = () => {
     const validateAll = () => {
         const msg = {}
 
+        if (sdt.length != 10 || sdt[0] != 0) {
+            msg.sdt = "Số điện thoại không tồn tại"
+        }
+
         if (isEmpty(ten_cslt)) {
             msg.ten_cslt = "Vui lòng nhập Tên cslt"
         }

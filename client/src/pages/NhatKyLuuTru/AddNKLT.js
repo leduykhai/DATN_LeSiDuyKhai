@@ -104,6 +104,23 @@ const AddNKLT = () => {
     const validateAll = () => {
         const msg = {}
 
+        let date = moment(Date()).format("YYYY-MM-DD hh:mm:ss");
+
+        console.log(date)
+
+        // if (thoi_gian_den > date) {
+        //     msg.thoi_gian_den = "Thời gian đến phải nhỏ hơn hoặc bằng thời gian hiện tại!"
+        // }
+
+        // if (thoi_gian_roi_di > date) {
+        //     msg.thoi_gian_roi_di = "Thời gian rời đi phải nhỏ hơn hoặc bằng thời gian hiện tại!"
+        // }
+
+        if (thoi_gian_den > thoi_gian_roi_di) {
+            msg.thoi_gian_den = "Thời gian đến phải nhỏ hơn hoặc bằng thời gian rời đi!"
+        }
+
+
         if (isEmpty(ten_diem_den)) {
             msg.ten_diem_den = "Vui lòng nhập điểm đến"
         }

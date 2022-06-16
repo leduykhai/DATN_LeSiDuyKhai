@@ -367,12 +367,10 @@ export default function ListUser() {
 
     const [userstatus, setUser_Status] = React.useState([]);
 
-    const [usersrole, setUser_Role] = React.useState([]);
-
     const [data, setData] = React.useState([]);
 
     const loadData = async () => {
-        const response = await axios.get(ENDPOINT.USERS);
+        const response = await axios.get(`http://localhost:3000/usersnnn`);
         console.log(response)
         setData(response.data);
     };
@@ -381,7 +379,6 @@ export default function ListUser() {
         loadData();
     }, []);
 
-    // trạng thái
     React.useEffect(() => {
         const getuser_status = async () => {
             const resuse_status = await fetch("http://localhost:3000/userstatus");
@@ -391,20 +388,10 @@ export default function ListUser() {
         getuser_status();
     }, []);
 
-    // vai trò
-    React.useEffect(() => {
-        const getuser_role = async () => {
-            const resuser_role = await fetch("http://localhost:3000/userrole");
-            const resrl = await resuser_role.json();
-            setUser_Role(await resrl);
-        }
-        getuser_role();
-    }, []);
-
     const response = JSON.parse(localStorage.getItem('user'));
 
     const deleteContact = (id) => {
-        if (response[0].role_id != 1) {
+        if (response[0].role_id > 3) {
             window.alert("Tài Khoản của bạn không có quyền xoá!")
             setTimeout(() => history.goBack(), 100);
         } else {
@@ -563,23 +550,6 @@ export default function ListUser() {
                                                     {
                                                         userstatus.map((getus, index) => (
                                                             <option key={index} value={getus.id}>{getus.status_name} </option>
-                                                        ))
-                                                    }
-                                                </select>
-                                            </TableCell>
-                                            <TableCell align="left">
-                                                <select
-                                                    className="form-select"
-                                                    type="select"
-                                                    name="role_id"
-                                                    id='role_id'
-                                                    value={row.role_id}
-                                                    disabled
-                                                >
-                                                    <option disabled selected value="" >-- Chọn vai trò --</option>
-                                                    {
-                                                        usersrole.map((getr, index) => (
-                                                            <option key={index} value={getr.id}>{getr.role_name} </option>
                                                         ))
                                                     }
                                                 </select>

@@ -24,6 +24,15 @@ module.exports = {
         })
     },
 
+    getChuCSLTByMaxId: (req, res) => {
+        let chu_cslt_id = req.params.id;
+        let sql = 'SELECT * FROM chucosoluutrus where id = (SELECT MAX(id) FROM chucosoluutrus)'
+        db.query(sql, chu_cslt_id, (err, response) => {
+            if (err) throw err
+            res.json(response);
+        })
+    },
+
     getChuCSLTByUserId: (req, res) => {
         let chu_cslt_id = req.params.id;
         let sql = 'SELECT * FROM chucosoluutrus where user_id = ?'

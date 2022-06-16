@@ -24,6 +24,15 @@ module.exports = {
         })
     },
 
+    getNhanVienByUserId: (req, res) => {
+        let nv_id = req.params.id;
+        let sql = 'SELECT * FROM nhanviens where user_id = ?'
+        db.query(sql, nv_id, (err, response) => {
+            if (err) throw err
+            res.json(response);
+        })
+    },
+
     addNewNhanVien: (req, res) => {
         let data = req.body;
         console.log('addNewNhanVien: ', req.body)

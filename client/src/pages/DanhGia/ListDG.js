@@ -39,6 +39,11 @@ export default function ListDG() {
     const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
+    const [nnn, setNnn] = React.useState([]);
+
+    const [cslt, setCslt] = React.useState([]);
+
+
     const [data, setData] = React.useState([]);
 
     const loadData = async () => {
@@ -48,6 +53,26 @@ export default function ListDG() {
 
     React.useEffect(() => {
         loadData();
+    }, []);
+
+    //nguoi nuoc ngoai
+    React.useEffect(() => {
+        const getNNN = async () => {
+            const resnnn = await fetch("http://localhost:3000/nguoinuocngoais");
+            const resn = await resnnn.json();
+            setNnn(await resn);
+        }
+        getNNN();
+    }, []);
+
+    //co so luu tru
+    React.useEffect(() => {
+        const getcslt = async () => {
+            const rescslt = await fetch("http://localhost:3000/cslts");
+            const resc = await rescslt.json();
+            setCslt(await resc);
+        }
+        getcslt();
     }, []);
 
     const deleteContact = (id) => {
@@ -175,8 +200,38 @@ export default function ListDG() {
                                                 {index + 1}
                                             </TableCell>
                                             <TableCell align="left">CMT {row.id}</TableCell>
-                                            <TableCell align="left">NNN {row.nnn_id}</TableCell>
-                                            <TableCell align="left">CSLT {row.cslt_id}</TableCell>
+                                            <TableCell align="left">
+                                                <select
+                                                    className="form-select"
+                                                    type="select"
+                                                    value={row.nnn_id || ""}
+                                                    disabled
+                                                >
+                                                    <option disabled selected value="">--Người đánh giá--</option>
+                                                    {
+                                                        nnn.map((getnnn, index) => (
+                                                            <option key={index} value={getnnn.id}>NNN {getnnn.id} - {getnnn.ho_ten} </option>
+                                                        ))
+                                                    }
+                                                </select>
+                                            </TableCell>
+
+                                            <TableCell align="left">
+                                                <select
+                                                    className="form-select"
+                                                    type="select"
+                                                    value={row.cslt_id || ""}
+                                                    disabled
+                                                >
+                                                    <option disabled selected value="">--Cơ sở lưu trú--</option>
+                                                    {
+                                                        cslt.map((getnnn, index) => (
+                                                            <option key={index} value={getnnn.id}>CSLT {getnnn.id} - {getnnn.ten_cslt} </option>
+                                                        ))
+                                                    }
+                                                </select>
+                                            </TableCell>
+
 
                                             <TableCell align="left">
                                                 <Link to={`/updatedg/${row.id}`}>

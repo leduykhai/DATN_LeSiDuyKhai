@@ -34,6 +34,18 @@ const headCells = [
         disablePadding: false,
         label: 'Họ Tên',
     },
+    {
+        id: 'user_status_id',
+        numeric: false,
+        disablePadding: false,
+        label: 'Trạng Thái',
+    },
+    {
+        id: 'role_id',
+        numeric: false,
+        disablePadding: false,
+        label: 'Vai Trò',
+    },
     // {
     //     id: 'status',
     //     numeric: false,

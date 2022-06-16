@@ -10,6 +10,12 @@ module.exports = function (app) {
         .put(usersCtrl.updateUser)
         .delete(usersCtrl.deleteUserByAll);
 
+    app.route('/usersccslt')
+        .get(usersCtrl.getAccC);
+
+    app.route('/usersnnn')
+        .get(usersCtrl.getAccN);
+
     app.route('/usersidmax')
         .get(usersCtrl.getUserByIdMax);
 

@@ -30,6 +30,7 @@ import axios from 'axios';
 import './ListLT.scss'
 
 import Moment from 'react-moment';
+import moment from 'moment';
 
 export default function ListTT() {
     const [order, setOrder] = React.useState('asc');
@@ -177,6 +178,8 @@ export default function ListTT() {
                                             <TableCell align="left">LT {row.id}</TableCell>
                                             <TableCell align="left">NNN {row.nnn_id}</TableCell>
                                             <TableCell align="left">CSLT {row.cslt_id}</TableCell>
+                                            <TableCell align="left">{moment(row.ngay_dang_ky_lt).format('YYYY-MM-DD hh:mm:ss')}</TableCell>
+                                            <TableCell align="left">{moment(row.ngay_den_lt).format('YYYY-MM-DD hh:mm:ss')}</TableCell>
 
                                             <TableCell align="left">
                                                 <Link to={`/updatelt/${row.id}`}>

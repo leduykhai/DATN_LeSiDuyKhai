@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 import './Navbar.scss'
 
@@ -40,13 +41,15 @@ const Navbar = (props) => {
                     <input type="text" placeholder="Tìm Kiếm..." />
                     <i class="bx bx-search"></i>
                 </div>
-                <div class="profile-details">
-                    <div className="avatar">
-                        <img src='' alt='' />
+                <Link to='/userinfo'>
+                    <div class="profile-details">
+                        <div className="avatar">
+                            <img src='' alt='' />
+                        </div>
+                        <span class="admin_name">{response[0].ho_ten}</span>
+                        <i class="bx bx-chevron-down"></i>
                     </div>
-                    <span class="admin_name">{response[0].ho_ten}</span>
-                    <i class="bx bx-chevron-down"></i>
-                </div>
+                </Link>
             </nav>
             {/* <div class="home-content">
                 {props.children}

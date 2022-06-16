@@ -47,6 +47,8 @@ const AddNV = () => {
 
     const [nhanvien, setNhanvien] = useState([]);
 
+    const [useridmax, setUserIdMax] = useState([]);
+
 
     useEffect(() => {
         const getthanh_pho = async () => {
@@ -113,6 +115,16 @@ const AddNV = () => {
         getNV();
     }, []);
 
+    //user ID Max
+    useEffect(() => {
+        const getUserIM = async () => {
+            const resuserim = await fetch("http://localhost:3000/usersidmax");
+            const resuim = await resuserim.json();
+            setUserIdMax(await resuim);
+        }
+        getUserIM();
+    }, []);
+
 
     useEffect(() => {
         axios
@@ -166,7 +178,7 @@ const AddNV = () => {
         if (isEmpty(email)) {
             msg.email = "Vui lòng nhập email"
         } else if (!isEmail(email)) {
-            msg.email = "email không đúng"
+            msg.email = "Email không đúng"
         }
         if (isEmpty(cccd)) {
             msg.cccd = "vui lòng nhập căn cước công dân"
@@ -241,6 +253,10 @@ const AddNV = () => {
         setState({ ...state, [name]: value });
     }
 
+    const handleBack = (e) => {
+        setTimeout(() => history.goBack(), 100);
+    }
+
     return (
         <body className='body'>
             <div className="container-addnv">
@@ -252,7 +268,7 @@ const AddNV = () => {
                             <span className="title-addnv">Thông tin cá nhân</span>
 
                             <div className="fields-addnv">
-                                <div className="input-field-addnv">
+                                {/* <div className="input-field-addnv">
                                     <label className='label'>Họ tên</label>
                                     <input
                                         type="text"
@@ -263,6 +279,27 @@ const AddNV = () => {
                                         required
                                         onChange={handleInputChange}
                                     />
+                                    <p className="error-text">{validationMsg.ho_ten}</p>
+                                </div> */}
+
+                                <div className="input-field-addnv">
+                                    <label className='label'>Xác Nhận Tên Đăng Ký</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="ho_ten"
+                                        id='ho_ten'
+                                        value={ho_ten || ""}
+                                        required
+                                        onChange={handleInputChange}
+                                    >
+                                        <option disabled selected value="">--Tên Đăng Ký--</option>
+                                        {
+                                            useridmax.map((getus, index) => (
+                                                <option key={index} >{getus.ho_ten} </option>
+                                            ))
+                                        }
+                                    </select>
                                     <p className="error-text">{validationMsg.ho_ten}</p>
                                 </div>
 
@@ -298,7 +335,7 @@ const AddNV = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-addnv">
+                                {/* <div className="input-field-addnv">
                                     <label className='label'>Email</label>
                                     <input
                                         type="email"
@@ -309,6 +346,27 @@ const AddNV = () => {
                                         required
                                         onChange={handleInputChange}
                                     />
+                                    <p className="error-text">{validationMsg.email}</p>
+                                </div> */}
+
+                                <div className="input-field-addnv">
+                                    <label className='label'>Xác Nhận Email Đăng Ký</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="email"
+                                        id='email'
+                                        value={email || ""}
+                                        required
+                                        onChange={handleInputChange}
+                                    >
+                                        <option disabled selected value="">--Email Đăng Ký--</option>
+                                        {
+                                            useridmax.map((getus, index) => (
+                                                <option key={index}>{getus.email} </option>
+                                            ))
+                                        }
+                                    </select>
                                     <p className="error-text">{validationMsg.email}</p>
                                 </div>
 
@@ -397,7 +455,7 @@ const AddNV = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-addnv">
+                                {/* <div className="input-field-addnv">
                                     <label className='label'>Số điện thoại</label>
                                     <input
                                         type="number"
@@ -409,7 +467,28 @@ const AddNV = () => {
                                         onChange={handleInputChange}
                                     />
                                     <p className="error-text">{validationMsg.sdt}</p>
+                                </div> */}
+                                <div className="input-field-addnv">
+                                    <label className='label'>Số Điện Thoại</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="sdt"
+                                        id='sdt'
+                                        value={sdt || ""}
+                                        required
+                                        onChange={handleInputChange}
+                                    >
+                                        <option disabled selected value="">--Số Điện Thoại--</option>
+                                        {
+                                            useridmax.map((getus, index) => (
+                                                <option key={index} >{getus.sdt} </option>
+                                            ))
+                                        }
+                                    </select>
+                                    <p className="error-text">{validationMsg.sdt}</p>
                                 </div>
+
                                 <div className="input-field-addnv">
                                     <label className='label'>Chức Vụ</label>
                                     <select
@@ -479,7 +558,7 @@ const AddNV = () => {
                                     >
                                         <option disabled selected value="">--Tên tài khoản--</option>
                                         {
-                                            user.map((getus, index) => (
+                                            useridmax.map((getus, index) => (
                                                 <option key={index} value={getus.id}>{getus.ho_ten} </option>
                                             ))
                                         }
@@ -488,12 +567,12 @@ const AddNV = () => {
                             </div>
                             <div className="buttons">
 
-                                <Link to="/nhanvien" className="backBtn">
-                                    <div className="backBtn" >
-                                        <i className="uil uil-navigator"></i>
-                                        <span className="btnText">Quay lại</span>
-                                    </div>
-                                </Link>
+                                {/* <Link to="/nhanvien" className="backBtn"> */}
+                                <div className="backBtn" onClick={handleBack} >
+                                    <i className="uil uil-navigator"></i>
+                                    <span className="btnText">Quay lại</span>
+                                </div>
+                                {/* </Link> */}
                                 <button className="submit" type='submit'>
                                     <span className="btnText">Thêm</span>
                                     <i className="uil uil-navigator"></i>

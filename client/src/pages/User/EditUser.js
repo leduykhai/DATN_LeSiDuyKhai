@@ -115,6 +115,14 @@ const EditUser = () => {
         //     msg.password = "Please input your Password"
         // }
 
+        const response = JSON.parse(localStorage.getItem('user'));
+
+        if (response[0].id != 1) {
+            if (role_id == 1 || role_id == 2) {
+                msg.role_id = "Vui lòng chọn đúng vai trò!"
+            }
+        }
+
         if (isEmpty(ho_ten)) {
             msg.ho_ten = "Vui lòng nhập họ tên"
         }
@@ -168,13 +176,17 @@ const EditUser = () => {
                     .catch((err) => toast.error(err.response.data));
                 toast.success("Cập nhật thành công!")
             }
-            setTimeout(() => history.push("/users"), 100);
+            setTimeout(() => history.goBack("/users"), 100);
         }
     };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setState({ ...state, [name]: value });
+    }
+
+    const handleBack = (e) => {
+        setTimeout(() => history.goBack(), 100);
     }
 
     return (
@@ -285,6 +297,7 @@ const EditUser = () => {
                                             ))
                                         }
                                     </select>
+                                    <p className="error-text">{validationMsg.role_id}</p>
                                 </div>
                             </div>
                         </div>
@@ -292,12 +305,12 @@ const EditUser = () => {
                         <div className="details ID">
 
                             <div className="buttons">
-                                <Link to="/users" className="backBtn">
-                                    <div className="backBtn" >
-                                        <i className="uil uil-navigator"></i>
-                                        <span className="btnText">Quay Lại</span>
-                                    </div>
-                                </Link>
+                                {/* <Link to="/users" className="backBtn"> */}
+                                <div className="backBtn" onClick={handleBack}>
+                                    <i className="uil uil-navigator"></i>
+                                    <span className="btnText">Quay Lại</span>
+                                </div>
+                                {/* </Link> */}
                                 <button className="submit" type='submit'>
                                     <span className="btnText">Cập Nhật</span>
                                     <i className="uil uil-navigator"></i>

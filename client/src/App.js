@@ -8,8 +8,9 @@ import "./App.css"
 import Login from './pages/Login/Login';
 
 import Sidebar from './components/Sidebar/Sidebar';
-import Sidebar_Nv from './pages/Admin/Page_NhanVien/Sidebar_Nv/Sidebar_Nv';
 import Navbar from './components/Navbar/Navbar';
+
+import UserInfo from './components/Navbar/UserInfo/EditUser'
 
 import Dashboard from './pages/Dashboard/Dashboard';
 
@@ -30,6 +31,9 @@ import ListTT from './pages/TinTuc/ListTT';
 import AddTT from './pages/TinTuc/AddTT';
 import EditTT from './pages/TinTuc/EditTT';
 import ViewTT from './pages/TinTuc/ViewTT';
+
+//Tài khoản chủ cơ sở lưu trú
+import TK_CSLT from './pages/TKCoSoLuuTru/ListUser'
 
 //Chu Co So Luu Tru
 import ChuCSLT from './pages/Chu_CSLT/ListChuCSLT';
@@ -52,6 +56,9 @@ import EditDG from './pages/DanhGia/EditDG';
 import ListKBT from './pages/KhaiBaoTruoc/ListKBT';
 import AddKBT from './pages/KhaiBaoTruoc/AddKBT';
 import EditKBT from './pages/KhaiBaoTruoc/EditKBT';
+
+//Tài khoản người nước ngoài
+import TK_NNN from './pages/TKNguoiNuocNgoai/ListUser'
 
 //Nguoi Nuoc Ngoai
 import ListNNN from './pages/NguoiNuocNgoai/ListNNN';
@@ -89,6 +96,7 @@ import ChiTietCSLT_Client from './pages/Client/CoSoLuuTru/ChiTietCSLT_Client';
 import DangKyAccount from './pages/Client/DangKyCSLT/DangKyAccount'
 import DangKyChuCslt from './pages/Client/DangKyCSLT/DangKyCCslt'
 import DangKyCslt from './pages/Client/DangKyCSLT/DangKyCslt'
+import DangKyGT from './pages/Client/DangKyCSLT/DangKyGT'
 
 //khai báo trước
 import AddKBT_Client from './pages/Client/KhaiBaoTruoc/AddKBT_Client';
@@ -104,6 +112,10 @@ import EditChu_CSLT_Cl from './pages/Client/ChuCSLT/EditChuCSLT_Cl';
 //Co so luu tru
 import ListCSLT from './pages/Client/ChuCSLT/CoSoLuuTru/ListCSLT';
 import Edit_CSLT from './pages/Client/ChuCSLT/CoSoLuuTru/EditCSLT';
+
+//Giới thiệu cơ sở lưu trú
+import ADD_GT from './pages/Client/ChuCSLT/CoSoLuuTru/GioiThieu/AddGT'
+import EDIT_GT from './pages/Client/ChuCSLT/CoSoLuuTru/GioiThieu/EditGT'
 
 //Navbar
 import Navbar_ChuCSLT from './pages/Client/ChuCSLT/Navbar_ChuCSLT/Navbar_ChuCSLT';
@@ -167,6 +179,7 @@ function App() {
           <RouteWrapper exact path="/client_dk_b1" component={DangKyAccount} layout={Navbar_Client} />
           <RouteWrapper exact path="/client_dk_b2" component={DangKyChuCslt} layout={Navbar_Client} />
           <RouteWrapper exact path="/client_dk_b3" component={DangKyCslt} layout={Navbar_Client} />
+          <RouteWrapper exact path="/client_dk_b4" component={DangKyGT} layout={Navbar_Client} />
 
           {/* Khai báo trước */}
           <RouteWrapper exact path="/client_kbt/:id" component={AddKBT_Client} layout={Navbar_Client} />
@@ -185,6 +198,11 @@ function App() {
           {/* co so luu tru */}
           <RouteWrapper exact path="/listcslt/:id" component={ListCSLT} layout={Navbar_ChuCSLT} />
           <RouteWrapper exact path="/editcslt/:id" component={Edit_CSLT} layout={Navbar_ChuCSLT} />
+
+          {/* Giới thiệu cơ sở lưu trú */}
+          <RouteWrapper exact path="/add_gt" component={ADD_GT} layout={Sidebar} />
+          <RouteWrapper exact path="/edit_gt/:id" component={EDIT_GT} layout={Navbar_ChuCSLT} />
+
 
           {/* Danh sách khai báo trước */}
           <RouteWrapper exact path="/ds_kbt/:id" component={DS_KBT} layout={Navbar_ChuCSLT} />
@@ -225,6 +243,10 @@ function App() {
           {/* Home */}
           {/* <Route exact path="/home" component={Home} /> */}
 
+          {/* UserInfo */}
+
+          <PrivateRoute exact path="/userinfo" component={UserInfo} layout={Sidebar} />
+
           {/* dashboard */}
           <PrivateRoute exact path="/dashboard" component={Dashboard} layout={Sidebar} />
 
@@ -245,6 +267,10 @@ function App() {
           <PrivateRoute path="/addtintuc" component={AddTT} layout={Sidebar} />
           <PrivateRoute path="/updatetintuc/:id" component={EditTT} layout={Sidebar} />
           <PrivateRoute path="/Viewtintuc/:id" component={ViewTT} layout={Sidebar} />
+
+          {/* Tài khoản chủ cơ sở lưu trú */}
+          <PrivateRoute exact path="/tk_cslt" component={TK_CSLT} layout={Sidebar} />
+
 
           {/* Chủ Cơ Sở Lưu Trú */}
           <PrivateRoute exact path="/chucslt" component={ChuCSLT} layout={Sidebar} />
@@ -267,6 +293,9 @@ function App() {
           <PrivateRoute path="/kbt" component={ListKBT} layout={Sidebar} />
           <PrivateRoute path="/addkbt" component={AddKBT} layout={Sidebar} />
           <PrivateRoute path="/updatekbt/:id" component={EditKBT} layout={Sidebar} />
+
+          {/* Tài khoản người nước ngoài */}
+          <PrivateRoute path="/tk_nnn" component={TK_NNN} layout={Sidebar} />
 
           {/* Người Nước Ngoài */}
           <PrivateRoute path="/nnn" component={ListNNN} layout={Sidebar} />
