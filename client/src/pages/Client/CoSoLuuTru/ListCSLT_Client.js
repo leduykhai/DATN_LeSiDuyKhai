@@ -37,6 +37,8 @@ export default function ListCSLT_Client() {
 
     const [data, setData] = React.useState([]);
 
+    const [searchTerm, setSearchTerm] = React.useState('');
+
     const loadData = async () => {
         const response = await axios.get("http://localhost:3000/cslts");
         setData(response.data);
@@ -102,8 +104,23 @@ export default function ListCSLT_Client() {
 
     return (
         <article className='main-home'>
+            <input
+                type="text"
+                placeholder='Tìm Kiếm . . .'
+                onChange={(event) => {
+                    setSearchTerm(event.target.value);
+                }}
+            />
             <div className='all-card-cslt'>
                 {stableSort(data, getComparator(order, orderBy))
+                    .filter((item) => {
+                        if (searchTerm == "") {
+                            return item
+                        } else if (item.ten_cslt.toLowerCase().includes(searchTerm.toLowerCase())) {
+                            return item
+                        }
+                    })
+                    // stableSort(data, getComparator(order, orderBy))
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((item, index) => {
                         return (
