@@ -46,15 +46,15 @@ const AddKBT_Client = () => {
 
     const [nnn, setNnn] = useState([]);
 
-    const response = JSON.parse(localStorage.getItem('user'));
-
-    const id_nnn = response[0].id;
-
     //Nguoi Nuoc Ngoai
     useEffect(() => {
         const getNnn = async () => {
-            const resnnn = await fetch(`http://localhost:3000/nguoinuocngoaisuser/${id_nnn}`);
+            const response = JSON.parse(localStorage.getItem('user'));
+            const id = response[0].id;
+            console.log(id)
+            const resnnn = await fetch(`http://localhost:3000/nguoinuocngoaisuser/${id}`);
             const resn = await resnnn.json();
+            console.log(resn)
             setNnn(await resn);
         }
         getNnn();

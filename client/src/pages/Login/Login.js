@@ -3,7 +3,7 @@ import "./Login.scss";
 import "https://kit.fontawesome.com/64d58efce2.js";
 // import LOGO from '../images/logo.svg'
 import isEmpty from "validator/lib/isEmpty";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import isEmail from "validator/lib/isEmail";
 import axios from "../../api/admin/axios";
 import ENDPOINT from "../../api/admin/endpoint";
@@ -51,13 +51,13 @@ function Login(props) {
     const validateAll = () => {
         const msg = {}
         if (isEmpty(email)) {
-            msg.email = "Vui lòng nhập email"
+            msg.email = "Vui lòng nhập email!"
         } else if (!isEmail(email)) {
-            msg.email = "Email không chính xác"
+            msg.email = "Email không chính xác!"
         }
 
         if (isEmpty(password)) {
-            msg.password = "Vui lòng nhập mật khẩu"
+            msg.password = "Vui lòng nhập mật khẩu!"
         }
 
         setValidationMsg(msg)
@@ -244,18 +244,21 @@ function Login(props) {
 
             <div class="panels-container">
                 <div class="panel left-panel">
-                    <div class="content">
-                        {/* <h3>Tạo Mới Tài Khoản!</h3> */}
-                        <h3>Hệ Thống Hỗ Trợ Quản Lý Lưu Trú Người Nước Ngoài</h3>
-                        <br />
-                        <h3>Tại Thành Phố Đà Nẵng</h3>
+                    <Link exact to="/client">
+                        <div class="content" >
 
-                        <p>
-                        </p>
-                        {/* <button class="btn transparent" id="sign-up-btn" onClick={changeState} >
+                            {/* <h3>Tạo Mới Tài Khoản!</h3> */}
+                            <h3>Hệ Thống Hỗ Trợ Quản Lý Lưu Trú Người Nước Ngoài</h3>
+                            <br />
+                            <h3>Tại Thành Phố Đà Nẵng</h3>
+
+                            <p>
+                            </p>
+                            {/* <button class="btn transparent" id="sign-up-btn" onClick={changeState} >
                             Đăng Ký
                         </button> */}
-                    </div>
+                        </div>
+                    </Link>
                     <img src="" class="image" alt="" />
                 </div>
                 <div class="panel right-panel">

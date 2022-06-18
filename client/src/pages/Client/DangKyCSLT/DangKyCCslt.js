@@ -47,6 +47,8 @@ const DangKyCCslt = () => {
 
     const [nhanvien, setNhanvien] = useState([]);
 
+    const [ccslt, setCCslt] = useState([]);
+
     //thanh pho
     useEffect(() => {
         const getthanh_pho = async () => {
@@ -119,6 +121,16 @@ const DangKyCCslt = () => {
         getNV();
     }, []);
 
+    //Chủ Cơ sở lưu trus
+    useEffect(() => {
+        const getCCslt = async () => {
+            const rescc = await fetch("http://localhost:3000/chucosoluutrus");
+            const resc = await rescc.json();
+            setCCslt(await resc);
+        }
+        getCCslt();
+    }, []);
+
     //chu co so luu tru
     useEffect(() => {
         axios
@@ -128,6 +140,18 @@ const DangKyCCslt = () => {
 
     const validateAll = () => {
         const msg = {}
+
+        let date = moment(Date()).format("YYYY");
+
+        if ((date - (moment(ngay_sinh).format("YYYY"))) < 18) {
+            msg.ngay_sinh = "Tuổi từ 18 trở lên"
+        }
+
+        for (var key in ccslt) {
+            if (ccslt[key].cccd == cccd) {
+                msg.cccd = "CCCD Đã Được Sử Dụng!"
+            }
+        }
 
         if (isEmpty(ho_ten)) {
             msg.ho_ten = "Vui lòng nhập họ tên"
@@ -182,7 +206,7 @@ const DangKyCCslt = () => {
                         // hinh,
                         user_id,
                         phuong_id,
-                        nhanvien_id,
+                        // nhanvien_id,
                     })
                     .then(() => {
                         setState({
@@ -196,7 +220,7 @@ const DangKyCCslt = () => {
                             // hinh: "",
                             user_id: "",
                             phuong_id: "",
-                            nhanvien_id: ""
+                            // nhanvien_id: ""
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
@@ -218,6 +242,7 @@ const DangKyCCslt = () => {
 
                 <form className='form-all' onSubmit={handleSubmit}>
                     <div className="form-dk_ccslt first-dk_ccslt">
+                        <h4 className='luu_y'>Bạn Phải Chịu Trách Nhiệm Trước Pháp Luật Về Nội Dung Khai Báo!</h4>
                         <div className="details personal">
                             <span className="title-dk_ccslt">Bước 2: Thông tin người đăng ký</span>
 
@@ -236,10 +261,11 @@ const DangKyCCslt = () => {
                                         <option disabled selected value="">--Tên đăng ký--</option>
                                         {
                                             useridmax.map((getus, index) => (
-                                                <option key={index} value={getus.id}>{getus.ho_ten} </option>
+                                                <option key={index}>{getus.ho_ten} </option>
                                             ))
                                         }
                                     </select>
+                                    <p className="error-text">{validationMsg.ho_ten}</p>
                                 </div>
 
                                 <div className="input-field-dk_ccslt">
@@ -288,10 +314,11 @@ const DangKyCCslt = () => {
                                         <option disabled selected value="">--Email--</option>
                                         {
                                             useridmax.map((getus, index) => (
-                                                <option key={index} value={getus.id}>{getus.email} </option>
+                                                <option key={index} >{getus.email} </option>
                                             ))
                                         }
                                     </select>
+                                    <p className="error-text">{validationMsg.email}</p>
                                 </div>
 
                                 <div className="input-field-dk_ccslt">
@@ -393,10 +420,36 @@ const DangKyCCslt = () => {
                                         <option disabled selected value="">--Số điện thoại--</option>
                                         {
                                             useridmax.map((getus, index) => (
-                                                <option key={index} value={getus.id}>{getus.sdt} </option>
+                                                <option key={index}>{getus.sdt} </option>
                                             ))
                                         }
                                     </select>
+                                    <p className="error-text">{validationMsg.sdt}</p>
+                                </div>
+
+                                <div className="input-field-dk_ccslt">
+                                    <label className='label'>Xác nhận ID người đăng ký</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="user_id"
+                                        id='user_id'
+                                        value={user_id || ""}
+                                        required
+                                        onChange={handleInputChange}
+                                    >
+                                        <option disabled selected value="">--ID đăng ký--</option>
+                                        {
+                                            useridmax.map((getus, index) => (
+                                                <option key={index} value={getus.id}>{getus.ho_ten}</option>
+                                            ))
+                                        }
+                                    </select>
+                                    <p className="error-text">{validationMsg.user_id}</p>
+                                </div>
+
+                                <div className="input-field-dk_ccslt">
+
                                 </div>
 
                                 {/* <div className="input-field-dk_ccslt">
@@ -419,27 +472,9 @@ const DangKyCCslt = () => {
                             <span className="title-dk_ccslt"></span>
 
                             <div className="fields-dk_ccslt">
-                                <div className="input-field-dk_ccslt">
-                                    <label className='label'>Xác nhận tên người đăng ký</label>
-                                    <select
-                                        className="form-select"
-                                        type="select"
-                                        name="user_id"
-                                        id='user_id'
-                                        value={user_id || ""}
-                                        required
-                                        onChange={handleInputChange}
-                                    >
-                                        <option disabled selected value="">--Tên đăng ký--</option>
-                                        {
-                                            useridmax.map((getus, index) => (
-                                                <option key={index} value={getus.id}>{getus.ho_ten}</option>
-                                            ))
-                                        }
-                                    </select>
-                                </div>
 
-                                <div className="input-field-dk_ccslt">
+
+                                {/* <div className="input-field-dk_ccslt">
                                     <label className='label'>Nhân viên phê duyệt</label>
                                     <select
                                         className="form-select"
@@ -457,7 +492,7 @@ const DangKyCCslt = () => {
                                             ))
                                         }
                                     </select>
-                                </div>
+                                </div> */}
 
                                 <div className="input-field-dk_ccslt">
 

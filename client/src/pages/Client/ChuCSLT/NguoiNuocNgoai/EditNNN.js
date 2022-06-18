@@ -82,6 +82,12 @@ const EditNNN = () => {
     const validateAll = () => {
         const msg = {}
 
+        let date = moment(Date()).format("YYYY");
+
+        if ((date - (moment(ngay_sinh).format("YYYY"))) < 18) {
+            msg.ngay_sinh = "Ngày sinh không hợp lệ!"
+        }
+
         if (isEmpty(ho_ten)) {
             msg.ho_ten = "Vui lòng nhập họ tên"
         }

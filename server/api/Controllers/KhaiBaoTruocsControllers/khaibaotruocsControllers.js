@@ -26,7 +26,7 @@ module.exports = {
 
     getKhaiBaoTruocByCSLTId: (req, res) => {
         let kbt_id = req.params.id;
-        let sql = 'SELECT * FROM khaibaotruocs where cslt_id = ?'
+        let sql = 'SELECT * FROM khaibaotruocs where cslt_id = ? ORDER BY id DESC'
         db.query(sql, kbt_id, (err, response) => {
             if (err) throw err
             res.json(response);

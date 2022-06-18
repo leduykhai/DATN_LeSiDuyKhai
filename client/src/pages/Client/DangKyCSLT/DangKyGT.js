@@ -44,16 +44,16 @@ const DangKyGT = () => {
         const msg = {}
 
         if (isEmpty(so_phong)) {
-            msg.so_phong = "Vui lòng nhập số phòng"
+            msg.so_phong = "Vui lòng nhập số phòng!"
         }
         if (isEmpty(muc_do_danh_gia)) {
-            msg.muc_do_danh_gia = "Vui lòng nhập mức độ đánh giá"
+            msg.muc_do_danh_gia = "Vui lòng nhập mức độ đánh giá!"
         }
         if (isEmpty(gioi_thieu)) {
-            msg.gioi_thieu = "Vui nhập giới thiệu"
+            msg.gioi_thieu = "Vui nhập giới thiệu!"
         }
         if (isEmpty(trang_thai)) {
-            msg.trang_thai = "Vui nhập trạng thái"
+            msg.trang_thai = "Vui nhập trạng thái!"
         }
 
         setValidationMsg(msg)
@@ -69,7 +69,7 @@ const DangKyGT = () => {
         const isValid = validateAll()
         if (!isValid) return
         else {
-            if (id) {
+            if (!id) {
                 axios
                     .post("http://localhost:3000/ct_cslts", {
                         so_phong,
@@ -88,7 +88,7 @@ const DangKyGT = () => {
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("Đăng ký thành công, vui lòng đợi phê duyệt!")
+                toast.success("Thông tin đăng ký của bạn đã được gửi đến nhân viên, vui lòng đợi phê duyệt!")
             }
             // else {
             //     axios
@@ -132,6 +132,7 @@ const DangKyGT = () => {
 
                 <form className='form-all' onSubmit={handleSubmit}>
                     <div className="form-dangkygt first-dangkygt">
+                        <h4 className='luu_y'>Bạn Phải Chịu Trách Nhiệm Trước Pháp Luật Về Nội Dung Khai Báo!</h4>
                         <div className="details personal">
                             <span className="title-dangkygt"></span>
 

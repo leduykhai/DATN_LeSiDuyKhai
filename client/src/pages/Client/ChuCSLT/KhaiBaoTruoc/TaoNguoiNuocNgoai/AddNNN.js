@@ -5,6 +5,7 @@ import isEmpty from "validator/lib/isEmpty";
 import "./AddNNN.scss";
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import moment from 'moment';
 
 // import Moment from 'react-moment';
 // import 'moment-timezone';
@@ -38,7 +39,11 @@ const AddNNN = () => {
 
     const [user, setUser] = useState([]);
 
+    const [ccslt, setCcslt] = useState([]);
+
     const [cslt, setCslt] = useState([]);
+
+    const [ds_nnn, setDs_Nnn] = useState([]);
 
     const [quoctich, setQuoc_tich] = useState([]);
 
@@ -46,30 +51,63 @@ const AddNNN = () => {
 
     const [kbt, setKbt] = useState([]);
 
+    // //Chu_CSLT
+    // useEffect(() => {
+    //     const getCcslt = async () => {
+    //         const response = JSON.parse(localStorage.getItem('user'));
+    //         const id = response[0].id
+    //         const resccslt = await fetch(`http://localhost:3000/chucosoluutrususerid/${id}`);
+    //         const rescc = await resccslt.json();
+    //         localStorage.setItem("chucslt", JSON.stringify(rescc))
+    //         setCcslt(await rescc);
+    //     }
+    //     getCcslt();
+    // }, []);
+
+    // //CSLT
+    // useEffect(() => {
+    //     const getCslt = async () => {
+    //         const response = JSON.parse(localStorage.getItem('chucslt'));
+    //         const id = response[0].id
+    //         const rescslt = await fetch(`http://localhost:3000/cslts/${id}`);
+    //         const resc = await rescslt.json();
+    //         localStorage.setItem("cslt", JSON.stringify(resc))
+    //         setCslt(await resc);
+    //     }
+    //     getCslt();
+    // }, []);
+
     //Khai bao truoc
     useEffect(() => {
         const getKbt = async () => {
             const reskbt = await fetch(`http://localhost:3000/khaibaotruocs/${id}`);
             const resk = await reskbt.json();
+            console.log(resk)
+            // localStorage.setItem("kbt", JSON.stringify(resk))
             setKbt(await resk);
         }
         getKbt();
     }, []);
 
-    //user ID Max
-    useEffect(() => {
-        const getUserIM = async () => {
-            const resuserim = await fetch("http://localhost:3000/usersidmax");
-            const resuim = await resuserim.json();
-            setUserIdMax(await resuim);
-        }
-        getUserIM();
-    }, []);
+    // //user ID Max
+    // useEffect(() => {
+    //     const getUserIM = async () => {
+    //         const resuserim = await fetch("http://localhost:3000/usersidmax");
+    //         const resuim = await resuserim.json();
+    //         setUserIdMax(await resuim);
+    //     }
+    //     getUserIM();
+    // }, []);
 
     //User
     useEffect(() => {
         const getUser = async () => {
-            const resuser = await fetch("http://localhost:3000/users");
+            const response = JSON.parse(localStorage.getItem('kbt'));
+            const email = response[0].email
+
+            console.log(email)
+
+            const resuser = await fetch(`http://localhost:3000/usersmail/${email}`);
             const resu = await resuser.json();
             setUser(await resu);
         }
@@ -79,11 +117,26 @@ const AddNNN = () => {
     //CSLT
     useEffect(() => {
         const getCslt = async () => {
+            const response = JSON.parse(localStorage.getItem('cslt'));
+            const id = response[0].id
             const rescslt = await fetch(`http://localhost:3000/cslts/${id}`);
             const resc = await rescslt.json();
+            // localStorage.setItem("cslt", JSON.stringify(resc))
             setCslt(await resc);
         }
         getCslt();
+    }, []);
+
+    //NNN
+    useEffect(() => {
+        const getNNN = async () => {
+            const response = JSON.parse(localStorage.getItem('cslt'));
+            const id = response[0].id
+            const resnnn = await fetch(`http://localhost:3000/nguoinuocngoaiscslt/${id}`);
+            const resn = await resnnn.json();
+            setDs_Nnn(await resn);
+        }
+        getNNN();
     }, []);
 
     //Quoc_Tich
@@ -105,6 +158,18 @@ const AddNNN = () => {
 
     const validateAll = () => {
         const msg = {}
+
+        for (var key in ds_nnn) {
+            if (ds_nnn[key].email == email) {
+                msg.note = "Thông Tin Người Này Đã Từng Lưu Trú Tại Cơ Sở, Hãy Kiểm Tra Lại!"
+            }
+        }
+
+        let date = moment(Date()).format("YYYY");
+
+        if ((date - (moment(ngay_sinh).format("YYYY"))) < 18) {
+            msg.ngay_sinh = "Ngày sinh không hợp lệ!"
+        }
 
         if (isEmpty(ho_ten)) {
             msg.ho_ten = "Vui lòng nhập họ tên"
@@ -204,7 +269,7 @@ const AddNNN = () => {
         <body className='body'>
             <div className="container-addnnn">
                 <header className='header'>Thêm Người Nước Ngoài</header>
-
+                <p className="error-text">{validationMsg.note}</p>
                 <form className='form-all' onSubmit={handleSubmit}>
                     <div className="form-addnnn first-addnnn">
                         <div className="details personal">
@@ -401,8 +466,8 @@ const AddNNN = () => {
                                     >
                                         <option disabled selected value="">--ID Cơ Sở Lưu Trú--</option>
                                         {
-                                            kbt.map((getcslt, index) => (
-                                                <option key={index}>{getcslt.cslt_id} </option>
+                                            cslt.map((getcslt, index) => (
+                                                <option key={index} value={getcslt.id}>{getcslt.ten_cslt} </option>
                                             ))
                                         }
                                     </select>

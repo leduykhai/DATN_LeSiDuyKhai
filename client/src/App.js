@@ -231,7 +231,7 @@ function App() {
           <RouteWrapper exact path="/lslt_nnn/:id" component={LSLT_NNN} layout={Navbar_NNN} />
 
           {/* Người Nước Ngoài Khai báo trước */}
-          <RouteWrapper exact path="/nnn_kbt/:id" component={KBT_NNN} layout={Navbar_NNN} />
+          <PrivateRoute exact path="/nnn_kbt/:id" component={KBT_NNN} layout={Navbar_NNN} />
 
           {/* Nhat ky luu tru */}
           <RouteWrapper exact path="/nklt_client/:id" component={NKLT_client} layout={Navbar_NNN} />

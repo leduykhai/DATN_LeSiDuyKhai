@@ -213,11 +213,22 @@ const AddKBT_Client = () => {
         setState({ ...state, [name]: value });
     }
 
+    const handleGetInfo = () => {
+        const response = JSON.parse(localStorage.getItem('user'));
+        if (!response) {
+            if (
+                window.alert("Vui lòng đăng nhập để lấy thông tin!")
+            ) {
+                setTimeout(() => history.push("/login"), 100);
+            }
+        }
+    }
+
     return (
         <body className='body'>
             <div className="container-addkbt_client">
                 <header className='header'>Khai Báo Thông Tin Lưu Trú</header>
-                <h3>Lấy thông tin từ tài khoản.<Link to={`/nnn_kbt/${id}`} > Lấy thông tin</Link></h3>
+                <h3>Lấy thông tin từ tài khoản.<Link to={`/nnn_kbt/${id}`} onClick={handleGetInfo} > Lấy thông tin</Link></h3>
 
                 <form className='form-all' onSubmit={handleSubmit}>
                     <div className="form-addkbt_client first-addkbt_client">

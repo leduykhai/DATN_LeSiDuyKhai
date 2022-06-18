@@ -82,6 +82,10 @@ const EditNNN = () => {
     const validateAll = () => {
         const msg = {}
 
+        if (sdt.length != 10 || sdt[0] != 0) {
+            msg.sdt = "Số điện thoại không tồn tại"
+        }
+
         if (isEmpty(ho_ten)) {
             msg.ho_ten = "Vui lòng nhập họ tên"
         }

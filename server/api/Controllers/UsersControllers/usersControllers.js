@@ -54,6 +54,16 @@ module.exports = {
         })
     },
 
+    getUserByEmail: (req, res) => {
+        let user_email = req.params.id;
+        console.log('ID: ', user_email)
+        let sql = 'SELECT * FROM users where email = ?'
+        db.query(sql, user_email, (err, response) => {
+            if (err) throw err
+            res.json(response);
+        })
+    },
+
     addNewUser: (req, res) => {
         let data = req.body;
         // const salt = genSaltSync(10);

@@ -42,6 +42,7 @@ const AddUser = () => {
         const getKbt = async () => {
             const reskbt = await fetch(`http://localhost:3000/khaibaotruocs/${id}`);
             const resk = await reskbt.json();
+            localStorage.setItem("kbt", JSON.stringify(resk))
             setKbt(await resk);
         }
         getKbt();

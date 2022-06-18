@@ -507,6 +507,7 @@ export default function ListUser() {
                             setSearchTerm(event.target.value);
                         }}
                     />
+                    <i className="fas fa-search" id="search-icon"></i>
                 </div>
                 <TableContainer>
                     <Table

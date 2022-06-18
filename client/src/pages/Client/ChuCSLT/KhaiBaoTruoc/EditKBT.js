@@ -208,6 +208,7 @@ const EditKBT = () => {
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
+                localStorage.setItem("kbt", JSON.stringify([state]))
                 toast.success("Cập nhật thành công!")
             }
             setTimeout(() => history.push(`/taotaikhoan/${id}`), 100);

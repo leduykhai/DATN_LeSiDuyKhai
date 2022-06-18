@@ -19,6 +19,9 @@ module.exports = function (app) {
     app.route('/usersidmax')
         .get(usersCtrl.getUserByIdMax);
 
+    app.route('/usersmail/:id')
+        .get(usersCtrl.getUserByEmail);
+
     app.route('/users/:id')
         .get(usersCtrl.getUserById)
         .delete(usersCtrl.deleteUserById);

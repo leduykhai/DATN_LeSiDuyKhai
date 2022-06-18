@@ -5,6 +5,7 @@ import isEmpty from "validator/lib/isEmpty";
 import "./AddNNN.scss";
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import moment from 'moment';
 
 // import Moment from 'react-moment';
 // import 'moment-timezone';
@@ -64,11 +65,24 @@ const AddNNN = () => {
         getUser();
     }, []);
 
+    // //CSLT
+    // useEffect(() => {
+    //     const getCslt = async () => {
+    //         const rescslt = await fetch(`http://localhost:3000/cslts/${id}`);
+    //         const resc = await rescslt.json();
+    //         setCslt(await resc);
+    //     }
+    //     getCslt();
+    // }, []);
+
     //CSLT
     useEffect(() => {
         const getCslt = async () => {
+            const response = JSON.parse(localStorage.getItem('cslt'));
+            const id = response[0].id
             const rescslt = await fetch(`http://localhost:3000/cslts/${id}`);
             const resc = await rescslt.json();
+            // localStorage.setItem("cslt", JSON.stringify(resc))
             setCslt(await resc);
         }
         getCslt();
@@ -93,6 +107,12 @@ const AddNNN = () => {
 
     const validateAll = () => {
         const msg = {}
+
+        let date = moment(Date()).format("YYYY");
+
+        if ((date - (moment(ngay_sinh).format("YYYY"))) < 18) {
+            msg.ngay_sinh = "Ngày sinh không hợp lệ!"
+        }
 
         if (isEmpty(ho_ten)) {
             msg.ho_ten = "Vui lòng nhập họ tên"
@@ -172,6 +192,7 @@ const AddNNN = () => {
                     .catch((err) => toast.error(err.response.data));
                 toast.success("Thêm thành công!")
             }
+            setTimeout(() => history.goBack(), 100);
             setTimeout(() => history.goBack(), 100);
         }
     };

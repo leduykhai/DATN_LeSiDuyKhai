@@ -7,7 +7,9 @@ const Footer = () => {
             <div className='footer-content'>
                 <h3>Lê Sĩ Duy Khải</h3>
                 <p>
-                    Hệ Thống Quản Lý Lưu Trú Người Nước Ngoài Tại Thành Phố Đà Nẵng
+                    Hệ Thống Hỗ Trợ Quản Lý Lưu Trú Người Nước Ngoài
+                    <br />
+                    Tại Thành Phố Đà Nẵng
                 </p>
                 <ul className='socials'>
                     <li><a href='#'><i className='fa fa-facebook'></i></a></li>

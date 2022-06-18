@@ -15,6 +15,7 @@ export default function Chu_CSLT() {
 
     const loadData = async () => {
         const response = await axios.get(`http://localhost:3000/chucosoluutrususerid/${id}`);
+        localStorage.setItem("chucslt", JSON.stringify(response.data))
         setData(response.data);
     };
 

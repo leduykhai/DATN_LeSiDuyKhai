@@ -49,7 +49,9 @@ const AddLT = () => {
     //co so luu tru
     useEffect(() => {
         const getcslt = async () => {
-            const rescslt = await fetch("http://localhost:3000/cslts");
+            const response = JSON.parse(localStorage.getItem('cslt'));
+            const id = response[0].id
+            const rescslt = await fetch(`http://localhost:3000/cslts/${id}`);
             const resc = await rescslt.json();
             setCslt(await resc);
         }

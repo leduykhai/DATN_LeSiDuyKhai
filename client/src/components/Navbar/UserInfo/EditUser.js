@@ -33,6 +33,8 @@ const EditUser = () => {
 
     const [user, setUser] = useState([]);
 
+    const [nhanvien, setNhanvien] = useState([]);
+
     const [userstatus, setUser_Status] = useState([]);
 
     const [usersrole, setUser_Role] = useState([]);
@@ -52,6 +54,19 @@ const EditUser = () => {
         getUser();
     }, []);
 
+    //Nhân viên
+    useEffect(() => {
+        const getNv = async () => {
+            const responses = JSON.parse(localStorage.getItem('user'));
+            const id = responses[0].id;
+            const resnv = await fetch(`http://localhost:3000/nhanviensuser/${id}`);
+            const resn = await resnv.json();
+            localStorage.setItem("nhanvien", JSON.stringify(resn))
+            setUser(await resn);
+        }
+        getNv();
+    }, []);
+
     useEffect(() => {
         const getuser_status = async () => {
             const resuse_status = await fetch("http://localhost:3000/userstatus");
@@ -69,6 +84,8 @@ const EditUser = () => {
         }
         getuser_role();
     }, []);
+
+
 
     // const handlekhu_vuc = (event) => {
     //     const getkhu_vuc_id = event.target.value;

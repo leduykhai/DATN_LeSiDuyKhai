@@ -45,7 +45,7 @@ const Navbar_NNN = (props) => {
                         <i className="fas fa-bars" id="menu-bars"></i>
                         <i className="fas fa-search" id="search-icon"></i>
                         <Link href="#" className="a fas fa-heart"></Link>
-                        <Link href="#" className="a fas fa-user"></Link>
+                        <Link exact to="/login" className="a fas fa-user"></Link>
                     </div>
                 </header>
 

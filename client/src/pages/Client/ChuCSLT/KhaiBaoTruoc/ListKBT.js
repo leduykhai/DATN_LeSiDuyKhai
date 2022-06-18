@@ -48,6 +48,8 @@ export default function ListKBT() {
 
     const [data, setData] = React.useState([]);
 
+    const [searchTerm, setSearchTerm] = React.useState('');
+
     const loadData = async () => {
         const response = await axios.get(`http://localhost:3000/khaibaotruocscslt/${id}`);
         setData(response.data);
@@ -134,6 +136,17 @@ export default function ListKBT() {
                 {/* <Link to={`/addkbt`}>
                     <PostAddOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} />
                 </Link> */}
+                <div className="search_user">
+                    <input
+                        className='label-search_user'
+                        type="text"
+                        placeholder='Tìm Kiếm . . .'
+                        onChange={(event) => {
+                            setSearchTerm(event.target.value);
+                        }}
+                    />
+                    <i className="fas fa-search" id="search-icon"></i>
+                </div>
                 <TableContainer>
                     <Table
                         sx={{ minWidth: 750 }}
@@ -152,6 +165,17 @@ export default function ListKBT() {
                             {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  data.slice().sort(getComparator(order, orderBy)) */}
                             {stableSort(data, getComparator(order, orderBy))
+                                .filter((item) => {
+                                    if (searchTerm == "") {
+                                        return item
+                                    } else if (item.ho_ten.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                        return item
+                                    } else if (item.email.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                        return item
+                                    } else if (item.so_ho_chieu.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                        return item
+                                    }
+                                })
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => {
                                     const isItemSelected = isSelected(row.id);
@@ -202,10 +226,10 @@ export default function ListKBT() {
                                                 {/* <Link to={`/viewkbt/${row.id}`}>
                                                     <GridViewIcon className='view-icon' sx={{ fontSize: 30 }} />
                                                 </Link> */}
-                                                <Link to={`/taotaikhoan/${row.id}`}>
-                                                    {/* <OtherHousesOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} /> */}
+                                                {/* <Link to={`/taotaikhoan/${row.id}`}>
+                                                    <OtherHousesOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} />
                                                     <AddOutlinedIcon className='add-icon' sx={{ fontSize: 30 }} />
-                                                </Link>
+                                                </Link> */}
                                             </TableCell>
                                         </TableRow>
                                     );

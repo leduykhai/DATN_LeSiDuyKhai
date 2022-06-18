@@ -10,6 +10,11 @@ const Navbar_ChuCSLT = (props) => {
 
     const logout = () => {
         localStorage.removeItem("user")
+        localStorage.removeItem("nhanvien")
+        localStorage.removeItem("chucslt")
+        localStorage.removeItem("cslt")
+        localStorage.removeItem("kbt")
+        localStorage.removeItem("adduser")
     }
 
     return (
@@ -44,7 +49,7 @@ const Navbar_ChuCSLT = (props) => {
                         <i className="fas fa-bars" id="menu-bars"></i>
                         <i className="fas fa-search" id="search-icon"></i>
                         <Link href="#" className="a fas fa-heart"></Link>
-                        <Link href="#" className="a fas fa-user"></Link>
+                        <Link exact to="/login" className="a fas fa-user"></Link>
                     </div>
                 </header>
 

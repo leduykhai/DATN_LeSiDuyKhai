@@ -4,7 +4,7 @@
 
   //Form dk_ac
   
-  .body {
+.body {
     min-height: 80vh;
     display: flex;
     align-items: center;
@@ -52,7 +52,7 @@
 .container-dk_ac .form-all {
     position: relative;
     margin-top: 16px;
-    min-height: 300px;
+    min-height: 350px;
     background-color: #fff;
     overflow: hidden;
 }
@@ -61,6 +61,10 @@
     position: absolute;
     background-color: #fff;
     transition: 0.3s ease;
+}
+
+.luu_y {
+    color: red;
 }
 
 .container-dk_ac .form-all .form-dk_ac.second-dk_ac {

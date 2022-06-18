@@ -174,7 +174,7 @@ const AddUser = () => {
                     .catch((err) => toast.error(err.response.data));
                 toast.success("Đăng ký thành công")
             }
-            setTimeout(() => history.goBack(), 100);
+            setTimeout(() => history.push(`/add_nnn/${id}`), 100);
         }
     };
 

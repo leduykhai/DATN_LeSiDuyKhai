@@ -126,6 +126,7 @@ export default function ListCSLT_Client() {
                         setSearchTerm(event.target.value);
                     }}
                 />
+                <i className="fas fa-search" id="search-icon"></i>
             </div>
             <div className='all-card-cslt'>
                 {stableSort(data, getComparator(order, orderBy))
@@ -153,23 +154,37 @@ export default function ListCSLT_Client() {
                                 </div>
                                 <div className="card-stats-cslt">
                                     <Link className="type-cslt" to={`/client_kbt/${item.id}`}>
-                                        <div className="stat-cslt">
+                                        {/* <div className="stat-cslt">
                                             <div className="value-cslt"><sup></sup></div>
-                                            <div className="type-cslt size-type">Khai báo Lưu trú ở đây</div>
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            <div className="type-cslt">Khai báo</div>
+                                        </div> */}
+                                        <div className="stat-cslt">
+                                            <div className="value-cslt">
+                                                {/* {datadg.length} */}
+                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            </div>
+                                            <div className="type-cslt">Khai Báo</div>
+                                        </div>
+                                    </Link>
+                                    <Link className="type-cslt" to={`/client_ctcslt/${item.id}`}>
+                                        <div className="stat-cslt">
+                                            <div className="value-cslt">
+                                                {/* {datadg.length} */}
+                                                <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                            </div>
+                                            <div className="type-cslt">Bình Luận</div>
                                         </div>
                                     </Link>
                                     <Link className="type-cslt" to={`/client_ctcslt/${item.id}`}>
                                         <div className="stat-cslt border-cslt">
-                                            <div className="value-cslt">123</div>
-                                            <div className="type-cslt">Lượt Xem</div>
+                                            <div className="value-cslt">
+                                                <i class="fa fa-sign-in" aria-hidden="true"></i>
+                                            </div>
+                                            <div className="type-cslt">Xem</div>
                                         </div>
                                     </Link>
-                                    <Link className="type-cslt" to={`/client_ctcslt/${item.id}`}>
-                                        <div className="stat-cslt">
-                                            <div className="value-cslt">{datadg.length}</div>
-                                            <div className="type-cslt">Bình Luận</div>
-                                        </div>
-                                    </Link>
+
                                 </div>
                             </div>
                         );

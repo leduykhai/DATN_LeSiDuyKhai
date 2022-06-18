@@ -110,11 +110,11 @@ export default function ListCSLT() {
     const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-    const [searchTerm, setSearchTerm] = React.useState('');
-
     const [nhanvien, setNhanvien] = React.useState([]);
 
     const [data, setData] = React.useState([]);
+
+    const [searchTerm, setSearchTerm] = React.useState('');
 
     const loadDataNv = async () => {
         const responses = JSON.parse(localStorage.getItem('user'));
@@ -239,6 +239,7 @@ export default function ListCSLT() {
                             setSearchTerm(event.target.value);
                         }}
                     />
+                    <i className="fas fa-search" id="search-icon"></i>
                 </div>
                 <TableContainer>
                     <Table

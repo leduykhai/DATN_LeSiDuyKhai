@@ -36,7 +36,10 @@ const DangkyCslt = () => {
     const [quan_id, setQuan_id] = useState('');
     const [phuong, setPhuong] = useState([]);
 
-    const [Chu_CSLT, setChu_CSLT] = useState([]);
+    const [Chu_CSLTIM, setChu_CSLTIM] = useState([]);
+
+    const [cslt, setCslt] = useState([]);
+
 
     useEffect(() => {
         const getthanh_pho = async () => {
@@ -77,11 +80,20 @@ const DangkyCslt = () => {
 
     useEffect(() => {
         const getChu_CSLT = async () => {
-            const resccslt = await fetch("http://localhost:3000/chucosoluutrus");
+            const resccslt = await fetch("http://localhost:3000/chucosoluutrusmaxid");
             const rescc = await resccslt.json();
-            setChu_CSLT(await rescc);
+            setChu_CSLTIM(await rescc);
         }
         getChu_CSLT();
+    }, []);
+
+    useEffect(() => {
+        const getCSLT = async () => {
+            const rescslt = await fetch("http://localhost:3000/cslts");
+            const resc = await rescslt.json();
+            setCslt(await resc);
+        }
+        getCSLT();
     }, []);
 
     useEffect(() => {
@@ -93,6 +105,24 @@ const DangkyCslt = () => {
 
     const validateAll = () => {
         const msg = {}
+
+        for (var key in cslt) {
+            if (cslt[key].email == email) {
+                msg.email = "Email Đã Được Sử Dụng!"
+            }
+        }
+
+        if (sdt.length != 10 || sdt[0] != 0) {
+            msg.sdt = "Số điện thoại không tồn tại"
+        }
+
+        var PhoneNumber;
+        for (var i = 0; i < cslt.length; i++) {
+            PhoneNumber = cslt[i].sdt;
+            if (PhoneNumber == sdt) {
+                msg.sdt = "Số điện thoại đã được sử dụng!"
+            }
+        }
 
         if (isEmpty(ten_cslt)) {
             msg.ten_cslt = "Vui lòng nhập tên cslt"
@@ -176,6 +206,7 @@ const DangkyCslt = () => {
 
                 <form className='form-all' onSubmit={handleSubmit}>
                     <div className="form-dk_cslt first-dk_cslt">
+                        <h4 className='luu_y'>Bạn Phải Chịu Trách Nhiệm Trước Pháp Luật Về Nội Dung Khai Báo!</h4>
                         <div className="details personal">
                             <span className="title-dk_cslt">Bước 3: Thông tin cơ sở lưu trú</span>
 
@@ -326,18 +357,11 @@ const DangkyCslt = () => {
                                         }
                                     </select>
                                 </div>
+                                {/* <div className="input-field-dk_cslt">
+
+                                </div> */}
                                 <div className="input-field-dk_cslt">
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="details ID">
-                            <span className="title-dk_cslt"></span>
-
-                            <div className="fields-dk_cslt">
-                                <div className="input-field-dk_cslt">
-                                    <label className='label'>Xác nhận chủ cơ sở lưu trú</label>
+                                    <label className='label'>Xác nhận ID chủ cơ sở lưu trú</label>
                                     <select
                                         className="form-select"
                                         type="select"
@@ -349,12 +373,20 @@ const DangkyCslt = () => {
                                     >
                                         <option disabled selected value="">--Chủ Cơ sở lưu trú--</option>
                                         {
-                                            Chu_CSLT.map((getc, index) => (
+                                            Chu_CSLTIM.map((getc, index) => (
                                                 <option key={index} value={getc.id}>{getc.ho_ten} </option>
                                             ))
                                         }
                                     </select>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div className="details ID">
+                            <span className="title-dk_cslt"></span>
+
+                            <div className="fields-dk_cslt">
+
                             </div>
                             <div className="buttons">
                                 {/* <Link to="/cslt" className="backBtn">
@@ -364,8 +396,8 @@ const DangkyCslt = () => {
                                     </div>
                                 </Link> */}
                                 <button className="submit" type='submit'>
-                                    <span className="btnText">Hoàn Tất</span>
-                                    {/* <i className="uil uil-navigator"></i> */}
+                                    <span className="btnText">Tiếp Tục</span>
+                                    <i className="uil uil-navigator"></i>
                                 </button>
 
                             </div>

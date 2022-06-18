@@ -16,7 +16,7 @@ const Navbar = (props) => {
                             <img src='' alt='' />
                             <div className='title-nav'>
                                 <h3 className='content-nav'>Công An Thành Phố Đà Nẵng</h3>
-                                <h3 className='content-nav'>Hệ Thống Quản Lý Thông Tin Lưu Trú</h3>
+                                <h3 className='content-nav'>Hệ Thống Hỗ Trợ Quản Lý Thông Tin Lưu Trú</h3>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@ const Navbar = (props) => {
                         <i className="fas fa-bars" id="menu-bars"></i>
                         <i className="fas fa-search" id="search-icon"></i>
                         <Link href="#" className="a fas fa-heart"></Link>
-                        <Link href="#" className="a fas fa-user"></Link>
+                        <Link exact to="/login" className="a fas fa-user"></Link>
                     </div>
                 </header>
 

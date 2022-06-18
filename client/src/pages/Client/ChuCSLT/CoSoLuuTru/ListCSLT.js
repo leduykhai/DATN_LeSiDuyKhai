@@ -17,14 +17,28 @@ export default function ListCSLT() {
 
     const { id } = useParams();
 
+    const [cslt, setCslt] = React.useState([]);
+
     const loadData = async () => {
         const response = await axios.get(`http://localhost:3000/ccslts/${id}`);
+        localStorage.setItem("cslt", JSON.stringify(response.data))
         setData(response.data);
     };
 
     React.useEffect(() => {
         loadData();
     }, []);
+
+    // //CSLT
+    // React.useEffect(() => {
+    //     const getCslt = async () => {
+    //         const rescslt = await fetch(`http://localhost:3000/cslts/${id}`);
+    //         const resc = await rescslt.json();
+    //         localStorage.setItem("cslt", JSON.stringify(resc))
+    //         setCslt(await resc);
+    //     }
+    //     getCslt();
+    // }, []);
 
     const Dropdown = (e) => {
         let click = document.querySelector('.click-list-cslt');
@@ -59,9 +73,9 @@ export default function ListCSLT() {
                                         <Link to={`/ds_kbt/${item.id}`}>
                                             <button class="links-list-cslt">Danh Sách Khai Báo Lưu Trú</button>
                                         </Link>
-                                        <Link to={`/add_nnn/${item.id}`}>
+                                        {/* <Link to={`/add_nnn/${item.id}`}>
                                             <button class="links-list-cslt">Thêm Thông Tin Người Nước Ngoài</button>
-                                        </Link>
+                                        </Link> */}
                                         <Link to={`/client_nnn/${item.id}`}>
                                             <button class="links-list-cslt">Quản Lý Người Nước Ngoài</button>
                                         </Link>

@@ -191,7 +191,7 @@ export default function ListNKLT() {
 
                                             <TableCell align="left">
                                                 <Link to={`/edit_nklt/${row.id}`}>
-                                                    <GridViewIcon className='edit-icon' sx={{ fontSize: 30 }} />
+                                                    <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                                 {/* <DeleteIcon className='delete-icon' sx={{ fontSize: 30 }} onClick={() => { deleteContact(row.id) }} /> */}
                                                 {/* <Link to={`/viewtintuc/${row.id}`}>
