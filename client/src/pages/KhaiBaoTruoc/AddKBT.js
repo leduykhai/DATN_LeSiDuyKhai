@@ -361,13 +361,13 @@ const AddKBT = () => {
                                 </div>
 
                                 <div className="input-field-addkbt">
-                                    {/* <label className='label'>Ngày Khai Báo</label>
+                                    {/* <label className='label'>File</label>
                                     <input
-                                        type="date"
-                                        id='ngay_dang_ky'
-                                        name='ngay_dang_ky'
-                                        // value={moment(ngay_dang_ky).format('YYYY-MM-DD') || ""}
-                                        placeholder="Chọn ngày"
+                                        type="file"
+                                        id='file'
+                                        name='file'
+                                        value={file || ""}
+                                        placeholder="file . . ."
                                         required
                                         onChange={handleInputChange}
                                     />

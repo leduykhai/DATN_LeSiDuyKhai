@@ -1,12 +1,43 @@
 const util = require('util')
 const mysql = require('mysql2')
 const db = require('../../Config/database')
+// image Upload
+const multer = require('multer')
+const path = require('path')
 const {
     response
 } = require('express')
 // const { response } = require('../../index')
 
+// 8. Upload Image Controller
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'Images')
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+
+const upload = multer({
+    storage: storage,
+    limits: { fileSize: '1000000' },
+    fileFilter: (req, file, cb) => {
+        const fileTypes = /jpeg|jpg|png|gif/
+        const mimeType = fileTypes.test(file.mimetype)
+        const extname = fileTypes.test(path.extname(file.originalname))
+
+        if (mimeType && extname) {
+            return cb(null, true)
+        }
+        cb('Cung cấp định dạng tệp thích hợp để tải lên!')
+    }
+}).single('file')
+
 module.exports = {
+    upload,
+
     get: (req, res) => {
         let sql = 'SELECT * FROM khaibaotruocs ORDER BY id DESC'
         db.query(sql, (err, response) => {
@@ -79,3 +110,4 @@ module.exports = {
         })
     }
 }
+

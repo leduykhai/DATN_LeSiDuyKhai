@@ -4,7 +4,7 @@ module.exports = function (app) {
     //KhaiBaoTruoc
     app.route('/khaibaotruocs')
         .get(khaibaotruocsCtrl.get)
-        .post(khaibaotruocsCtrl.addNewKhaiBaoTruoc)
+        .post(khaibaotruocsCtrl.upload, khaibaotruocsCtrl.addNewKhaiBaoTruoc)
         .put(khaibaotruocsCtrl.updateKhaiBaoTruoc)
         .delete(khaibaotruocsCtrl.deleteKhaiBaoTruocByAll);
 

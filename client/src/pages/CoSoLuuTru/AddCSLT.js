@@ -201,7 +201,7 @@ const AddCSLT = () => {
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("Thêm thành công!")
+                toast.success("Tiếp tục!")
             }
             setTimeout(() => history.push("/add_gt"), 100);
         }
@@ -407,7 +407,7 @@ const AddCSLT = () => {
                                     </div>
                                 </Link>
                                 <button className="submit" type='submit'>
-                                    <span className="btnText">Thêm</span>
+                                    <span className="btnText">Tiếp Tục</span>
                                     <i className="uil uil-navigator"></i>
                                 </button>
 

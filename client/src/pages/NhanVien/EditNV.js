@@ -99,6 +99,13 @@ const EditNV = () => {
     const validateAll = () => {
         const msg = {}
 
+        let year = moment(Date()).format("YYYY");
+        // console.log(date)
+
+        if ((year - (moment(ngay_sinh).format("YYYY"))) < 18) {
+            msg.ngay_sinh = "Tuổi không hợp lệ!"
+        }
+
         if (isEmpty(ho_ten)) {
             msg.ho_ten = "Vui lòng nhập họ tên"
         }

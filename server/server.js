@@ -72,6 +72,10 @@ quansRoutes(app)
 thanhphosRoutes(app)
 quoctichsRoutes(app)
 
+//static Images Folder
+
+app.use('/Images', express.static('./Images'))
+
 
 app.get('/', function (req, res) {
     res.send('Hello World!')
