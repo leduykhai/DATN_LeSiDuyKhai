@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import "./ViewUser.scss"
 
@@ -8,11 +8,17 @@ const ViewUser = () => {
 
     const { id } = useParams();
 
+    const history = useHistory();
+
     useEffect(() => {
         axios
             .get(`http://localhost:3000/users/${id}`)
             .then((resp) => setUser({ ...resp.data[0] }));
     }, [id]);
+
+    const handleBack = (e) => {
+        setTimeout(() => history.goBack(), 100);
+    }
 
     return (
         <div style={{ marginTop: "150px" }}>
@@ -41,17 +47,9 @@ const ViewUser = () => {
                     <span>{user.sdt}</span>
                     <br />
                     <br />
-                    <strong>Vai Trò: </strong>
-                    <span>{user.role_id}</span>
-                    <br />
-                    <br />
-                    <strong>Trạng Thái: </strong>
-                    <span>{user.user_status_id}</span>
-                    <br />
-                    <br />
-                    <Link to="/users">
-                        <div className='btn btn-edit'>Quay Lại</div>
-                    </Link>
+
+                    <div className='btn btn-edit' onClick={handleBack}>Quay Lại</div>
+
                 </div>
             </div>
         </div>

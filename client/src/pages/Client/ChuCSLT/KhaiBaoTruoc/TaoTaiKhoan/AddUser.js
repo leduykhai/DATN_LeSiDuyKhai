@@ -83,11 +83,13 @@ const AddUser = () => {
 
 
 
-    // useEffect(() => {
-    //     axios
-    //         .get(`http://localhost:3000/users/${id}`)
-    //         .then((resp) => setState({ ...resp.data[0] }));
-    // }, [id]);
+    useEffect(() => {
+        const response = JSON.parse(localStorage.getItem('kbt'));
+        const id = response[0].id
+        axios
+            .get(`http://localhost:3000/khaibaotruocs/${id}`)
+            .then((resp) => setState({ ...resp.data[0] }));
+    }, [id]);
 
 
     const validateAll = () => {

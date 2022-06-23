@@ -35,6 +35,14 @@ import ViewTT from './pages/TinTuc/ViewTT';
 //Tài khoản chủ cơ sở lưu trú
 import TK_CSLT from './pages/TKCoSoLuuTru/ListUser'
 
+// Thông tin chủ cơ sở lưu trú
+import INFO_CCSLT from './pages/TKCoSoLuuTru/ChuCSLT/InfoChuCSLT'
+import EDIT_CCSLT from './pages/TKCoSoLuuTru/ChuCSLT/EditChuCSLT'
+
+// thông tin cơ sở lưu trú
+import INFO_CSLT from './pages/TKCoSoLuuTru/ChuCSLT/CSLT/ListCSLT'
+import EDIT_CSLT from './pages/TKCoSoLuuTru/ChuCSLT/CSLT/EditCSLT'
+
 //Chu Co So Luu Tru
 import ChuCSLT from './pages/Chu_CSLT/ListChuCSLT';
 import AddChuCSLT from './pages/Chu_CSLT/AddChuCSLT';
@@ -141,6 +149,20 @@ import NNN from './pages/Client/NguoiNuocNgoai/NNN'
 import EDIT_NNN from './pages/Client/NguoiNuocNgoai/Edit_NNN'
 import LSLT_NNN from './pages/Client/NguoiNuocNgoai/LuuTru/ListLT'
 
+//Thông tin người nước ngoài
+import INFO_NNN from './pages/Client/NguoiNuocNgoai/Account/Info_NNN'
+import EDITINFO_NNN from './pages/Client/NguoiNuocNgoai/Account/EditInfo_NNN'
+
+// Lịch sử lưu trú của người nước ngoài
+
+import LIST_LSLT_NNN from './pages/TKNguoiNuocNgoai/LichSuLuuTru/ViewLSLT'
+
+// Số Lần Đã Lưu Trú Tại Cơ Sở Lưu Trú Đó
+import LIST_SLLT from './pages/TKNguoiNuocNgoai/LichSuLuuTru/SoLanDaLuuTru/List_SLLT'
+
+//Nhật ký lưu trú của người nước ngoài
+import LIST_NKLT from './pages/TKNguoiNuocNgoai/LichSuLuuTru/SoLanDaLuuTru/NhatKyLuuTru/ListNKLT'
+
 //Người Nước Ngoài Khai báo
 
 import KBT_NNN from './pages/Client/NguoiNuocNgoai/KhaiBaoTruoc/AddKBT_NNN'
@@ -230,6 +252,19 @@ function App() {
           <RouteWrapper exact path="/edit_nnn/:id" component={EDIT_NNN} layout={Navbar_NNN} />
           <RouteWrapper exact path="/lslt_nnn/:id" component={LSLT_NNN} layout={Navbar_NNN} />
 
+          {/* Thông tin người nước ngoài */}
+          <RouteWrapper exact path="/info_nnn" component={INFO_NNN} layout={Navbar_NNN} />
+          <RouteWrapper exact path="/editinfo_nnn/:id" component={EDITINFO_NNN} layout={Navbar_NNN} />
+
+          {/* Lịch sử lưu trú người nước ngoài */}
+          <RouteWrapper exact path="/list_lslt_nnn/:id" component={LIST_LSLT_NNN} layout={Sidebar} />
+
+          {/* Số lần đã lưu trú tại cơ sở đó */}
+          <RouteWrapper exact path="/list_sllt/:id" component={LIST_SLLT} layout={Sidebar} />
+
+          {/* Nhật ký lưu trú của người nước ngoài */}
+          <RouteWrapper exact path="/list_nklt/:id" component={LIST_NKLT} layout={Sidebar} />
+
           {/* Người Nước Ngoài Khai báo trước */}
           <PrivateRoute exact path="/nnn_kbt/:id" component={KBT_NNN} layout={Navbar_NNN} />
 
@@ -271,6 +306,13 @@ function App() {
           {/* Tài khoản chủ cơ sở lưu trú */}
           <PrivateRoute exact path="/tk_cslt" component={TK_CSLT} layout={Sidebar} />
 
+          {/* Thông tin chủ cơ sở lưu trú */}
+          <PrivateRoute exact path="/info_ccslt/:id" component={INFO_CCSLT} layout={Sidebar} />
+          <PrivateRoute exact path="/edit_ccslt/:id" component={EDIT_CCSLT} layout={Sidebar} />
+
+          {/* Thông tin cơ sở lưu trú */}
+          <PrivateRoute exact path="/info_cslt/:id" component={INFO_CSLT} layout={Sidebar} />
+          <PrivateRoute exact path="/edit_cslt/:id" component={EDIT_CSLT} layout={Sidebar} />
 
           {/* Chủ Cơ Sở Lưu Trú */}
           <PrivateRoute exact path="/chucslt" component={ChuCSLT} layout={Sidebar} />

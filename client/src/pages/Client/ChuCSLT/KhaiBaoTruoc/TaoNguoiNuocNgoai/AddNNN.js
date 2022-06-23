@@ -149,12 +149,14 @@ const AddNNN = () => {
         getquoc_tich();
     }, []);
 
-    //Nguoi_nuoc_ngoai
-    // useEffect(() => {
-    //     axios
-    //         .get(`http://localhost:3000/nguoinuocngoais/${id}`)
-    //         .then((resp) => setState({ ...resp.data[0] }));
-    // }, [id]);
+    // Nguoi_nuoc_ngoai
+    useEffect(() => {
+        // const response = JSON.parse(localStorage.getItem('kbt'));
+        // const id = response[0].id
+        axios
+            .get(`http://localhost:3000/khaibaotruocs/${id}`)
+            .then((resp) => setState({ ...resp.data[0] }));
+    }, [id]);
 
     const validateAll = () => {
         const msg = {}
@@ -165,10 +167,15 @@ const AddNNN = () => {
             }
         }
 
-        let date = moment(Date()).format("YYYY");
+        let date = moment(Date()).format("YYYY-MM-DD");
+        let year = moment(Date()).format("YYYY");
 
-        if ((date - (moment(ngay_sinh).format("YYYY"))) < 18) {
+        if ((year - (moment(ngay_sinh).format("YYYY"))) < 18) {
             msg.ngay_sinh = "Ngày sinh không hợp lệ!"
+        }
+
+        if (ngay_dang_ky != date) {
+            msg.ngay_dang_ky = "Ngày đăng ký phải là ngày hiện tại!"
         }
 
         if (isEmpty(ho_ten)) {
@@ -206,15 +213,20 @@ const AddNNN = () => {
         return true
     }
 
+    // const ns = ngay_sinh.slice(0, 10)
+    const ns = moment(ngay_sinh).format("YYYY-MM-DD")
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!ho_ten || !ngay_sinh || !gioi_tinh || !email || !so_ho_chieu || !dia_chi || !sdt || !ngay_dang_ky) {
+        if (!ho_ten || !gioi_tinh || !email || !so_ho_chieu || !dia_chi || !sdt) {
             toast.error("Vui lòng nhập đầy đủ thông tin!");
         }
         const isValid = validateAll()
         if (!isValid) return
         else {
             if (id) {
+                var ngay_sinh = ns;
+                var ngay_dang_ky = moment().format("YYYY-MM-DD hh:mm:ss")
                 axios
                     .post("http://localhost:3000/nguoinuocngoais", {
                         ho_ten,
@@ -303,7 +315,7 @@ const AddNNN = () => {
                                         type="date"
                                         id='ngay_sinh'
                                         name='ngay_sinh'
-                                        value={ngay_sinh || ""}
+                                        value={moment(ngay_sinh).format("YYYY-MM-DD") || ""}
                                         placeholder="Chọn ngày sinh"
                                         required
                                         onChange={handleInputChange}
@@ -473,14 +485,6 @@ const AddNNN = () => {
                                     </select>
                                     <p className="error-text">{validationMsg.cslt_id}</p>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div className="details ID">
-                            <span className="title-addnnn"></span>
-
-                            <div className="fields-addnnn">
-
                                 <div className="input-field-addnnn">
                                     <label className='label'>Xác Nhận Email Cho User_ID</label>
                                     <select
@@ -501,6 +505,14 @@ const AddNNN = () => {
                                     </select>
                                     <p className="error-text">{validationMsg.user_id}</p>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div className="details ID">
+                            <span className="title-addnnn"></span>
+
+                            <div className="fields-addnnn">
+
                             </div>
                             <div className="buttons">
                                 {/* <Link to="/nnn" className="backBtn"> */}

@@ -17,40 +17,22 @@ const headCells = [
         label: 'STT ',
     },
     {
-        id: 'id',
+        id: 'cslt_id',
         numeric: false,
         disablePadding: false,
-        label: 'ID',
+        label: 'ID Cơ Sở Lưu Trú',
     },
     {
-        id: 'ho_ten',
+        id: 'ten_cslt',
         numeric: false,
         disablePadding: false,
-        label: 'Họ Tên',
-    },
-    {
-        id: 'email',
-        numeric: false,
-        disablePadding: false,
-        label: 'Email',
-    },
-    {
-        id: 'so_ho_chieu',
-        numeric: false,
-        disablePadding: false,
-        label: 'Số Hộ Chiếu',
-    },
-    {
-        id: 'ngay_dang_ky',
-        numeric: false,
-        disablePadding: false,
-        label: 'Ngày Đăng Ký',
+        label: 'Tên Cơ Sở Lưu Trú',
     },
     {
         id: 'action',
         numeric: false,
         disablePadding: false,
-        label: 'Hành Động',
+        label: 'Xem Lịch Sử Lưu Trú',
     },
 ];
 

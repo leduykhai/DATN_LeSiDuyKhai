@@ -36,6 +36,7 @@ import {
     GridToolbarContainer,
     GridToolbarExport,
 } from '@mui/x-data-grid-premium';
+import moment from 'moment';
 
 function CustomToolbar() {
     return (
@@ -290,6 +291,7 @@ export default function ListNNN_Client() {
                                             <TableCell align="left">{row.ho_ten}</TableCell>
                                             <TableCell align="left">{row.email}</TableCell>
                                             <TableCell align="left">{row.so_ho_chieu}</TableCell>
+                                            <TableCell align="left">{moment(row.ngay_dang_ky).format("YYYY-MM-DD hh:mm:ss")}</TableCell>
                                             <TableCell align="left">
                                                 <Link to={`/editnnn/${row.id}`}>
                                                     <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />

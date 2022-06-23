@@ -11,90 +11,25 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
-import stableSort from '../../components/Table/stableSort';
-import getComparator from '../../components/Table/getComparator';
-import EnhancedTableToolbar from '../../components/Table/EnhancedTableToolbar';
+import stableSort from '../../../components/Table/stableSort';
+import getComparator from '../../../components/Table/getComparator';
+import EnhancedTableToolbar from '../../../components/Table/EnhancedTableToolbar';
 import EnhancedTableHead from './EnhancedTableHead/EnhancedTableHead';
 
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import GridViewIcon from '@mui/icons-material/GridView';
 
-import { Link, useHistory } from 'react-router-dom';
-import { toast } from 'react-toastify';
+
 import axios from 'axios';
+import moment from 'moment';
 
-import './ListChuCSLT.scss'
+import './ViewLSLT.scss'
+import { Link, useHistory, useParams } from 'react-router-dom';
 
-import {
-    DataGridPremium,
-    GridToolbarContainer,
-    GridToolbarExport,
-} from '@mui/x-data-grid-premium';
-
-
-function CustomToolbar() {
-    return (
-        <GridToolbarContainer>
-            <GridToolbarExport />
-        </GridToolbarContainer>
-    );
-}
-
-const columns = [
-    { field: 'id', headerName: 'ID', width: 200 },
-    {
-        field: 'ho_ten',
-        headerName: 'Họ Tên',
-        type: 'text',
-        width: 150,
-    },
-    {
-        field: 'ngay_sinh',
-        headerName: 'Ngày Sinh',
-        type: 'text',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    },
-    {
-        field: 'gioi_tinh',
-        headerName: 'Giới Tính',
-        type: 'text',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    },
-    {
-        field: 'email',
-        headerName: 'Email',
-        type: 'text',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    },
-    {
-        field: 'cccd',
-        headerName: 'Căn Cước Công Dân',
-        type: 'text',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    },
-    {
-        field: 'dia_chi',
-        headerName: 'Địa Chỉ',
-        type: 'text',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    },
-    {
-        field: 'sdt',
-        headerName: 'Số Điện Thoại',
-        type: 'text',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    }
-];
-
-export default function ListChuCSLT() {
+export default function NNN() {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
     const [selected, setSelected] = React.useState([]);
@@ -102,14 +37,21 @@ export default function ListChuCSLT() {
     const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-    const [data, setData] = React.useState([]);
+    // const response = JSON.parse(localStorage.getItem('user'));
+
+    const [cslt, setCslt] = React.useState([]);
+
+    // const id = response[0].id
 
     const history = useHistory();
 
-    const [searchTerm, setSearchTerm] = React.useState('');
+
+    const { id } = useParams();
+
+    const [data, setData] = React.useState([]);
 
     const loadData = async () => {
-        const response = await axios.get("http://localhost:3000/chucosoluutrus");
+        const response = await axios.get(`http://localhost:3000/nguoinuocngoaisuser/${id}`);
         setData(response.data);
     };
 
@@ -117,16 +59,25 @@ export default function ListChuCSLT() {
         loadData();
     }, []);
 
-    const deleteContact = (id) => {
-        if (
-            window.confirm("Bạn chắc chắn muốn xoá chủ cơ sở lưu trú này?")
-        ) {
-            axios.delete(`http://localhost:3000/chucosoluutrus/${id}`);
-            toast.success("Xoá Thành Công!");
-            setTimeout(() => loadData(), 100);
+    //CSLT
+    React.useEffect(() => {
+        const getCslt = async () => {
+            const rescslt = await fetch(`http://localhost:3000/cslts`);
+            const resc = await rescslt.json();
+            setCslt(await resc);
         }
-    };
+        getCslt();
+    }, []);
 
+
+
+    const Dropdown = (e) => {
+        let click = document.querySelector('.click-dd');
+        let list = document.querySelector('.list-dd');
+        click.addEventListener("click", () => {
+            list.classList.toggle('newlist-dd');
+        });
+    }
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -182,41 +133,27 @@ export default function ListChuCSLT() {
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
-    const role = () => {
-        const response = JSON.parse(localStorage.getItem('user'));
-        if (response[0].id == 1) {
-            window.alert("Tài Khoản Của Bạn không Có quyền truy cập")
-            setTimeout(() => history.push("/chucslt"), 100);
-        }
-    };
+    const handleBack = (e) => {
+        setTimeout(() => history.goBack(), 100);
+    }
 
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
-                <Link to={`/addUser`}>
+                <ArrowCircleLeftIcon className='add-icon' sx={{ fontSize: 50 }} onClick={handleBack} />
+                {/* <Link to={`/addUser`}>
                     <PersonAddAltIcon className='add-icon' sx={{ fontSize: 40 }} />
-                </Link>
+                </Link> */}
                 {/* <div style={{ height: 300, width: '100%' }}> */}
-                <DataGridPremium
+                {/* <DataGridPremium
                     rows={data}
                     columns={columns}
                     components={{
                         Toolbar: CustomToolbar,
                     }}
-                />
+                /> */}
                 {/* </div> */}
-                <div className="search_user">
-                    <input
-                        className='label-search_user'
-                        type="text"
-                        placeholder='Tìm Kiếm . . .'
-                        onChange={(event) => {
-                            setSearchTerm(event.target.value);
-                        }}
-                    />
-                    <i className="fas fa-search" id="search-icon"></i>
-                </div>
                 <TableContainer>
                     <Table
                         sx={{ minWidth: 750 }}
@@ -233,17 +170,8 @@ export default function ListChuCSLT() {
                         />
                         <TableBody>
                             {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-                 data.slice().sort(getComparator(order, orderBy)) */}
+             data.slice().sort(getComparator(order, orderBy)) */}
                             {stableSort(data, getComparator(order, orderBy))
-                                .filter((item) => {
-                                    if (searchTerm == "") {
-                                        return item
-                                    } else if (item.ho_ten.toLowerCase().includes(searchTerm.toLowerCase())) {
-                                        return item
-                                    } else if (item.sdt.toLowerCase().includes(searchTerm.toLowerCase())) {
-                                        return item
-                                    }
-                                })
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => {
                                     const isItemSelected = isSelected(row.id);
@@ -277,16 +205,28 @@ export default function ListChuCSLT() {
                                                 {/* {row.name} */}
                                                 {index + 1}
                                             </TableCell>
-                                            <TableCell align="left">CCSLT{row.id}</TableCell>
-                                            <TableCell align="left">{row.ho_ten}</TableCell>
-                                            <TableCell align="left">{row.gioi_tinh}</TableCell>
-                                            <TableCell align="left">{row.sdt}</TableCell>
+                                            <TableCell align="left">CSLT{row.cslt_id}</TableCell>
                                             <TableCell align="left">
-                                                <Link to={`/updatechucslt/${row.id}`} onClick={role}>
+                                                <select
+                                                    className="form-select"
+                                                    type="select"
+                                                    value={row.cslt_id || ""}
+                                                    disabled
+                                                >
+                                                    <option disabled selected value="">--Tên Cơ Sở Lưu Trú--</option>
+                                                    {
+                                                        cslt.map((getcslt, index) => (
+                                                            <option key={index} value={getcslt.id}>{getcslt.ten_cslt} </option>
+                                                        ))
+                                                    }
+                                                </select>
+                                            </TableCell>
+                                            <TableCell align="left">
+                                                {/* <Link to={`/updatennn/${row.id}`}>
                                                     <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />
-                                                </Link>
-                                                <DeleteIcon className='delete-icon' sx={{ fontSize: 30 }} onClick={() => { deleteContact(row.id) }} />
-                                                <Link to={`/viewchucslt/${row.id}`}>
+                                                </Link> */}
+                                                {/* <DeleteIcon className='delete-icon' sx={{ fontSize: 30 }} onClick={() => { deleteContact(row.id) }} /> */}
+                                                <Link to={`/list_sllt/${row.id}`}>
                                                     <GridViewIcon className='view-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
                                             </TableCell>

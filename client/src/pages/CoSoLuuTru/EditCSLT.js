@@ -356,7 +356,7 @@ const EditCSLT = () => {
                                         <option disabled selected value="">--Tên Tài Khoản--</option>
                                         {
                                             Chu_CSLT.map((getc, index) => (
-                                                <option key={index} value={getc.id}>{getc.ho_ten} </option>
+                                                <option key={index} value={getc.id}>{getc.email} </option>
                                             ))
                                         }
                                     </select>

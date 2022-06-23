@@ -111,6 +111,7 @@ const AddLT = () => {
         if (!isValid) return
         else {
             if (id) {
+                var ngay_den_lt = moment().format("YYYY-MM-DD hh:mm:ss")
                 axios
                     .post("http://localhost:3000/luutrus", {
                         ngay_dang_ky_lt,

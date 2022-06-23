@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import "./ViewChuCSLT.scss"
 import moment from 'moment';
@@ -9,11 +9,28 @@ const ViewChuCSLT = () => {
 
     const { id } = useParams();
 
+    const history = useHistory();
+
+    const [nhanvien, setNhanvien] = useState([]);
+
+    useEffect(() => {
+        const getNV = async () => {
+            const resnhanvien = await fetch(`http://localhost:3000/nhanviens`);
+            const resnv = await resnhanvien.json();
+            setNhanvien(await resnv);
+        }
+        getNV();
+    }, []);
+
     useEffect(() => {
         axios
             .get(`http://localhost:3000/chucosoluutrus/${id}`)
             .then((resp) => setChuCSLT({ ...resp.data[0] }));
     }, [id]);
+
+    const handleBack = (e) => {
+        setTimeout(() => history.goBack(), 100);
+    }
 
     return (
         <div style={{ marginTop: "150px" }}>
@@ -54,9 +71,29 @@ const ViewChuCSLT = () => {
                     <span>{ChuCSLT.dia_chi}</span>
                     <br />
                     <br />
-                    <Link to="/chucslt">
-                        <div className='btn'>Quay lại</div>
-                    </Link>
+                    <strong>Nhân Viên Duyệt: </strong>
+                    <span>
+                        <select
+                            className="form-select"
+                            type="select"
+                            name="nhanvien_id"
+                            id='nhanvien_id'
+                            value={ChuCSLT.nhanvien_id || ""}
+                            disabled
+                        >
+                            <option disabled selected value="">--Tên Nhân Viên--</option>
+                            {
+                                nhanvien.map((getnv, index) => (
+                                    <option key={index} value={getnv.id}> {getnv.ho_ten} </option>
+                                ))
+                            }
+                        </select>
+                    </span>
+                    <br />
+                    <br />
+                    {/* <Link to="/chucslt"> */}
+                    <div className='btn' onClick={handleBack}>Quay lại</div>
+                    {/* </Link> */}
                 </div>
             </div>
         </div>

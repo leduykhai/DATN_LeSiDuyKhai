@@ -11,28 +11,29 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
-import stableSort from '../../components/Table/stableSort';
-import getComparator from '../../components/Table/getComparator';
-import EnhancedTableToolbar from '../../components/Table/EnhancedTableToolbar';
+import stableSort from '../../../../components/Table/stableSort';
+import getComparator from '../../../../components/Table/getComparator';
+import EnhancedTableToolbar from '../../../../components/Table/EnhancedTableToolbar';
 import EnhancedTableHead from './EnhancedTableHead/EnhancedTableHead';
 
-import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import MapsHomeWorkOutlinedIcon from '@mui/icons-material/MapsHomeWorkOutlined';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import GridViewIcon from '@mui/icons-material/GridView';
 
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import './ListChuCSLT.scss'
+import './ListCSLT.scss'
 
 import {
     DataGridPremium,
     GridToolbarContainer,
     GridToolbarExport,
 } from '@mui/x-data-grid-premium';
-
 
 function CustomToolbar() {
     return (
@@ -45,36 +46,50 @@ function CustomToolbar() {
 const columns = [
     { field: 'id', headerName: 'ID', width: 200 },
     {
-        field: 'ho_ten',
-        headerName: 'Họ Tên',
-        type: 'text',
+        field: 'chu_cslt_id',
+        headerName: 'Chủ cơ sở lưu trú ID',
+        type: 'number',
         width: 150,
     },
     {
-        field: 'ngay_sinh',
-        headerName: 'Ngày Sinh',
+        field: 'phuong_id',
+        headerName: 'Phường ID',
+        type: 'number',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'ten_cslt',
+        headerName: 'Tên Cơ sở Lưu Trú',
         type: 'text',
         // valueOptions: ['full time', 'part time', 'intern'],
         width: 150,
     },
     {
-        field: 'gioi_tinh',
-        headerName: 'Giới Tính',
+        field: 'loai_cslt',
+        headerName: 'Loại Cơ sở Lưu Trú',
         type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'nguoi_dai_dien',
+        headerName: 'Người Đại diện',
+        type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'sdt',
+        headerName: 'Số điện thoại',
+        type: 'number',
         // valueOptions: ['full time', 'part time', 'intern'],
         width: 150,
     },
     {
         field: 'email',
         headerName: 'Email',
-        type: 'text',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    },
-    {
-        field: 'cccd',
-        headerName: 'Căn Cước Công Dân',
-        type: 'text',
+        type: 'email',
         // valueOptions: ['full time', 'part time', 'intern'],
         width: 150,
     },
@@ -85,16 +100,10 @@ const columns = [
         // valueOptions: ['full time', 'part time', 'intern'],
         width: 150,
     },
-    {
-        field: 'sdt',
-        headerName: 'Số Điện Thoại',
-        type: 'text',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    }
+
 ];
 
-export default function ListChuCSLT() {
+export default function ListCSLT() {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
     const [selected, setSelected] = React.useState([]);
@@ -104,12 +113,17 @@ export default function ListChuCSLT() {
 
     const [data, setData] = React.useState([]);
 
-    const history = useHistory();
-
     const [searchTerm, setSearchTerm] = React.useState('');
 
+    const { id } = useParams();
+
+    const history = useHistory();
+
     const loadData = async () => {
-        const response = await axios.get("http://localhost:3000/chucosoluutrus");
+        // const responses = JSON.parse(localStorage.getItem('user'));
+        // const id = responses[0].id;
+        const response = await axios.get(`http://localhost:3000/ccslts/${id}`);
+        // localStorage.setItem("nhanvien", JSON.stringify(response.data))
         setData(response.data);
     };
 
@@ -117,15 +131,35 @@ export default function ListChuCSLT() {
         loadData();
     }, []);
 
-    const deleteContact = (id) => {
-        if (
-            window.confirm("Bạn chắc chắn muốn xoá chủ cơ sở lưu trú này?")
-        ) {
-            axios.delete(`http://localhost:3000/chucosoluutrus/${id}`);
-            toast.success("Xoá Thành Công!");
-            setTimeout(() => loadData(), 100);
-        }
-    };
+
+    // const loadData = async () => {
+    //     const responses = JSON.parse(localStorage.getItem('user'));
+    //     const id = responses[0].id;
+    //     if (id === 1) {
+    //         const response = await axios.get(`http://localhost:3000/cslts`);
+    //         setData(response.data);
+    //     } else {
+    //         const responses = JSON.parse(localStorage.getItem('nhanvien'));
+    //         const id = responses[0].khuvuc_id;
+    //         console.log(id)
+    //         const response = await axios.get(`http://localhost:3000/csltsphuong/${id}`);
+    //         setData(response.data);
+    //     }
+    // };
+
+    // React.useEffect(() => {
+    //     loadData();
+    // }, []);
+
+    // const deleteContact = (id) => {
+    //     if (
+    //         window.confirm("Bạn chắc chắn muốn xoá cơ sở lưu trú này ?")
+    //     ) {
+    //         axios.delete(`http://localhost:3000/cslts/${id}`);
+    //         toast.success("Xoá Thành Công!");
+    //         setTimeout(() => loadData(), 100);
+    //     }
+    // };
 
 
     const handleRequestSort = (event, property) => {
@@ -182,31 +216,28 @@ export default function ListChuCSLT() {
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
-    const role = () => {
-        const response = JSON.parse(localStorage.getItem('user'));
-        if (response[0].id == 1) {
-            window.alert("Tài Khoản Của Bạn không Có quyền truy cập")
-            setTimeout(() => history.push("/chucslt"), 100);
-        }
-    };
+    const handleBack = (e) => {
+        setTimeout(() => history.goBack(), 100);
+    }
 
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
-                <Link to={`/addUser`}>
-                    <PersonAddAltIcon className='add-icon' sx={{ fontSize: 40 }} />
-                </Link>
+                {/* <Link to={`/addcslt`}>
+                    <MapsHomeWorkOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} />
+                    <AddOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} />
+                </Link> */}
                 {/* <div style={{ height: 300, width: '100%' }}> */}
-                <DataGridPremium
+                {/* <DataGridPremium
                     rows={data}
                     columns={columns}
                     components={{
                         Toolbar: CustomToolbar,
                     }}
-                />
+                /> */}
                 {/* </div> */}
-                <div className="search_user">
+                {/* <div className="search_user">
                     <input
                         className='label-search_user'
                         type="text"
@@ -216,7 +247,8 @@ export default function ListChuCSLT() {
                         }}
                     />
                     <i className="fas fa-search" id="search-icon"></i>
-                </div>
+                </div> */}
+                <ArrowCircleLeftIcon className='add-icon' sx={{ fontSize: 50 }} onClick={handleBack} />
                 <TableContainer>
                     <Table
                         sx={{ minWidth: 750 }}
@@ -238,9 +270,11 @@ export default function ListChuCSLT() {
                                 .filter((item) => {
                                     if (searchTerm == "") {
                                         return item
-                                    } else if (item.ho_ten.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                    } else if (item.ten_cslt.toLowerCase().includes(searchTerm.toLowerCase())) {
                                         return item
-                                    } else if (item.sdt.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                    } else if (item.nguoi_dai_dien.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                        return item
+                                    } else if (item.loai_cslt.toLowerCase().includes(searchTerm.toLowerCase())) {
                                         return item
                                     }
                                 })
@@ -277,18 +311,19 @@ export default function ListChuCSLT() {
                                                 {/* {row.name} */}
                                                 {index + 1}
                                             </TableCell>
-                                            <TableCell align="left">CCSLT{row.id}</TableCell>
-                                            <TableCell align="left">{row.ho_ten}</TableCell>
-                                            <TableCell align="left">{row.gioi_tinh}</TableCell>
-                                            <TableCell align="left">{row.sdt}</TableCell>
+                                            <TableCell align="left">CSLT{row.id}</TableCell>
+                                            <TableCell align="left">CCSLT{row.chu_cslt_id}</TableCell>
+                                            <TableCell align="left">{row.ten_cslt}</TableCell>
+                                            <TableCell align="left">{row.loai_cslt}</TableCell>
+                                            <TableCell align="left">{row.nguoi_dai_dien}</TableCell>
                                             <TableCell align="left">
-                                                <Link to={`/updatechucslt/${row.id}`} onClick={role}>
+                                                <Link to={`/edit_cslt/${row.id}`}>
                                                     <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
-                                                <DeleteIcon className='delete-icon' sx={{ fontSize: 30 }} onClick={() => { deleteContact(row.id) }} />
-                                                <Link to={`/viewchucslt/${row.id}`}>
+                                                {/* <DeleteIcon className='delete-icon' sx={{ fontSize: 30 }} onClick={() => { deleteContact(row.id) }} /> */}
+                                                {/* <Link to={`/edit_gt/${row.id}`}>
                                                     <GridViewIcon className='view-icon' sx={{ fontSize: 30 }} />
-                                                </Link>
+                                                </Link> */}
                                             </TableCell>
                                         </TableRow>
                                     );

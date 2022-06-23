@@ -35,6 +35,15 @@ module.exports = {
 
     getNNNByUserId: (req, res) => {
         let nnn_id = req.params.id;
+        let sql = 'SELECT * FROM nguoinuocngoais where user_id = ?'
+        db.query(sql, nnn_id, (err, response) => {
+            if (err) throw err
+            res.json(response);
+        })
+    },
+
+    getNNNByUserIdOne: (req, res) => {
+        let nnn_id = req.params.id;
         let sql = 'SELECT * FROM nguoinuocngoais where user_id = ? ORDER BY id LIMIT 1'
         db.query(sql, nnn_id, (err, response) => {
             if (err) throw err

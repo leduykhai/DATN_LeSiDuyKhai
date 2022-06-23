@@ -18,6 +18,9 @@ module.exports = function (app) {
     app.route('/nguoinuocngoaisuser/:id')
         .get(nguoinuocngoaisCtrl.getNNNByUserId);
 
+    app.route('/nguoinuocngoaisuserone/:id')
+        .get(nguoinuocngoaisCtrl.getNNNByUserIdOne);
+
 
     // app.route('/api/nguoinuocngoais/login')
     //     .post(nguoinuocngoaisCtrl.login)

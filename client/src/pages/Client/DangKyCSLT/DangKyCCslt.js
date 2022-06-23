@@ -134,7 +134,8 @@ const DangKyCCslt = () => {
     //chu co so luu tru
     useEffect(() => {
         axios
-            .get(`http://localhost:3000/chucosoluutrus/${id}`)
+            // .get(`http://localhost:3000/chucosoluutrus/${id}`)
+            .get(`http://localhost:3000/usersidmax`)
             .then((resp) => setState({ ...resp.data[0] }));
     }, [id]);
 

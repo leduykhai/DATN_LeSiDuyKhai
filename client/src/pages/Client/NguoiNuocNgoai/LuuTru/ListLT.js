@@ -181,7 +181,7 @@ export default function ListLT() {
                                             </TableCell>
                                             <TableCell align="left">LT {row.id}</TableCell>
                                             <TableCell align="left">CSLT {row.cslt_id}</TableCell>
-                                            <TableCell align="left">{moment(row.ngay_dang_ky).format('YYYY-MM-DD hh:mm:ss')}</TableCell>
+                                            <TableCell align="left">{moment(row.ngay_dang_ky_lt).format('YYYY-MM-DD')}</TableCell>
                                             <TableCell align="left">{moment(row.ngay_den_lt).format('YYYY-MM-DD hh:mm:ss')}</TableCell>
 
                                             <TableCell align="left">

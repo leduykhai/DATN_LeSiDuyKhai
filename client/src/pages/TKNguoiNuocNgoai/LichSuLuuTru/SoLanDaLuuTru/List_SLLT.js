@@ -11,90 +11,30 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
-import stableSort from '../../components/Table/stableSort';
-import getComparator from '../../components/Table/getComparator';
-import EnhancedTableToolbar from '../../components/Table/EnhancedTableToolbar';
+import stableSort from '../../../../components/Table/stableSort';
+import getComparator from '../../../../components/Table/getComparator';
+import EnhancedTableToolbar from '../../../../components/Table/EnhancedTableToolbar';
 import EnhancedTableHead from './EnhancedTableHead/EnhancedTableHead';
 
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import LibraryBooksRoundedIcon from '@mui/icons-material/LibraryBooksRounded';
+import OtherHousesOutlinedIcon from '@mui/icons-material/OtherHousesOutlined';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import GridViewIcon from '@mui/icons-material/GridView';
 
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import './ListChuCSLT.scss'
+// import './ListLT.scss'
 
-import {
-    DataGridPremium,
-    GridToolbarContainer,
-    GridToolbarExport,
-} from '@mui/x-data-grid-premium';
+import Moment from 'react-moment';
+import moment from 'moment';
 
-
-function CustomToolbar() {
-    return (
-        <GridToolbarContainer>
-            <GridToolbarExport />
-        </GridToolbarContainer>
-    );
-}
-
-const columns = [
-    { field: 'id', headerName: 'ID', width: 200 },
-    {
-        field: 'ho_ten',
-        headerName: 'Họ Tên',
-        type: 'text',
-        width: 150,
-    },
-    {
-        field: 'ngay_sinh',
-        headerName: 'Ngày Sinh',
-        type: 'text',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    },
-    {
-        field: 'gioi_tinh',
-        headerName: 'Giới Tính',
-        type: 'text',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    },
-    {
-        field: 'email',
-        headerName: 'Email',
-        type: 'text',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    },
-    {
-        field: 'cccd',
-        headerName: 'Căn Cước Công Dân',
-        type: 'text',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    },
-    {
-        field: 'dia_chi',
-        headerName: 'Địa Chỉ',
-        type: 'text',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    },
-    {
-        field: 'sdt',
-        headerName: 'Số Điện Thoại',
-        type: 'text',
-        // valueOptions: ['full time', 'part time', 'intern'],
-        width: 150,
-    }
-];
-
-export default function ListChuCSLT() {
+export default function ListLT() {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
     const [selected, setSelected] = React.useState([]);
@@ -102,14 +42,20 @@ export default function ListChuCSLT() {
     const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-    const [data, setData] = React.useState([]);
-
     const history = useHistory();
 
-    const [searchTerm, setSearchTerm] = React.useState('');
+    const [data, setData] = React.useState([]);
+
+    const [lutrustatus, setLuutru_Status] = React.useState([]);
+
+
+    // const response = JSON.parse(localStorage.getItem('user'));
+
+    // const id = response[0].id
+    const { id } = useParams();
 
     const loadData = async () => {
-        const response = await axios.get("http://localhost:3000/chucosoluutrus");
+        const response = await axios.get(`http://localhost:3000/luutrusnnnid/${id}`);
         setData(response.data);
     };
 
@@ -117,16 +63,15 @@ export default function ListChuCSLT() {
         loadData();
     }, []);
 
-    const deleteContact = (id) => {
-        if (
-            window.confirm("Bạn chắc chắn muốn xoá chủ cơ sở lưu trú này?")
-        ) {
-            axios.delete(`http://localhost:3000/chucosoluutrus/${id}`);
-            toast.success("Xoá Thành Công!");
-            setTimeout(() => loadData(), 100);
+    // trạng thái
+    React.useEffect(() => {
+        const getluutru_status = async () => {
+            const reslt_status = await fetch("http://localhost:3000/ltstatus");
+            const reslt = await reslt_status.json();
+            setLuutru_Status(await reslt);
         }
-    };
-
+        getluutru_status();
+    }, []);
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -182,41 +127,20 @@ export default function ListChuCSLT() {
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
-    const role = () => {
-        const response = JSON.parse(localStorage.getItem('user'));
-        if (response[0].id == 1) {
-            window.alert("Tài Khoản Của Bạn không Có quyền truy cập")
-            setTimeout(() => history.push("/chucslt"), 100);
-        }
-    };
+    const handleBack = (e) => {
+        setTimeout(() => history.goBack(), 100);
+    }
 
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
-                <Link to={`/addUser`}>
-                    <PersonAddAltIcon className='add-icon' sx={{ fontSize: 40 }} />
-                </Link>
-                {/* <div style={{ height: 300, width: '100%' }}> */}
-                <DataGridPremium
-                    rows={data}
-                    columns={columns}
-                    components={{
-                        Toolbar: CustomToolbar,
-                    }}
-                />
-                {/* </div> */}
-                <div className="search_user">
-                    <input
-                        className='label-search_user'
-                        type="text"
-                        placeholder='Tìm Kiếm . . .'
-                        onChange={(event) => {
-                            setSearchTerm(event.target.value);
-                        }}
-                    />
-                    <i className="fas fa-search" id="search-icon"></i>
-                </div>
+                <ArrowCircleLeftIcon className='add-icon' sx={{ fontSize: 50 }} onClick={handleBack} />
+                {/* <Link to={`/addlt`}>
+                    <OtherHousesOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} />
+                    <AddOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} />
+                </Link> */}
+
                 <TableContainer>
                     <Table
                         sx={{ minWidth: 750 }}
@@ -235,15 +159,6 @@ export default function ListChuCSLT() {
                             {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  data.slice().sort(getComparator(order, orderBy)) */}
                             {stableSort(data, getComparator(order, orderBy))
-                                .filter((item) => {
-                                    if (searchTerm == "") {
-                                        return item
-                                    } else if (item.ho_ten.toLowerCase().includes(searchTerm.toLowerCase())) {
-                                        return item
-                                    } else if (item.sdt.toLowerCase().includes(searchTerm.toLowerCase())) {
-                                        return item
-                                    }
-                                })
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => {
                                     const isItemSelected = isSelected(row.id);
@@ -277,18 +192,42 @@ export default function ListChuCSLT() {
                                                 {/* {row.name} */}
                                                 {index + 1}
                                             </TableCell>
-                                            <TableCell align="left">CCSLT{row.id}</TableCell>
-                                            <TableCell align="left">{row.ho_ten}</TableCell>
-                                            <TableCell align="left">{row.gioi_tinh}</TableCell>
-                                            <TableCell align="left">{row.sdt}</TableCell>
+                                            <TableCell align="left">LT {row.id}</TableCell>
+                                            <TableCell align="left">CSLT {row.cslt_id}</TableCell>
+                                            <TableCell align="left">{moment(row.ngay_dang_ky_lt).format('YYYY-MM-DD hh:mm:ss')}</TableCell>
+                                            <TableCell align="left">{moment(row.ngay_den_lt).format('YYYY-MM-DD hh:mm:ss')}</TableCell>
+                                            <TableCell align="left">{row.ten_phong}</TableCell>
+                                            <TableCell align="left">{moment(row.ngay_di_du_kien).format('YYYY-MM-DD hh:mm:ss')}</TableCell>
+                                            <TableCell align="left">{moment(row.ngay_di_thuc).format('YYYY-MM-DD hh:mm:ss')}</TableCell>
                                             <TableCell align="left">
-                                                <Link to={`/updatechucslt/${row.id}`} onClick={role}>
-                                                    <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />
+                                                <select
+                                                    className="form-select"
+                                                    type="select"
+                                                    name="luutru_status_id"
+                                                    id='luutru_status_id'
+                                                    value={row.luutru_status_id}
+                                                    disabled
+                                                >
+                                                    <option disabled selected value="" >-- Chọn Trạng thái --</option>
+                                                    {
+                                                        lutrustatus.map((getlt, index) => (
+                                                            <option key={index} value={getlt.id}>{getlt.status_name} </option>
+                                                        ))
+                                                    }
+                                                </select>
+                                            </TableCell>
+
+                                            <TableCell align="left">
+                                                <Link to={`/list_nklt/${row.id}`}>
+                                                    <GridViewIcon className='edit-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
-                                                <DeleteIcon className='delete-icon' sx={{ fontSize: 30 }} onClick={() => { deleteContact(row.id) }} />
-                                                <Link to={`/viewchucslt/${row.id}`}>
+                                                {/* <Link to={`/add_nklt/${row.id}`}>
+                                                    <LibraryBooksRoundedIcon className='add-icon' sx={{ fontSize: 40 }} />
+                                                    <AddOutlinedIcon className='add-icon' sx={{ fontSize: 30 }} />
+                                                </Link> */}
+                                                {/* <Link to={`/viewtintuc/${row.id}`}>
                                                     <GridViewIcon className='view-icon' sx={{ fontSize: 30 }} />
-                                                </Link>
+                                                </Link> */}
                                             </TableCell>
                                         </TableRow>
                                     );

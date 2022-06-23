@@ -14,7 +14,7 @@ const headCells = [
         id: 'no',
         numeric: false,
         disablePadding: true,
-        label: 'STT ',
+        label: 'STT',
     },
     {
         id: 'id',
@@ -23,35 +23,35 @@ const headCells = [
         label: 'ID',
     },
     {
-        id: 'ho_ten',
+        id: 'ten_diem_den',
         numeric: false,
         disablePadding: false,
-        label: 'Họ Tên',
+        label: 'Tên điểm đến',
     },
     {
-        id: 'email',
+        id: 'dia_chi_diem_den',
         numeric: false,
         disablePadding: false,
-        label: 'Email',
+        label: 'Địa chỉ',
     },
     {
-        id: 'so_ho_chieu',
+        id: 'thoi_gian_den',
         numeric: false,
         disablePadding: false,
-        label: 'Số Hộ Chiếu',
+        label: 'Thời gian đến',
     },
     {
-        id: 'ngay_dang_ky',
+        id: 'thoi_gian_roi_di',
         numeric: false,
         disablePadding: false,
-        label: 'Ngày Đăng Ký',
+        label: 'Thời gian rời đi',
     },
-    {
-        id: 'action',
-        numeric: false,
-        disablePadding: false,
-        label: 'Hành Động',
-    },
+    // {
+    //     id: 'action',
+    //     numeric: false,
+    //     disablePadding: false,
+    //     label: 'Xem Chi Tiết',
+    // },
 ];
 
 function EnhancedTableHead(props) {

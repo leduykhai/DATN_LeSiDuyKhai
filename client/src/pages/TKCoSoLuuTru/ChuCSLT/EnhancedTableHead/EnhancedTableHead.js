@@ -14,7 +14,7 @@ const headCells = [
         id: 'no',
         numeric: false,
         disablePadding: true,
-        label: 'STT ',
+        label: 'STT',
     },
     {
         id: 'id',
@@ -26,31 +26,25 @@ const headCells = [
         id: 'ho_ten',
         numeric: false,
         disablePadding: false,
-        label: 'Họ Tên',
+        label: 'Họ tên',
     },
     {
-        id: 'email',
+        id: 'gioi_tinh',
         numeric: false,
         disablePadding: false,
-        label: 'Email',
+        label: 'Giới tính',
     },
     {
-        id: 'so_ho_chieu',
+        id: 'sdt',
         numeric: false,
         disablePadding: false,
-        label: 'Số Hộ Chiếu',
-    },
-    {
-        id: 'ngay_dang_ky',
-        numeric: false,
-        disablePadding: false,
-        label: 'Ngày Đăng Ký',
+        label: 'Số điện thoại',
     },
     {
         id: 'action',
         numeric: false,
         disablePadding: false,
-        label: 'Hành Động',
+        label: 'Hành động',
     },
 ];
 

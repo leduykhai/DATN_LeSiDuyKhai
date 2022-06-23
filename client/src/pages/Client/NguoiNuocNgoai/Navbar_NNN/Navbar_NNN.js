@@ -37,7 +37,7 @@ const Navbar_NNN = (props) => {
                         <Link exact to="/client" className="a" >Trang Chủ</Link>
                         <Link exact to="/account_nnn" className="a" href="#about">Thông Tin Tài Khoản</Link>
                         <Link exact to="/nnn_client" className="a" href="#about">Lịch Sử Lưu Trú</Link>
-                        <Link exact to="/account_nnn" className="a" >Xin Chào {response[0].ho_ten}</Link>
+                        <Link exact to="/info_nnn" className="a" >Xin Chào {response[0].ho_ten}</Link>
                         <Link exact to="/login" className="a" href="#about" onClick={logout} >Đăng Xuất</Link>
                     </div>
 

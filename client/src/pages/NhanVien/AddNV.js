@@ -128,7 +128,8 @@ const AddNV = () => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:3000/nhanviens/${id}`)
+            // .get(`http://localhost:3000/nhanviens/${id}`)
+            .get(`http://localhost:3000/usersidmax`)
             .then((resp) => setState({ ...resp.data[0] }));
     }, [id]);
 

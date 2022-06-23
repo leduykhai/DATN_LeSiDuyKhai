@@ -52,7 +52,7 @@ const AddKBT_Client = () => {
             const response = JSON.parse(localStorage.getItem('user'));
             const id = response[0].id;
             console.log(id)
-            const resnnn = await fetch(`http://localhost:3000/nguoinuocngoaisuser/${id}`);
+            const resnnn = await fetch(`http://localhost:3000/nguoinuocngoaisuserone/${id}`);
             const resn = await resnnn.json();
             console.log(resn)
             setNnn(await resn);
@@ -91,11 +91,13 @@ const AddKBT_Client = () => {
     }, []);
 
     //Nguoi_nuoc_ngoai
-    // useEffect(() => {
-    //     axios
-    //         .get(`http://localhost:3000/khaibaotruocs/${id}`)
-    //         .then((resp) => setState({ ...resp.data[0] }));
-    // }, [id]);
+    useEffect(() => {
+        const response = JSON.parse(localStorage.getItem('user'));
+        const id = response[0].id;
+        axios
+            .get(`http://localhost:3000/nguoinuocngoaisuserone/${id}`)
+            .then((resp) => setState({ ...resp.data[0] }));
+    }, [id]);
 
     const validateAll = () => {
         const msg = {}
@@ -120,7 +122,7 @@ const AddKBT_Client = () => {
         //     }
         // }
 
-        let date = moment(Date()).format("YYYY-MM-DD");
+        let date = moment(Date()).format("YYYY-MM-DD hh:mm");
         let year = moment(Date()).format("YYYY");
         // console.log(date)
 
@@ -174,16 +176,32 @@ const AddKBT_Client = () => {
         return true
     }
 
+    // const ns = ngay_sinh.slice(0, 10)
+
+    const ns = moment(ngay_sinh).format("YYYY-MM-DD")
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!ho_ten || !ngay_sinh || !gioi_tinh || !email || !so_ho_chieu || !dia_chi || !sdt || !ngay_den_luu_tru) {
+        if (!ho_ten || !gioi_tinh || !email || !so_ho_chieu || !dia_chi || !sdt || !ngay_den_luu_tru) {
             toast.error("Vui lòng nhập đầy đủ thông tin!");
         }
         const isValid = validateAll()
         if (!isValid) return
         else {
             if (id) {
-                var ngay_dang_ky = moment(ngay_dang_ky).format('YYYY-MM-DD hh:mm:ss')
+                var ngay_dang_ky = moment(ngay_dang_ky).format('YYYY-MM-DD hh:mm:ss');
+
+                // var ngay_sinh = moment(ngay_sinh).format("YYYY-MM-DD")
+
+                // var ngay_sinh = ngay_sinh.splice(1, 2)
+
+                // console.log(ngay_sinh[1])
+                var ngay_sinh = ns;
+
+                console.log(ngay_sinh)
+
+                var cslt_id = id;
+
                 axios
                     .post("http://localhost:3000/khaibaotruocs", {
                         ho_ten,
@@ -261,13 +279,28 @@ const AddKBT_Client = () => {
                                     <p className="error-text">{validationMsg.ho_ten}</p>
                                 </div>
 
+                                {/* <div className="input-field-addkbt">
+                                    <label className='label'>Họ Tên</label>
+                                    <input
+                                        type="text"
+                                        id='ho_ten'
+                                        name='ho_ten'
+                                        value={ho_ten}
+                                        placeholder="Nhập họ tên . . ."
+                                        required
+                                        onChange={handleInputChange}
+                                    />
+                                    <p className="error-text">{validationMsg.ho_ten}</p>
+                                </div> */}
+
                                 <div className="input-field-addkbt">
                                     <label className='label'>Ngày sinh</label>
                                     <input
                                         type="date"
                                         id='ngay_sinh'
                                         name='ngay_sinh'
-                                        value={ngay_sinh || ""}
+                                        value={moment(ngay_sinh).format("YYYY-MM-DD")}
+                                        // value={ngay_sinh}
                                         placeholder="Chọn ngày sinh"
                                         required
                                         onChange={handleInputChange}
@@ -275,6 +308,27 @@ const AddKBT_Client = () => {
                                     <p className="error-text">{validationMsg.ngay_sinh}</p>
 
                                 </div>
+                                {/* <div className="input-field-addkbt">
+                                    <label className='label'>Ngày Sinh</label>
+                                    <select
+                                        className="form-select"
+                                        type="select"
+                                        name="ngay_sinh"
+                                        id='ngay_sinh'
+                                        // value={ngay_sinh || ""}
+                                        value={moment(ngay_sinh).format("YYYY-MM-DD")}
+                                        required
+                                        onChange={handleInputChange}
+                                    >
+                                        <option disabled selected value="">--ngay_sinh--</option>
+                                        {
+                                            nnn.map((getus, index) => (
+                                                <option key={index}>{getus.ngay_sinh} </option>
+                                            ))
+                                        }
+                                    </select>
+                                    <p className="error-text">{validationMsg.gioi_tinh}</p>
+                                </div> */}
 
                                 <div className="input-field-addkbt">
                                     <label className='label'>Xác nhận giới tính</label>

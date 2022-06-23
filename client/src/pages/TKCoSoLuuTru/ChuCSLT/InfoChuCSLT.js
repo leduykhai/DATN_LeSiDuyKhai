@@ -11,21 +11,23 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
-import stableSort from '../../components/Table/stableSort';
-import getComparator from '../../components/Table/getComparator';
-import EnhancedTableToolbar from '../../components/Table/EnhancedTableToolbar';
+import stableSort from '../../../components/Table/stableSort';
+import getComparator from '../../../components/Table/getComparator';
+import EnhancedTableToolbar from '../../../components/Table/EnhancedTableToolbar';
 import EnhancedTableHead from './EnhancedTableHead/EnhancedTableHead';
 
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import HomeWorkOutlinedIcon from '@mui/icons-material/HomeWorkOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import GridViewIcon from '@mui/icons-material/GridView';
 
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import './ListChuCSLT.scss'
+import './InfoChuCSLT.scss'
 
 import {
     DataGridPremium,
@@ -104,12 +106,14 @@ export default function ListChuCSLT() {
 
     const [data, setData] = React.useState([]);
 
-    const history = useHistory();
-
     const [searchTerm, setSearchTerm] = React.useState('');
 
+    const { id } = useParams();
+
+    const history = useHistory();
+
     const loadData = async () => {
-        const response = await axios.get("http://localhost:3000/chucosoluutrus");
+        const response = await axios.get(`http://localhost:3000/chucosoluutrususerid/${id}`);
         setData(response.data);
     };
 
@@ -182,11 +186,15 @@ export default function ListChuCSLT() {
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
+    const handleBack = (e) => {
+        setTimeout(() => history.goBack(), 100);
+    }
+
     const role = () => {
         const response = JSON.parse(localStorage.getItem('user'));
         if (response[0].id == 1) {
             window.alert("Tài Khoản Của Bạn không Có quyền truy cập")
-            setTimeout(() => history.push("/chucslt"), 100);
+            setTimeout(() => history.push("/tk_cslt"), 100);
         }
     };
 
@@ -194,29 +202,30 @@ export default function ListChuCSLT() {
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
-                <Link to={`/addUser`}>
+                {/* <Link to={`/addUser`}>
                     <PersonAddAltIcon className='add-icon' sx={{ fontSize: 40 }} />
-                </Link>
+                </Link> */}
                 {/* <div style={{ height: 300, width: '100%' }}> */}
-                <DataGridPremium
+                {/* <DataGridPremium
                     rows={data}
                     columns={columns}
                     components={{
                         Toolbar: CustomToolbar,
                     }}
-                />
+                /> */}
                 {/* </div> */}
-                <div className="search_user">
+                {/* <div className="search_user">
                     <input
-                        className='label-search_user'
-                        type="text"
-                        placeholder='Tìm Kiếm . . .'
-                        onChange={(event) => {
-                            setSearchTerm(event.target.value);
-                        }}
+                    className='label-search_user'
+                    type="text"
+                    placeholder='Tìm Kiếm . . .'
+                    onChange={(event) => {
+                        setSearchTerm(event.target.value);
+                    }}
                     />
                     <i className="fas fa-search" id="search-icon"></i>
-                </div>
+                </div> */}
+                <ArrowCircleLeftIcon className='add-icon' sx={{ fontSize: 50 }} onClick={handleBack} />
                 <TableContainer>
                     <Table
                         sx={{ minWidth: 750 }}
@@ -282,13 +291,17 @@ export default function ListChuCSLT() {
                                             <TableCell align="left">{row.gioi_tinh}</TableCell>
                                             <TableCell align="left">{row.sdt}</TableCell>
                                             <TableCell align="left">
-                                                <Link to={`/updatechucslt/${row.id}`} onClick={role}>
+                                                <Link to={`/edit_ccslt/${row.id}`} onClick={role}>
                                                     <EditIcon className='edit-icon' sx={{ fontSize: 30 }} />
                                                 </Link>
-                                                <DeleteIcon className='delete-icon' sx={{ fontSize: 30 }} onClick={() => { deleteContact(row.id) }} />
+                                                {/* <DeleteIcon className='delete-icon' sx={{ fontSize: 30 }} onClick={() => { deleteContact(row.id) }} /> */}
                                                 <Link to={`/viewchucslt/${row.id}`}>
-                                                    <GridViewIcon className='view-icon' sx={{ fontSize: 30 }} />
+                                                    <GridViewIcon className='view-info' sx={{ fontSize: 30 }} />
                                                 </Link>
+                                                <Link to={`/info_cslt/${row.id}`}>
+                                                    <HomeWorkOutlinedIcon className='edit-icon' sx={{ fontSize: 30 }} />
+                                                </Link>
+
                                             </TableCell>
                                         </TableRow>
                                     );

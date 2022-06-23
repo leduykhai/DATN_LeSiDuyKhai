@@ -2,34 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import isEmail from "validator/lib/isEmail";
 import isEmpty from "validator/lib/isEmpty";
-import "./EditChuCSLT.scss";
+import "./EditCSLT.scss";
 import axios from 'axios';
 import { toast } from 'react-toastify';
-
-import Moment from 'react-moment';
-// import 'moment-timezone';
 import moment from 'moment';
 
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+
+
 const initialState = {
-    ho_ten: "",
-    ngay_sinh: "",
-    gioi_tinh: "",
-    email: "",
-    cccd: "",
-    dia_chi: "",
+    ten_cslt: "",
+    loai_cslt: "",
+    nguoi_dai_dien: "",
     sdt: "",
-    // hinh: "",
-    user_id: "",
-    phuong_id: "",
-    nhanvien_id: ""
+    email: "",
+    dia_chi: "",
+    // file: "",
+    chu_cslt_id: "",
+    phuong_id: ""
 }
 
-const EditChuCSLT = () => {
+const EditCSLT = () => {
     const [state, setState] = useState(initialState);
 
-    const { ho_ten, ngay_sinh, gioi_tinh, email, cccd, dia_chi, sdt, user_id, phuong_id, nhanvien_id } = state;
+    const { ten_cslt, loai_cslt, nguoi_dai_dien, sdt, email, dia_chi, chu_cslt_id, phuong_id } = state;
 
-    const [validationMsg, setValidationMsg] = useState({});
+    const [validationMsg, setValidationMsg] = useState({})
 
     const history = useHistory();
 
@@ -41,11 +39,7 @@ const EditChuCSLT = () => {
     const [quan_id, setQuan_id] = useState('');
     const [phuong, setPhuong] = useState([]);
 
-    const [user, setUser] = useState([]);
-
-    const [nhanvien, setNhanvien] = useState([]);
-
-    const response = JSON.parse(localStorage.getItem('nhanvien'));
+    const [Chu_CSLT, setChu_CSLT] = useState([]);
 
     useEffect(() => {
         const getthanh_pho = async () => {
@@ -63,12 +57,12 @@ const EditChuCSLT = () => {
 
     useEffect(() => {
         const getquan = async () => {
-            const resquan = await fetch(`http://localhost:3000/quans/${thanh_pho_id}`);
+            const resquan = await fetch(`http://localhost:3000/quans/${48}`);
             const resq = await resquan.json();
             setQuan(await resq);
         }
         getquan();
-    }, [thanh_pho_id]);
+    }, [48]);
 
     const handlequan = (event) => {
         const getquan_id = event.target.value;
@@ -85,68 +79,50 @@ const EditChuCSLT = () => {
     }, [quan_id]);
 
     useEffect(() => {
-        const getUser = async () => {
-            const resuser = await fetch("http://localhost:3000/users");
-            const resu = await resuser.json();
-            setUser(await resu);
+        const getChu_CSLT = async () => {
+            const resccslt = await fetch("http://localhost:3000/chucosoluutrus");
+            const rescc = await resccslt.json();
+            setChu_CSLT(await rescc);
         }
-        getUser();
+        getChu_CSLT();
     }, []);
-
-    useEffect(() => {
-        const getNV = async () => {
-            const resnhanvien = await fetch(`http://localhost:3000/nhanviens`);
-            const resnv = await resnhanvien.json();
-            setNhanvien(await resnv);
-        }
-        getNV();
-    }, []);
-
 
     useEffect(() => {
         axios
-            .get(`http://localhost:3000/chucosoluutrus/${id}`)
+            .get(`http://localhost:3000/cslts/${id}`)
             .then((resp) => setState({ ...resp.data[0] }));
     }, [id]);
 
+
     const validateAll = () => {
         const msg = {}
-
-        let date = moment(Date()).format("YYYY");
-
-        if ((date - (moment(ngay_sinh).format("YYYY"))) < 18) {
-            msg.ngay_sinh = "Tuổi từ 18 trở lên"
-        }
 
         if (sdt.length != 10 || sdt[0] != 0) {
             msg.sdt = "Số điện thoại không tồn tại"
         }
 
-        if (isEmpty(ho_ten)) {
-            msg.ho_ten = "Vui lòng nhập họ tên"
+        if (isEmpty(ten_cslt)) {
+            msg.ten_cslt = "Vui lòng nhập Tên cslt"
         }
-        if (isEmpty(ngay_sinh)) {
-            msg.ngay_sinh = "Vui lòng chọn ngày sinh"
+        if (isEmpty(loai_cslt)) {
+            msg.loai_cslt = "Vui lòng Loại cslt"
         }
-        if (isEmpty(gioi_tinh)) {
-            msg.gioi_tinh = "Vui lòng chọn giới tính"
+        if (isEmpty(nguoi_dai_dien)) {
+            msg.nguoi_dai_dien = "Vui lòng nhập tên người đại diện"
         }
         if (isEmpty(email)) {
-            msg.email = "Vui lòng nhập email"
+            msg.email = "Please input your Email"
         } else if (!isEmail(email)) {
-            msg.email = "email không đúng"
-        }
-        if (isEmpty(cccd)) {
-            msg.cccd = "vui lòng nhập căn cước công dân"
-        }
-        if (isEmpty(dia_chi)) {
-            msg.dia_chi = "Vui lòng nhập địa chỉ"
+            msg.email = "Your email is incorrect"
         }
         if (isEmpty(sdt)) {
-            msg.sdt = "vui lòng nhập số điện thoại"
+            msg.sdt = "Please input your Number Phone"
         }
-        // if (isEmpty(hinh)) {
-        //     msg.hinh = "Please input your Images"
+        if (isEmpty(dia_chi)) {
+            msg.dia_chi = "Please input your Address"
+        }
+        // if (isEmpty(file)) {
+        //     msg.file = "Please input your File"
         // }
 
         setValidationMsg(msg)
@@ -154,53 +130,45 @@ const EditChuCSLT = () => {
         return true
     }
 
-    const ns = moment(ngay_sinh).format('YYYY-MM-DD')
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!ho_ten || !gioi_tinh || !email || !cccd || !dia_chi || !sdt) {
+        if (!ten_cslt || !loai_cslt || !nguoi_dai_dien || !sdt || !email || !dia_chi) {
             toast.error("Vui lòng nhập đầy đủ thông tin");
         }
         const isValid = validateAll()
         if (!isValid) return
         else {
             if (id) {
-                var ngay_sinh = ns;
-                var nhanvien_id = response[0].id;
                 axios
-                    .put("http://localhost:3000/chucosoluutrus", {
+                    .put("http://localhost:3000/cslts", {
                         id,
-                        ho_ten,
-                        ngay_sinh,
-                        gioi_tinh,
-                        email,
-                        cccd,
-                        dia_chi,
+                        ten_cslt,
+                        loai_cslt,
+                        nguoi_dai_dien,
                         sdt,
-                        // hinh,
-                        user_id,
+                        email,
+                        dia_chi,
+                        // file,
+                        chu_cslt_id,
                         phuong_id,
-                        nhanvien_id,
                     })
                     .then(() => {
                         setState({
-                            ho_ten: "",
-                            ngay_sinh: "",
-                            gioi_tinh: "",
-                            email: "",
-                            cccd: "",
-                            dia_chi: "",
+                            ten_cslt: "",
+                            loai_cslt: "",
+                            nguoi_dai_dien: "",
                             sdt: "",
-                            // hinh: "",
-                            user_id: "",
+                            email: "",
+                            dia_chi: "",
+                            //file: "",
+                            chu_cslt_id: "",
                             phuong_id: "",
-                            nhanvien_id: ""
                         });
                     })
                     .catch((err) => toast.error(err.response.data));
-                toast.success("Cập nhật thành công")
+                toast.success("Cập nhật thành công!")
             }
-            setTimeout(() => history.push("/chucslt"), 100);
+            setTimeout(() => history.goBack(), 100);
         }
     };
 
@@ -209,64 +177,84 @@ const EditChuCSLT = () => {
         setState({ ...state, [name]: value });
     }
 
+    const handleBack = (e) => {
+        setTimeout(() => history.goBack(), 100);
+    }
+
     return (
         <body className='body'>
-            <div className="container-editccslt">
+            <div className="container-editcslt">
                 <header className='header'>Cập nhật</header>
-
+                <ArrowCircleLeftIcon className='add-icon' sx={{ fontSize: 50 }} onClick={handleBack} />
                 <form className='form-all' onSubmit={handleSubmit}>
-                    <div className="form-editccslt first-editccslt">
+                    <div className="form-editcslt first-editcslt">
                         <div className="details personal">
-                            <span className="title-editccslt">Thông tin cá nhân</span>
+                            <span className="title-editcslt">Thông Tin Cơ Sở Lưu Trú</span>
 
-                            <div className="fields-editccslt">
-                                <div className="input-field-editccslt">
-                                    <label className='label'>Họ tên</label>
+                            <div className="fields-editcslt">
+                                <div className="input-field-editcslt">
+                                    <label className='label'>Tên Cơ Sở Lưu Trú</label>
                                     <input
                                         type="text"
-                                        id='ho_ten'
-                                        name='ho_ten'
-                                        value={ho_ten || ""}
-                                        placeholder="Nhập họ tên . . ."
+                                        id='ten_cslt'
+                                        name='ten_cslt'
+                                        value={ten_cslt || ""}
+                                        placeholder="Nhập Tên CSLT . . ."
                                         required
                                         onChange={handleInputChange}
                                     />
-                                    <p className="error-text">{validationMsg.ho_ten}</p>
+                                    <p className="error-text">{validationMsg.ten_cslt}</p>
                                 </div>
 
-                                <div className="input-field-editccslt">
-                                    <label className='label'>Ngày sinh</label>
-                                    <input
-                                        type="date"
-                                        id='ngay_sinh'
-                                        name='ngay_sinh'
-                                        value={moment(ngay_sinh).format('YYYY-MM-DD') || ""}
-                                        placeholder="Chọn ngày sinh"
-                                        required
-                                        onChange={handleInputChange}
-                                    />
-                                    <p className="error-text">{validationMsg.ngay_sinh}</p>
-
-                                </div>
-
-                                <div className="input-field-editccslt">
-                                    <label className='label'>Giới tính</label>
+                                <div className="input-field-editcslt">
+                                    <label className='label'>Loại Cơ Sở Lưu Trú</label>
                                     <select
                                         type="select"
-                                        id='gioi_tinh'
-                                        name='gioi_tinh'
-                                        value={gioi_tinh || ""}
+                                        id='loai_cslt'
+                                        name='loai_cslt'
+                                        value={loai_cslt || ""}
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value={""}>--Chọn Giới tính--</option>
-                                        <option>Nam</option>
-                                        <option>Nữ</option>
-                                        <option>Khác</option>
+                                        <option disabled selected value={""}>--Chọn Loại CSLT--</option>
+                                        {/* <option>--Select gender--</option> */}
+                                        <option>CC - Chung cư, cơ sở y tế, ký túc xá</option>
+                                        <option>KCN - Khu công nghiệp, chế xuất</option>
+                                        <option>KS - Khách sạn, nhà trọ</option>
+                                        <option>NDKD - Nhà dân kinh doanh</option>
+                                        <option>VL - Nhà dân không kinh doanh</option>
                                     </select>
                                 </div>
 
-                                <div className="input-field-editccslt">
+                                <div className="input-field-editcslt">
+                                    <label className='label'>Người Đại Diện</label>
+                                    <input
+                                        type="text"
+                                        id='nguoi_dai_dien'
+                                        name='nguoi_dai_dien'
+                                        value={nguoi_dai_dien || ""}
+                                        placeholder="Nhập Tên Người Đại Diện . . ."
+                                        required
+                                        onChange={handleInputChange}
+                                    />
+                                    <p className="error-text">{validationMsg.nguoi_dai_dien}</p>
+                                </div>
+
+                                <div className="input-field-editcslt">
+                                    <label className='label'>Số Điện Thoại</label>
+                                    <input
+                                        type="number"
+                                        id='sdt'
+                                        name='sdt'
+                                        value={sdt || ""}
+                                        placeholder="Nhập Số Điện Thoại . . ."
+                                        required
+                                        onChange={handleInputChange}
+                                    />
+                                    <p className="error-text">{validationMsg.sdt}</p>
+                                </div>
+
+                                <div className="input-field-editcslt">
                                     <label className='label'>Email</label>
                                     <input
                                         type="email"
@@ -280,35 +268,21 @@ const EditChuCSLT = () => {
                                     <p className="error-text">{validationMsg.email}</p>
                                 </div>
 
-                                <div className="input-field-editccslt">
-                                    <label className='label'>Căn Cước Công Dân</label>
-                                    <input
-                                        type="number"
-                                        id='cccd'
-                                        name='cccd'
-                                        value={cccd || ""}
-                                        placeholder="Nhập CCCD . . ."
-                                        required
-                                        onChange={handleInputChange}
-                                    />
-                                    <p className="error-text">{validationMsg.cccd}</p>
-                                </div>
-
-                                <div className="input-field-editccslt">
+                                <div className="input-field-editcslt">
                                     <label className='label'>Địa Chỉ</label>
                                     <input
                                         type="text"
                                         id='dia_chi'
                                         name='dia_chi'
                                         value={dia_chi || ""}
-                                        placeholder="Nhập Địa Chỉ . . ."
+                                        placeholder="Nhập Địa Chỉ"
                                         required
                                         onChange={handleInputChange}
                                     />
                                     <p className="error-text">{validationMsg.dia_chi}</p>
                                 </div>
 
-                                <div className="input-field-editccslt">
+                                {/* <div className="input-field-editcslt">
                                     <label className='label'>Thành Phố</label>
                                     <select
                                         className="form-control p-2"
@@ -324,9 +298,9 @@ const EditChuCSLT = () => {
                                             ))
                                         }
                                     </select>
-                                </div>
+                                </div> */}
 
-                                <div className="input-field-editccslt">
+                                <div className="input-field-editcslt">
                                     <label className='label'>Quận</label>
                                     <select
                                         className="form-select"
@@ -345,7 +319,7 @@ const EditChuCSLT = () => {
                                     </select>
                                 </div>
 
-                                <div className="input-field-editccslt">
+                                <div className="input-field-editcslt">
                                     <label className='label'>Phường</label>
                                     <select
                                         className="form-select"
@@ -364,94 +338,45 @@ const EditChuCSLT = () => {
                                         }
                                     </select>
                                 </div>
+                                <div className="input-field-editcslt">
 
-                                <div className="input-field-editccslt">
-                                    <label className='label'>Số Điện Thoại</label>
-                                    <input
-                                        type="number"
-                                        id='sdt'
-                                        name='sdt'
-                                        value={sdt || ""}
-                                        placeholder="Nhập Số Điện Thoại"
-                                        required
-                                        onChange={handleInputChange}
-                                    />
-                                    <p className="error-text">{validationMsg.sdt}</p>
                                 </div>
-                                {/* <div className="input-field-editccslt">
-                                    <label className='label'>Image</label>
-                                    <input
-                                        type="file"
-                                        id='hinh'
-                                        name='hinh'
-                                        value={hinh || ""}
-                                        placeholder="Enter your Image"
-                                        required
-                                        onChange={handleInputChange}
-                                    />
-                                    <p className="error-text">{validationMsg.hinh}</p>
-                                </div> */}
                             </div>
                         </div>
 
                         <div className="details ID">
-                            <span className="title-editccslt"></span>
+                            <span className="title-editcslt"></span>
 
-                            <div className="fields-editccslt">
-                                <div className="input-field-editccslt">
+                            <div className="fields-editcslt">
+                                <div className="input-field-editcslt">
                                     <label className='label'>Tài Khoản</label>
                                     <select
                                         className="form-select"
                                         type="select"
-                                        name="user_id"
-                                        id='user_id'
-                                        value={user_id || ""}
+                                        name="chu_cslt_id"
+                                        id='chu_cslt_id'
+                                        value={chu_cslt_id || ""}
                                         required
                                         disabled
                                         onChange={handleInputChange}
                                     >
                                         <option disabled selected value="">--Tên Tài Khoản--</option>
                                         {
-                                            user.map((getus, index) => (
-                                                <option key={index} value={getus.id}> {getus.ho_ten} </option>
+                                            Chu_CSLT.map((getc, index) => (
+                                                <option key={index} value={getc.id}>{getc.email} </option>
                                             ))
                                         }
                                     </select>
-                                </div>
-
-                                <div className="input-field-editccslt">
-                                    <label className='label'>Nhân Viên Duyệt</label>
-                                    <select
-                                        className="form-select"
-                                        type="select"
-                                        name="nhanvien_id"
-                                        id='nhanvien_id'
-                                        value={response[0].id || ""}
-                                        required
-                                        disabled
-                                        onChange={handleInputChange}
-                                    >
-                                        <option disabled selected value="">--Tên Nhân Viên--</option>
-                                        {
-                                            nhanvien.map((getnv, index) => (
-                                                <option key={index} value={getnv.id}> {getnv.ho_ten} </option>
-                                            ))
-                                        }
-                                    </select>
-                                </div>
-
-                                <div className="input-field-editccslt">
-
                                 </div>
                             </div>
                             <div className="buttons">
 
-                                <Link to="/chucslt" className="backBtn">
+                                {/* <Link to="/cslt" className="backBtn">
                                     <div className="backBtn" >
                                         <i className="uil uil-navigator"></i>
                                         <span className="btnText">Quay Lại</span>
                                     </div>
-                                </Link>
+                                </Link> */}
                                 <button className="submit" type='submit'>
                                     <span className="btnText">Cập Nhật</span>
                                     <i className="uil uil-navigator"></i>
@@ -466,4 +391,4 @@ const EditChuCSLT = () => {
     )
 }
 
-export default EditChuCSLT
+export default EditCSLT

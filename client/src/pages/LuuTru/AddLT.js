@@ -109,6 +109,7 @@ const AddLT = () => {
         if (!isValid) return
         else {
             if (!id) {
+                var ngay_den_lt = moment().format("YYYY-MM-DD hh:mm:ss")
                 axios
                     .post("http://localhost:3000/luutrus", {
                         ngay_dang_ky_lt,
@@ -158,7 +159,7 @@ const AddLT = () => {
                                 <div className="input-field-addlt">
                                     <label className='label'>Ngày đăng ký lưu trú</label>
                                     <input
-                                        type="datetime-local"
+                                        type="date"
                                         id='ngay_dang_ky_lt'
                                         name='ngay_dang_ky_lt'
                                         value={ngay_dang_ky_lt || ""}
@@ -172,7 +173,7 @@ const AddLT = () => {
                                 <div className="input-field-addlt">
                                     <label className='label'>Ngày đến lưu trú</label>
                                     <input
-                                        type="datetime-local"
+                                        type="date"
                                         id='ngay_den_lt'
                                         name='ngay_den_lt'
                                         value={ngay_den_lt || ""}
