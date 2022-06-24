@@ -47,6 +47,12 @@ const headCells = [
         label: 'Ngày Khai Báo',
     },
     {
+        id: 'kbt_status_id',
+        numeric: false,
+        disablePadding: false,
+        label: 'Trạng thái',
+    },
+    {
         id: 'action',
         numeric: false,
         disablePadding: false,

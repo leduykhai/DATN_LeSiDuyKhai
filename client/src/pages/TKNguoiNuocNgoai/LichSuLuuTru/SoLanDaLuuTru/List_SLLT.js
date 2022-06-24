@@ -34,6 +34,74 @@ import axios from 'axios';
 import Moment from 'react-moment';
 import moment from 'moment';
 
+
+import {
+    DataGridPremium,
+    GridToolbarContainer,
+    GridToolbarExport,
+} from '@mui/x-data-grid-premium';
+
+
+function CustomToolbar() {
+    return (
+        <GridToolbarContainer>
+            <GridToolbarExport />
+        </GridToolbarContainer>
+    );
+}
+
+const columns = [
+    { field: 'id', headerName: 'ID', width: 200 },
+    {
+        field: 'nnn_id',
+        headerName: 'ID Người nước ngoài',
+        type: 'text',
+        width: 150,
+    },
+    {
+        field: 'cslt_id',
+        headerName: 'ID Cơ sở lưu trú',
+        type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'ngay_dang_ky_lt',
+        headerName: 'Ngày đăng ký lưu trú',
+        type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'ngay_den_lt',
+        headerName: 'Ngày đến lưu trú',
+        type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'ten_phong',
+        headerName: 'Tên phòng',
+        type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'ngay_di_du_kien',
+        headerName: 'Ngày đi dự kiến',
+        type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+    {
+        field: 'ngay_di_thuc',
+        headerName: 'Ngày đi thực',
+        type: 'text',
+        // valueOptions: ['full time', 'part time', 'intern'],
+        width: 150,
+    },
+];
+
 export default function ListLT() {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
@@ -140,6 +208,16 @@ export default function ListLT() {
                     <OtherHousesOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} />
                     <AddOutlinedIcon className='add-icon' sx={{ fontSize: 40 }} />
                 </Link> */}
+
+                {/* <div style={{ height: 300, width: '100%' }}> */}
+                <DataGridPremium
+                    rows={data}
+                    columns={columns}
+                    components={{
+                        Toolbar: CustomToolbar,
+                    }}
+                />
+                {/* </div> */}
 
                 <TableContainer>
                     <Table

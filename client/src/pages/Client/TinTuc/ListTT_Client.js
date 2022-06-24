@@ -2,6 +2,7 @@ import * as React from 'react';
 import axios from 'axios';
 
 import './ListTT_Client.scss'
+import moment from 'moment';
 
 export default function ListTT_Client() {
 
@@ -25,6 +26,7 @@ export default function ListTT_Client() {
                         <div className='text-tt'>
                             <h4 className='text-title-tt'>{item.tieu_de}</h4>
                             <p className='text-content-tt'>{item.noi_dung}</p>
+                            <p className='text-content-tt'>Cập nhật: {moment(item.ngay_tao).format("DD/MM/YYYY hh:mm")}</p>
                         </div>
                     </div>
                 );

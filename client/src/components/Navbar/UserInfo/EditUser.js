@@ -196,13 +196,17 @@ const EditUser = () => {
                     .catch((err) => toast.error(err.response.data));
                 toast.success("Cập nhật thành công!")
             }
-            setTimeout(() => history.push("/users"), 100);
+            setTimeout(() => history.goBack(), 100);
         }
     };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setState({ ...state, [name]: value });
+    }
+
+    const handleBack = (e) => {
+        setTimeout(() => history.goBack(), 100);
     }
 
     return (
@@ -322,12 +326,12 @@ const EditUser = () => {
                         <div className="details ID">
 
                             <div className="buttons">
-                                <Link to="/users" className="backBtn">
-                                    <div className="backBtn" >
-                                        <i className="uil uil-navigator"></i>
-                                        <span className="btnText">Quay Lại</span>
-                                    </div>
-                                </Link>
+                                {/* <Link to="/users" className="backBtn"> */}
+                                <div className="backBtn" onClick={handleBack} >
+                                    <i className="uil uil-navigator"></i>
+                                    <span className="btnText">Quay Lại</span>
+                                </div>
+                                {/* </Link> */}
                                 <button className="submit" type='submit'>
                                     <span className="btnText">Cập Nhật</span>
                                     <i className="uil uil-navigator"></i>

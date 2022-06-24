@@ -46,6 +46,8 @@ export default function ListKBT() {
 
     const { id } = useParams();
 
+    const [kbtstatus, setKbt_Status] = React.useState([]);
+
     const [data, setData] = React.useState([]);
 
     const [searchTerm, setSearchTerm] = React.useState('');
@@ -57,6 +59,15 @@ export default function ListKBT() {
 
     React.useEffect(() => {
         loadData();
+    }, []);
+
+    React.useEffect(() => {
+        const getkbt_status = async () => {
+            const reskbt_status = await fetch("http://localhost:3000/kbtstatus");
+            const resk = await reskbt_status.json();
+            setKbt_Status(await resk);
+        }
+        getkbt_status();
     }, []);
 
     const deleteContact = (id) => {
@@ -217,6 +228,23 @@ export default function ListKBT() {
                                                 <Moment>
                                                     {row.ngay_dang_ky}
                                                 </Moment>
+                                            </TableCell>
+                                            <TableCell align="left">
+                                                <select
+                                                    className="form-select"
+                                                    type="select"
+                                                    name="kbt_status_id"
+                                                    id='kbt_status_id'
+                                                    value={row.kbt_status_id}
+                                                    disabled
+                                                >
+                                                    <option disabled selected value="" >-- Chọn Trạng thái --</option>
+                                                    {
+                                                        kbtstatus.map((getkbt, index) => (
+                                                            <option key={index} value={getkbt.id}>{getkbt.status_name} </option>
+                                                        ))
+                                                    }
+                                                </select>
                                             </TableCell>
                                             <TableCell align="left">
                                                 <Link to={`/edit_kbt/${row.id}`}>
