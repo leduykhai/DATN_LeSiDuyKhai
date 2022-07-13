@@ -207,7 +207,7 @@ const AddLT = () => {
                                 <div className="input-field-addlt">
                                     <label className='label'>Ngày đi dự kiến</label>
                                     <input
-                                        type="date"
+                                        type="datetime-local"
                                         id='ngay_di_du_kien'
                                         name='ngay_di_du_kien'
                                         value={ngay_di_du_kien || ""}

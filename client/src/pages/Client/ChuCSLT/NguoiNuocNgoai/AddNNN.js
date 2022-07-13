@@ -99,11 +99,11 @@ const AddNNN = () => {
     }, []);
 
     //Nguoi_nuoc_ngoai
-    // useEffect(() => {
-    //     axios
-    //         .get(`http://localhost:3000/nguoinuocngoais/${id}`)
-    //         .then((resp) => setState({ ...resp.data[0] }));
-    // }, [id]);
+    useEffect(() => {
+        axios
+            .get(`http://localhost:3000/usersidmax`)
+            .then((resp) => setState({ ...resp.data[0] }));
+    }, [id]);
 
     const validateAll = () => {
         const msg = {}
@@ -112,6 +112,10 @@ const AddNNN = () => {
 
         if ((date - (moment(ngay_sinh).format("YYYY"))) < 18) {
             msg.ngay_sinh = "Ngày sinh không hợp lệ!"
+        }
+
+        if (sdt.length != 10 || sdt[0] != 0) {
+            msg.sdt = "Số điện thoại không tồn tại"
         }
 
         if (isEmpty(ho_ten)) {
@@ -391,14 +395,6 @@ const AddNNN = () => {
                                         }
                                     </select>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div className="details ID">
-                            <span className="title-addnnn"></span>
-
-                            <div className="fields-addnnn">
-
                                 <div className="input-field-addnnn">
                                     <label className='label'>Tài Khoản</label>
                                     <select
@@ -410,7 +406,7 @@ const AddNNN = () => {
                                         required
                                         onChange={handleInputChange}
                                     >
-                                        <option disabled selected value="">--Tên Người Nước Ngoài--</option>
+                                        <option disabled selected value="">--Tài Khoản Người Nước Ngoài--</option>
                                         {
                                             useridmax.map((getus, index) => (
                                                 <option key={index} value={getus.id}>{getus.ho_ten} </option>
@@ -418,6 +414,15 @@ const AddNNN = () => {
                                         }
                                     </select>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div className="details ID">
+                            <span className="title-addnnn"></span>
+
+                            <div className="fields-addnnn">
+
+
                             </div>
                             <div className="buttons">
                                 {/* <Link to="/nnn" className="backBtn"> */}

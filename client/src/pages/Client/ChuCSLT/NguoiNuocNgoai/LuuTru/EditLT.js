@@ -79,7 +79,7 @@ const EditLT = () => {
         if (isEmpty(ten_phong)) {
             msg.ten_phong = "Vui lòng nhập tên phòng"
         }
-        let date = moment(Date()).format("YYYY-MM-DD");
+        let date = moment().format("YYYY-MM-DD");
         // console.log(date)
 
 

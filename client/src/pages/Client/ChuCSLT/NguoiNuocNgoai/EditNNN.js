@@ -123,6 +123,8 @@ const EditNNN = () => {
         return true
     }
 
+    const ns = moment(ngay_sinh).format('YYYY-MM-DD');
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!ho_ten || !gioi_tinh || !email || !so_ho_chieu || !dia_chi || !sdt) {
@@ -132,13 +134,13 @@ const EditNNN = () => {
         if (!isValid) return
         else {
             if (id) {
-                var ngay_sinh = moment(ngay_sinh).format('YYYY-MM-DD');
+                var ngay_sinh = ns;
                 var ngay_dang_ky = moment(ngay_dang_ky).format('YYYY-MM-DD');
                 axios
                     .put("http://localhost:3000/nguoinuocngoais", {
                         id,
                         ho_ten,
-                        // ngay_sinh,
+                        ngay_sinh,
                         gioi_tinh,
                         email,
                         so_ho_chieu,
